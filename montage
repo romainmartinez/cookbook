@@ -1,0 +1,10 @@
+#!/bin/bash
+
+sudo sshfs lim@10.89.24.15:/home/laboratoire/mnt/E/ /home/laboratoire/mnt/E/ -o allow_other
+sudo sshfs lim@10.89.24.15:/home/laboratoire/mnt/F/ /home/laboratoire/mnt/F/ -o allow_other
+sudo sshfs lim@10.89.24.15:/home/laboratoire/mnt/G/ /home/laboratoire/mnt/G/ -o allow_other
+sudo sshfs lim@10.89.24.15:/home/laboratoire/mnt/H/ /home/laboratoire/mnt/H/ -o allow_other
+
+sudo sshfs mickaelbegon@10.89.24.13:/home/collaboration/mnt/G /home/laboratoire/mnt/G_root/ -p 46184 -o allow_other
+sudo sshfs clientbd8@10.89.24.13:/home/clientbd8 /home/laboratoire/mnt/serveur2/ -p 46184 -o allow_other
+
