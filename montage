@@ -1,10 +1,9 @@
 #!/bin/bash
 
-sudo sshfs lim@10.89.24.15:/home/laboratoire/mnt/E/ /home/laboratoire/mnt/E/ -o allow_other
-sudo sshfs lim@10.89.24.15:/home/laboratoire/mnt/F/ /home/laboratoire/mnt/F/ -o allow_other
-sudo sshfs lim@10.89.24.15:/home/laboratoire/mnt/G/ /home/laboratoire/mnt/G/ -o allow_other
-sudo sshfs lim@10.89.24.15:/home/laboratoire/mnt/H/ /home/laboratoire/mnt/H/ -o allow_other
+echo LabIngMvt | sudo sshfs lim@10.89.24.15:/home/laboratoire/mnt/E/ /media/romain/E/ -o allow_other -o password_stdin
+echo LabIngMvt | sudo sshfs lim@10.89.24.15:/home/laboratoire/mnt/F/ /media/romain/F/ -o allow_other -o password_stdin
+echo LabIngMvt | sudo sshfs lim@10.89.24.15:/home/laboratoire/mnt/G/ /media/romain/G/ -o allow_other -o password_stdin
+echo LabIngMvt | sudo sshfs lim@10.89.24.15:/home/laboratoire/mnt/H/ /media/romain/H/ -o allow_other -o password_stdin
 
-sudo sshfs mickaelbegon@10.89.24.13:/home/collaboration/mnt/G /home/laboratoire/mnt/G_root/ -p 46184 -o allow_other
-sudo sshfs clientbd8@10.89.24.13:/home/clientbd8 /home/laboratoire/mnt/serveur2/ -p 46184 -o allow_other
+echo BD8client |sudo sshfs clientbd8@10.89.24.13:/home/clientbd8 /media/romain/serveur2/ -p 46184 -o allow_other -o password_stdin
 
