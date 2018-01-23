@@ -8,12 +8,12 @@
 
 # Install packages in root
 - `ipython`
-- `jupyter lab`
+- `jupyter lab`: [link](https://github.com/jupyterlab/jupyterlab)
 - `nb_conda_kernels`
 
 # Create conda env
 - as needed
-- install ipykernels in env
+- install ipykernel in env
 
 # Install requirements
 - `pip install -r requirements.txt`
