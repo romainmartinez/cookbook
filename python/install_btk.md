@@ -19,3 +19,6 @@
 8. Configure and add the following entries:
     - `NUMPY_INCLUDE_DIR`: `/home/romain/miniconda3/lib/python3.6/site-packages/numpy/core/include`
     - `NUMPY_VERSION`: `1.13.3`
+9. Go in your build directory and copy all files in the `bin` direction into:
+    - `/home/romain/miniconda3/lib/python3.6/site-packages/btk`
+10. In this directory, rename `btk.py` as `__init__.py`
