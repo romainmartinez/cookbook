@@ -35,10 +35,32 @@ sudo apt-get install fish
 - remove miniconda: [link](https://stackoverflow.com/questions/42182706/how-to-uninstall-anaconda-completely)
 - remove pycharm: [link](https://askubuntu.com/questions/598162/how-to-permanently-remove-pycharm-community)
 
-## Install python
+## Install python 3
 - Follow the official recommandations: [link](http://docs.python-guide.org/en/latest/starting/install3/linux/)
-
-## Install pip3
 ```shell
-sudo apt install python3-pip
+sudo apt install software-properties-common
+sudo add-apt repository ppa:deadsnakes/ppa
+sudo apt update
+sudo apt install python3.6
+```
+
+## Upgrade pip3
+```shell
+sudo -H pip install --upgrade pip
+```
+
+# Install pipenv
+```shell
+python3.6 -m pip install --user pipenv
+```
+
+## Create pipenv for each project
+```shell
+cd project
+pipenv install
+```
+
+NOTE: to use matplotlib:
+```shell
+sudo apt-get install python3.6-tk
 ```
