@@ -27,7 +27,15 @@
 ```shell
 sudo apt-add-repository ppa:fish-shell/release-2
 sudo apt-get update
-sudo apt-get install fish
+sudo apt-get install fish git
+echo (which fish) | sudo tee -a /etc/shells
+chsh -s (which fish)
+curl -L http://get.oh-my.fish | fish
+omf install bobthefish
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v1.0.0/FiraCode.zip
+sudo unzip FiraCode.zip -d /usr/local/share/fonts/
+sudo fc-cache -fv
+set -U theme_nerd_fonts yes
 ```
 - setup oh-my-fish: [link](https://blog.devopscomplete.com/fishing-with-bob-the-fish-2decd3a2f87)
 
