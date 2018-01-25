@@ -7,8 +7,9 @@
 - install: [link](https://www.jetbrains.com/pycharm/download/#section=linux)
 
 # Install packages in root
-- `ipython`
 - `jupyter lab`: [link](https://github.com/jupyterlab/jupyterlab)
+  - install first then run
+- `ipython`
 - `nb_conda_kernels`
 
 # Create conda env
