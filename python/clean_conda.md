@@ -55,8 +55,9 @@ sudo apt update
 sudo apt install python3.6
 ```
 
-## Upgrade pip3
+## Install pip3
 ```shell
+sudo apt install python3-pip
 sudo -H pip install --upgrade pip
 ```
 
