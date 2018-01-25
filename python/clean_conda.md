@@ -1,6 +1,6 @@
 # Clean your python environments
 
-## Install & setup fish shell
+## Optionnal: Install & setup fish shell
 - Install `fish`
 ```shell
 sudo apt-add-repository ppa:fish-shell/release-2
@@ -41,7 +41,7 @@ sudo apt install python3-pip
 sudo -H pip3 install --upgrade pip
 ```
 
-# Install pipenv
+## Install pipenv
 ```shell
 python3.6 -m pip install --user pipenv
 PYTHON_BIN_PATH="$(python3 -m site --user-base)/bin"
