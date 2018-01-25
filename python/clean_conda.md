@@ -75,6 +75,15 @@ PATH="$PATH:$PYTHON_BIN_PATH"
 cd project
 pipenv install
 ```
+NOTE: if you want to use jupyterlab
+
+```shell
+cd project
+pipenv install ipykernel
+pipenv install jupyterlab
+pipenv shell
+jupyter lab
+```
 
 NOTE: to use matplotlib:
 ```shell
