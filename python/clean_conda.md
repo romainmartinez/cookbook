@@ -42,6 +42,8 @@ set -U theme_nerd_fonts yes
 ```
 - setup oh-my-fish: [link](https://blog.devopscomplete.com/fishing-with-bob-the-fish-2decd3a2f87)
 
+NOTE: `echo $SHELL` should return `/usr/bin/fish`
+
 ## Clean previous Python installation
 - remove miniconda: [link](https://stackoverflow.com/questions/42182706/how-to-uninstall-anaconda-completely)
 - remove pycharm: [link](https://askubuntu.com/questions/598162/how-to-permanently-remove-pycharm-community)
