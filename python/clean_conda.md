@@ -30,7 +30,9 @@ sudo apt-get update
 sudo apt-get install fish git
 echo (which fish) | sudo tee -a /etc/shells
 chsh -s (which fish)
-curl -L http://get.oh-my.fish | fish
+git clone https://github.com/oh-my-fish/oh-my-fish
+cd oh-my-fish
+bin/install --offline
 omf install bobthefish
 wget https://github.com/ryanoasis/nerd-fonts/releases/download/v1.0.0/FiraCode.zip
 sudo unzip FiraCode.zip -d /usr/local/share/fonts/
