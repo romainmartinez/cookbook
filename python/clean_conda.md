@@ -63,7 +63,9 @@ sudo -H pip3 install --upgrade pip
 
 # Install pipenv
 ```shell
-python3.6 -m pip install pipenv
+python3.6 -m pip install --user pipenv
+PYTHON_BIN_PATH="$(python3 -m site --user-base)/bin"
+PATH="$PATH:$PYTHON_BIN_PATH"
 ```
 
 ## Create pipenv for each project
