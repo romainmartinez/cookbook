@@ -58,7 +58,7 @@ sudo apt install python3.6
 ## Install pip3
 ```shell
 sudo apt install python3-pip
-sudo -H pip install --upgrade pip
+sudo -H pip3 install --upgrade pip
 ```
 
 # Install pipenv
