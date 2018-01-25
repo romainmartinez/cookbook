@@ -39,7 +39,7 @@ sudo apt-get install fish
 - Follow the official recommandations: [link](http://docs.python-guide.org/en/latest/starting/install3/linux/)
 ```shell
 sudo apt install software-properties-common
-sudo add-apt repository ppa:deadsnakes/ppa
+sudo add-apt-repository ppa:deadsnakes/ppa
 sudo apt update
 sudo apt install python3.6
 ```
