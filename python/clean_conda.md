@@ -63,7 +63,7 @@ sudo -H pip3 install --upgrade pip
 
 # Install pipenv
 ```shell
-python3.6 -m pip install --user pipenv
+python3.6 -m pip install pipenv
 ```
 
 ## Create pipenv for each project
