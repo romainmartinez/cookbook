@@ -73,3 +73,12 @@ NOTE: to use matplotlib:
 ```shell
 sudo apt-get install python3.6-tk
 ```
+
+## Jupyter Notebook Extension
+- Hinterland (autocompletion)
+- NBextensions dashboard tab
+- Runtools
+- contrib_nbextensions_help_item
+- NBextensions edit menu item
+- Table of Contents (2)
+- code prettify (pipenv install yapf)
