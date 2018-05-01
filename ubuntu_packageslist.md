@@ -1,26 +1,11 @@
-# Programmation
-- Matlab
-- Python
-- Pycharm
-- R + Rstudio
-- Atom
-- Gitkraken
+- ubuntu minimal installation
+- Delete firefox [link](https://askubuntu.com/questions/16758/removing-firefox-in-ubuntu-with-all-add-ons-like-it-never-existed)
 
-# Autres
-- Antidote
-- TexLive
-- Anki
-- WPS
-- Stacer
-- Arc icons theme
-- Paper icons
-- Unity Tweak tools
-- Google Chrome
-- Dropbox
-- Spotify
+# In Ubuntu Software
+- atom
+- spotify
+- okular (set default from a pdf)
+- gitkraken
 
-# À desinstaller
-- Amazon
-- Firefox
-- Jeux ubuntu
-- Exemple dans /home
+# From google
+- dropbox
