@@ -9,3 +9,6 @@
 
 # From google
 - dropbox
+- matlab
+- miniconda
+- stacer
