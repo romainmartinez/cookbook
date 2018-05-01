@@ -11,4 +11,5 @@
 - dropbox
 - matlab
 - miniconda
-- stacer
+- stacer: [link](https://github.com/oguzhaninan/Stacer)
+- zotero: [link](https://doc.ubuntu-fr.org/zotero)
