@@ -6,6 +6,7 @@
 - spotify
 - okular (set default from a pdf)
 - gitkraken
+- pycharm pro
 
 # From google
 - dropbox
@@ -13,3 +14,4 @@
 - miniconda
 - stacer: [link](https://github.com/oguzhaninan/Stacer)
 - zotero: [link](https://doc.ubuntu-fr.org/zotero)
+- antidote
