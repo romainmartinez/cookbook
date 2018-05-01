@@ -15,3 +15,4 @@
 - stacer: [link](https://github.com/oguzhaninan/Stacer)
 - zotero: [link](https://doc.ubuntu-fr.org/zotero)
 - antidote
+- zsh & oh-my-zsh: [link](https://medium.com/wearetheledger/oh-my-zsh-made-for-cli-lovers-installation-guide-3131ca5491fb)
