@@ -5,5 +5,3 @@ echo LabIngMvt | sudo sshfs lim@10.89.24.15:/home/laboratoire/mnt/F/ /media/roma
 echo LabIngMvt | sudo sshfs lim@10.89.24.15:/home/laboratoire/mnt/G/ /media/romain/G/ -o allow_other -o password_stdin
 echo LabIngMvt | sudo sshfs lim@10.89.24.15:/home/laboratoire/mnt/H/ /media/romain/H/ -o allow_other -o password_stdin
 
-echo BD8client |sudo sshfs clientbd8@10.89.24.13:/home/clientbd8 /media/romain/serveur2/ -p 46184 -o allow_other -o password_stdin
-
