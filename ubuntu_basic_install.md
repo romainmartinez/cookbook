@@ -7,6 +7,8 @@
 - okular (set default from a pdf)
 - gitkraken
 - pycharm pro
+- typora
+- anki (`sudo apt install texlive-latex-base`)
 
 # From google
 - dropbox

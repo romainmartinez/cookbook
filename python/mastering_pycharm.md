@@ -1,2 +1,0 @@
-- [cheatsheet](https://blog.jetbrains.com/pycharm/files/2010/07/PyCharm_Reference_Card.pdf)
-- install `presentation assistant` plugin
