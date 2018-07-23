@@ -29,10 +29,7 @@ jupyter labextension install @jupyterlab/plotly-extension
 ```bash
 conda install -c conda-forge jupyter jupyter_contrib_nbextensions yapf
 ```
-  Then, activate the following extensions:
-  - `Code prettify`
-  - `Runtools`
-  - `Table of Contents (2)`
+  Then, activate the following extensions:`Code prettify`, `Runtools`, `Table of Contents (2)`
 
 - (*optional*) Use a conda env in jupyter
 ```bash
