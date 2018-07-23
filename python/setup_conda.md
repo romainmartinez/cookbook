@@ -16,7 +16,9 @@ bash Miniconda3-latest-Linux-x86_64.sh
 rm Miniconda3-latest-Linux-x86_64.sh
 ```
 
-- (*optional*) install jupyterlab
+## 3. (*optional*) Install Jupyter
+
+- Option 1: jupyterlab
 
 ```bash
 sudo apt install npm
@@ -24,14 +26,14 @@ conda install -c conda-forge jupyterlab
 jupyter labextension install jupyterlab-toc
 jupyter labextension install @jupyterlab/plotly-extension
 ```
-- (*optional*) install jupyter notebook (caution, this add 1.2GB)
+- Option 2: jupyter notebook
 
 ```bash
 conda install -c conda-forge jupyter jupyter_contrib_nbextensions yapf
 ```
   Then, activate the following extensions:`Code prettify`, `Runtools`, `Table of Contents (2)`
 
-- (*optional*) Use a conda env in jupyter
+Use a conda env in jupyter with:
 ```bash
 cd ENV
 conda env create -f env.yml
