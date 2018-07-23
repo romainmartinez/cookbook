@@ -23,11 +23,6 @@ sudo apt install npm
 conda install -c conda-forge jupyterlab
 jupyter labextension install jupyterlab-toc
 jupyter labextension install @jupyterlab/plotly-extension
-
-cd ENV
-conda env create -f env.yml
-source activate ENV
-python -m ipykernel install --user --name ENV
 ```
 - (*optional*) install jupyter notebook (caution, this add 1.2GB)
 
@@ -38,3 +33,11 @@ conda install -c conda-forge jupyter jupyter_contrib_nbextensions yapf
   - `Code prettify`
   - `Runtools`
   - `Table of Contents (2)`
+
+- (*optional*) Use a conda env in jupyter
+```bash
+cd ENV
+conda env create -f env.yml
+source activate ENV
+python -m ipykernel install --user --name ENV
+```
