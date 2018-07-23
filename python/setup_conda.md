@@ -34,7 +34,7 @@ python -m ipykernel install --user --name ENV
 ```bash
 conda install -c conda-forge jupyter jupyter_contrib_nbextensions yapf
 ```
-Then, activate the following extensions:
-- `Code prettify`
-- `Runtools`
-- `Table of Contents (2)`
+  Then, activate the following extensions:
+  - `Code prettify`
+  - `Runtools`
+  - `Table of Contents (2)`
