@@ -29,7 +29,9 @@ jupyter labextension install @jupyterlab/plotly-extension
 - Option 2: jupyter notebook
 
 ```bash
-conda install -c conda-forge jupyter jupyter_contrib_nbextensions yapf
+conda install jupyter
+conda install -c conda-forge jupyter_contrib_nbextensions yapf jupyterthemes # optional
+jt -t grade3 -fs 95  -tfs 13 -nfs 115 -cellw 88% -T -nf opensans -tf loraserif # optional
 ```
   Then, activate the following extensions:`Code prettify`, `Runtools`, `Table of Contents (2)`
 
