@@ -11,9 +11,7 @@ rm -rf ~/miniconda* ~/.condarc ~/.conda ~/.continuum
 
 ```bash
 wget https://repo.continuum.io/miniconda/\
-Miniconda3-latest-Linux-x86_64.sh
-bash Miniconda3-latest-Linux-x86_64.sh
-rm Miniconda3-latest-Linux-x86_64.sh
+Miniconda3-latest-Linux-x86_64.sh | sh | rm
 ```
 
 ## 3. (*optional*) Install Jupyter
