@@ -27,8 +27,6 @@ def get_style(style='mrtnz', figsize='one_half_column'):
             'xtick.labelsize': 16,
             'ytick.labelsize': 16,
             'legend.fontsize': 16,
-            'font.family': 'sans-serif',
-            'font.sans-serif': 'Open Sans'
         })
         if style == 'mrtnz_tex':
             style_dict.update({
@@ -47,4 +45,5 @@ def show(save=False, despine=True):
     if save:
         plt.savefig(save, transparent=True)
     plt.show()
+
 
