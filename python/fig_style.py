@@ -41,9 +41,10 @@ def get_style(style='mrtnz', figsize='one_half_column'):
 def show(save=False, despine=True):
     if despine:
         sns.despine(offset=10, trim=True)
+    else:
+        sns.despine(offset=0, trim=False)
     plt.tight_layout()
     if save:
         plt.savefig(save, transparent=True)
     plt.show()
-
 
