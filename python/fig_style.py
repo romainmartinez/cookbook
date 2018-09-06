@@ -22,11 +22,11 @@ def get_style(style='mrtnz', figsize='one_half_column'):
 
     if style == 'mrtnz' or style == 'mrtnz_tex':
         style_dict.update({
-            'axes.titlesize': 20,
-            'axes.labelsize': 20,
-            'xtick.labelsize': 16,
-            'ytick.labelsize': 16,
-            'legend.fontsize': 16,
+            'axes.titlesize': 16,
+            'axes.labelsize': 16,
+            'xtick.labelsize': 12,
+            'ytick.labelsize': 12,
+            'legend.fontsize': 12,
         })
         if style == 'mrtnz_tex':
             style_dict.update({
