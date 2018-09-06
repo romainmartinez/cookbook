@@ -27,6 +27,8 @@ def get_style(style='mrtnz', figsize='one_half_column'):
             'xtick.labelsize': 12,
             'ytick.labelsize': 12,
             'legend.fontsize': 12,
+            'pdf.fonttype': 42,
+            'ps.fonttype': 42
         })
         if style == 'mrtnz_tex':
             style_dict.update({
