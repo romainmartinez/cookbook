@@ -47,6 +47,5 @@ def show(save=False, despine=True):
         sns.despine(offset=0, trim=False)
     plt.tight_layout()
     if save:
-        plt.savefig(save, transparent=True)
+        plt.savefig(save, transparent=True, dpi=300)
     plt.show()
-
