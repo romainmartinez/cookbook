@@ -16,8 +16,8 @@ def get_style(style='mrtnz', figsize='one_half_column'):
     elif figsize == 'two_col':
         width = 7.4803149606
     else:
-        raise NotImplementedError(f'Figsize {figsize} is not available')
-
+        print(f'custom figsize: {width}, {width / golden_ratio}')
+        width = figsize
     style_dict.update({'figure.figsize': (width, width / golden_ratio)})
 
     if style == 'mrtnz' or style == 'mrtnz_tex':
