@@ -22,9 +22,43 @@ rm Miniconda3-latest-Linux-x86_64.sh
 
 ```bash
 sudo apt install npm
-conda install -c conda-forge jupyterlab
+conda install -y jupyterlab
+pip install jupyterlab_code_formatter black
+jupyter labextension install @ryantam626/jupyterlab_code_formatter
+jupyter serverextension enable --py jupyterlab_code_formatter
 jupyter labextension install @jupyterlab/toc
 ```
+
+Keyboard config:
+```
+{
+  "notebook:run-all-above": {
+    "command": "notebook:run-all-above",
+    "keys": [
+      "Alt A"
+    ],
+    "selector": ".jp-Notebook:focus"
+  },
+      
+  "jupyterlab_black:format":{
+    "command": "jupyterlab_black:format",
+    "keys": [
+        "Ctrl K",
+        "Ctrl L"
+    ],
+    "selector": ".jp-Notebook.jp-mod-editMode"
+  },
+    
+    "jupyterlab_code_formatter:black":{
+    "command": "jupyterlab_code_formatter:black",
+    "keys": [
+        "Ctrl L"
+    ],
+    "selector": ".jp-Notebook.jp-mod-editMode"
+    }
+}
+```
+
 - Option 2: jupyter notebook
 
 ```bash
