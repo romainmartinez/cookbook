@@ -23,8 +23,7 @@ rm Miniconda3-latest-Linux-x86_64.sh
 ```bash
 sudo apt install npm
 conda install -c conda-forge jupyterlab
-jupyter labextension install jupyterlab-toc
-jupyter labextension install @jupyterlab/plotly-extension
+jupyter labextension install @jupyterlab/toc
 ```
 - Option 2: jupyter notebook
 
