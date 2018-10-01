@@ -32,21 +32,20 @@ jupyter labextension install @jupyterlab/toc
 Keyboard config:
 ```
 {
-    "notebook:run-all-above": {
-        "command": "notebook:run-all-above",
-            "keys": [
-                "Alt A"
-            ],
-                "selector": ".jp-Notebook:focus"
-    },
-    
-    "jupyterlab_black:format":{
-        "command": "jupyterlab_black:format",
-            "keys": [
-                "Ctrl L"
-            ],
-                "selector": ".jp-Notebook.jp-mod-editMode"
-    }
+   "notebook:run-all-above":{
+      "command":"notebook:run-all-above",
+      "keys":[
+         "Alt A"
+      ],
+      "selector":".jp-Notebook:focus"
+   },
+   "jupyterlab_code_formatter:black":{
+      "command":"jupyterlab_code_formatter:black",
+      "keys":[
+         "Ctrl L"
+      ],
+      "selector":".jp-Notebook.jp-mod-editMode"
+   }
 }
 ```
 
