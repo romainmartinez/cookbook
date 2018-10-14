@@ -22,7 +22,7 @@ rm Miniconda3-latest-Linux-x86_64.sh
 
 ```bash
 sudo apt install npm
-conda install -y jupyterlab
+conda install -y jupyterlab nb_conda_kernels
 pip install jupyterlab_code_formatter black
 jupyter labextension install @ryantam626/jupyterlab_code_formatter
 jupyter serverextension enable --py jupyterlab_code_formatter
