@@ -23,7 +23,7 @@ install_conda:
 
 ## Install Jupyterlab (with conda kernel, ToC and code formatter)
 install_jupyterlab:
-	conda install -y jupyterlab nb_conda_kernels
+	conda install -y jupyterlab nb_conda_kernels cookiecutter -c conda-forge
 	pip install jupyterlab_code_formatter black
 	jupyter labextension install @ryantam626/jupyterlab_code_formatter
 	jupyter serverextension enable --py jupyterlab_code_formatter
