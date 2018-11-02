@@ -18,9 +18,9 @@ rm_conda:
 
 ## Install Miniconda
 install_conda:
-	wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
-	bash Miniconda3-latest-Linux-x86_64.sh
-	rm Miniconda3-latest-Linux-x86_64.sh
+	wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
+	bash miniconda.sh -b -p $HOME/miniconda
+	rm miniconda.sh
 	@echo "conda installed"
 
 ## Install Jupyterlab (with conda kernel, ToC and code formatter)
