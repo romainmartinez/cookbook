@@ -2,41 +2,42 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 
-def get_style(style='mrtnz', figsize='one_half_column'):
+def get_style(style="mrtnz", figsize="one_half_column"):
     style_dict = {}
 
     golden_ratio = 1.618
 
-    if figsize == 'minimal':
-        width = 1.1811023622
-    elif figsize == 'one_col':
-        width = 3.5433070866
-    elif figsize == 'one_half_col':
-        width = 5.5118110236
-    elif figsize == 'two_col':
-        width = 7.4803149606
+    if figsize == "minimal":
+        width = 1.181_102_362_2
+    elif figsize == "one_col":
+        width = 3.543_307_086_6
+    elif figsize == "one_half_col":
+        width = 5.511_811_023_6
+    elif figsize == "two_col":
+        width = 7.480_314_960_6
     else:
         width = figsize
-        print(f'custom figsize: {width}, {width / golden_ratio}')
-    style_dict.update({'figure.figsize': (width, width / golden_ratio)})
+        print(f"custom figsize: {width}, {width / golden_ratio}")
+    style_dict.update({"figure.figsize": (width, width / golden_ratio)})
 
-    if style == 'mrtnz' or style == 'mrtnz_tex':
-        style_dict.update({
-            'axes.titlesize': 16,
-            'axes.labelsize': 16,
-            'xtick.labelsize': 12,
-            'ytick.labelsize': 12,
-            'legend.fontsize': 12,
-            'pdf.fonttype': 42,
-            'ps.fonttype': 42
-        })
-        if style == 'mrtnz_tex':
-            style_dict.update({
-                'text.usetex': True,
-                'font.family': 'serif',
-            })
+    if style == "mrtnz" or style == "mrtnz_tex":
+        style_dict.update(
+            {
+                "axes.titlesize": 16,
+                "axes.labelsize": 16,
+                "xtick.labelsize": 12,
+                "ytick.labelsize": 12,
+                "legend.fontsize": 12,
+                "pdf.fonttype": 42,
+                "ps.fonttype": 42,
+            }
+        )
+        if style == "mrtnz_tex":
+            style_dict.update({"text.usetex": True, "font.family": "serif"})
+    elif style == "default":
+        style_dict.update({"pdf.fonttype": 42, "ps.fonttype": 42})
     else:
-        raise NotImplementedError(f'Style {style} is not available')
+        raise NotImplementedError(f"Style {style} is not available")
     return style_dict
 
 
