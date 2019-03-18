@@ -12,7 +12,6 @@
 
 # From google
 - dropbox
-- matlab
 - miniconda
 - stacer: [link](https://github.com/oguzhaninan/Stacer)
 - zotero: [link](https://doc.ubuntu-fr.org/zotero)
