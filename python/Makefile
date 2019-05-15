@@ -30,6 +30,10 @@ install_jupyterlab:
 	jupyter labextension install @ryantam626/jupyterlab_code_formatter @jupyterlab/toc
 	jupyter serverextension enable --py jupyterlab_code_formatter
 	@echo "jupyterlab installed"
+	
+install_jupyterlab_pre_release:
+	pip install jupyterlab==1.0.0a3
+	conda install -c conda-forge nb_conda_kernels
 
 ## Install Jupyter Notebook (with conda kernel, ToC, theme and code formatter)
 install_jupyternb:
