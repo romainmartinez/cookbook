@@ -14,14 +14,12 @@ SHELL=/bin/bash
 rm_conda:
 	rm -rf ~/miniconda* ~/.condarc ~/.conda ~/.continuum
 	rm -rf ~/.local/share/jupyter/kernels/
-	@echo "conda removed"
 
 ## Install Miniconda
 install_conda:
 	wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
 	bash miniconda.sh -b -p ~/miniconda3
 	rm miniconda.sh
-	@echo "conda installed"
 
 ## Install Jupyterlab (with conda kernel, ToC and code formatter)
 install_jupyterlab:
@@ -29,17 +27,17 @@ install_jupyterlab:
 	pip install jupyterlab_code_formatter
 	jupyter labextension install @ryantam626/jupyterlab_code_formatter @jupyterlab/toc
 	jupyter serverextension enable --py jupyterlab_code_formatter
-	@echo "jupyterlab installed"
-	
+
+## Install Jupyterlab pre-release (to make it work with Altair 3.0)
 install_jupyterlab_pre_release:
-	pip install jupyterlab==1.0.0a3
+	pip install jupyterlab==1.0.0a3 nb_black
 	conda install -c conda-forge nb_conda_kernels
+	jupyter labextension install @jupyterlab/toc
 
 ## Install Jupyter Notebook (with conda kernel, ToC, theme and code formatter)
 install_jupyternb:
 	conda install jupyter nb_conda_kernels jupyter_contrib_nbextensions yapf jupyterthemes -c conda-forge
 	jt -t grade3 -fs 95  -tfs 13 -nfs 115 -cellw 88% -T -nf opensans -tf loraserif
-	@echo "jupyter installed"
 
 ## Fresh conda & Jupyterlab install (run rm_conda, install_conda & install_jupyterlab)
 fresh_install: rm_conda install_conda install_jupyterlab
