@@ -59,8 +59,8 @@ ZSH_THEME="spaceship"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  git,
-  zsh-syntax-highlighting,
+  git
+  zsh-syntax-highlighting
   zsh-autosuggestions
 )
 
