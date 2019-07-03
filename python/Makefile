@@ -23,10 +23,12 @@ install_conda:
 
 ## Install Jupyterlab (with conda kernel, ToC and code formatter)
 install_jupyterlab:
-	conda install -y jupyterlab nb_conda_kernels black -c conda-forge
-	pip install jupyterlab_code_formatter
-	jupyter labextension install @ryantam626/jupyterlab_code_formatter @jupyterlab/toc
-	jupyter serverextension enable --py jupyterlab_code_formatter
+	conda install -y jupyterlab nb_conda_kernels black nodejs -c conda-forge
+	jupyter labextension install @jupyterlab/toc
+	#decomment the following lines when jupyterlab_code_formatter will support 1.0.0
+	#pip install jupyterlab_code_formatter 
+	#jupyter labextension install @ryantam626/jupyterlab_code_formatter @jupyterlab/toc
+	#jupyter serverextension enable --py jupyterlab_code_formatter
 
 ## Install Jupyterlab pre-release (to make it work with Altair 3.0)
 install_jupyterlab_pre_release:
