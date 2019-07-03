@@ -2,13 +2,11 @@
 - Delete firefox [link](https://askubuntu.com/questions/16758/removing-firefox-in-ubuntu-with-all-add-ons-like-it-never-existed)
 
 # In Ubuntu Software
-- atom
 - spotify
 - okular (set default from a pdf)
 - gitkraken
 - pycharm pro
 - typora
-- anki (`sudo apt install texlive-latex-base`)
 
 # From google
 - dropbox
@@ -19,6 +17,7 @@
 - spaceship zsh theme: [link](https://github.com/denysdovhan/spaceship-prompt)
 - one dark for Terminal: [link](https://github.com/denysdovhan/one-gnome-terminal)
 - nord theme for gnome terminal: [link](https://github.com/arcticicestudio/nord-gnome-terminal)
+- nord theme for vim: [link](https://github.com/arcticicestudio/nord-vim)
 
 - keyboard speed:
 
