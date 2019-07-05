@@ -15,9 +15,9 @@
 - antidote
 - zsh & oh-my-zsh: [link](https://medium.com/wearetheledger/oh-my-zsh-made-for-cli-lovers-installation-guide-3131ca5491fb)
 - spaceship zsh theme: [link](https://github.com/denysdovhan/spaceship-prompt)
-- one dark for Terminal: [link](https://github.com/denysdovhan/one-gnome-terminal)
 - nord theme for gnome terminal: [link](https://github.com/arcticicestudio/nord-gnome-terminal)
 - nord theme for vim: [link](https://github.com/arcticicestudio/nord-vim)
+- nord theme for gedit: [link](https://github.com/arcticicestudio/nord-gedit)
 
 - keyboard speed:
 
