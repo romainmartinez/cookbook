@@ -30,12 +30,6 @@ install_jupyterlab:
 	#jupyter labextension install @ryantam626/jupyterlab_code_formatter @jupyterlab/toc
 	#jupyter serverextension enable --py jupyterlab_code_formatter
 
-## Install Jupyterlab pre-release (to make it work with Altair 3.0)
-install_jupyterlab_pre_release:
-	pip install jupyterlab==1.0.0a3 nb_black
-	conda install -c conda-forge nb_conda_kernels
-	jupyter labextension install @jupyterlab/toc
-
 ## Install Jupyter Notebook (with conda kernel, ToC, theme and code formatter)
 install_jupyternb:
 	conda install jupyter nb_conda_kernels jupyter_contrib_nbextensions yapf jupyterthemes -c conda-forge
