@@ -7,6 +7,7 @@
 - gitkraken
 - pycharm pro
 - typora
+- inkscape
 
 # From google
 - dropbox
