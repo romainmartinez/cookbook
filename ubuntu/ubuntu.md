@@ -1,15 +1,15 @@
 - ubuntu minimal installation
 - Delete firefox [link](https://askubuntu.com/questions/16758/removing-firefox-in-ubuntu-with-all-add-ons-like-it-never-existed)
 
-# In Ubuntu Software
+# From Ubuntu Software
 - spotify
 - okular (set default from a pdf)
 - gitkraken
 - pycharm pro
-- typora
 - inkscape
 
-# From google
+# From Google
+- typora
 - dropbox
 - miniconda (see cookbook/python/MakeFile)
 - stacer: [link](https://github.com/oguzhaninan/Stacer)
