@@ -476,7 +476,13 @@ before packages are loaded."
   ;; See https://emacs.stackexchange.com/questions/33310/how-to-use-org-mode-speed-commands-speed-keys
   (setq evil-org-key-theme '(textobjects navigation additional insert todo))
 
-  ;; Add life.org into org-agenda
+  ;; Clock table format duration
+  (setq org-duration-format (quote h:mm))
+
+  ;; Pomodoro settings
+  (setq org-pomodoro-length 50)
+  (setq org-pomodoro-short-break-length 10)
+  (setq org-pomodoro-long-break-length 20)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
