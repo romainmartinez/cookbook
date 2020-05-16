@@ -18,3 +18,4 @@
 - spaceship zsh theme: [link](https://github.com/denysdovhan/spaceship-prompt)
 - nord theme for gnome terminal: [link](https://github.com/arcticicestudio/nord-gnome-terminal)
 - nord theme for gedit: [link](https://github.com/arcticicestudio/nord-gedit)
+- spacemacs
