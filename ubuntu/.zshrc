@@ -62,6 +62,7 @@ plugins=(
   git
   zsh-syntax-highlighting
   zsh-autosuggestions
+  vi-mode
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -91,9 +92,5 @@ source $ZSH/oh-my-zsh.sh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 #
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
 alias update='sudo apt update -y && sudo apt full-upgrade -y && sudo apt autoremove -y && sudo apt clean -y && sudo apt autoclean -y'
 alias fixtime='sudo date -s "$(wget -qSO- --max-redirect=0 google.com 2>&1 | grep Date: | cut -d' ' -f5-8)Z"'
-alias syncrc='cp ~/Documents/codes/cookbook/ubuntu/.zshrc ~/.zshrc && cp ~/Documents/codes/cookbook/ubuntu/.vimrc ~/.vimrc'
