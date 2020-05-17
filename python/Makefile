@@ -1,4 +1,4 @@
-.PHONY: rm_conda install_conda install_jupyterlab install_jupyternb clean_install
+.PHONY: rm_conda install_conda install_jupyterlab fresh_install
 
 ## Remove Miniconda
 rm_conda:
