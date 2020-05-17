@@ -19,9 +19,12 @@ mkdir ~/codes
 - dropbox
 - stacer: `sudo apt install stacer`
 - antidote
-- [zsh & oh-my-zsh](https://medium.com/wearetheledger/oh-my-zsh-made-for-cli-lovers-installation-guide-3131ca5491fb)
+- [powerline-fonts](https://github.com/powerline/fonts)
+- [JetBrainsMono](https://www.jetbrains.com/lp/mono/)
+- zsh (`sudo apt install zsh`)
+- [oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh)
 - [spaceship zsh theme](https://github.com/denysdovhan/spaceship-prompt)
-- [nord theme for gnome terminal](https://github.com/arcticicestudio/nord-gnome-terminal)
+- [nord theme for gnome terminal](https://github.com/arcticicestudio/nord-gnome-terminal): set in terminal + Jetbrains Mono + font size @ 13pt
 - ranger
 - miniconda (see cookbook/python/MakeFile)
 - spacemacs
