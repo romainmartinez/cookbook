@@ -17,11 +17,10 @@ mkdir ~/codes
 
 # From Google
 - dropbox
-- miniconda (see cookbook/python/MakeFile)
-- stacer: [link](https://github.com/oguzhaninan/Stacer)
+- stacer: `sudo apt install stacer`
 - antidote
-- zsh & oh-my-zsh: [link](https://medium.com/wearetheledger/oh-my-zsh-made-for-cli-lovers-installation-guide-3131ca5491fb)
-- spaceship zsh theme: [link](https://github.com/denysdovhan/spaceship-prompt)
-- nord theme for gnome terminal: [link](https://github.com/arcticicestudio/nord-gnome-terminal)
-- nord theme for gedit: [link](https://github.com/arcticicestudio/nord-gedit)
+- [zsh & oh-my-zsh](https://medium.com/wearetheledger/oh-my-zsh-made-for-cli-lovers-installation-guide-3131ca5491fb)
+- [spaceship zsh theme](https://github.com/denysdovhan/spaceship-prompt)
+- [nord theme for gnome terminal](https://github.com/arcticicestudio/nord-gnome-terminal)
+- miniconda (see cookbook/python/MakeFile)
 - spacemacs
