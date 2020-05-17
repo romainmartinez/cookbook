@@ -6,15 +6,16 @@ rm -rf ~/Templates ~/Public ~/Music ~/Videos
 mkdir ~/codes
 ```
 
-# From Ubuntu Software
+# From Snap
 - spotify
+- inkscape
+
+## Optional
 - okular (set default from a pdf)
 - gitkraken
 - pycharm pro
-- inkscape
 
 # From Google
-- typora
 - dropbox
 - miniconda (see cookbook/python/MakeFile)
 - stacer: [link](https://github.com/oguzhaninan/Stacer)
