@@ -5,7 +5,7 @@
 rm -rf ~/Templates ~/Public ~/Music ~/Videos 
 mkdir ~/codes
 ```
-- comments Templates, Public, Music, Videos in ~/.config/user-dirs.dirs
+- comments Templates, Public, Music, Videos in `~/.config/user-dirs.dirs`
 
 # From Snap
 - spotify
