@@ -1,10 +1,11 @@
 - ubuntu minimal installation
 - Delete firefox [link](https://askubuntu.com/questions/16758/removing-firefox-in-ubuntu-with-all-add-ons-like-it-never-existed)
-
+- Clear dirs:
 ```bash
-rm -rf ~/Templates ~/Public ~/Music ~/Videos
+rm -rf ~/Templates ~/Public ~/Music ~/Videos 
 mkdir ~/codes
 ```
+- comments Templates, Public, Music, Videos in ~/.config/user-dirs.dirs
 
 # From Snap
 - spotify
