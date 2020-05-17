@@ -28,3 +28,10 @@ mkdir ~/codes
 - ranger
 - miniconda (see cookbook/python/MakeFile)
 - spacemacs
+
+```bash
+git clone git@github.com:romainmartinez/cookbook.git
+cd cookbook/ubuntu
+cp .spacemacs ~/.spacemacs
+cp .zshrc ~/.zshrc
+```
