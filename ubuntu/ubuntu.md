@@ -1,6 +1,11 @@
 - ubuntu minimal installation
 - Delete firefox [link](https://askubuntu.com/questions/16758/removing-firefox-in-ubuntu-with-all-add-ons-like-it-never-existed)
 
+```bash
+rm -rf ~/Templates ~/Public ~/Music ~/Videos
+mkdir ~/codes
+```
+
 # From Ubuntu Software
 - spotify
 - okular (set default from a pdf)
