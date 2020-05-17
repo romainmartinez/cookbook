@@ -22,5 +22,6 @@ mkdir ~/codes
 - [zsh & oh-my-zsh](https://medium.com/wearetheledger/oh-my-zsh-made-for-cli-lovers-installation-guide-3131ca5491fb)
 - [spaceship zsh theme](https://github.com/denysdovhan/spaceship-prompt)
 - [nord theme for gnome terminal](https://github.com/arcticicestudio/nord-gnome-terminal)
+- ranger
 - miniconda (see cookbook/python/MakeFile)
 - spacemacs
