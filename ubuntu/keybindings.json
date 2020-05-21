@@ -1,4 +1,6 @@
 [
+    // User config
+    // VSpace code
     {
         "key": "ctrl+j",
         "command": "workbench.action.quickOpenSelectNext",

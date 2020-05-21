@@ -8,7 +8,7 @@
     "keyboard.dispatch": "keyCode", // keeps caps lock mapped to esc
     "terminal.integrated.inheritEnv": false, // makes conda works
 
-    // VSpace Code
+    // VSpace code
     "vim.leader": "<space>",
     "vim.visualModeKeyBindings": [
         {
@@ -1000,5 +1000,6 @@
     ],
     "vim.easymotion": true,
     "vim.useSystemClipboard": true,
-    "workbench.activityBar.visible": false
+    "workbench.activityBar.visible": true,
+    "editor.formatOnSave": true
 }
