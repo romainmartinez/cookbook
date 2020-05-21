@@ -62,7 +62,9 @@ plugins=(
   git
   zsh-syntax-highlighting
   zsh-autosuggestions
+  autojump
   vi-mode
+  fzf
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -94,6 +96,15 @@ source $ZSH/oh-my-zsh.sh
 #
 alias update='sudo apt update -y && sudo apt full-upgrade -y && sudo apt autoremove -y && sudo apt clean -y && sudo apt autoclean -y'
 alias fixtime='sudo date -s "$(wget -qSO- --max-redirect=0 google.com 2>&1 | grep Date: | cut -d' ' -f5-8)Z"'
+alias pushdots='cp ~/.spacemacs ~/codes/cookbook/ubuntu/.spacemacs &&\
+ cp ~/.zshrc ~/codes/cookbook/ubuntu/.zshrc &&\
+ cp ~/.config/VSCodium/User/settings.json ~/codes/cookbook/ubuntu/settings.json &&\
+ cp ~/.config/VSCodium/User/keybindings.json ~/codes/cookbook/ubuntu/keybindings.json &&\
+ cd ~/codes/cookbook/'
+alias pulldots='cp ~/codes/cookbook/ubuntu/.spacemacs ~/.spacemacs &&\
+ cp ~/codes/cookbook/ubuntu/.zshrc ~/.zshrc &&\
+ cp ~/codes/cookbook/ubuntu/settings.json ~/.config/VSCodium/User/settings.json &&\
+ cp ~/codes/cookbook/ubuntu/keybindings.json ~/.config/VSCodium/User/keybindings.json'
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -109,4 +120,3 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
-
