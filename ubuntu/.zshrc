@@ -96,6 +96,7 @@ source $ZSH/oh-my-zsh.sh
 #
 alias update='sudo apt update -y && sudo apt full-upgrade -y && sudo apt autoremove -y && sudo apt clean -y && sudo apt autoclean -y'
 alias fixtime='sudo date -s "$(wget -qSO- --max-redirect=0 google.com 2>&1 | grep Date: | cut -d' ' -f5-8)Z"'
+alias vpn='expressvpn'
 alias pushdots='cp ~/.spacemacs ~/codes/cookbook/ubuntu/.spacemacs &&\
  cp ~/.zshrc ~/codes/cookbook/ubuntu/.zshrc &&\
  cp ~/.config/VSCodium/User/settings.json ~/codes/cookbook/ubuntu/settings.json &&\
