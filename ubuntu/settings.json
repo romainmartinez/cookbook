@@ -1,0 +1,8 @@
+{
+    "editor.fontFamily": "JetBrains Mono",
+    "terminal.integrated.fontFamily": "JetBrains Mono",
+    "workbench.colorTheme": "Nord",
+    "editor.fontSize": 15,
+    "keyboard.dispatch": "keyCode",
+    "terminal.integrated.inheritEnv": false
+}
