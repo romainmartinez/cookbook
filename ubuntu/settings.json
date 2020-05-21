@@ -7,7 +7,6 @@
     "workbench.editor.showTabs": true,
     "keyboard.dispatch": "keyCode", // keeps caps lock mapped to esc
     "terminal.integrated.inheritEnv": false, // makes conda works
-
     // VSpace code
     "vim.leader": "<space>",
     "vim.visualModeKeyBindings": [
@@ -659,7 +658,7 @@
                 "t"
             ],
             "commands": [
-                "workbench.view.explorer"
+                "workbench.action.toggleSidebarVisibility"
             ]
         },
         {
