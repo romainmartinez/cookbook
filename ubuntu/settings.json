@@ -13,6 +13,8 @@
     "editor.lineNumbers": "relative",
     // linting
     "editor.formatOnSave": true,
+    "python.linting.enabled": true,
+    "python.linting.pylintEnabled": true,
     "python.formatting.provider": "black",
     "[python]": {
         "editor.codeActionsOnSave": {
