@@ -15,7 +15,6 @@
     "editor.formatOnSave": true,
     "python.linting.enabled": true,
     "python.linting.pylintEnabled": true,
-    "python.linting.pylintPath": "/home/romain/miniconda3/bin/pylint",
     "python.formatting.provider": "black",
     "python.formatting.blackPath": "/home/romain/miniconda3/bin/black",
     "[python]": {
