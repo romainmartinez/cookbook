@@ -106,6 +106,7 @@ alias pulldots='cp ~/codes/cookbook/ubuntu/.spacemacs ~/.spacemacs &&\
  cp ~/codes/cookbook/ubuntu/.zshrc ~/.zshrc &&\
  cp ~/codes/cookbook/ubuntu/settings.json ~/.config/VSCodium/User/settings.json &&\
  cp ~/codes/cookbook/ubuntu/keybindings.json ~/.config/VSCodium/User/keybindings.json'
+alias pf='$(fzf)'
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
