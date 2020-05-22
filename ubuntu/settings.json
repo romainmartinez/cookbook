@@ -1,23 +1,25 @@
 {
-    // user config
+    // misc
+    "keyboard.dispatch": "keyCode", // keeps caps lock mapped to esc
+    "terminal.integrated.inheritEnv": false, // makes conda works
+    // design
     "workbench.colorTheme": "Nord",
     "editor.fontFamily": "JetBrains Mono",
     "terminal.integrated.fontFamily": "JetBrains Mono",
     "editor.fontSize": 14,
     "workbench.editor.showTabs": true,
-    "keyboard.dispatch": "keyCode", // keeps caps lock mapped to esc
-    "terminal.integrated.inheritEnv": false, // makes conda works
     "workbench.activityBar.visible": true,
-    "editor.formatOnSave": true,
     "editor.minimap.enabled": false,
     "editor.lineNumbers": "relative",
+    // linting
+    "editor.formatOnSave": true,
     "python.formatting.provider": "black",
     "[python]": {
         "editor.codeActionsOnSave": {
             "source.organizeImports": true
         },
     },
-    // VSpace code
+    // vspace code
     "vim.leader": "<space>",
     "vim.visualModeKeyBindings": [
         {
