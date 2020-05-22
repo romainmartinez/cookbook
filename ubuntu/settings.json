@@ -2,13 +2,15 @@
     // misc
     "keyboard.dispatch": "keyCode", // keeps caps lock mapped to esc
     "terminal.integrated.inheritEnv": false, // makes conda works
+    "files.autoSave": "afterDelay",
+    "files.autoSaveDelay": 100000,
     // design
     "workbench.colorTheme": "Nord",
     "editor.fontFamily": "JetBrains Mono",
     "terminal.integrated.fontFamily": "JetBrains Mono",
     "editor.fontSize": 14,
     "workbench.editor.showTabs": false,
-    "workbench.activityBar.visible": false,
+    "workbench.activityBar.visible": true,
     "editor.minimap.enabled": false,
     "editor.lineNumbers": "relative",
     // linting
@@ -22,6 +24,9 @@
             "source.organizeImports": true
         },
     },
+    // latex
+    "latex-workshop.message.update.show": false,
+    "latex-workshop.view.pdf.viewer": "browser",
     // vspace code
     "vim.leader": "<space>",
     "vim.visualModeKeyBindings": [
@@ -1014,6 +1019,4 @@
     ],
     "vim.easymotion": true,
     "vim.useSystemClipboard": true,
-    "files.autoSave": "afterDelay",
-    "files.autoSaveDelay": 100000,
 }
