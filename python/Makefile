@@ -11,6 +11,7 @@ install_conda:
 	bash miniconda.sh -b -p ~/miniconda3
 	rm miniconda.sh
 	conda update conda -c conda-forge -y
+	conda install -c conda-forge black pylint
 
 ## Install Jupyterlab (with conda kernel, ToC and code formatter)
 install_jupyterlab:
