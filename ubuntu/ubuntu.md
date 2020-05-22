@@ -11,11 +11,11 @@ mkdir ~/codes
 # From Snap
 - spotify
 - inkscape
+- vscodium
 
 ## Optional
 - okular (set default from a pdf)
 - gitkraken
-- pycharm pro
 
 # From Google
 - dropbox
@@ -27,13 +27,11 @@ mkdir ~/codes
 - [oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh)
 - [spaceship zsh theme](https://github.com/denysdovhan/spaceship-prompt)
 - [nord theme for gnome terminal](https://github.com/arcticicestudio/nord-gnome-terminal): set in terminal + Jetbrains Mono + font size @ 13pt
-- ranger
+- ranger, autojump, fzf
 - miniconda (see cookbook/python/MakeFile)
 - spacemacs
 
 ```bash
 git clone git@github.com:romainmartinez/cookbook.git
-cd cookbook/ubuntu
-cp .spacemacs ~/.spacemacs
-cp .zshrc ~/.zshrc
+pulldots
 ```
