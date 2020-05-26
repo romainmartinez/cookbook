@@ -10,10 +10,11 @@
   "terminal.integrated.fontFamily": "JetBrains Mono",
   "editor.fontSize": 14,
   "workbench.editor.showTabs": false,
-  "workbench.activityBar.visible": true,
+  "workbench.activityBar.visible": false,
   "editor.minimap.enabled": false,
   "editor.lineNumbers": "relative",
   // linting
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
   "python.linting.enabled": true,
   "python.linting.pylintEnabled": true,
