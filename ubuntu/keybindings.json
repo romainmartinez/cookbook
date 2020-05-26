@@ -10,6 +10,11 @@
     "command": "explorer.newFolder",
     "when": "explorerViewletFocus"
   },
+  {
+    "key": "z m",
+    "command": "workbench.files.action.collapseExplorerFolders",
+    "when": "explorerViewletFocus"
+  },
   // VSpace code
   {
     "key": "ctrl+j",
