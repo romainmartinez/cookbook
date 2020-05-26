@@ -77,6 +77,9 @@
     }
   ],
   "vim.normalModeKeyBindings": [
+    { "before": ["z", "m"], "commands": ["editor.foldAll"] },
+    { "before": ["z", "r"], "commands": ["editor.unfoldAll"] },
+    { "before": ["z", "a"], "commands": ["editor.toggleFold"] },
     {
       "before": ["<leader>", "<space>"],
       "commands": ["workbench.action.showCommands"]
