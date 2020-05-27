@@ -2,7 +2,7 @@
   // misc
   "keyboard.dispatch": "keyCode", // keeps caps lock mapped to esc
   "terminal.integrated.inheritEnv": false, // makes conda works
-  "files.autoSave": "afterDelay",
+  "files.autoSave": "onFocusChange",
   "files.autoSaveDelay": 100000,
   // design
   "workbench.colorTheme": "Nord",
@@ -14,7 +14,6 @@
   "editor.minimap.enabled": false,
   "editor.lineNumbers": "relative",
   // linting
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
   "python.linting.enabled": true,
   "python.linting.pylintEnabled": true,
