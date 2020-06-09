@@ -39,7 +39,6 @@ This function should only modify configuration layer settings."
      helm
      markdown
 
-     ;; org
      org
      (shell :variables
             shell-default-height 30

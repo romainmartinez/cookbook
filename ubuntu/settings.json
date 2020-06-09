@@ -4,19 +4,21 @@
   "terminal.integrated.inheritEnv": false, // makes conda works
   "files.autoSave": "onFocusChange",
   "files.autoSaveDelay": 100000,
-  // design
-  "workbench.colorTheme": "Nord",
   "editor.fontFamily": "JetBrains Mono",
   "terminal.integrated.fontFamily": "JetBrains Mono",
   "editor.fontSize": 14,
   "workbench.editor.showTabs": false,
-  "workbench.activityBar.visible": false,
+  "workbench.activityBar.visible": true,
   "editor.minimap.enabled": false,
+  "editor.quickSuggestions": {
+    "strings": true
+  },
   "editor.lineNumbers": "relative",
   // linting
   "editor.formatOnSave": true,
   "python.linting.enabled": true,
   "python.linting.pylintEnabled": true,
+  "python.linting.mypyEnabled": true,
   "python.formatting.provider": "black",
   "python.formatting.blackPath": "/home/romain/miniconda3/bin/black",
   "[python]": {
@@ -76,6 +78,7 @@
     }
   ],
   "vim.normalModeKeyBindings": [
+    { "before": ["<leader>", "r"], "commands": ["python.execInTerminal"] },
     { "before": ["z", "m"], "commands": ["editor.foldAll"] },
     { "before": ["z", "r"], "commands": ["editor.unfoldAll"] },
     { "before": ["z", "a"], "commands": ["editor.toggleFold"] },
@@ -433,5 +436,9 @@
     }
   ],
   "vim.easymotion": true,
-  "vim.useSystemClipboard": true
+  "vim.useSystemClipboard": true,
+  "sync.autoDownload": true,
+  "sync.autoUpload": true,
+  "sync.gist": "93bb36614298e32df33abfcd68585e74",
+  "workbench.colorTheme": "Nord"
 }
