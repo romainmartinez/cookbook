@@ -440,5 +440,6 @@
   "sync.autoDownload": true,
   "sync.autoUpload": true,
   "sync.gist": "93bb36614298e32df33abfcd68585e74",
-  "workbench.colorTheme": "Nord"
+  "workbench.colorTheme": "Nord",
+  "cSpell.language": ",fr"
 }
