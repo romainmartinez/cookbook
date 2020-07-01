@@ -1,21 +1,32 @@
 {
-  // misc
-  "keyboard.dispatch": "keyCode", // keeps caps lock mapped to esc
-  "terminal.integrated.inheritEnv": false, // makes conda works
-  "files.autoSave": "onFocusChange",
-  "files.autoSaveDelay": 100000,
+  // visual
+  "workbench.colorTheme": "Nord",
   "editor.fontFamily": "JetBrains Mono",
   "terminal.integrated.fontFamily": "JetBrains Mono",
   "editor.fontSize": 14,
   "workbench.editor.showTabs": false,
   "workbench.activityBar.visible": true,
   "editor.minimap.enabled": false,
+  "editor.lineNumbers": "relative",
+  "window.zoomLevel": 1,
+  // misc
+  "keyboard.dispatch": "keyCode", // keeps caps lock mapped to esc
+  "files.autoSave": "onFocusChange",
   "editor.quickSuggestions": {
     "strings": true
   },
-  "editor.lineNumbers": "relative",
-  // linting
+  "cSpell.language": ",fr",
   "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true
+  },
+  // sync
+  "sync.autoDownload": true,
+  "sync.autoUpload": true,
+  "sync.gist": "93bb36614298e32df33abfcd68585e74",
+  "sync.ignoredExtensions": [],
+  // python
+  "terminal.integrated.inheritEnv": false, // makes conda works
   "python.linting.enabled": true,
   "python.linting.pylintEnabled": true,
   "python.linting.mypyEnabled": true,
@@ -26,11 +37,16 @@
       "source.organizeImports": true
     }
   },
+  // vue
+  "vetur.validation.template": false,
+  "eslint.format.enable": true,
+  "eslint.probe": ["javascript", "html", "vue", "markdown", "json"],
   // latex
   "latex-workshop.view.pdf.viewer": "browser",
   "latex-workshop.message.update.show": false,
   // vspace code
   "vim.leader": "<space>",
+  "vim.foldfix": true,
   "vim.visualModeKeyBindings": [
     {
       "before": ["<leader>", "e"],
@@ -82,6 +98,10 @@
     { "before": ["z", "m"], "commands": ["editor.foldAll"] },
     { "before": ["z", "r"], "commands": ["editor.unfoldAll"] },
     { "before": ["z", "a"], "commands": ["editor.toggleFold"] },
+    {
+      "before": ["<leader>", "w", "c"],
+      "commands": ["workbench.action.toggleZenMode"]
+    },
     {
       "before": ["<leader>", "<space>"],
       "commands": ["workbench.action.showCommands"]
@@ -265,8 +285,12 @@
       "commands": ["editor.action.formatDocument"]
     },
     {
-      "before": ["leader", "j", "j"],
+      "before": ["leader", "j", "i"],
       "after": ["leader", "leader", "s"]
+    },
+    {
+      "before": ["leader", "j", "j"],
+      "after": ["leader", "leader", "/"]
     },
     {
       "before": ["leader", "j", "l"],
@@ -436,10 +460,13 @@
     }
   ],
   "vim.easymotion": true,
+  "vim.easymotionMarkerBackgroundColor": "#3B4252",
+  "vim.easymotionMarkerForegroundColorOneChar": "#BF616A",
+  "vim.easymotionMarkerHeight": 20,
+  "vim.easymotionMarkerFontSize": "18",
+  "vim.easymotionMarkerFontWeight": "bold",
   "vim.useSystemClipboard": true,
-  "sync.autoDownload": true,
-  "sync.autoUpload": true,
-  "sync.gist": "93bb36614298e32df33abfcd68585e74",
-  "workbench.colorTheme": "Nord",
-  "cSpell.language": ",fr"
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }
