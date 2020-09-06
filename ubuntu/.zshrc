@@ -99,14 +99,9 @@ alias fixtime='sudo date -s "$(wget -qSO- --max-redirect=0 google.com 2>&1 | gre
 alias vpn='expressvpn'
 alias pushdots='cp ~/.spacemacs ~/codes/cookbook/ubuntu/.spacemacs &&\
  cp ~/.zshrc ~/codes/cookbook/ubuntu/.zshrc &&\
- cp ~/.config/VSCodium/User/settings.json ~/codes/cookbook/ubuntu/settings.json &&\
- cp ~/.config/VSCodium/User/keybindings.json ~/codes/cookbook/ubuntu/keybindings.json &&\
  cd ~/codes/cookbook/'
 alias pulldots='cp ~/codes/cookbook/ubuntu/.spacemacs ~/.spacemacs &&\
- cp ~/codes/cookbook/ubuntu/.zshrc ~/.zshrc &&\
- cp ~/codes/cookbook/ubuntu/settings.json ~/.config/VSCodium/User/settings.json &&\
- cp ~/codes/cookbook/ubuntu/keybindings.json ~/.config/VSCodium/User/keybindings.json'
-alias pf='$(fzf)'
+ cp ~/codes/cookbook/ubuntu/.zshrc ~/.zshrc'
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
