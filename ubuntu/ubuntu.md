@@ -1,23 +1,28 @@
 - ubuntu minimal installation
 - Delete firefox [link](https://askubuntu.com/questions/16758/removing-firefox-in-ubuntu-with-all-add-ons-like-it-never-existed)
 - Clear dirs:
+
 ```bash
-rm -rf ~/Templates ~/Public ~/Music ~/Videos 
+rm -rf ~/Templates ~/Public ~/Music ~/Videos
 mkdir ~/codes
 ```
-- comments Templates, Public, Music, Videos in `~/.config/user-dirs.dirs` __and__ `/etc/xdg/user-dirs.defaults`
+
+- comments Templates, Public, Music, Videos in `~/.config/user-dirs.dirs` **and** `/etc/xdg/user-dirs.defaults`
 - [wallpaper](https://imgur.com/a/nwrAFSJ)
 
 # From Snap
+
 - spotify
 - inkscape
-- vscodium
 
 ## Optional
+
 - okular (set default from a pdf)
 - gitkraken
 
 # From Google
+
+- vscode
 - dropbox
 - stacer: `sudo apt install stacer`
 - antidote
@@ -29,9 +34,8 @@ mkdir ~/codes
 - [nord theme for gnome terminal](https://github.com/arcticicestudio/nord-gnome-terminal): set in terminal + Jetbrains Mono + font size @ 13pt
 - ranger, autojump, fzf
 - miniconda (see cookbook/python/MakeFile)
-- spacemacs
 
 ```bash
-git clone git@github.com:romainmartinez/cookbook.git
-pulldots
+ln -s /home/romain/codes/cookbook/ubuntu/.zshrc /home/romain/.zshrc
+ln -s /home/romain/codes/cookbook/ubuntu/.spacemacs /home/romain/.spacemacs
 ```
