@@ -2,6 +2,10 @@
 
 - Download [regolith-linux](https://regolith-linux.org/)
 
+```bash
+ln -s /home/romain/code/cookbook/ubuntu/config /home/romain/.config/regolith/i3/config
+```
+
 - Ubuntu minimal installation
 
 - Delete firefox [link](https://askubuntu.com/questions/16758/removing-firefox-in-ubuntu-with-all-add-ons-like-it-never-existed)
