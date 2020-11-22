@@ -21,10 +21,10 @@ rm -rf ~/Templates ~/Public ~/Music ~/Videos
 # Misc
 
 - Switch caps lock and esc:
-  - `gnome-session-properties`
-  - Add:
-    - name: remap caps lock to esc
-    - command: setxkbmap -option caps:escape
+
+```bash
+gsettings set org.gnome.desktop.input-sources xkb-options "['caps:swapescape']"
+```
 
 ```bash
 # in ~/.xession
