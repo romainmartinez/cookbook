@@ -72,6 +72,7 @@ ln -s /home/romain/codes/cookbook/ubuntu/.zshrc /home/romain/.zshrc
 
 # From Google
 
+- [spotify](https://www.spotify.com/ca-en/download/linux/)
 - vscode
 - dropbox
 - stacer
