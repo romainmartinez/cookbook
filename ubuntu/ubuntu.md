@@ -34,7 +34,7 @@ setxkbmap -option caps:swapescape
 # Bash setup
 
 - [powerline-fonts](https://github.com/powerline/fonts)
-- [JetBrainsMono](https://www.jetbrains.com/lp/mono/)
+- [Fira-code](https://github.com/tonsky/FiraCode/wiki/Linux-instructions#installing-with-a-package-manager)
 - [nord theme for gnome terminal](https://github.com/arcticicestudio/nord-gnome-terminal): set in terminal + Jetbrains Mono + font size @ 13pt
 - ranger, autojump, fzf
 
