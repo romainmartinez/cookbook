@@ -47,7 +47,7 @@ setxkbmap -option caps:swapescape
 - [fish-fzf](https://github.com/PatrickF1/fzf.fish)
 
 ```bash
-ln -s /home/romain/codes/cookbook/ubuntu/config.fish ~/.config/fish/config.fish
+ln -s /home/romain/code/cookbook/ubuntu/config.fish ~/.config/fish/config.fish
 ```
 
 ## If zsh
@@ -57,7 +57,7 @@ ln -s /home/romain/codes/cookbook/ubuntu/config.fish ~/.config/fish/config.fish
 - [spaceship zsh theme](https://github.com/denysdovhan/spaceship-prompt)
 
 ```bash
-ln -s /home/romain/codes/cookbook/ubuntu/.zshrc /home/romain/.zshrc
+ln -s /home/romain/code/cookbook/ubuntu/.zshrc /home/romain/.zshrc
 ```
 
 # From Google
