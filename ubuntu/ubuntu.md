@@ -60,11 +60,6 @@ ln -s /home/romain/codes/cookbook/ubuntu/config.fish ~/.config/fish/config.fish
 ln -s /home/romain/codes/cookbook/ubuntu/.zshrc /home/romain/.zshrc
 ```
 
-# From Snap
-
-- spotify
-- inkscape
-
 ## Optional
 
 - okular (set default from a pdf)
@@ -73,6 +68,7 @@ ln -s /home/romain/codes/cookbook/ubuntu/.zshrc /home/romain/.zshrc
 # From Google
 
 - [spotify](https://www.spotify.com/ca-en/download/linux/)
+- [inkscape](https://inkscape.org/)
 - vscode
 - dropbox
 - stacer
