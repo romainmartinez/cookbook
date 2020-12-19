@@ -60,11 +60,6 @@ ln -s /home/romain/codes/cookbook/ubuntu/config.fish ~/.config/fish/config.fish
 ln -s /home/romain/codes/cookbook/ubuntu/.zshrc /home/romain/.zshrc
 ```
 
-## Optional
-
-- okular (set default from a pdf)
-- gitkraken
-
 # From Google
 
 - [spotify](https://www.spotify.com/ca-en/download/linux/)
