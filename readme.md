@@ -1,4 +1,4 @@
-# Removing useless stuff
+# OS installation
 
 - Download [regolith-linux](https://regolith-linux.org/)
 
@@ -7,6 +7,8 @@ ln -s /home/romain/code/cookbook/config /home/romain/.config/regolith/i3/config
 ```
 
 - Ubuntu minimal installation
+
+# Removing useless stuff
 
 - Delete firefox [link](https://askubuntu.com/questions/16758/removing-firefox-in-ubuntu-with-all-add-ons-like-it-never-existed)
 
