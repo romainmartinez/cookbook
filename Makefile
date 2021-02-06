@@ -19,4 +19,4 @@ install_jupyterlab:
 	jupyter labextension install @jupyterlab/toc
 
 ## Fresh conda & Jupyterlab install (run rm_conda, install_conda & install_jupyterlab)
-fresh_install: rm_conda install_conda install_jupyterlab
+fresh_install: rm_conda install_conda

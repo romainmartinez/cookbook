@@ -1,7 +1,0 @@
-#!/bin/bash
-
-echo LabIngMvt | sudo sshfs lim@10.89.24.15:/home/laboratoire/mnt/E/ /media/romain/E/ -o allow_other -o password_stdin
-echo LabIngMvt | sudo sshfs lim@10.89.24.15:/home/laboratoire/mnt/F/ /media/romain/F/ -o allow_other -o password_stdin
-echo LabIngMvt | sudo sshfs lim@10.89.24.15:/home/laboratoire/mnt/G/ /media/romain/G/ -o allow_other -o password_stdin
-echo LabIngMvt | sudo sshfs lim@10.89.24.15:/home/laboratoire/mnt/H/ /media/romain/H/ -o allow_other -o password_stdin
-
