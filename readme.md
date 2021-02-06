@@ -52,7 +52,7 @@ setxkbmap -option caps:swapescape
 ln -s /home/romain/code/cookbook/config.fish ~/.config/fish/config.fish
 ```
 
-## If zsh
+## If zsh (not used at the moment)
 
 - zsh (`sudo apt install zsh`)
 - [oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh)
