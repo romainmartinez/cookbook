@@ -8,7 +8,7 @@ ln -s /home/romain/code/cookbook/config /home/romain/.config/regolith/i3/config
 
 - If one screen has weird colors:
   1. identify which screen with `xrandr`
-  2. echo "xrandr --output <SCREEN FROM STEP 1> --set "Broadcast RGB" "Full"" > ~/.xprofile
+  2. `echo "xrandr --output <SCREEN FROM STEP 1> --set "Broadcast RGB" "Full"" > ~/.xprofile`
 
 # Removing useless stuff
 
