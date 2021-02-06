@@ -1,12 +1,14 @@
 # OS installation
 
-- Download [regolith-linux](https://regolith-linux.org/)
+- Download [regolith-linux](https://regolith-linux.org/) or Ubuntu minimal installation
 
 ```bash
 ln -s /home/romain/code/cookbook/config /home/romain/.config/regolith/i3/config
 ```
 
-- Ubuntu minimal installation
+- If one screen has weird colors:
+  1. identify which screen with `xrandr`
+  2. echo "xrandr --output <SCREEN FROM STEP 1> --set "Broadcast RGB" "Full"" > ~/.xprofile
 
 # Removing useless stuff
 
