@@ -1,3 +1,10 @@
+OS_NAME := $(shell uname)
+ifeq ($(OS_NAME), Darwin)
+	MINICONDA_TARGET_URL = MacOSX
+else
+	MINICONDA_TARGET_URL = Linux
+endif
+
 .PHONY: rm_conda install_conda install_jupyterlab fresh_install
 
 ## Remove Miniconda
@@ -7,11 +14,11 @@ rm_conda:
 
 ## Install Miniconda
 install_conda:
-	wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
-	bash miniconda.sh -b -p ~/miniconda3
+	curl -Ls "https://repo.continuum.io/miniconda/Miniconda3-latest-${MINICONDA_TARGET_URL}-x86_64.sh" -o miniconda.sh
+	bash miniconda.sh -b -f -u -p ~/miniconda
 	rm miniconda.sh
 	conda update conda -c conda-forge -y
-	conda install -c conda-forge black pylint
+	conda install -c conda-forge black pylint -y
 
 ## Install Jupyterlab (with conda kernel, ToC and code formatter)
 install_jupyterlab:
