@@ -13,16 +13,17 @@
 # default mode. The modes are tailored to their respective operations. Common
 # operations are generally available without the need of any modifier keys.
 # When modifier keys are used, they are for infrequent actions or size related
-# actions. Entry into the modal system is via Ctrl - Space, which enters FOCUS
+# actions. Entry into the modal system is via hyper - f, which enters FOCUS
 # mode. From there, any of the other modes can be activated with a single
 # keypress.
 #
 # The following is a high-level summary of the keybindngs:
 #
 # GLOBAL KEYBINDINGS:
-#                    ctrl - space    Enter FOCUS mode
-#                   ctrl - return    Open a Terminal
-#                    cmd - return    Open a floating Terminal
+#                       hyper - f    Enter FOCUS mode
+#                       hyper - t    Open a terminal
+#                       hyper - b    Open Google Chrome
+#                       hyper - v    Open Visual Studio Code
 #
 #
 # KEYBINDINGS AVAILABLE IN ALL MODES:
@@ -84,15 +85,6 @@
 #        cmd + return, h, j, k, l    Resize even smaller & move floating window (center, top-left, bottom-left, bottom-right, top-right)
 #
 
-#------------------------------------------------------------------------------
-# Launcher
-# hyper - space: alfred
-# hyper - c: alfred clipboard manager
-hyper - b: open /Applications/Google\ Chrome.app
-hyper - v: open /Applications/Visual\ Studio\ Code.app/
-hyper - t: open /usr/local/bin/fish
-#------------------------------------------------------------------------------
-
 :: default  : yabai -m config active_window_border_color 0xff61afef
 :: focus  @ : yabai -m config active_window_border_color 0xffe06c75  # Focus window, desktop, monitors
 :: grid   @ : yabai -m config active_window_border_color 0xff56b6c2  # Floating window layout
@@ -101,10 +93,10 @@ hyper - t: open /usr/local/bin/fish
 :: warpnf @ : yabai -m config active_window_border_color 0xffd19a66  # Same, but don't follow focus
 :: resize @ : yabai -m config active_window_border_color 0xff98c379  # Resize window operations
 
-# CTRL-SPACE is the global hotkey to toggle in/out of modal mode. Entry is
+# hyper - f is the global hotkey to toggle in/out of modal mode. Entry is
 # always to FOCUS mode. Getting out of any mode can also be done with ESCAPE.
-default                                 < ctrl - space      ; focus
-focus, grid, swap, warp, warpnf, resize < ctrl - space      ; default
+default                                 < hyper - f         ; focus
+focus, grid, swap, warp, warpnf, resize < hyper - f         ; default
 focus, grid, swap, warp, warpnf, resize < escape            ; default
 
 # Once in FOCUS mode (or any other mode other than default), you can switch
@@ -131,8 +123,12 @@ focus, grid, swap, warp, warpnf, resize < i                 : yabai -m window --
 focus, grid, swap, warp, warpnf, resize < t                 : yabai -m window --toggle float             # mnemonic: floa_t_
 
 # Global hotkeys which I limit so as to not pollute the global namespace 
-default         < ctrl - return     : open -na Terminal; yabai -m space --balance
-default         < cmd - return      : open -na Terminal;
+# hyper - space: alfred
+# hyper - c: alfred clipboard manager
+default         < hyper - t     : open /System/Applications/Utilities/Terminal.app
+default         < hyper - b     : open /Applications/Google\ Chrome.app
+default         < hyper - s     : open /Applications/Safari.app
+default         < hyper - v     : open /Applications/Visual\ Studio\ Code.app/
 
 # Change focus using standard vi directional keys. Enter changes focus to the
 # largest window. You'll see this theme repeated over and over again. Since this
@@ -148,11 +144,11 @@ focus           < return            : yabai -m window --focus largest
 # make the next window a floating window, we bind cmd - t (using same mnemonic
 # as above). As these operations are intended for the next window that is
 # opened, we exit FOCUS mode immediately.
-focus           < cmd - k           : yabai -m window --insert north; skhd -k "ctrl - space"
-focus           < cmd - j           : yabai -m window --insert south; skhd -k "ctrl - space"
-focus           < cmd - l           : yabai -m window --insert east; skhd -k "ctrl - space"
-focus           < cmd - h           : yabai -m window --insert west; skhd -k "ctrl - space"
-focus           < cmd - t           : yabai -m window --insert stack; skhd -k "ctrl - space"
+focus           < cmd - k           : yabai -m window --insert north; skhd -k "hyper - f"
+focus           < cmd - j           : yabai -m window --insert south; skhd -k "hyper - f"
+focus           < cmd - l           : yabai -m window --insert east; skhd -k "hyper - f"
+focus           < cmd - h           : yabai -m window --insert west; skhd -k "hyper - f"
+focus           < cmd - t           : yabai -m window --insert stack; skhd -k "hyper - f"
 
 # Change the monitor focus using numbers corresponding to monitor or cycle
 # through the monitors using tab and shift - tab combination. You'll see this

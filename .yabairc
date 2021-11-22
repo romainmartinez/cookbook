@@ -1,5 +1,9 @@
 #!/usr/bin/env sh
 
+# automatically load scripting addition on startup
+sudo yabai --load-sa
+yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+
 # global settings
 yabai -m config mouse_follows_focus          off
 yabai -m config focus_follows_mouse          off
@@ -25,10 +29,10 @@ yabai -m config mouse_drop_action            swap
 
 # general space settings
 yabai -m config layout                       bsp
-yabai -m config top_padding                  2
-yabai -m config bottom_padding               2
-yabai -m config left_padding                 2
-yabai -m config right_padding                2
-yabai -m config window_gap                   6
+yabai -m config top_padding                  1
+yabai -m config bottom_padding               1
+yabai -m config left_padding                 1
+yabai -m config right_padding                1
+yabai -m config window_gap                   1
 
 echo "yabai configuration loaded.."
