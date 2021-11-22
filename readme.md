@@ -1,4 +1,4 @@
-# OS installation
+# Linux
 
 - Download [regolith-linux](https://regolith-linux.org/) or Ubuntu minimal installation
 
@@ -10,19 +10,17 @@ ln -s /home/romain/code/cookbook/config /home/romain/.config/regolith/i3/config
   1. identify which screen with `xrandr`
   2. `echo "xrandr --output <SCREEN FROM STEP 1> --set "Broadcast RGB" "Full"" > ~/.xprofile`
 
-# Removing useless stuff
+## Removing useless stuff
 
 - Delete firefox [link](https://askubuntu.com/questions/16758/removing-firefox-in-ubuntu-with-all-add-ons-like-it-never-existed)
-
+- comments Templates, Public, Music, Videos in `~/.config/user-dirs.dirs` **and** `/etc/xdg/user-dirs.defaults`
 - Clear dirs:
 
 ```bash
 rm -rf ~/Templates ~/Public ~/Music ~/Videos
 ```
 
-- comments Templates, Public, Music, Videos in `~/.config/user-dirs.dirs` **and** `/etc/xdg/user-dirs.defaults`
-
-# Misc
+## Misc
 
 - Switch caps lock and esc:
 
@@ -37,12 +35,11 @@ setxkbmap -option caps:swapescape
 
 # Bash setup
 
-- [powerline-fonts](https://github.com/powerline/fonts)
-- [Fira-code](https://github.com/tonsky/FiraCode/wiki/Linux-instructions#installing-with-a-package-manager)
+- [powerline-fonts](https://github.com/powerline/fonts): JetBrains Mono
 - [nord theme for gnome terminal](https://github.com/arcticicestudio/nord-gnome-terminal): set in terminal + Jetbrains Mono + font size @ 13pt
-- ranger, autojump, fzf
+- fzf
 
-## If fish
+## fish
 
 - `sudo apt install fish`
 - install [starship](https://github.com/starship/starship)
@@ -54,24 +51,35 @@ setxkbmap -option caps:swapescape
 ln -s /home/romain/code/cookbook/config.fish ~/.config/fish/config.fish
 ```
 
-## If zsh (not used at the moment)
-
-- zsh (`sudo apt install zsh`)
-- [oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh)
-- [spaceship zsh theme](https://github.com/denysdovhan/spaceship-prompt)
-
-```bash
-ln -s /home/romain/code/cookbook/.zshrc /home/romain/.zshrc
-```
-
-# From Google
+# Softwares
 
 - [spotify](https://www.spotify.com/ca-en/download/linux/)
 - [inkscape](https://inkscape.org/)
-- vscode
+- vscode with Sync
 - dropbox
 - stacer
 - antidote
 - miniconda (see MakeFile)
 - Teams
-- Zoom
+- DeepL
+
+Mac Specific
+
+- alfred (with powerpack): sync with Dropbox/pro/alfred
+- karabiner
+  - disable arrow keys
+  - CAPS_LOCK to Hyper/Escape (SHIFT+COMMAND+OPTION+CONTROL) & Hyper + VIM Navigation keys
+- yabai
+- skhd
+
+```bash
+ln -s ~/Documents/cookbook/.skhd ~/.skhd
+ln -s ~/Documents/cookbook/.yabairc ~/.yabairc
+chmod +x ~/.yabairc
+```
+
+TODO:
+
+- launch chrome, terminal
+- tinker yabai config
+- see vspacecode window menu and copy into skhd
