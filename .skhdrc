@@ -129,6 +129,7 @@ default         < hyper - t     : open /System/Applications/Utilities/Terminal.a
 default         < hyper - b     : open /Applications/Google\ Chrome.app
 default         < hyper - s     : open /Applications/Safari.app
 default         < hyper - v     : open /Applications/Visual\ Studio\ Code.app/
+default         < hyper - g     : open /Applications/Microsoft\ Teams.app
 
 # Change focus using standard vi directional keys. Enter changes focus to the
 # largest window. You'll see this theme repeated over and over again. Since this

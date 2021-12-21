@@ -77,9 +77,3 @@ ln -s ~/Documents/cookbook/.skhd ~/.skhd
 ln -s ~/Documents/cookbook/.yabairc ~/.yabairc
 chmod +x ~/.yabairc
 ```
-
-TODO:
-
-- launch chrome, terminal
-- tinker yabai config
-- see vspacecode window menu and copy into skhd
