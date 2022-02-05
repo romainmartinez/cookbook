@@ -52,7 +52,7 @@ ln -s /home/romain/code/cookbook/config.fish ~/.config/fish/config.fish
 ```
 
 # Softwares
-
+Install with Homebrew
 - [spotify](https://www.spotify.com/ca-en/download/linux/)
 - [inkscape](https://inkscape.org/)
 - vscode with Sync
