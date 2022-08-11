@@ -21,6 +21,7 @@ ln -s /home/romain/code/cookbook/config.fish ~/.config/fish/config.fish
 Install with Homebrew
 
 - cleanmymac
+- magnet
 - alfred with powerpack (sync with `Dropbox/pro/alfred`)
 - karabiner (sync with `karabiner.json`)
 - teams
