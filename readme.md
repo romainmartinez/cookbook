@@ -19,16 +19,15 @@ ln -s /home/romain/code/cookbook/config.fish ~/.config/fish/config.fish
 
 Install with Homebrew
 
-- chrome
+- arc
 - cleanmymac
-- magnet
-- alfred with powerpack (sync with `Dropbox/pro/alfred`)
+- raycast
 - karabiner (sync with `karabiner.json`)
 - teams
 - antidote
 - office
-- inkscape
 - dropbox
+- office (word, excel, powerpoint)
 - spotify
 - vscode with Sync
 - miniconda (see MakeFile)
