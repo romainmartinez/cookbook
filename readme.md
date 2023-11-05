@@ -1,18 +1,21 @@
 # Bash setup
 
 - [powerline-fonts](https://github.com/powerline/fonts): JetBrains Mono
-- [nord theme for gnome terminal](https://github.com/arcticicestudio/nord-gnome-terminal): set in terminal + Jetbrains Mono + font size @ 13pt
-- fzf
+- [Warp terminal](https://app.warp.dev/get_warp) with [rose pine](https://github.com/thanhsonng/rose-pine-warp) and vim keybindings
 
 ## fish
 
 - `sudo apt install fish`
 - install [starship](https://github.com/starship/starship)
 - default to fish: [link](https://fishshell.com/docs/current/tutorial.html#switching-to-fish)
-- [fisher](https://github.com/jorgebucaran/fisher) + [`fzf`](https://github.com/jethrokuan/fzf) + [`z`](https://github.com/jethrokuan/z) + [`exa`](https://github.com/ogham/exa)
+- [rose pine](https://github.com/rose-pine/fish)
+- [fisher](https://github.com/jorgebucaran/fisher)
+- [`fzf`](https://github.com/jethrokuan/fzf)
+- [`z`](https://github.com/jethrokuan/z)
+- [`exa`](https://github.com/ogham/exa)
 
 ```bash
-ln -s /home/romain/code/cookbook/config.fish ~/.config/fish/config.fish
+ln -s ~/Documents/cookbook/config.fish ~/.config/fish/config.fish
 ```
 
 # Softwares
@@ -20,12 +23,12 @@ ln -s /home/romain/code/cookbook/config.fish ~/.config/fish/config.fish
 Install with Homebrew
 
 - arc
+- obsidian
 - cleanmymac
-- raycast
-- karabiner (sync with `karabiner.json`)
+- raycast (with `Dropbox/pro/mac/` raycast backup)
+- karabiner (with `karabiner.json`)
 - teams
 - antidote
-- office
 - dropbox
 - office (word, excel, powerpoint)
 - spotify
