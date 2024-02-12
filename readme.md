@@ -1,14 +1,14 @@
 # Bash setup
 
 - [powerline-fonts](https://github.com/powerline/fonts): JetBrains Mono
-- [Warp terminal](https://app.warp.dev/get_warp) with [rose pine](https://github.com/thanhsonng/rose-pine-warp) and vim keybindings
+- [Warp terminal](https://app.warp.dev/get_warp) with catpuccin and vim keybindings
 
 ## fish
 
 - `sudo apt install fish`
 - install [starship](https://github.com/starship/starship)
 - default to fish: [link](https://fishshell.com/docs/current/tutorial.html#switching-to-fish)
-- [rose pine](https://github.com/rose-pine/fish)
+- fish catpuccino theme
 - [fisher](https://github.com/jorgebucaran/fisher)
 - [`fzf`](https://github.com/jethrokuan/fzf)
 - [`z`](https://github.com/jethrokuan/z)
