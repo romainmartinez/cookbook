@@ -24,6 +24,7 @@ Install with Homebrew
 
 - arc
 - obsidian
+- shortcat
 - cleanmymac
 - raycast (with `Dropbox/pro/mac/` raycast backup)
 - karabiner (with `karabiner.json`)
