@@ -16,6 +16,7 @@
 
 ```bash
 ln -s ~/Documents/cookbook/config.fish ~/.config/fish/config.fish
+cp auto_conda_activate.fish /.config/fish/functions/auto_conda_activate.fish
 ```
 
 # Softwares
@@ -24,7 +25,6 @@ Install with Homebrew
 
 - arc
 - obsidian
-- shortcat
 - cleanmymac
 - raycast (with `Dropbox/pro/mac/` raycast backup)
 - karabiner (with `karabiner.json`)
