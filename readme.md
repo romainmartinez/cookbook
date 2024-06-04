@@ -1,37 +1,53 @@
-# Bash setup
+# Mac Setup Instructions
 
-- [powerline-fonts](https://github.com/powerline/fonts): JetBrains Mono
-- [Warp terminal](https://app.warp.dev/get_warp) with catpuccin and vim keybindings
+## Settings
+-  Prefer ethernet over wifi
+-  Prefer tabs: always
+-  Hide tags in Finder
+-  Automatically rearrange spaces based on most recent use: false
+-  When switching to an application, switch to a Space with open windows for the application: false
+-  Group windows by application: false
+-  Displays have separate Spaces: false
 
-## fish
+## Softwares
 
-- `sudo apt install fish`
-- install [starship](https://github.com/starship/starship)
-- default to fish: [link](https://fishshell.com/docs/current/tutorial.html#switching-to-fish)
-- fish catpuccino theme
-- [fisher](https://github.com/jorgebucaran/fisher)
-- [`fzf`](https://github.com/jethrokuan/fzf)
-- [`z`](https://github.com/jethrokuan/z)
-- [`exa`](https://github.com/ogham/exa)
-
-```bash
-ln -s ~/Documents/cookbook/config.fish ~/.config/fish/config.fish
-cp auto_conda_activate.fish /.config/fish/functions/auto_conda_activate.fish
-```
-
-# Softwares
-
-Install with Homebrew
-
-- arc
-- obsidian
-- cleanmymac
-- raycast (with `Dropbox/pro/mac/` raycast backup)
-- karabiner (with `karabiner.json`)
-- teams
-- antidote
-- dropbox
 - office (word, excel, powerpoint)
+- Teams
+- Acrobat Reader
+
+## Homebrew
+- raycast
+- arc
+  - ⌘+J/K for up/down
+  - ⌘+L/H for previous/next)
+- warp
+  - [powerline-fonts](https://github.com/powerline/fonts): JetBrains Mono
+  - [catpuccin theme](https://github.com/catppuccin/warp)
+  - [VALIDATE ]fish
+  ```bash
+  ln -s ~/Documents/cookbook/config.fish ~/.config/fish/config.fish
+  ln -s ~/Documents/cookbook/auto_conda_activate.fish ~/.config/fish/functions/auto_conda_activate.fish
+  ```
+    - fisher
+    - [VALIDATE] starship
+    - fzf
+      - enable and test key bindings
+    - z
+    - exa
+- cleanmymac
+  - clean useless mac apps
+- karabiner
+  - try replacing fn with ctrl
+```bash
+ln -s ~/Documents/cookbook/karabiner.json ~/.config/karabiner/karabiner.json
+```
+- dropbox
 - spotify
-- vscode with Sync
-- miniconda (see MakeFile)
+- vscode
+- miniconda
+- hiddenbar
+- shortcat
+- nvim
+```bash
+git clone git@github.com:romainmartinez/lazyvim.git ~/.config/nvim
+```
