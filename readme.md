@@ -1,13 +1,14 @@
 # Mac Setup Instructions
 
 ## Settings
--  Prefer ethernet over wifi
--  Prefer tabs: always
--  Hide tags in Finder
--  Automatically rearrange spaces based on most recent use: false
--  When switching to an application, switch to a Space with open windows for the application: false
--  Group windows by application: false
--  Displays have separate Spaces: false
+
+- Prefer ethernet over wifi
+- Prefer tabs: always
+- Hide tags in Finder
+- Automatically rearrange spaces based on most recent use: false
+- When switching to an application, switch to a Space with open windows for the application: false
+- Group windows by application: false
+- Displays have separate Spaces: false
 
 ## Softwares
 
@@ -16,6 +17,7 @@
 - Acrobat Reader
 
 ## Homebrew
+
 - raycast
 - arc
   - ⌘+J/K for up/down
@@ -28,26 +30,29 @@
   ln -s ~/Documents/cookbook/config.fish ~/.config/fish/config.fish
   ln -s ~/Documents/cookbook/auto_conda_activate.fish ~/.config/fish/functions/auto_conda_activate.fish
   ```
-    - fisher
-    - [VALIDATE] starship
-    - fzf
-      - enable and test key bindings
-    - z
-    - exa
+  - fisher
+  - [VALIDATE] starship
+  - fzf
+    - enable and test key bindings
+  - zoxide
+  - exa
 - cleanmymac
   - clean useless mac apps
 - karabiner
   - try replacing fn with ctrl
+
 ```bash
 ln -s ~/Documents/cookbook/karabiner.json ~/.config/karabiner/karabiner.json
 ```
+
 - dropbox
 - spotify
 - vscode
 - miniconda
 - hiddenbar
-- shortcat
+- cleanshot
 - nvim
+
 ```bash
 git clone git@github.com:romainmartinez/lazyvim.git ~/.config/nvim
 ```

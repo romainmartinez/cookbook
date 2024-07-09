@@ -6,6 +6,7 @@ set -x PATH /Users/romainm/.local/bin $PATH
 set -x PATH /Users/romainm/.cargo/bin/ $PATH
 set -x PIP_CERT /usr/local/share/ca-certificates/manulife-cacert.perm
 set -x REQUESTS_CA_BUNDLE /usr/local/share/ca-certificates/manulife-cacert.perm
+set -x NODE_TLS_REJECT_UNAUTHORIZED 0
 
 # set alias for exa
 alias ls='lsd'
@@ -13,6 +14,10 @@ alias l='ls -l'
 alias la='ls -a'
 alias lla='ls -la'
 alias lt='ls --tree'
+
+direnv hook fish | source
+# `z` and `zi`
+zoxide init fish | source
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
