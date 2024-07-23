@@ -25,32 +25,32 @@
 - warp
   - [powerline-fonts](https://github.com/powerline/fonts): JetBrains Mono
   - [catpuccin theme](https://github.com/catppuccin/warp)
-  - [VALIDATE ]fish
+  - fish
   ```bash
   ln -s ~/Documents/cookbook/config.fish ~/.config/fish/config.fish
   ln -s ~/Documents/cookbook/auto_conda_activate.fish ~/.config/fish/functions/auto_conda_activate.fish
   ```
   - fisher
-  - [VALIDATE] starship
-  - fzf
-    - enable and test key bindings
+  - fzf (enable and test keybindings)
   - zoxide
   - exa
 - cleanmymac
   - clean useless mac apps
 - karabiner
-  - try replacing fn with ctrl
 
 ```bash
 ln -s ~/Documents/cookbook/karabiner.json ~/.config/karabiner/karabiner.json
 ```
 
 - dropbox
+- notion
+- notion-calendar
 - spotify
 - vscode
 - miniconda
 - hiddenbar
-- cleanshot
+- cleanshot X
+
 - nvim
 
 ```bash
