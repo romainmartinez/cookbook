@@ -6,6 +6,7 @@ set -x PATH /Users/romainm/.local/bin $PATH
 set -x PATH /Users/romainm/.cargo/bin/ $PATH
 set -x PIP_CERT /usr/local/share/ca-certificates/manulife-cacert.perm
 set -x REQUESTS_CA_BUNDLE /usr/local/share/ca-certificates/manulife-cacert.perm
+set -x SSL_CERT_FILE /usr/local/share/ca-certificates/manulife-cacert.perm
 set -x NODE_TLS_REJECT_UNAUTHORIZED 0
 
 # set alias for exa
