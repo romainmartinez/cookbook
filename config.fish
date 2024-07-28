@@ -16,6 +16,12 @@ alias la='ls -a'
 alias lla='ls -la'
 alias lt='ls --tree'
 
+# set alias for fzf
+alias fk='ps -ef | fzf --header-lines=1 --multi --exact | awk "{print \$2}" | xargs kill -9'
+alias fh='eval $(history | fzf --tac | sed "s/ *[0-9]* *//")'
+alias ff='find $HOME \( -type d -name ".git" -prune \) -o \( -type d -o -type f \) -print 2>/dev/null | fzf --exact'
+alias fd='cd "$(find $HOME \( -type d -name ".git" -prune \) -o -type d -print 2>/dev/null | fzf --exact)"'
+
 direnv hook fish | source
 # `z` and `zi`
 zoxide init fish | source
