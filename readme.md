@@ -12,7 +12,7 @@
 
 ## Softwares
 
-- Office suit (word, excel, powerpoint)
+- Office suite (word, excel, powerpoint)
 - Teams
 - Acrobat Reader
 
@@ -31,7 +31,7 @@
   ln -s ~/Documents/cookbook/auto_conda_activate.fish ~/.config/fish/functions/auto_conda_activate.fish
   ```
   - fisher
-  - fzf (enable and test keybindings)
+  - fzf
   - zoxide
   - exa
 - cleanmymac
