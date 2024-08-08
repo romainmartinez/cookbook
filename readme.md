@@ -12,7 +12,7 @@
 
 ## Softwares
 
-- office (word, excel, powerpoint)
+- Office suit (word, excel, powerpoint)
 - Teams
 - Acrobat Reader
 
@@ -23,7 +23,7 @@
   - ⌘+J/K for up/down
   - ⌘+L/H for previous/next)
 - warp
-  - [powerline-fonts](https://github.com/powerline/fonts): JetBrains Mono
+  - [powerline-fonts](https://github.com/powerline/fonts): JetBrains Mono with brew
   - [catpuccin theme](https://github.com/catppuccin/warp)
   - fish
   ```bash
@@ -43,7 +43,7 @@ ln -s ~/Documents/cookbook/karabiner.json ~/.config/karabiner/karabiner.json
 ```
 
 - dropbox
-- notion
+- notion + notion calendar
 - notion-calendar
 - spotify
 - vscode
