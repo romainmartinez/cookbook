@@ -1,29 +1,31 @@
-if status is-interactive
-    # Commands to run in interactive sessions can go here
-end
+# Set user-specific paths
+set -x PATH $HOME/.local/bin $PATH
+set -x PATH $HOME/.cargo/bin $PATH
 
-set -x PATH /Users/romainm/.local/bin $PATH
-set -x PATH /Users/romainm/.cargo/bin/ $PATH
-set -x PIP_CERT /usr/local/share/ca-certificates/manulife-cacert.perm
-set -x REQUESTS_CA_BUNDLE /usr/local/share/ca-certificates/manulife-cacert.perm
-set -x SSL_CERT_FILE /usr/local/share/ca-certificates/manulife-cacert.perm
-set -x NODE_TLS_REJECT_UNAUTHORIZED 0
+# Set certificate-related environment variables
+set -x CERT_FILE /usr/local/share/ca-certificates/manulife-cacert.perm
+set -x PIP_CERT $CERT_FILE
+set -x REQUESTS_CA_BUNDLE $CERT_FILE
+set -x SSL_CERT_FILE $CERT_FILE
+set -x NODE_EXTRA_CA_CERTS $CERT_FILE
 
-# set alias for exa
+# Set aliases for lsd (modern ls replacement)
 alias ls='lsd'
 alias l='ls -l'
 alias la='ls -a'
 alias lla='ls -la'
 alias lt='ls --tree'
 
-# set alias for fzf
+# Set aliases for fzf (fuzzy finder)
 alias fk='ps -ef | fzf --header-lines=1 --multi --exact | awk "{print \$2}" | xargs kill -9'
-alias fh='eval $(history | fzf --tac | sed "s/ *[0-9]* *//")'
+alias fh='eval (history | fzf --tac | sed "s/ *[0-9]* *//")'
 alias ff='find $HOME \( -type d -name ".git" -prune \) -o \( -type d -o -type f \) -print 2>/dev/null | fzf --exact'
-alias fcd='cd "$(find $HOME \( -type d -name ".git" -prune \) -o -type d -print 2>/dev/null | fzf --exact)"'
+alias fcd='cd (find $HOME \( -type d -name ".git" -prune \) -o -type d -print 2>/dev/null | fzf --exact)'
 
+# Initialize direnv
 direnv hook fish | source
-# `z` and `zi`
+
+# Initialize zoxide for `z` and `zi` commands
 zoxide init fish | source
 
 # >>> conda initialize >>>
