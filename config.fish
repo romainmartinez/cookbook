@@ -22,9 +22,6 @@ alias fh='eval (history | fzf --tac | sed "s/ *[0-9]* *//")'
 alias ff='find $HOME \( -type d -name ".git" -prune \) -o \( -type d -o -type f \) -print 2>/dev/null | fzf --exact'
 alias fcd='cd (find $HOME \( -type d -name ".git" -prune \) -o -type d -print 2>/dev/null | fzf --exact)'
 
-# Initialize direnv
-direnv hook fish | source
-
 # Initialize zoxide for `z` and `zi` commands
 zoxide init fish | source
 
