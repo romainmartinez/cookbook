@@ -1,0 +1,191 @@
+{
+  // Aesthetic
+  "editor.fontFamily": "JetBrainsMono Nerd Font Mono, Monaco, 'Courier New', monospace",
+  "terminal.integrated.fontFamily": "JetBrainsMono Nerd Font Mono, Monaco, 'Courier New', monospace",
+  "editor.fontLigatures": true,
+  "editor.fontSize": 12.5,
+  "workbench.fontAliasing": "antialiased",
+  "workbench.colorTheme": "Catppuccin Frappé",
+  "workbench.sideBar.location": "right",
+  "debug.toolBarLocation": "docked",
+  "workbench.editor.showTabs": "none",
+  "editor.lineNumbers": "relative",
+  "editor.smoothScrolling": true,
+  "editor.cursorSmoothCaretAnimation": "on",
+  "workbench.activityBar.location": "hidden",
+  "editor.scrollbar.vertical": "hidden",
+  "window.titleBarStyle": "custom",
+  "window.customTitleBarVisibility": "never",
+  "window.commandCenter": false,
+  // General
+  "errorLens.enabled": true,
+  "editor.accessibilitySupport": "off",
+  "editor.gotoLocation.multipleDefinitions": "goto",
+  "telemetry.telemetryLevel": "off",
+  "files.autoSave": "onFocusChange",
+  "editor.formatOnSave": true,
+  "editor.wordWrap": "on",
+  "explorer.confirmDelete": false,
+  "window.closeWhenEmpty": true,
+  "workbench.activityBar.orientation": "vertical", // to make quick window navigation works
+  "workbench.editor.restoreViewState": false,
+  "terminal.integrated.inheritEnv": false,
+  "terminal.integrated.defaultProfile.osx": "fish",
+  "terminal.integrated.gpuAcceleration": "on",
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "always",
+    "source.organizeImports.ruff": "always",
+    "source.fixAll": "always",
+    "source.unusedImports": "always"
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  // Extensions
+  "extensions.autoUpdate": true,
+  "extensions.ignoreRecommendations": false,
+  "extensions.autoCheckUpdates": true,
+  // Cursor
+  "cursor.cpp.enablePartialAccepts": true,
+  "cursor.general.disableHttp2": true,
+  "cursor.general.enableShadowWorkspace": false,
+  "cursor.aipreview.enabled": true,
+  "cursor.chat.smoothStreaming": true,
+  // Pyton
+  "python.languageServer": "Pylance",
+  "ruff.format.preview": true,
+  "ruff.lint.enable": true,
+  "ruff.lint.args": [],
+  "ruff.format.args": [],
+  "python.analysis.typeCheckingMode": "basic",
+  "[python]": {
+    "editor.defaultFormatter": "charliermarsh.ruff",
+    "diffEditor.ignoreTrimWhitespace": false,
+    "editor.formatOnType": true,
+    "editor.wordBasedSuggestions": "off"
+  },
+  // Web
+  "tailwind-fold.autoFold": false,
+  // Vim
+  "vim.highlightedyank.enable": true,
+  "vim.easymotion": true,
+  "vim.hlsearch": true,
+  "vim.easymotionMarkerBackgroundColor": "white",
+  "vim.easymotionMarkerForegroundColorOneChar": "#BF616A",
+  "vim.easymotionMarkerFontWeight": "bold",
+  "vim.foldfix": true, // disable unfold when hover
+  "vim.sneak": true,
+  "vim.surround": true,
+  "vim.useSystemClipboard": true,
+  "vspacecode.bindingOverrides": [
+    {
+      "keys": "l",
+      "name": "Execute selection in REPL",
+      "type": "command",
+      "command": "editor.debug.action.selectionToRepl"
+    },
+    {
+      "keys": "d.l",
+      "name": "Execute selection in REPL",
+      "type": "command",
+      "command": "editor.debug.action.selectionToRepl"
+    },
+    {
+      "keys": "d.r",
+      "name": "Select and start debugging",
+      "type": "command",
+      "command": "workbench.action.debug.selectandstart"
+    },
+    {
+      "keys": "c.e",
+      "name": "Toggle errorLens",
+      "type": "command",
+      "command": "errorLens.toggle"
+    },
+    {
+      "keys": "t.a",
+      "name": "Toggle class folding",
+      "type": "command",
+      "command": "tailwind-fold.toggleAutoFold"
+    }
+  ],
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": ["<space>"],
+      "commands": ["vspacecode.space"]
+    },
+    {
+      "before": [","],
+      "commands": [
+        "vspacecode.space",
+        {
+          "command": "whichkey.triggerKey",
+          "args": "m"
+        }
+      ]
+    },
+    // Center screen when using <C-d> and <C-u>
+    {
+      "before": ["<C-d>"],
+      "after": ["<C-d>", "z", "z"]
+    },
+    {
+      "before": ["<C-u>"],
+      "after": ["<C-u>", "z", "z"]
+    },
+    {
+      "before": ["z", "m"],
+      "commands": ["editor.foldAll"]
+    },
+    {
+      "before": ["z", "r"],
+      "commands": ["editor.unfoldAll"]
+    },
+    {
+      "before": ["z", "a"],
+      "commands": ["editor.toggleFold"]
+    },
+    // Remap easymotion n-character search to s
+    {
+      "before": ["s"],
+      "after": ["<leader>", "<leader>", "/"]
+    },
+    // Remap JumpAnywhere search to S
+    {
+      "before": ["S"],
+      "after": ["<leader>", "<leader>", "<leader>", "j"]
+    }
+  ],
+  "vim.visualModeKeyBindingsNonRecursive": [
+    {
+      "before": ["<space>"],
+      "commands": ["vspacecode.space"]
+    },
+    {
+      "before": [","],
+      "commands": [
+        "vspacecode.space",
+        {
+          "command": "whichkey.triggerKey",
+          "args": "m"
+        }
+      ]
+    },
+    {
+      "before": [">"],
+      "commands": ["editor.action.indentLines"]
+    },
+    {
+      "before": ["<"],
+      "commands": ["editor.action.outdentLines"]
+    },
+    // Remap easymotion n-character search to s
+    {
+      "before": ["s"],
+      "after": ["<leader>", "<leader>", "/"]
+    },
+    // Remap JumpAnywhere search to S
+    {
+      "before": ["S"],
+      "after": ["<leader>", "<leader>", "<leader>", "j"]
+    }
+  ]
+}

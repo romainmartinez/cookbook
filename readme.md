@@ -21,14 +21,13 @@
 - raycast
 - arc
   - ⌘+J/K for up/down
-  - ⌘+L/H for previous/next)
+  - ⌘+L/H for previous/next
+- font-jetbrains-mono-nerd-font
 - warp
-  - [powerline-fonts](https://github.com/powerline/fonts): JetBrains Mono with brew
   - [catpuccin theme](https://github.com/catppuccin/warp)
   - fish
   ```bash
   ln -s ~/Documents/cookbook/config.fish ~/.config/fish/config.fish
-  ln -s ~/Documents/cookbook/auto_conda_activate.fish ~/.config/fish/functions/auto_conda_activate.fish
   ```
   - fisher
   - fzf
@@ -47,9 +46,16 @@ ln -s ~/Documents/cookbook/karabiner.json ~/.config/karabiner/karabiner.json
 - notion-calendar
 - spotify
 - vscode
-- miniconda
+
+```bash
+ln -s ~/Documents/cookbook/settings.json ~/.config/vscode/settings.json
+```
+
+- uv
+- figma
 - hiddenbar
 - cleanshot X
+- shortcat
 
 - nvim
 
