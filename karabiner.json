@@ -5,7 +5,7 @@
       "complex_modifications": {
         "rules": [
           {
-            "description": "fn to control",
+            "description": "fn to control (because fn is in a weird place on the built in keyboard)",
             "manipulators": [
               {
                 "from": { "key_code": "fn" },
@@ -15,7 +15,7 @@
             ]
           },
           {
-            "description": "right shift to hyper + space",
+            "description": "right shift to hyper + space (for raycast)",
             "manipulators": [
               {
                 "from": { "key_code": "right_shift" },
@@ -31,7 +31,7 @@
             ]
           },
           {
-            "description": "right command to hyper + =",
+            "description": "right command to hyper + = (for shorcat)",
             "manipulators": [
               {
                 "from": { "key_code": "right_command" },
@@ -47,7 +47,7 @@
             ]
           },
           {
-            "description": "caps + hjkl to arrows",
+            "description": "caps + hjkl to arrows (vim navigation)",
             "manipulators": [
               {
                 "from": {
@@ -116,7 +116,7 @@
             ]
           },
           {
-            "description": "caps to hyper or escape if alone",
+            "description": "caps to hyper or escape if alone (for vim)",
             "manipulators": [
               {
                 "from": {
