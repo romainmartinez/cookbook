@@ -5,10 +5,10 @@
       "complex_modifications": {
         "rules": [
           {
-            "description": "fn to control (because fn is in a weird place on the built in keyboard)",
+            "description": "left shift to control (because ctrl is hard to reach)",
             "manipulators": [
               {
-                "from": { "key_code": "fn" },
+                "from": { "key_code": "left_shift" },
                 "to": [{ "key_code": "left_control" }],
                 "type": "basic"
               }
