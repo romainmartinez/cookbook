@@ -5,16 +5,6 @@
       "complex_modifications": {
         "rules": [
           {
-            "description": "left shift to control (because ctrl is hard to reach)",
-            "manipulators": [
-              {
-                "from": { "key_code": "left_shift" },
-                "to": [{ "key_code": "left_control" }],
-                "type": "basic"
-              }
-            ]
-          },
-          {
             "description": "right shift to hyper + space (for raycast)",
             "manipulators": [
               {
@@ -111,6 +101,24 @@
                   }
                 },
                 "to": [{ "key_code": "right_arrow" }],
+                "type": "basic"
+              }
+            ]
+          },
+          {
+            "description": "tabs to control if not alone",
+            "manipulators": [
+              {
+                "from": {
+                  "key_code": "tab",
+                  "modifiers": {}
+                },
+                "to": [
+                  {
+                    "key_code": "left_control"
+                  }
+                ],
+                "to_if_alone": [{ "key_code": "tab" }],
                 "type": "basic"
               }
             ]
