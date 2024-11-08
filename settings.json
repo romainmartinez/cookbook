@@ -102,7 +102,7 @@
     },
     {
       "keys": "t.a",
-      "name": "Toggle class folding",
+      "name": "Toggle tailwind class folding",
       "type": "command",
       "command": "tailwind-fold.toggleAutoFold"
     }
