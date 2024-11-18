@@ -1,5 +1,6 @@
 {
   // Aesthetic
+  "editor.minimap.enabled": false,
   "editor.fontFamily": "JetBrainsMono Nerd Font Mono, Monaco, 'Courier New', monospace",
   "terminal.integrated.fontFamily": "JetBrainsMono Nerd Font Mono, Monaco, 'Courier New', monospace",
   "editor.fontLigatures": true,
@@ -12,10 +13,9 @@
   "editor.lineNumbers": "relative",
   "editor.smoothScrolling": true,
   "editor.cursorSmoothCaretAnimation": "on",
-  "workbench.activityBar.location": "hidden",
+  "workbench.activityBar.location": "top",
   "editor.scrollbar.vertical": "hidden",
   "window.titleBarStyle": "custom",
-  "window.customTitleBarVisibility": "never",
   "window.commandCenter": false,
   // General
   "errorLens.enabled": true,
@@ -24,6 +24,7 @@
   "telemetry.telemetryLevel": "off",
   "files.autoSave": "onFocusChange",
   "editor.formatOnSave": true,
+  "explorer.confirmDragAndDrop": false,
   "editor.wordWrap": "on",
   "explorer.confirmDelete": false,
   "window.closeWhenEmpty": true,
@@ -49,6 +50,16 @@
   "cursor.general.enableShadowWorkspace": false,
   "cursor.aipreview.enabled": true,
   "cursor.chat.smoothStreaming": true,
+  // Copilot
+  "github.copilot.enable": {
+    "*": true
+  },
+  "github.copilot.chat.search.semanticTextResults": true,
+  "github.copilot.chat.inlineChatHint.enabled": true,
+  "github.copilot.chat.inlineChatCompletionTrigger.enabled": true,
+  "http.proxy": "http://127.0.0.1:9000",
+  "github.copilot.chat.generateTests.codeLens": true,
+  "github.copilot.chat.temporalContext.enabled": true,
   // Pyton
   "python.languageServer": "Pylance",
   "ruff.format.preview": true,
@@ -64,8 +75,15 @@
   },
   // Web
   "tailwind-fold.autoFold": false,
+  "files.associations": {
+    "*.page-template": "vue",
+    "*.layout-template": "vue",
+    "*.vue": "vue",
+    "*.css": "tailwindcss"
+  },
   // Vim
   "vim.highlightedyank.enable": true,
+  "vim.highlightedyank.color": "rgba(234, 153, 156, 0.5)",
   "vim.easymotion": true,
   "vim.hlsearch": true,
   "vim.easymotionMarkerBackgroundColor": "white",
