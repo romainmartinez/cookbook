@@ -74,7 +74,7 @@
     "editor.wordBasedSuggestions": "off"
   },
   // Web
-  "tailwind-fold.autoFold": false,
+  "tailwind-fold.autoFold": true,
   "files.associations": {
     "*.page-template": "vue",
     "*.layout-template": "vue",
@@ -99,6 +99,12 @@
   "vim.surround": true,
   "vim.useSystemClipboard": true,
   "vspacecode.bindingOverrides": [
+    {
+      "keys": "f.C",
+      "name": "Copy opened files to clipboard",
+      "type": "command",
+      "command": "llm-copy-files.copyOpenedFilesToClipboard"
+    },
     {
       "keys": "l",
       "name": "Execute selection in REPL",
