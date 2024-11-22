@@ -1,44 +1,30 @@
 #!/bin/bash
 
-# --- Todos ---
-# Left
-# - [x] spaces with app opens
-# Right
-# - [x] Volume
-# - [x] Battery
-# - [x] Day / Month / Time: Fri 11. Nov 17:32
-# - [x] CPU %
-# - [ ] Memory G
-# - [ ] Internet speed
-# - [ ] Is muted
-# - [ ] Is camera open
+PLUGIN_DIR="$CONFIG_DIR/plugins"
 
 # --- Colors ---
-export WHITE=0xffffffff
-export BAR_COLOR=0xff101314
-export ITEM_BG_COLOR=0xff353c3f
+export TEXT_COLOR=0xffffffff
+export BAR_COLOR=0xff000000
 export ACCENT_COLOR=0xffffffff
-
-PLUGIN_DIR="$CONFIG_DIR/plugins"
 
 # --- Bar Appearance ---
 # These are only some of the options available. For all options see:
 # https://felixkratz.github.io/SketchyBar/config/bar
 sketchybar --bar \
   position=top \
-  height=37 \
-  blur_radius=30 \
+  height=32 \
+  font_smoothing=on \
   color=$BAR_COLOR
 
 # --- Changing Defaults ---
 # For a full list of all available item properties see:
 # https://felixkratz.github.io/SketchyBar/config/items
 default=(
-  icon.font="SF Pro:Semibold:12.0"
-  label.font="SF Pro:Semibold:12.0"
+  icon.font="SF Pro:Medium:12.0"
+  label.font="SF Pro:Medium:12.0"
   # label.font="JetBrainsMono Nerd Font Mono:Semibold:10.0"
-  icon.color=$WHITE
-  label.color=$WHITE
+  icon.color=$ACCENT_COLOR
+  label.color=$TEXT_COLOR
   padding_left=10
   padding_right=10
   icon.padding_left=4
@@ -58,7 +44,6 @@ sketchybar --add item front_app left \
 sketchybar --add item media left \
   --set media \
   icon=􀊄 \
-  icon.color=$ACCENT_COLOR \
   label.max_chars=40 \
   scroll_texts=on \
   script="$PLUGIN_DIR/media.sh" \
@@ -84,9 +69,21 @@ sketchybar --add item volume right \
 
 sketchybar --add item cpu right \
   --set cpu \
-  update_freq=2 \
+  update_freq=3 \
   icon=􀧓 \
   script="$PLUGIN_DIR/cpu.sh"
+
+sketchybar --add item memory right \
+  --set memory \
+  update_freq=60 \
+  icon=􀫦 \
+  script="$PLUGIN_DIR/memory.sh"
+
+sketchybar --add item network right \
+  --set network \
+  update_freq=5 \
+  icon=􀤆 \
+  script="$PLUGIN_DIR/network.sh"
 
 # --- Finalizing setup ---
 # The below command is only needed at the end of the initial configuration
