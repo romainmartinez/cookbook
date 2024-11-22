@@ -1,6 +1,39 @@
 # Mac Setup Instructions
 
-## Settings
+## Homebrew
+
+- raycast
+- arc
+  - ⌘+J/K for up/down
+  - ⌘+L/H for previous/next
+- font-jetbrains-mono-nerd-font
+- warp
+  - [catpuccin theme](https://github.com/catppuccin/warp)
+  - fish
+    - `ln -s ~/Documents/cookbook/config.fish ~/.config/fish/config.fish`
+  - fisher
+  - fzf
+  - zoxide
+  - exa
+- cleanmymac
+  - clean useless mac apps
+- karabiner
+  - `ln -s ~/Documents/cookbook/karabiner.json ~/.config/karabiner/karabiner.json`
+- dropbox
+- notion + notion calendar
+- notion-calendar
+- spotify
+- vscode
+  - `ln -s ~/Documents/cookbook/settings.json ~/.config/vscode/settings.json`
+- uv
+- figma
+- hiddenbar
+- cleanshot X
+- shortcat
+- nvim
+  - `git clone git@github.com:romainmartinez/lazyvim.git ~/.config/nvim`
+
+## System Settings
 
 - Prefer ethernet over wifi
 - Prefer tabs: always
@@ -15,50 +48,3 @@
 - Office suite (word, excel, powerpoint)
 - Teams
 - Acrobat Reader
-
-## Homebrew
-
-- raycast
-- arc
-  - ⌘+J/K for up/down
-  - ⌘+L/H for previous/next
-- font-jetbrains-mono-nerd-font
-- warp
-  - [catpuccin theme](https://github.com/catppuccin/warp)
-  - fish
-  ```bash
-  ln -s ~/Documents/cookbook/config.fish ~/.config/fish/config.fish
-  ```
-  - fisher
-  - fzf
-  - zoxide
-  - exa
-- cleanmymac
-  - clean useless mac apps
-- karabiner
-
-```bash
-ln -s ~/Documents/cookbook/karabiner.json ~/.config/karabiner/karabiner.json
-```
-
-- dropbox
-- notion + notion calendar
-- notion-calendar
-- spotify
-- vscode
-
-```bash
-ln -s ~/Documents/cookbook/settings.json ~/.config/vscode/settings.json
-```
-
-- uv
-- figma
-- hiddenbar
-- cleanshot X
-- shortcat
-
-- nvim
-
-```bash
-git clone git@github.com:romainmartinez/lazyvim.git ~/.config/nvim
-```
