@@ -27,7 +27,9 @@
   - `ln -s ~/Documents/cookbook/vscode-settings.json ~/.config/vscode/settings.json`
 - uv
 - figma
-- hiddenbar
+- sketchybar
+  - `ln -s ~/Documents/cookbook/sketchybar/sketchybarrc ~/.config/sketchybar/sketchybarrc`
+  - `ln -s ~/Documents/cookbook/sketchybar/plugins ~/.config/sketchybar/plugins`
 - cleanshot X
 - shortcat
 - nvim
