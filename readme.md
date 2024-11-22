@@ -24,7 +24,7 @@
 - notion-calendar
 - spotify
 - vscode
-  - `ln -s ~/Documents/cookbook/settings.json ~/.config/vscode/settings.json`
+  - `ln -s ~/Documents/cookbook/vscode-settings.json ~/.config/vscode/settings.json`
 - uv
 - figma
 - hiddenbar
