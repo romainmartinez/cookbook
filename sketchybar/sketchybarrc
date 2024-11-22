@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# --- Todos --- 
+# --- Todos ---
 # Left
 # - [x] spaces with app opens
 # Right
@@ -25,68 +25,68 @@ PLUGIN_DIR="$CONFIG_DIR/plugins"
 # These are only some of the options available. For all options see:
 # https://felixkratz.github.io/SketchyBar/config/bar
 sketchybar --bar \
-    position=top \
-    height=37 \
-    blur_radius=30 \
-    color=$BAR_COLOR
+  position=top \
+  height=37 \
+  blur_radius=30 \
+  color=$BAR_COLOR
 
 # --- Changing Defaults ---
 # For a full list of all available item properties see:
 # https://felixkratz.github.io/SketchyBar/config/items
 default=(
-    icon.font="SF Pro:Semibold:12.0"
-    label.font="SF Pro:Semibold:12.0"
-    # label.font="JetBrainsMono Nerd Font Mono:Semibold:10.0"
-    icon.color=$WHITE
-    label.color=$WHITE
-    padding_left=10
-    padding_right=10
-    icon.padding_left=4
-    icon.padding_right=4
-    label.padding_left=4
-    label.padding_right=4
+  icon.font="SF Pro:Semibold:12.0"
+  label.font="SF Pro:Semibold:12.0"
+  # label.font="JetBrainsMono Nerd Font Mono:Semibold:10.0"
+  icon.color=$WHITE
+  label.color=$WHITE
+  padding_left=10
+  padding_right=10
+  icon.padding_left=4
+  icon.padding_right=4
+  label.padding_left=4
+  label.padding_right=4
 )
 sketchybar --default "${default[@]}"
 
 # --- Left side ---
 sketchybar --add item front_app left \
-    --set front_app \
-        icon.drawing=off \
-        script="$PLUGIN_DIR/front_app.sh" \
-    --subscribe front_app front_app_switched
+  --set front_app \
+  icon.drawing=off \
+  script="$PLUGIN_DIR/front_app.sh" \
+  --subscribe front_app front_app_switched
 
 sketchybar --add item media left \
-    --set media \
-        icon=􀊄 \
-        icon.color=$ACCENT_COLOR \
-        label.max_chars=40 \
-        scroll_texts=on \
-        script="$PLUGIN_DIR/media.sh" \
-    --subscribe media media_change
+  --set media \
+  icon=􀊄 \
+  icon.color=$ACCENT_COLOR \
+  label.max_chars=40 \
+  scroll_texts=on \
+  script="$PLUGIN_DIR/media.sh" \
+  --subscribe media media_change
 
 # --- Right side ---
 sketchybar --add item calendar right \
-    --set calendar \
-        icon=􀧞 \
-        update_freq=30 \
-        script="$PLUGIN_DIR/calendar.sh"
+  --set calendar \
+  icon=􀧞 \
+  update_freq=30 \
+  script="$PLUGIN_DIR/calendar.sh"
 
 sketchybar --add item battery right \
-    --set battery \
-        update_freq=120 \
-        script="$PLUGIN_DIR/battery.sh" \
-    --subscribe battery system_woke power_source_change
+  --set battery \
+  update_freq=120 \
+  script="$PLUGIN_DIR/battery.sh" \
+  --subscribe battery system_woke power_source_change
 
 sketchybar --add item volume right \
-    --set volume \
-        script="$PLUGIN_DIR/volume.sh" \
-    --subscribe volume volume_change
+  --set volume \
+  script="$PLUGIN_DIR/volume.sh" \
+  --subscribe volume volume_change
 
 sketchybar --add item cpu right \
-    --set cpu \
-        update_freq=2 \
-        icon=􀧓 \
-        script="$PLUGIN_DIR/cpu.sh"
+  --set cpu \
+  update_freq=2 \
+  icon=􀧓 \
+  script="$PLUGIN_DIR/cpu.sh"
 
 # --- Finalizing setup ---
 # The below command is only needed at the end of the initial configuration
