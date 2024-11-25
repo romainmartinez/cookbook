@@ -79,11 +79,11 @@ sketchybar --add item memory right \
   icon=􀫦 \
   script="$PLUGIN_DIR/memory.sh"
 
-sketchybar --add item network right \
-  --set network \
-  update_freq=5 \
-  icon=􀤆 \
-  script="$PLUGIN_DIR/network.sh"
+# sketchybar --add item network right \
+#   --set network \
+#   update_freq=5 \
+#   icon=􀤆 \
+#   script="$PLUGIN_DIR/network.sh"
 
 # --- Finalizing setup ---
 # The below command is only needed at the end of the initial configuration
