@@ -29,6 +29,7 @@
   "explorer.confirmDelete": false,
   "window.closeWhenEmpty": true,
   "workbench.activityBar.orientation": "vertical", // to make quick window navigation works
+  "workbench.commandPalette.experimental.suggestCommands": true,
   "workbench.editor.restoreViewState": false,
   "terminal.integrated.inheritEnv": false,
   "terminal.integrated.defaultProfile.osx": "fish",
