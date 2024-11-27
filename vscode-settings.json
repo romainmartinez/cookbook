@@ -52,7 +52,8 @@
   "cursor.chat.smoothStreaming": true,
   // Copilot
   "github.copilot.enable": {
-    "*": true
+    "*": true,
+    "markdown": true
   },
   "github.copilot.chat.search.semanticTextResults": true,
   "github.copilot.chat.inlineChatHint.enabled": true,
