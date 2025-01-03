@@ -141,6 +141,111 @@
                 "type": "basic"
               }
             ]
+          },
+          {
+            "description": "figma custom cursor",
+            "manipulators": [
+              {
+                "conditions": [
+                  {
+                    "bundle_identifiers": ["^com\\.figma\\.Desktop$"],
+                    "type": "frontmost_application_if"
+                  }
+                ],
+                "from": {
+                  "key_code": "x",
+                  "modifiers": { "mandatory": ["control"] }
+                },
+                "to": [
+                  {
+                    "software_function": {
+                      "set_mouse_cursor_position": {
+                        "screen": 0,
+                        "x": "88%",
+                        "y": "29%"
+                      }
+                    }
+                  },
+                  { "pointing_button": "button1" }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "bundle_identifiers": ["^com\\.figma\\.Desktop$"],
+                    "type": "frontmost_application_if"
+                  }
+                ],
+                "from": {
+                  "key_code": "y",
+                  "modifiers": { "mandatory": ["control"] }
+                },
+                "to": [
+                  {
+                    "software_function": {
+                      "set_mouse_cursor_position": {
+                        "screen": 0,
+                        "x": "95%",
+                        "y": "29%"
+                      }
+                    }
+                  },
+                  { "pointing_button": "button1" }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "bundle_identifiers": ["^com\\.figma\\.Desktop$"],
+                    "type": "frontmost_application_if"
+                  }
+                ],
+                "from": {
+                  "key_code": "w",
+                  "modifiers": { "mandatory": ["control"] }
+                },
+                "to": [
+                  {
+                    "software_function": {
+                      "set_mouse_cursor_position": {
+                        "screen": 0,
+                        "x": "88%",
+                        "y": "41%"
+                      }
+                    }
+                  },
+                  { "pointing_button": "button1" }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "bundle_identifiers": ["^com\\.figma\\.Desktop$"],
+                    "type": "frontmost_application_if"
+                  }
+                ],
+                "from": {
+                  "key_code": "h",
+                  "modifiers": { "mandatory": ["control"] }
+                },
+                "to": [
+                  {
+                    "software_function": {
+                      "set_mouse_cursor_position": {
+                        "screen": 0,
+                        "x": "94%",
+                        "y": "41%"
+                      }
+                    }
+                  },
+                  { "pointing_button": "button1" }
+                ],
+                "type": "basic"
+              }
+            ]
           }
         ]
       },
