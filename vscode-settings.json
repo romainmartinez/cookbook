@@ -5,6 +5,7 @@
   "terminal.integrated.fontFamily": "JetBrainsMono Nerd Font Mono, Monaco, 'Courier New', monospace",
   "editor.fontLigatures": true,
   "editor.fontSize": 12.5,
+  "workbench.startupEditor": "none",
   "workbench.fontAliasing": "antialiased",
   "workbench.colorTheme": "Catppuccin Frappé",
   "workbench.sideBar.location": "right",
@@ -23,7 +24,6 @@
   "editor.gotoLocation.multipleDefinitions": "goto",
   "telemetry.telemetryLevel": "off",
   "files.autoSave": "onFocusChange",
-  "editor.formatOnSave": true,
   "explorer.confirmDragAndDrop": false,
   "editor.wordWrap": "on",
   "explorer.confirmDelete": false,
@@ -34,6 +34,7 @@
   "terminal.integrated.inheritEnv": false,
   "terminal.integrated.defaultProfile.osx": "fish",
   "terminal.integrated.gpuAcceleration": "on",
+  "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
     "source.organizeImports": "always",
     "source.organizeImports.ruff": "always",
@@ -41,6 +42,11 @@
     "source.unusedImports": "always"
   },
   "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.autoClosingBrackets": "never",
+  "editor.autoClosingQuotes": "never",
+  "[dotenv]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
   // Extensions
   "extensions.autoUpdate": true,
   "extensions.ignoreRecommendations": false,
@@ -52,22 +58,24 @@
   "cursor.aipreview.enabled": true,
   "cursor.chat.smoothStreaming": true,
   // Copilot
+  "snapsource.outputFormat": "markdown",
+  "snapsource.includeProjectTree": true,
   "github.copilot.enable": {
     "*": true,
     "markdown": true
   },
   "github.copilot.chat.search.semanticTextResults": true,
-  "github.copilot.chat.inlineChatHint.enabled": true,
-  "github.copilot.chat.inlineChatCompletionTrigger.enabled": true,
+  "github.copilot.chat.editor.temporalContext.enabled": true,
+  "github.copilot.chat.edits.codesearch.enabled": true,
+  "github.copilot.nextEditSuggestions.enabled": true,
+  "github.copilot.chat.edits.temporalContext.enabled": true,
   "http.proxy": "http://127.0.0.1:9000",
   "github.copilot.chat.generateTests.codeLens": true,
-  "github.copilot.chat.temporalContext.enabled": true,
   // Pyton
+  "ruff.nativeServer": "on",
   "python.languageServer": "Pylance",
   "ruff.format.preview": true,
   "ruff.lint.enable": true,
-  "ruff.lint.args": [],
-  "ruff.format.args": [],
   "python.analysis.typeCheckingMode": "basic",
   "[python]": {
     "editor.defaultFormatter": "charliermarsh.ruff",
@@ -76,7 +84,7 @@
     "editor.wordBasedSuggestions": "off"
   },
   // Web
-  "tailwind-fold.autoFold": true,
+  "tailwind-fold.autoFold": false,
   "files.associations": {
     "*.page-template": "vue",
     "*.layout-template": "vue",

@@ -24,7 +24,8 @@
 - notion-calendar
 - spotify
 - vscode
-  - `ln -s ~/Documents/cookbook/vscode-settings.json ~/.config/vscode/settings.json`
+  - `ln -s ~/Documents/cookbook/vscode-settings.json ~/Library/Application\ Support/Code/User/settings.json`
+  - `ln -s ~/Documents/cookbook/vscode-keybindings.json ~/Library/Application\ Support/Code/User/keybindings.json`
 - uv
 - figma
 - sketchybar
