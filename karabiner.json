@@ -21,22 +21,6 @@
             ]
           },
           {
-            "description": "right command to hyper + = (for shorcat)",
-            "manipulators": [
-              {
-                "from": { "key_code": "right_command" },
-                "to": [{ "key_code": "right_command" }],
-                "to_if_alone": [
-                  {
-                    "key_code": "equal_sign",
-                    "modifiers": ["command", "control", "option", "shift"]
-                  }
-                ],
-                "type": "basic"
-              }
-            ]
-          },
-          {
             "description": "caps + hjkl to arrows (vim navigation)",
             "manipulators": [
               {
