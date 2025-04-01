@@ -32,7 +32,7 @@
   "workbench.commandPalette.experimental.suggestCommands": true,
   "workbench.editor.restoreViewState": false,
   "terminal.integrated.inheritEnv": false,
-  "terminal.integrated.defaultProfile.osx": "fish",
+  "terminal.integrated.defaultProfile.osx": "",
   "terminal.integrated.gpuAcceleration": "on",
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
@@ -115,6 +115,13 @@
       "type": "command",
       "command": "llm-copy-files.copyOpenedFilesToClipboard"
     },
+    {
+      "keys": "f.n",
+      "name": "Advanced new file",
+      "type": "command",
+      "command": "extension.advancedNewFile"
+    },
+
     {
       "keys": "l",
       "name": "Execute selection in REPL",
