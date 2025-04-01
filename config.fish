@@ -1,6 +1,11 @@
-# Set user-specific paths
-set -x PATH $HOME/.local/bin $PATH
-set -x PATH $HOME/.cargo/bin $PATH
+# homebrew
+fish_add_path /opt/homebrew/bin
+fish_add_path /opt/homebrew/sbin
+
+fish_add_path $HOME/.local/bin
+fish_add_path $HOME/.cargo/bin
+
+alias brewclean='brew update && brew upgrade && brew cleanup && brew autoremove && brew doctor'
 
 # Set certificate-related environment variables
 set -x CERT_FILE /usr/local/share/ca-certificates/manulife-cacert.perm
@@ -25,15 +30,12 @@ alias fcd='cd (find $HOME \( -type d -name ".git" -prune \) -o -type d -print 2>
 # Initialize zoxide for `z` and `zi` commands
 zoxide init fish | source
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-if test -f /opt/homebrew/Caskroom/miniconda/base/bin/conda
-    eval /opt/homebrew/Caskroom/miniconda/base/bin/conda "shell.fish" hook $argv | source
-else
-    if test -f "/opt/homebrew/Caskroom/miniconda/base/etc/fish/conf.d/conda.fish"
-        . "/opt/homebrew/Caskroom/miniconda/base/etc/fish/conf.d/conda.fish"
-    else
-        set -x PATH /opt/homebrew/Caskroom/miniconda/base/bin $PATH
+# SSH Agent configuration for multiple GitHub accounts
+function ssh_agent_start
+    if not set -q SSH_AUTH_SOCK
+        eval (ssh-agent -c)
+        set -U SSH_AGENT_PID $SSH_AGENT_PID
+        set -U SSH_AUTH_SOCK $SSH_AUTH_SOCK
     end
 end
-# <<< conda initialize <<<
+ssh_agent_start
