@@ -33,9 +33,6 @@
 - microsoft office suite (word, excel, powerpoint)
 - microsoft teams
 
-- dropbox?
-- superwhisper?
-
 ## System Settings
 
 - Prefer ethernet over wifi
