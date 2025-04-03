@@ -15,6 +15,7 @@
 - vscode
   - `ln -s ~/Documents/cookbook/vscode-settings.json ~/Library/Application\ Support/Code/User/settings.json`
   - `ln -s ~/Documents/cookbook/vscode-keybindings.json ~/Library/Application\ Support/Code/User/keybindings.json`
+  - install extensions found in `vscode-extensions.txt`
 - font-jetbrains-mono-nerd-font
 - cleanshot
 - hiddenbar
