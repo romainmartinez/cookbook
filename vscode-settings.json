@@ -28,11 +28,10 @@
   "editor.wordWrap": "on",
   "explorer.confirmDelete": false,
   "window.closeWhenEmpty": true,
-  "workbench.activityBar.orientation": "vertical", // to make quick window navigation works
   "workbench.commandPalette.experimental.suggestCommands": true,
   "workbench.editor.restoreViewState": false,
   "terminal.integrated.inheritEnv": false,
-  "terminal.integrated.defaultProfile.osx": "",
+  "terminal.integrated.defaultProfile.osx": "fish",
   "terminal.integrated.gpuAcceleration": "on",
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
@@ -57,13 +56,15 @@
   "cursor.general.enableShadowWorkspace": false,
   "cursor.aipreview.enabled": true,
   "cursor.chat.smoothStreaming": true,
+  "workbench.activityBar.orientation": "vertical", // to make quick window navigation works
   // Copilot
-  "snapsource.outputFormat": "markdown",
-  "snapsource.includeProjectTree": true,
   "github.copilot.enable": {
     "*": true,
     "markdown": true
   },
+  "github.copilot.renameSuggestions.triggerAutomatically": true,
+  "github.copilot.editor.enableCodeActions": true,
+  "github.copilot.chat.agent.thinkingTool": true,
   "github.copilot.chat.search.semanticTextResults": true,
   "github.copilot.chat.editor.temporalContext.enabled": true,
   "github.copilot.chat.codesearch.enabled": true,
@@ -151,6 +152,40 @@
       "name": "Toggle tailwind class folding",
       "type": "command",
       "command": "tailwind-fold.toggleAutoFold"
+    },
+    {
+      "keys": "c",
+      "name": "Co-Pilot",
+      "type": "bindings",
+
+
+      "bindings": [
+        {
+          "key": "c",
+          "name": "Toggle secondary sidebar visibility",
+          "command": "workbench.action.toggleAuxiliaryBar"
+        },
+        {
+          "key": "s",
+          "name": "Copilot Status",
+          "command": "github.copilot.toggleStatusMenu"
+        },
+        {
+          "key": "g",
+          "name": "Generate terminal commit message",
+          "command": "github.copilot.terminal.generateCommitMessage"
+        },
+        {
+          "key": "t",
+          "name": "Fix terminal last command",
+          "command": "github.copilot.terminal.fixTerminalLastCommand"
+        },
+        {
+          "key": "1",
+          "name": "Fix terminal last command",
+          "command": ""
+        }
+      ]
     }
   ],
   "vim.normalModeKeyBindingsNonRecursive": [
