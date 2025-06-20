@@ -7,7 +7,7 @@
   "editor.fontSize": 12.5,
   "workbench.startupEditor": "none",
   "workbench.fontAliasing": "antialiased",
-  "workbench.colorTheme": "Catppuccin Macchiato",
+  "workbench.colorTheme": "Catppuccin Latte",
   "workbench.sideBar.location": "right",
   "debug.toolBarLocation": "docked",
   "workbench.editor.showTabs": "none",
@@ -46,6 +46,11 @@
   "[dotenv]": {
     "editor.defaultFormatter": "foxundermoon.shell-format"
   },
+  "security.workspace.trust.untrustedFiles": "open",
+  "workbench.editorAssociations": {
+    "*.copilotmd": "vscode.markdown.preview.editor",
+    "*.svg": "default"
+  },
   // Extensions
   "extensions.autoUpdate": true,
   "extensions.ignoreRecommendations": false,
@@ -62,6 +67,7 @@
     "*": true,
     "markdown": true
   },
+  "chat.agent.enabled": true,
   "github.copilot.renameSuggestions.triggerAutomatically": true,
   "github.copilot.editor.enableCodeActions": true,
   "github.copilot.chat.agent.thinkingTool": true,
@@ -96,6 +102,19 @@
   "[shellscript]": {
     "editor.defaultFormatter": "foxundermoon.shell-format"
   },
+  "[ignore]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
+  // Markdown
+  "[markdown]": {
+    "editor.defaultFormatter": null
+  },
+  // Typst
+  "[typst]": {
+    "editor.defaultFormatter": null
+  },
+  "tinymist.exportPdf": "onSave",
+  "tinymist.formatterMode": "typstfmt",
   // Vim
   "vim.highlightedyank.enable": true,
   "vim.highlightedyank.color": "rgba(234, 153, 156, 0.5)",
@@ -158,6 +177,37 @@
       "name": "Co-Pilot",
       "type": "bindings",
 
+      // [
+      //   "github.copilot.buildLocalWorkspaceIndex",
+      //   "github.copilot.chat.attachFile",
+      //   "github.copilot.chat.attachFolder",
+      //   "github.copilot.chat.attachSelection",
+      //   "github.copilot.chat.review",
+      //   "github.copilot.chat.review.apply",
+      //   "github.copilot.chat.review.applyAndNext",
+      //   "github.copilot.chat.review.applyShort",
+      //   "github.copilot.chat.review.changes",
+      //   "github.copilot.chat.review.changes.cancel",
+      //   "github.copilot.chat.review.continueInChat",
+      //   "github.copilot.chat.review.continueInInlineChat",
+      //   "github.copilot.chat.review.current",
+      //   "github.copilot.chat.review.discard",
+      //   "github.copilot.chat.review.discardAll",
+      //   "github.copilot.chat.review.discardAndNext",
+      //   "github.copilot.chat.review.discardShort",
+      //   "github.copilot.chat.review.next",
+      //   "github.copilot.chat.review.previous",
+      //   "github.copilot.chat.review.stagedChanges",
+      //   "github.copilot.chat.review.unstagedChanges",
+      //   "github.copilot.chat.selectKnowledgeBase",
+      //   "github.copilot.completions.toggle",
+      //   "github.copilot.createLaunchJsonFileWithContents",
+      //   "github.copilot.createProject",
+      //   "github.copilot.edits.attachFile",
+      //   "github.copilot.edits.attachFolder",
+      //   "github.copilot.edits.attachSelection",
+      //   "github.copilot.generate",
+      // ]
 
       "bindings": [
         {
