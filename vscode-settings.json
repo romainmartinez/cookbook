@@ -14,10 +14,10 @@
   "editor.lineNumbers": "relative",
   "editor.smoothScrolling": true,
   "editor.cursorSmoothCaretAnimation": "on",
-  "workbench.activityBar.location": "top",
   "editor.scrollbar.vertical": "hidden",
   "window.titleBarStyle": "custom",
   "window.commandCenter": false,
+  "workbench.activityBar.location": "top",
   // General
   "errorLens.enabled": true,
   "editor.accessibilitySupport": "off",
