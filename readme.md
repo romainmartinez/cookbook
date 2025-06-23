@@ -14,11 +14,11 @@
 - raycast
   - remove vscode, chrome, edge, zoom
 - karabiner-elements
-  - `ln -s ~/Documents/personal/cookbook/karabiner.json ~/.config/karabiner/karabiner.json`
+  - `ln -s ~/Documents/cookbook/karabiner.json ~/.config/karabiner/karabiner.json`
 - chrome
 - vscode
-  - `ln -s ~/Documents/personal/cookbook/vscode-settings.json ~/Library/Application\ Support/Code/User/settings.json`
-  - `ln -s ~/Documents/personal/cookbook/vscode-keybindings.json ~/Library/Application\ Support/Code/User/keybindings.json`
+  - `ln -s ~/Documents/cookbook/vscode-settings.json ~/Library/Application\ Support/Code/User/settings.json`
+  - `ln -s ~/Documents/cookbook/vscode-keybindings.json ~/Library/Application\ Support/Code/User/keybindings.json`
   - install extensions found in `vscode-extensions.txt`
 - font-jetbrains-mono-nerd-font
 - cleanshot
@@ -34,7 +34,7 @@
   - fzf
   - lsd
   - zoxide
-  - `ln -s ~/Documents/personal/cookbook/config.fish ~/.config/fish/config.fish`
+  - `ln -s ~/Documents/cookbook/config.fish ~/.config/fish/config.fish`
 - microsoft office suite (word, excel, powerpoint)
 - microsoft teams
 
