@@ -33,6 +33,8 @@
   "terminal.integrated.inheritEnv": false,
   "terminal.integrated.defaultProfile.osx": "fish",
   "terminal.integrated.gpuAcceleration": "on",
+  "terminal.integrated.suggest.enabled": true,
+  "terminal.integrated.suggest.inlineSuggestion": "alwaysOnTop",
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
     "source.organizeImports": "always",
@@ -71,13 +73,14 @@
   "github.copilot.renameSuggestions.triggerAutomatically": true,
   "github.copilot.editor.enableCodeActions": true,
   "github.copilot.chat.agent.thinkingTool": true,
-  "github.copilot.chat.search.semanticTextResults": true,
   "github.copilot.chat.editor.temporalContext.enabled": true,
   "github.copilot.chat.codesearch.enabled": true,
   "github.copilot.nextEditSuggestions.enabled": true,
   "github.copilot.chat.edits.temporalContext.enabled": true,
   "http.proxy": "http://127.0.0.1:9000",
   "github.copilot.chat.generateTests.codeLens": true,
+  "chat.tools.autoApprove": true,
+  "chat.agent.maxRequests": 100,
   // Pyton
   "ruff.nativeServer": "on",
   "python.languageServer": "Pylance",
@@ -107,7 +110,8 @@
   },
   // Markdown
   "[markdown]": {
-    "editor.defaultFormatter": null
+    "editor.defaultFormatter": null,
+    "editor.formatOnSave": false
   },
   // Typst
   "[typst]": {
