@@ -27,6 +27,7 @@
 - todoist
 - spotify
 - figma
+- shortcat
 - warp
 - uv
 - fish
