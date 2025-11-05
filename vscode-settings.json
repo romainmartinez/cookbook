@@ -113,6 +113,10 @@
     "editor.defaultFormatter": null,
     "editor.formatOnSave": false
   },
+  // Yaml
+  "[github-actions-workflow]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  }
   // Typst
   "[typst]": {
     "editor.defaultFormatter": null
@@ -133,12 +137,6 @@
   "vim.surround": true,
   "vim.useSystemClipboard": true,
   "vspacecode.bindingOverrides": [
-    {
-      "keys": "f.C",
-      "name": "Copy opened files to clipboard",
-      "type": "command",
-      "command": "llm-copy-files.copyOpenedFilesToClipboard"
-    },
     {
       "keys": "f.n",
       "name": "Advanced new file",
@@ -171,48 +169,28 @@
       "command": "errorLens.toggle"
     },
     {
-      "keys": "t.a",
-      "name": "Toggle tailwind class folding",
+      "keys": "t.n",
+      "name": "New terminal",
       "type": "command",
-      "command": "tailwind-fold.toggleAutoFold"
+      "command": "workbench.action.terminal.new"
+    },
+    {
+      "keys": "t.d",
+      "name": "Close terminal",
+      "type": "command",
+      "command": "workbench.action.terminal.kill"
+    },
+    {
+      "keys": "t.f",
+      "name": "Toggle terminal fullscreen",
+      "type": "command",
+      "command": "workbench.action.toggleMaximizedPanel"
     },
     {
       "keys": "c",
       "name": "Co-Pilot",
       "type": "bindings",
-
-      // [
-      //   "github.copilot.buildLocalWorkspaceIndex",
-      //   "github.copilot.chat.attachFile",
-      //   "github.copilot.chat.attachFolder",
-      //   "github.copilot.chat.attachSelection",
-      //   "github.copilot.chat.review",
-      //   "github.copilot.chat.review.apply",
-      //   "github.copilot.chat.review.applyAndNext",
-      //   "github.copilot.chat.review.applyShort",
-      //   "github.copilot.chat.review.changes",
-      //   "github.copilot.chat.review.changes.cancel",
-      //   "github.copilot.chat.review.continueInChat",
-      //   "github.copilot.chat.review.continueInInlineChat",
-      //   "github.copilot.chat.review.current",
-      //   "github.copilot.chat.review.discard",
-      //   "github.copilot.chat.review.discardAll",
-      //   "github.copilot.chat.review.discardAndNext",
-      //   "github.copilot.chat.review.discardShort",
-      //   "github.copilot.chat.review.next",
-      //   "github.copilot.chat.review.previous",
-      //   "github.copilot.chat.review.stagedChanges",
-      //   "github.copilot.chat.review.unstagedChanges",
-      //   "github.copilot.chat.selectKnowledgeBase",
-      //   "github.copilot.completions.toggle",
-      //   "github.copilot.createLaunchJsonFileWithContents",
-      //   "github.copilot.createProject",
-      //   "github.copilot.edits.attachFile",
-      //   "github.copilot.edits.attachFolder",
-      //   "github.copilot.edits.attachSelection",
-      //   "github.copilot.generate",
-      // ]
-
+      "icon": "robot",
       "bindings": [
         {
           "key": "c",
@@ -233,11 +211,6 @@
           "key": "t",
           "name": "Fix terminal last command",
           "command": "github.copilot.terminal.fixTerminalLastCommand"
-        },
-        {
-          "key": "1",
-          "name": "Fix terminal last command",
-          "command": ""
         }
       ]
     }
@@ -322,5 +295,5 @@
       "before": ["S"],
       "after": ["<leader>", "<leader>", "<leader>", "j"]
     }
-  ]
+  ],
 }
