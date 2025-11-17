@@ -1,5 +1,6 @@
 {
   // Aesthetic
+  "workbench.colorTheme": "Tokyo Night Storm",
   "editor.minimap.enabled": false,
   "editor.fontFamily": "JetBrainsMono Nerd Font Mono, Monaco, 'Courier New', monospace",
   "terminal.integrated.fontFamily": "JetBrainsMono Nerd Font Mono, Monaco, 'Courier New', monospace",
@@ -7,7 +8,6 @@
   "editor.fontSize": 12.5,
   "workbench.startupEditor": "none",
   "workbench.fontAliasing": "antialiased",
-  "workbench.colorTheme": "Catppuccin Latte",
   "workbench.sideBar.location": "right",
   "debug.toolBarLocation": "docked",
   "workbench.editor.showTabs": "none",
@@ -79,7 +79,6 @@
   "github.copilot.chat.edits.temporalContext.enabled": true,
   "http.proxy": "http://127.0.0.1:9000",
   "github.copilot.chat.generateTests.codeLens": true,
-  "chat.tools.autoApprove": true,
   "chat.agent.maxRequests": 100,
   // Pyton
   "ruff.nativeServer": "on",
@@ -116,7 +115,7 @@
   // Yaml
   "[github-actions-workflow]": {
     "editor.defaultFormatter": "redhat.vscode-yaml"
-  }
+  },
   // Typst
   "[typst]": {
     "editor.defaultFormatter": null
@@ -295,5 +294,5 @@
       "before": ["S"],
       "after": ["<leader>", "<leader>", "<leader>", "j"]
     }
-  ],
+  ]
 }

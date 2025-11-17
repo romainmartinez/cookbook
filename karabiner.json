@@ -51,17 +51,11 @@
             ]
           },
           {
-            "description": "right cmd to shift+cmd+period (for shortcat)",
+            "description": "right cmd to ctrl",
             "manipulators": [
               {
                 "from": { "key_code": "right_command" },
-                "to": [{ "key_code": "right_command" }],
-                "to_if_alone": [
-                  {
-                    "key_code": "period",
-                    "modifiers": ["command", "shift"]
-                  }
-                ],
+                "to": [{ "key_code": "left_control" }],
                 "type": "basic"
               }
             ]
@@ -147,20 +141,6 @@
                   }
                 },
                 "to": [{ "key_code": "right_arrow" }],
-                "type": "basic"
-              }
-            ]
-          },
-          {
-            "description": "tabs to control if not alone",
-            "manipulators": [
-              {
-                "from": {
-                  "key_code": "tab",
-                  "modifiers": {}
-                },
-                "to": [{ "key_code": "left_control" }],
-                "to_if_alone": [{ "key_code": "tab" }],
                 "type": "basic"
               }
             ]
