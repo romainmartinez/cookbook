@@ -28,6 +28,7 @@ System Preferences
 - chrome
 - zed
   - `ln -s ~/Documents/cookbook/zed-settings.json ~/.config/zed/settings.json`
+  - `ln -s ~/Documents/cookbook/zed-keymaps.json ~/.config/zed/keymap.json`
 - vscode
   - `ln -s ~/Documents/cookbook/vscode-settings.json ~/Library/Application\ Support/Code/User/settings.json`
   - `ln -s ~/Documents/cookbook/vscode-keybindings.json ~/Library/Application\ Support/Code/User/keybindings.json`
