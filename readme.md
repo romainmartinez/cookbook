@@ -16,6 +16,8 @@
 - karabiner-elements
   - `ln -s ~/Documents/cookbook/karabiner.json ~/.config/karabiner/karabiner.json`
 - chrome
+- zed
+  - `ln -s ~/Documents/cookbook/zed-settings.json ~/.config/zed/settings.json`
 - vscode
   - `ln -s ~/Documents/cookbook/vscode-settings.json ~/Library/Application\ Support/Code/User/settings.json`
   - `ln -s ~/Documents/cookbook/vscode-keybindings.json ~/Library/Application\ Support/Code/User/keybindings.json`
