@@ -48,11 +48,7 @@
     "button": true
   },
   "toolbar": {
-    "code_actions": true,
-    "breadcrumbs": true
-  },
-  "minimap": {
-    "show": "never"
+    "quick_actions": false
   },
   "scrollbar": {
     "show": "auto"
