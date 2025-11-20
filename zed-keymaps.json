@@ -7,25 +7,65 @@
 // from the command palette.
 [
   {
-    "context": "Workspace",
-    "bindings": {
-      // "shift shift": "file_finder::Toggle"
-    }
-  },
-  {
     "context": "VimControl && !menu",
     "bindings": {
-      // Center after vertical movement
-      "j": ["workspace::SendKeystrokes", "j z z"],
-      "k": ["workspace::SendKeystrokes", "k z z"],
       "ctrl-d": ["workspace::SendKeystrokes", "ctrl-d z z"],
       "ctrl-u": ["workspace::SendKeystrokes", "ctrl-u z z"]
     }
   },
   {
-    "context": "Editor && vim_mode == insert",
+    "context": "Dock",
     "bindings": {
-      // "j k": "vim::NormalBefore"
+      "ctrl-w h": "workspace::ActivatePaneLeft",
+      "ctrl-w l": "workspace::ActivatePaneRight",
+      "ctrl-w k": "workspace::ActivatePaneUp",
+      "ctrl-w j": "workspace::ActivatePaneDown"
+    }
+  },
+  {
+    "context": "GitPanel",
+    "bindings": {
+      "alt-enter": "git::GenerateCommitMessage"
+    }
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "space space": [
+        "tab_switcher::Toggle",
+        {
+          "select_last": true
+        }
+      ]
+    }
+  },
+  {
+    "context": "TabSwitcher",
+    "bindings": {
+      "x": "tab_switcher::CloseSelectedItem"
+    }
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "space p f": [
+        "projects::OpenRecent",
+        {
+          "create_new_window": false
+        }
+      ]
+    }
+  },
+  {
+    "context": "GitPanel",
+    "bindings": {
+      "shift-p": "git::Push"
+    }
+  },
+  {
+    "context": "GitPanel",
+    "bindings": {
+      "shift-f": "git::Pull"
     }
   }
 ]

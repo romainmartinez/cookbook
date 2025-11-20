@@ -7,6 +7,7 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "inline_code_actions": false,
   "indent_guides": {
     "enabled": true,
     "coloring": "indent_aware"
@@ -68,7 +69,7 @@
     "disabled_globs": []
   },
   "agent": {
-    "default_profile": "ask",
+    "default_profile": "write",
     "always_allow_tool_actions": true,
     "default_model": {
       "provider": "copilot_chat",
@@ -82,8 +83,8 @@
     "metrics": false
   },
   "vim_mode": true,
-  "ui_font_size": 14,
-  "buffer_font_size": 14,
+  "ui_font_size": 13,
+  "buffer_font_size": 13,
   "theme": {
     "mode": "system",
     "light": "Tokyo Night Storm",
