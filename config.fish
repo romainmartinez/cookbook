@@ -14,6 +14,8 @@ set -x REQUESTS_CA_BUNDLE $CERT_FILE
 set -x SSL_CERT_FILE $CERT_FILE
 set -x NODE_EXTRA_CA_CERTS $CERT_FILE
 
+alias n='nvim'
+
 # Set aliases for lsd (modern ls replacement)
 alias ls='lsd'
 alias l='ls -l'
