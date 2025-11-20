@@ -30,12 +30,4 @@ alias fcd='cd (find $HOME \( -type d -name ".git" -prune \) -o -type d -print 2>
 # Initialize zoxide for `z` and `zi` commands
 zoxide init fish | source
 
-# SSH Agent configuration for multiple GitHub accounts
-function ssh_agent_start
-    if not set -q SSH_AUTH_SOCK
-        eval (ssh-agent -c)
-        set -U SSH_AGENT_PID $SSH_AGENT_PID
-        set -U SSH_AUTH_SOCK $SSH_AUTH_SOCK
-    end
-end
-ssh_agent_start
+fish_vi_key_bindings
