@@ -37,7 +37,8 @@ System Preferences
   - fish
     - fisher
     - `ln -s ~/Documents/cookbook/config.fish ~/.config/fish/config.fish`
-  - font-jetbrains-mono-nerd-font or zed nerd font
+  - font-jetbrains-mono-nerd-font
+  - font-zed-mono-nerd-font
   - fzf
   - lsd
   - zoxide
