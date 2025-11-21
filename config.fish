@@ -15,6 +15,8 @@ set -x SSL_CERT_FILE $CERT_FILE
 set -x NODE_EXTRA_CA_CERTS $CERT_FILE
 
 alias n='nvim'
+set -gx EDITOR nvim
+set -gx VISUAL nvim
 
 # Set aliases for lsd (modern ls replacement)
 alias ls='lsd'

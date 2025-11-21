@@ -48,6 +48,8 @@ System Preferences
   - ripgrep
   - fd
   - yazi
+    - show hidden files
+    - tokyo-night theme
   - uv
   - nvim
     - `gh clone romainmartinez/lazyvim.git ~/.config/nvim`
