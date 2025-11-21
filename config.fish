@@ -5,9 +5,12 @@ fish_add_path /opt/homebrew/sbin
 fish_add_path $HOME/.local/bin
 fish_add_path $HOME/.cargo/bin
 
-alias brewclean='brew update && brew upgrade && brew cleanup && brew autoremove && brew doctor'
+# manulife http proxy settings
+set -gx HTTP_PROXY "http://127.0.0.1:9000"
+set -gx HTTPS_PROXY "http://127.0.0.1:9000"
+set -gx NO_PROXY "localhost,127.0.0.1"
 
-# Set certificate-related environment variables
+# manulife certificate-related environment variables
 set -x CERT_FILE /usr/local/share/ca-certificates/manulife-cacert.perm
 set -x PIP_CERT $CERT_FILE
 set -x REQUESTS_CA_BUNDLE $CERT_FILE
@@ -24,6 +27,9 @@ alias l='ls -l'
 alias la='ls -a'
 alias lla='ls -la'
 alias lt='ls --tree'
+
+# homebrew cleanup alias
+alias brewclean='brew update && brew upgrade && brew cleanup && brew autoremove && brew doctor'
 
 # Set aliases for fzf (fuzzy finder)
 alias fk='ps -ef | fzf --header-lines=1 --multi --exact | awk "{print \$2}" | xargs kill -9'
