@@ -47,6 +47,7 @@ System Preferences
   - curl
   - ripgrep
   - fd
+  - yazi
   - uv
   - nvim
     - `gh clone romainmartinez/lazyvim.git ~/.config/nvim`
