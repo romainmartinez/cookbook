@@ -32,11 +32,4 @@
     "input_clear": "ctrl+c",
     "input_submit": "ctrl+enter",
   },
-
-  "command": {
-    "commit_and_copy": {
-      "description": "Generate commit message and copy to clipboard",
-      "template": "Generate a concise conventional commit message for these staged changes:\n\n!`git diff --staged`\n\nAfter generating the message, copy it to clipboard using pbcopy. Do not include any other text.",
-    },
-  },
 }
