@@ -1,0 +1,35 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "tui": {
+    "scroll_speed": 3,
+    "scroll_acceleration": {
+      "enabled": true,
+    },
+  },
+
+  "theme": "tokyonight",
+  "autoupdate": true,
+
+  "keybinds": {
+    "leader": "space",
+
+    "app_exit": "ctrl+c,<leader>q",
+    "editor_open": "<leader>e",
+    "sidebar_toggle": "<leader>b",
+    "status_view": "<leader>s",
+    "session_new": "<leader>n",
+    "session_list": "<leader>l",
+    "session_timeline": "<leader>g",
+
+    "messages_page_up": "ctrl+b",
+    "messages_page_down": "ctrl+f",
+    "messages_half_page_up": "ctrl+u",
+    "messages_half_page_down": "ctrl+d",
+
+    "messages_copy": "<leader>y",
+    "messages_undo": "<leader>u",
+    "messages_redo": "<leader>r",
+    "input_clear": "ctrl+c",
+    "input_submit": "ctrl+enter",
+  },
+}

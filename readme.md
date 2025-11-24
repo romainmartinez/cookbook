@@ -51,6 +51,8 @@ System Preferences
     - show hidden files
     - tokyo-night theme
   - uv
+  - opencode
+    - `ln -s ~/Documents/cookbook/opencode.jsonc ~/.config/opencode/opencode.jsonc`
   - nvim
     - `gh clone romainmartinez/lazyvim.git ~/.config/nvim`
 
