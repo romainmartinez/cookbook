@@ -56,7 +56,6 @@ end
 # remove the default greeting message
 set fish_greeting
 
-# edit the fish prompt to show only the current working directory
 function fish_prompt
     set_color $fish_color_cwd
     echo -n (prompt_pwd)
