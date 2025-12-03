@@ -11,8 +11,6 @@
   "autoupdate": true,
 
   "keybinds": {
-    "leader": "space",
-
     "app_exit": "ctrl+c,<leader>q",
     "editor_open": "<leader>e",
     "sidebar_toggle": "<leader>b",
