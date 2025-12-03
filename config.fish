@@ -7,7 +7,6 @@ fish_add_path $HOME/.cargo/bin
 
 # manulife http proxy settings
 set -gx HTTP_PROXY "http://127.0.0.1:9000"
-set -gx HTTPS_PROXY "http://127.0.0.1:9000"
 set -gx NO_PROXY "localhost,127.0.0.1"
 
 # manulife certificate-related environment variables
