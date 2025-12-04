@@ -1,11 +1,16 @@
 # Mac Setup Instructions
 
+> [!NOTE]
+> Why not an automated script?
+> Because setting up a new Mac is a great opportunity to review and
+> reconsider which applications and settings you actually want to use.
+
+## System Preferences
+
 - disable hold menu
   - `defaults write -g ApplePressAndHoldEnabled -bool false`
 - install certificate
   - `sudo cp ~/Downloads/manulife-cacert.pem /usr/local/share/ca-certificates/manulife-cacert.perm`
-  
-System Preferences
 
 - Prefer ethernet over wifi
 - Prefer tabs: always
@@ -59,7 +64,7 @@ System Preferences
 - zed
   - `ln -s ~/Documents/cookbook/zed-settings.json ~/.config/zed/settings.json`
   - `ln -s ~/Documents/cookbook/zed-keymaps.json ~/.config/zed/keymap.json`
-  
+
 - vscode
   - `ln -s ~/Documents/cookbook/vscode-settings.json ~/Library/Application\ Support/Code/User/settings.json`
   - `ln -s ~/Documents/cookbook/vscode-keybindings.json ~/Library/Application\ Support/Code/User/keybindings.json`
