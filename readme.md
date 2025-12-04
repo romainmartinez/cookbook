@@ -2,6 +2,7 @@
 
 > [!NOTE]
 > Why not an automated script?
+>
 > Because setting up a new Mac is a great opportunity to review and
 > reconsider which applications and settings you actually want to use.
 
