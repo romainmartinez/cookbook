@@ -30,4 +30,16 @@
     "input_clear": "ctrl+c",
     "input_submit": "ctrl+enter",
   },
+
+  "mcp": {
+    "chrome-devtools": {
+      "type": "local",
+      "command": ["npx", "chrome-devtools-mcp@latest"],
+      "enabled": true,
+    },
+    "context7": {
+      "type": "remote",
+      "url": "https://mcp.context7.com/mcp",
+    },
+  },
 }
