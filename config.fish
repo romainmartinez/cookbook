@@ -55,6 +55,11 @@ end
 # remove the default greeting message
 set fish_greeting
 
+# show only the command in the tab title (not the path)
+function fish_title
+    echo (status current-command)
+end
+
 # edit the fish prompt to show only the current working directory
 function fish_prompt
     set_color $fish_color_cwd
