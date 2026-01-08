@@ -6,6 +6,32 @@
         "parameters": { "basic.to_if_held_down_threshold_milliseconds": 200 },
         "rules": [
           {
+            "description": "right cmd to shift+cmd+period (for shortcat)",
+            "manipulators": [
+              {
+                "from": { "key_code": "right_command" },
+                "to": [{ "key_code": "right_command" }],
+                "to_if_alone": [
+                  {
+                    "key_code": "period",
+                    "modifiers": ["command", "shift"]
+                  }
+                ],
+                "type": "basic"
+              }
+            ]
+          },
+          {
+            "description": "swap fn and left_control",
+            "manipulators": [
+              {
+                "from": { "key_code": "fn" },
+                "to": [{ "key_code": "left_control" }],
+                "type": "basic"
+              }
+            ]
+          },
+          {
             "description": "hyper + arrow keys for media control",
             "manipulators": [
               {
@@ -46,16 +72,6 @@
                   }
                 },
                 "to": [{ "key_code": "volume_decrement" }],
-                "type": "basic"
-              }
-            ]
-          },
-          {
-            "description": "right cmd to ctrl",
-            "manipulators": [
-              {
-                "from": { "key_code": "right_command" },
-                "to": [{ "key_code": "left_control" }],
                 "type": "basic"
               }
             ]
@@ -280,3 +296,4 @@
     }
   ]
 }
+
