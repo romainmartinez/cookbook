@@ -42,6 +42,7 @@
   - `ln -s ~/Documents/cookbook/ghostty.config ~/.config/ghostty/config`
   - fish
     - fisher
+      - `fisher install PatrickF1/fzf.fish`
     - `ln -s ~/Documents/cookbook/config.fish ~/.config/fish/config.fish`
   - font-jetbrains-mono-nerd-font
   - font-zed-mono-nerd-font
@@ -61,7 +62,7 @@
   - opencode
     - `ln -s ~/Documents/cookbook/opencode.jsonc ~/.config/opencode/opencode.jsonc`
   - nvim
-    - `gh clone romainmartinez/lazyvim.git ~/.config/nvim`
+    - `gh repo clone romainmartinez/lazyvim.git ~/.config/nvim`
 
 - zed
   - `ln -s ~/Documents/cookbook/zed-settings.json ~/.config/zed/settings.json`

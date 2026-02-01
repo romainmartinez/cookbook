@@ -30,11 +30,12 @@ alias lt='ls --tree'
 # homebrew cleanup alias
 alias brewclean='brew update && brew upgrade && brew cleanup && brew autoremove && brew doctor'
 
-# Set aliases for fzf (fuzzy finder)
-alias fk='ps -ef | fzf --header-lines=1 --multi --exact | awk "{print \$2}" | xargs kill -9'
-alias fh='eval (history | fzf --tac | sed "s/ *[0-9]* *//")'
-alias ff='find $HOME \( -type d -name ".git" -prune \) -o \( -type d -o -type f \) -print 2>/dev/null | fzf --exact'
-alias fcd='cd (find $HOME \( -type d -name ".git" -prune \) -o -type d -print 2>/dev/null | fzf --exact)'
+# Set aliases for fzf
+#    search directory → <ctrl>-f
+#    search git logs → <ctrl>-l
+#    search git status → <ctrl>-s
+#    search processes → <ctrl>-p
+fzf_configure_bindings --directory=\cf --git_log=\cl --git_status=\cs --processes=\cp
 
 # Initialize zoxide for `z` and `zi` commands
 zoxide init fish | source
@@ -67,3 +68,10 @@ function fish_prompt
     set_color normal
     echo -n ' > '
 end
+
+# pnpm
+set -gx PNPM_HOME /Users/martrom/Library/pnpm
+if not string match -q -- $PNPM_HOME $PATH
+    set -gx PATH "$PNPM_HOME" $PATH
+end
+# pnpm end
