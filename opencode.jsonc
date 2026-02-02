@@ -31,6 +31,8 @@
     "input_submit": "ctrl+enter",
   },
 
+  "plugin": ["@mohak34/opencode-notifier@latest"],
+
   "mcp": {
     "chrome-devtools": {
       "type": "local",
