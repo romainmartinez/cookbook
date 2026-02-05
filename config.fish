@@ -53,6 +53,14 @@ function y
     rm -f -- "$tmp"
 end
 
+# show notification when done
+function __notify_done --on-event fish_postexec
+    set -l cmd_duration_sec (math $CMD_DURATION / 1000)
+    if test $cmd_duration_sec -gt 5
+        osascript -e "display notification \"$argv[1]\" with title \"Done in $cmd_duration_sec s\" sound name \"Glass\""
+    end
+end
+
 # remove the default greeting message
 set fish_greeting
 
