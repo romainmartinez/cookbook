@@ -58,6 +58,7 @@
   - yazi
     - show hidden files
     - tokyo-night theme
+    - git.yazi
   - uv
   - opencode
     - `ln -s ~/Documents/cookbook/opencode.jsonc ~/.config/opencode/opencode.jsonc`
