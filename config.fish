@@ -57,7 +57,7 @@ end
 function __notify_done --on-event fish_postexec
     set -l cmd_duration_sec (math $CMD_DURATION / 1000)
     if test $cmd_duration_sec -gt 5
-        osascript -e "display notification \"$argv[1]\" with title \"Done in $cmd_duration_sec s\" sound name \"Glass\""
+        osascript -e "display notification \"$argv[1]\" with title \"Done in $cmd_duration_sec s\" sound name \"Blow\""
     end
 end
 
