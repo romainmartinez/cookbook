@@ -10,49 +10,49 @@
   "inline_code_actions": false,
   "indent_guides": {
     "enabled": true,
-    "coloring": "indent_aware"
+    "coloring": "indent_aware",
   },
   "tab_bar": {
     "show": true,
     "show_tab_bar_buttons": false,
-    "show_nav_history_buttons": false
+    "show_nav_history_buttons": false,
   },
   "features": {
-    "edit_prediction_provider": "copilot"
+    "edit_prediction_provider": "copilot",
   },
   "show_edit_predictions": true,
   "collaboration_panel": {
-    "button": false
+    "button": false,
   },
   "git": {
     "inline_blame": {
-      "enabled": false
-    }
+      "enabled": false,
+    },
   },
   "notification_panel": {
-    "button": false
+    "button": false,
   },
   "terminal": {
-    "dock": "right"
+    "dock": "right",
   },
   "bottom_dock_layout": "contained",
   "tabs": {
     "file_icons": false,
-    "git_status": true
+    "git_status": true,
   },
   "title_bar": {
-    "show_branch_icon": false
+    "show_branch_icon": false,
   },
   "project_panel": {
     "hide_gitignore": false,
     "dock": "right",
-    "button": true
+    "button": true,
   },
   "toolbar": {
-    "quick_actions": false
+    "quick_actions": false,
   },
   "scrollbar": {
-    "show": "auto"
+    "show": "auto",
   },
   "relative_line_numbers": "enabled",
   "autosave": "on_focus_change",
@@ -64,31 +64,35 @@
     "copilot": {
       "enterprise_uri": null,
       "proxy": "http://127.0.0.1:9000",
-      "proxy_no_verify": true
+      "proxy_no_verify": true,
     },
-    "disabled_globs": []
+    "disabled_globs": [],
   },
   "agent": {
     "default_profile": "write",
     "always_allow_tool_actions": true,
     "default_model": {
       "provider": "copilot_chat",
-      "model": "claude-sonnet-4.5"
+      "model": "claude-sonnet-4.5",
     },
     "use_modifier_to_send": true,
-    "play_sound_when_agent_done": true
+    "play_sound_when_agent_done": true,
   },
   "telemetry": {
     "diagnostics": false,
-    "metrics": false
+    "metrics": false,
   },
   "vim_mode": true,
+  "which_key": {
+    "enabled": true,
+    "delay_ms": 100,
+  },
   "ui_font_size": 13,
   "buffer_font_size": 13,
   "theme": {
-    "mode": "system",
-    "light": "Tokyo Night Storm",
-    "dark": "Tokyo Night Light"
+    "mode": "dark",
+    "light": "Ayu Light",
+    "dark": "Tokyo Night Moon",
   },
-  "proxy": "http://127.0.0.1:9000"
+  "proxy": "http://127.0.0.1:9000",
 }

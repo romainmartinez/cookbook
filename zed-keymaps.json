@@ -10,8 +10,9 @@
     "context": "VimControl && !menu",
     "bindings": {
       "ctrl-d": ["workspace::SendKeystrokes", "ctrl-d z z"],
-      "ctrl-u": ["workspace::SendKeystrokes", "ctrl-u z z"]
-    }
+      "ctrl-u": ["workspace::SendKeystrokes", "ctrl-u z z"],
+      "space": null, // Disable the default action vim::WrappingRight to be used with which-key
+    },
   },
   {
     "context": "Dock",
@@ -19,14 +20,14 @@
       "ctrl-w h": "workspace::ActivatePaneLeft",
       "ctrl-w l": "workspace::ActivatePaneRight",
       "ctrl-w k": "workspace::ActivatePaneUp",
-      "ctrl-w j": "workspace::ActivatePaneDown"
-    }
+      "ctrl-w j": "workspace::ActivatePaneDown",
+    },
   },
   {
     "context": "GitPanel",
     "bindings": {
-      "alt-enter": "git::GenerateCommitMessage"
-    }
+      "alt-enter": "git::GenerateCommitMessage",
+    },
   },
   {
     "context": "Workspace",
@@ -34,16 +35,16 @@
       "space space": [
         "tab_switcher::Toggle",
         {
-          "select_last": true
-        }
-      ]
-    }
+          "select_last": true,
+        },
+      ],
+    },
   },
   {
     "context": "TabSwitcher",
     "bindings": {
-      "x": "tab_switcher::CloseSelectedItem"
-    }
+      "x": "tab_switcher::CloseSelectedItem",
+    },
   },
   {
     "context": "Workspace",
@@ -51,21 +52,21 @@
       "space p f": [
         "projects::OpenRecent",
         {
-          "create_new_window": false
-        }
-      ]
-    }
+          "create_new_window": false,
+        },
+      ],
+    },
   },
   {
     "context": "GitPanel",
     "bindings": {
-      "shift-p": "git::Push"
-    }
+      "shift-p": "git::Push",
+    },
   },
   {
     "context": "GitPanel",
     "bindings": {
-      "shift-f": "git::Pull"
-    }
-  }
+      "shift-f": "git::Pull",
+    },
+  },
 ]
