@@ -6,6 +6,20 @@
         "parameters": { "basic.to_if_held_down_threshold_milliseconds": 200 },
         "rules": [
           {
+            "description": "tab to ctrl (hold), tab (tap)",
+            "manipulators": [
+              {
+                "from": {
+                  "key_code": "tab",
+                  "modifiers": { "optional": ["any"] }
+                },
+                "to": [{ "key_code": "left_control" }],
+                "to_if_alone": [{ "key_code": "tab" }],
+                "type": "basic"
+              }
+            ]
+          },
+          {
             "description": "right cmd to shift+cmd+period (for shortcat)",
             "manipulators": [
               {
