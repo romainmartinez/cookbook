@@ -22,10 +22,7 @@ set -gx VISUAL nvim
 
 # Set aliases for lsd (modern ls replacement)
 alias ls='lsd'
-alias l='ls -l'
-alias la='ls -a'
-alias lla='ls -la'
-alias lt='ls --tree'
+alias l='ls -l --blocks date,size,name'
 
 # homebrew cleanup alias
 alias brewclean='brew update && brew upgrade && brew cleanup && brew autoremove && brew doctor'
