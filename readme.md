@@ -52,6 +52,7 @@
   - zoxide
   - zed nerd font or jetbrains mono nerd font
   - lazygit
+  - mole
   - curl
   - ripgrep
   - fd
