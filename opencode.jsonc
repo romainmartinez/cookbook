@@ -30,6 +30,22 @@
     "input_submit": "ctrl+enter",
   },
 
+  "provider": {
+    "azure-foundry": {
+      "npm": "@ai-sdk/anthropic",
+      "name": "Azure AI Foundry",
+      "options": {
+        "baseURL": "https://ogcds-foundry.services.ai.azure.com/anthropic/v1",
+        "apiKey": "{env:AZURE_FOUNDRY_API_KEY}",
+      },
+      "models": {
+        "claude-opus-4-6": {
+          "name": "Claude Opus 4.6 (Azure)",
+        },
+      },
+    },
+  },
+
   "plugin": ["@mohak34/opencode-notifier@latest"],
 
   "mcp": {
