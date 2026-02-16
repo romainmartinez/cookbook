@@ -20,6 +20,8 @@ alias n='nvim'
 set -gx EDITOR nvim
 set -gx VISUAL nvim
 
+alias oc="opencode"
+
 # Set aliases for lsd (modern ls replacement)
 alias ls='lsd'
 alias l='ls -l --blocks date,size,name'
