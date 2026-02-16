@@ -45,6 +45,22 @@
       "models": {
         "claude-opus-4-6": {
           "name": "Claude Opus 4.6 (Azure)",
+          "limit": {
+            "context": 1000000,
+            "output": 32000
+          },
+          "cost": {
+            "input": 5,
+            "output": 25,
+            "cache_read": 0.5,
+            "cache_write": 6.25,
+            "context_over_200k": {
+              "input": 10,
+              "output": 37.5,
+              "cache_read": 1,
+              "cache_write": 12.5
+            }
+          }
         },
       },
     },
