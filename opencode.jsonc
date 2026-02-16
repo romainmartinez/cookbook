@@ -9,6 +9,10 @@
   "theme": "tokyonight",
   "autoupdate": true,
 
+  "experimental": {
+    "disable_paste_summary": true,
+  },
+
   "keybinds": {
     "app_exit": "ctrl+c,<leader>q",
     "editor_open": "<leader>e",
