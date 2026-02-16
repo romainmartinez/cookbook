@@ -61,9 +61,9 @@ end
 # remove the default greeting message
 set fish_greeting
 
-# show only the command in the tab title (not the path)
+# show the current folder and command in the tab title
 function fish_title
-    echo (status current-command)
+    echo (basename $PWD) • (status current-command)
 end
 
 # edit the fish prompt to show only the current working directory
