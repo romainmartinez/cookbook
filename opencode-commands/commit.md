@@ -5,6 +5,7 @@ description: generate commit(s) for current changes and commit them
 Look at the changes below (staged and unstaged) and generate concise commit message(s).
 
 Rules:
+
 - Use conventional commit format: `type: description`
 - Valid types: feat, fix, refactor, docs, style, test, chore, ci, perf, build
 - The description should explain WHY the change was made, not WHAT was changed
