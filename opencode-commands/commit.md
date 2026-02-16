@@ -14,9 +14,8 @@ Rules:
 - Do NOT push to remote — only commit locally
 - If the changes logically belong to a single commit, stage all files and commit once
 - If the changes span multiple unrelated concerns (e.g. a bug fix and a new feature), split them into separate commits:
-  1. Stage only the relevant files for the first commit, then run `git commit -m "<message>"`
+  1. Stage only the relevant files or hunks for the first commit, then run `git commit -m "<message>"`
   2. Repeat for each additional logical group of changes
-- After committing, run `git log --oneline -n 5` to confirm the result
 
 ## Current changes
 
