@@ -57,9 +57,7 @@
   - ripgrep
   - fd
   - yazi
-    - show hidden files
-    - tokyo-night theme
-    - git.yazi
+    - `gh repo clone romainmartinez/yazi.git ~/.config/yazi`
   - uv
   - opencode
     - `ln -s ~/Documents/cookbook/opencode.jsonc ~/.config/opencode/opencode.jsonc`
