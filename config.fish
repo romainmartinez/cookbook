@@ -69,9 +69,19 @@ function fish_title
 end
 
 # edit the fish prompt to show only the current working directory
+# we also display the git status
 function fish_prompt
     set_color $fish_color_cwd
     echo -n (prompt_pwd)
+    if git rev-parse --git-dir &>/dev/null
+        if test -n "$(git status --porcelain)"
+            set_color yellow
+            echo -n ' ●'
+        else
+            set_color green
+            echo -n ' ✓'
+        end
+    end
     set_color normal
     echo -n ' > '
 end
