@@ -61,6 +61,7 @@
   - uv
   - opencode
     - `ln -s ~/Documents/cookbook/opencode.jsonc ~/.config/opencode/opencode.jsonc`
+    - `ln -s ~/Documents/cookbook/opencode-tui.jsonc ~/.config/opencode/tui.jsonc`
     - `ln -s ~/Documents/cookbook/opencode-commands ~/.config/opencode/command`
   - nvim
     - `gh repo clone romainmartinez/lazyvim.git ~/.config/nvim`
