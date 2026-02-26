@@ -75,7 +75,7 @@
   - install extensions found in `vscode-extensions.txt`
 
 - cleanshot
-- bartender
+- jordanbaird-ice
 - obsidian
 - todoist
 - spotify
