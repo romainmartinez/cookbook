@@ -21,6 +21,7 @@ set -gx EDITOR nvim
 set -gx VISUAL nvim
 
 alias oc="opencode"
+set -gx OPENCODE_DISABLE_TERMINAL_TITLE 1
 
 # Set aliases for lsd (modern ls replacement)
 alias ls='lsd'
