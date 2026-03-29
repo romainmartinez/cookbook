@@ -50,7 +50,12 @@
   "mcp": {
     "chrome-devtools": {
       "type": "local",
-      "command": ["npx", "chrome-devtools-mcp@latest"],
+      "command": [
+        "npx",
+        "chrome-devtools-mcp@latest",
+        "--autoConnect",
+        "--channel=beta",
+      ],
       "enabled": false,
     },
     "context7": {
