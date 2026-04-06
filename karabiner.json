@@ -20,22 +20,6 @@
             ]
           },
           {
-            "description": "right cmd to shift+cmd+period (for shortcat)",
-            "manipulators": [
-              {
-                "from": { "key_code": "right_command" },
-                "to": [{ "key_code": "right_command" }],
-                "to_if_alone": [
-                  {
-                    "key_code": "period",
-                    "modifiers": ["command", "shift"]
-                  }
-                ],
-                "type": "basic"
-              }
-            ]
-          },
-          {
             "description": "swap fn and left_control",
             "manipulators": [
               {
@@ -310,4 +294,3 @@
     }
   ]
 }
-
