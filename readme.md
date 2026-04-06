@@ -46,7 +46,6 @@
     - `ln -s ~/Documents/cookbook/config.fish ~/.config/fish/config.fish`
   - font-jetbrains-mono-nerd-font
   - font-zed-mono-nerd-font
-  - shortcat
   - fzf
   - lsd
   - zoxide
