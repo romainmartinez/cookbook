@@ -76,7 +76,7 @@
   - install extensions found in `vscode-extensions.txt`
 
 - cleanshot
-- jordanbaird-ice
+- thaw
 - obsidian
 - todoist
 - spotify
