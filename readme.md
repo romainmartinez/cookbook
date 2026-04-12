@@ -6,81 +6,181 @@
 > Because setting up a new Mac is a great opportunity to review and
 > reconsider which applications and settings you actually want to use.
 
-## System Preferences
-
-- disable hold menu
-  - `defaults write -g ApplePressAndHoldEnabled -bool false`
-- install certificate
-  - `sudo cp ~/Downloads/manulife-cacert.pem /usr/local/share/ca-certificates/manulife-cacert.perm`
-
-- Prefer ethernet over wifi
-- Prefer tabs: always
-- Hide tags in Finder
-- Automatically rearrange spaces based on most recent use: false
-- Switch to a Space with open windows for the application: false
-- Group windows by application: false
-- Displays have separate Spaces: false
-
 ## Homebrew
 
-- [brew](https://brew.sh/)
-  - install next softwares with brew
+Install [brew](https://brew.sh/), then use it to install everything below.
 
-- github `gh`
-  - personal account
-  - work account
+## CLI Tools
 
-- raycast
-  - remove vscode, chrome, edge, zoom
+**Shell**
+- fish
+  - fisher: `fisher install PatrickF1/fzf.fish`
 
-- karabiner-elements
-  - `ln -s ~/Documents/cookbook/karabiner.json ~/.config/karabiner/karabiner.json`
+**Search & navigation**
+- fzf
+- ripgrep
+- fd
+- zoxide
 
-- chrome
+**File management**
+- lsd
+- yazi
 
-- ghostty
-  - `ln -s ~/Documents/cookbook/ghostty.config ~/.config/ghostty/config`
-  - fish
-    - fisher
-      - `fisher install PatrickF1/fzf.fish`
-    - `ln -s ~/Documents/cookbook/config.fish ~/.config/fish/config.fish`
-  - font-jetbrains-mono-nerd-font
-  - font-zed-mono-nerd-font
-  - fzf
-  - lsd
-  - zoxide
-  - zed nerd font or jetbrains mono nerd font
-  - lazygit
-  - mole
-  - curl
-  - ripgrep
-  - fd
-  - yazi
-    - `gh repo clone romainmartinez/yazi.git ~/.config/yazi`
-  - uv
-  - opencode
-    - `ln -s ~/Documents/cookbook/opencode.jsonc ~/.config/opencode/opencode.jsonc`
-    - `ln -s ~/Documents/cookbook/opencode-tui.jsonc ~/.config/opencode/tui.jsonc`
-    - `ln -s ~/Documents/cookbook/opencode-agents.md ~/.config/opencode/AGENTS.md`
-    - `ln -s ~/Documents/cookbook/opencode-commands ~/.config/opencode/command`
-  - nvim
-    - `gh repo clone romainmartinez/lazyvim.git ~/.config/nvim`
+**Dev**
+- gh
+- uv
+- lazygit
+- mole
+- curl
 
-- zed
-  - `ln -s ~/Documents/cookbook/zed-settings.json ~/.config/zed/settings.json`
-  - `ln -s ~/Documents/cookbook/zed-keymaps.json ~/.config/zed/keymap.json`
+**Monitoring & help**
+- btop
+- tldr
 
-- vscode
-  - `ln -s ~/Documents/cookbook/vscode-settings.json ~/Library/Application\ Support/Code/User/settings.json`
-  - `ln -s ~/Documents/cookbook/vscode-keybindings.json ~/Library/Application\ Support/Code/User/keybindings.json`
-  - install extensions found in `vscode-extensions.txt`
+**Fonts**
+- font-jetbrains-mono-nerd-font
 
+## Terminal & Shell
+
+**Ghostty**
+```sh
+ln -s ~/Documents/cookbook/ghostty.config ~/.config/ghostty/config
+```
+
+**Fish**
+```sh
+ln -s ~/Documents/cookbook/config.fish ~/.config/fish/config.fish
+```
+
+## Dev Tools
+
+**GitHub CLI (gh)**
+Set up both accounts:
+- Personal account
+- Work account
+
+**Opencode**
+```sh
+ln -s ~/Documents/cookbook/opencode.jsonc ~/.config/opencode/opencode.jsonc
+ln -s ~/Documents/cookbook/opencode-tui.jsonc ~/.config/opencode/tui.jsonc
+ln -s ~/Documents/cookbook/opencode-agents.md ~/.config/opencode/AGENTS.md
+ln -s ~/Documents/cookbook/opencode-commands ~/.config/opencode/command
+```
+
+**Neovim (LazyVim)**
+```sh
+gh repo clone romainmartinez/lazyvim.git ~/.config/nvim
+```
+
+**Zed**
+```sh
+ln -s ~/Documents/cookbook/zed-settings.json ~/.config/zed/settings.json
+ln -s ~/Documents/cookbook/zed-keymaps.json ~/.config/zed/keymap.json
+```
+
+**VS Code**
+```sh
+ln -s ~/Documents/cookbook/vscode-settings.json ~/Library/Application\ Support/Code/User/settings.json
+ln -s ~/Documents/cookbook/vscode-keybindings.json ~/Library/Application\ Support/Code/User/keybindings.json
+```
+
+Install extensions from `vscode-extensions.txt`.
+
+**Yazi**
+```sh
+gh repo clone romainmartinez/yazi.git ~/.config/yazi
+```
+
+## GUI Apps
+
+**Productivity**
+- raycast (remove vscode, chrome, edge, zoom defaults)
 - cleanshot
-- thaw
 - obsidian
 - todoist
+
+**Utilities**
+- karabiner-elements
+  ```sh
+  ln -s ~/Documents/cookbook/karabiner.json ~/.config/karabiner/karabiner.json
+  ```
+- thaw
+
+**Browsers**
+- chrome
+
+**Media & design**
 - spotify
 - figma
 
-- microsoft office suite (word, excel, powerpoint)
-- microsoft teams
+**Microsoft**
+- teams
+- word, excel, powerpoint
+
+## System Preferences
+
+Manual steps:
+- Install certificate
+  - `sudo cp ~/Downloads/manulife-cacert.pem /usr/local/share/ca-certificates/manulife-cacert.pem`
+- Prefer ethernet over wifi
+- Prefer tabs: always
+- Hide tags in Finder
+- Switch to a Space with open windows for the application: false
+- Displays have separate Spaces: false
+
+`defaults write` commands:
+```sh
+# Keyboard: disable press-and-hold, fast repeat
+defaults write -g ApplePressAndHoldEnabled -bool false
+defaults write -g KeyRepeat -int 2
+defaults write -g InitialKeyRepeat -int 15
+
+# Appearance: auto switch dark/light
+defaults write -g AppleInterfaceStyleSwitchesAutomatically -bool true
+
+# Scroll: disable natural scroll direction
+defaults write -g com.apple.swipescrolldirection -bool false
+
+# Trackpad: increase speed, tap to click
+defaults write -g com.apple.trackpad.scaling -float 3
+defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
+
+# Mouse: increase speed
+defaults write -g com.apple.mouse.scaling -float 2.5
+
+# Dock: autohide, tiny tiles, magnification, minimize to app, no recents
+defaults write com.apple.dock autohide -bool true
+defaults write com.apple.dock tilesize -int 25
+defaults write com.apple.dock magnification -bool true
+defaults write com.apple.dock largesize -int 85
+defaults write com.apple.dock minimize-to-application -bool true
+defaults write com.apple.dock show-recents -bool false
+
+# Spaces: no auto-rearrange, no drag-to-mission-control
+defaults write com.apple.dock mru-spaces -bool false
+defaults write com.apple.dock enterMissionControlByTopWindowDrag -bool false
+
+# Window Manager: disable tiling, hide desktop on click, hide widgets, group by app
+defaults write com.apple.WindowManager EnableTilingByEdgeDrag -bool false
+defaults write com.apple.WindowManager EnableTilingOptionAccelerator -bool false
+defaults write com.apple.WindowManager EnableTopTilingByEdgeDrag -bool false
+defaults write com.apple.WindowManager HideDesktop -bool true
+defaults write com.apple.WindowManager StandardHideWidgets -bool true
+defaults write com.apple.WindowManager AppWindowGroupingBehavior -bool true
+
+# Finder: column view, open new windows at /, show path bar, show extensions
+defaults write com.apple.finder FXPreferredViewStyle -string clmv
+defaults write com.apple.finder NewWindowTarget -string PfVo
+defaults write com.apple.finder ShowPathbar -bool true
+defaults write -g AppleShowAllExtensions -bool true
+
+# Prevent .DS_Store on network drives
+defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+
+# Disable auto-capitalization and double-space period
+defaults write -g NSAutomaticCapitalizationEnabled -bool false
+defaults write -g NSAutomaticPeriodSubstitutionEnabled -bool false
+
+# Restart affected services
+killall Dock Finder
+```
