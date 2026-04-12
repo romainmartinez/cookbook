@@ -14,9 +14,9 @@
   },
 
   "provider": {
-    "azure-foundry": {
+    "azure-foundry-anthropic": {
       "npm": "@ai-sdk/anthropic",
-      "name": "Azure AI Foundry",
+      "name": "Azure AI Foundry (Anthropic)",
       "options": {
         "baseURL": "https://ogcds-foundry.services.ai.azure.com/anthropic/v1",
         "apiKey": "{env:AZURE_FOUNDRY_API_KEY}",
@@ -39,6 +39,25 @@
               "cache_read": 1,
               "cache_write": 12.5,
             },
+          },
+        },
+      },
+    },
+    "azure-cognitive-services": {
+      "options": {
+        "resourceName": "ogcds-foundry",
+      },
+      "models": {
+        "gpt-5.3-codex": {
+          "name": "GPT-5.3 Codex (Azure)",
+          "limit": {
+            "context": 256000,
+            "output": 32000,
+          },
+          "cost": {
+            "input": 1.75,
+            "output": 14,
+            "cache_read": 0.175,
           },
         },
       },
