@@ -61,10 +61,10 @@ Set up both accounts:
 
 **Opencode**
 ```sh
-ln -s ~/Documents/cookbook/opencode.jsonc ~/.config/opencode/opencode.jsonc
-ln -s ~/Documents/cookbook/opencode-tui.jsonc ~/.config/opencode/tui.jsonc
-ln -s ~/Documents/cookbook/opencode-agents.md ~/.config/opencode/AGENTS.md
-ln -s ~/Documents/cookbook/opencode-commands ~/.config/opencode/command
+ln -s ~/Documents/cookbook/opencode/opencode.jsonc ~/.config/opencode/opencode.jsonc
+ln -s ~/Documents/cookbook/opencode/tui.jsonc ~/.config/opencode/tui.jsonc
+ln -s ~/Documents/cookbook/opencode/AGENTS.md ~/.config/opencode/AGENTS.md
+ln -s ~/Documents/cookbook/opencode/commands ~/.config/opencode/commands
 ```
 
 **Neovim (LazyVim)**
@@ -74,17 +74,17 @@ gh repo clone romainmartinez/lazyvim.git ~/.config/nvim
 
 **Zed**
 ```sh
-ln -s ~/Documents/cookbook/zed-settings.json ~/.config/zed/settings.json
-ln -s ~/Documents/cookbook/zed-keymaps.json ~/.config/zed/keymap.json
+ln -s ~/Documents/cookbook/editors/zed-settings.json ~/.config/zed/settings.json
+ln -s ~/Documents/cookbook/editors/zed-keymaps.json ~/.config/zed/keymap.json
 ```
 
 **VS Code**
 ```sh
-ln -s ~/Documents/cookbook/vscode-settings.json ~/Library/Application\ Support/Code/User/settings.json
-ln -s ~/Documents/cookbook/vscode-keybindings.json ~/Library/Application\ Support/Code/User/keybindings.json
+ln -s ~/Documents/cookbook/editors/vscode-settings.json ~/Library/Application\ Support/Code/User/settings.json
+ln -s ~/Documents/cookbook/editors/vscode-keybindings.json ~/Library/Application\ Support/Code/User/keybindings.json
 ```
 
-Install extensions from `vscode-extensions.txt`.
+Install extensions from `editors/vscode-extensions.txt`.
 
 **Yazi**
 ```sh
