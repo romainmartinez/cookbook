@@ -40,6 +40,17 @@ alias brewclean='brew update && brew upgrade && brew cleanup && brew autoremove 
 #    search processes → <ctrl>-p
 fzf_configure_bindings --directory=\cf --git_log=\cl --git_status=\cs --processes=\cp
 
+# fzf Tokyo Night Moon theme (matches LazyVim default)
+set -gx FZF_DEFAULT_OPTS "\
+--highlight-line \
+--info=inline-right \
+--layout=reverse \
+--border=none \
+--color=fg:#c8d3f5,bg:#222436,hl:#ff966c \
+--color=fg+:#c8d3f5,bg+:#2f334d,hl+:#ff966c \
+--color=info:#82aaff,prompt:#86e1fc,pointer:#86e1fc \
+--color=marker:#c3e88d,spinner:#c3e88d,header:#c3e88d"
+
 # Initialize zoxide for `z` and `zi` commands
 zoxide init fish | source
 
