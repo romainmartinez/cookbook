@@ -56,6 +56,11 @@ tv init fish | source
 # add vim keybindings
 fish_vi_key_bindings
 
+function fish_user_key_bindings
+    bind \cc\cc 'commandline ""; clear; commandline -f repaint'
+    bind -M insert \cc\cc 'commandline ""; clear; commandline -f repaint'
+end
+
 # change working directory when quitting yazi
 function y
     set tmp (mktemp -t "yazi-cwd.XXXXXX")
