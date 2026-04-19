@@ -1,0 +1,22 @@
+[metadata]
+name = "brew-packages"
+description = "Installed brew formulae and casks"
+requirements = ["brew"]
+
+[source]
+command = [
+  "brew list --formula",
+  "brew list --cask",
+  "brew leaves",
+]
+
+[preview]
+command = "brew info '{}'"
+
+[keybindings]
+ctrl-x = "actions:uninstall"
+
+[actions.uninstall]
+description = "brew uninstall"
+command = "brew uninstall '{}'"
+mode = "execute"

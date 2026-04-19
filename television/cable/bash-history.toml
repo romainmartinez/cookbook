@@ -1,0 +1,7 @@
+[metadata]
+name = "bash-history"
+description = "disabled (fish user)"
+requirements = ["__disabled_by_user__"]
+
+[source]
+command = "true"

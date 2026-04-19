@@ -1,0 +1,11 @@
+[metadata]
+name = "opencode-sessions"
+description = "OpenCode sessions ranked by last update"
+requirements = ["sqlite3"]
+
+[source]
+command = "~/.config/television/bin/opencode-session-list"
+display = "{split:\t:0}   {split:\t:1}   {split:\t:2}"
+output = "{split:\t:3}:::{split:\t:4}"
+no_sort = true
+frecency = false

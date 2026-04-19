@@ -1,0 +1,29 @@
+[metadata]
+name = "procs"
+description = "Browse running processes, kill with ctrl-k (SIGTERM) or ctrl-x (SIGKILL)"
+requirements = ["ps"]
+
+[source]
+command = "ps -axo pid,user,%cpu,%mem,args | tail -n +2 | sed 's/^ *//'"
+output = "{0}"
+watch = 2.0
+
+[ui.preview_panel]
+size = 40
+
+[preview]
+command = "ps -p '{0}' -o pid,user,%cpu,%mem,lstart,command"
+
+[keybindings]
+ctrl-k = "actions:term"
+ctrl-x = "actions:kill"
+
+[actions.term]
+description = "Send SIGTERM (graceful)"
+command = "kill '{0}'"
+mode = "fork"
+
+[actions.kill]
+description = "Send SIGKILL (force)"
+command = "kill -9 '{0}'"
+mode = "fork"

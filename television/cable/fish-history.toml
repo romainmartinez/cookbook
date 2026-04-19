@@ -1,0 +1,10 @@
+[metadata]
+name = "fish-history"
+description = "A channel to select from your fish history (with timestamps)"
+requirements = ["fish"]
+
+[source]
+command = "fish -c 'history --show-time=(printf \"%%a %%b %%d, %%H:%%M\t\")'"
+output = "{split:\t:1..}"
+no_sort = true
+frecency = false

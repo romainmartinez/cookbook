@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+sqlite3 -separator $'\t' ~/.local/share/opencode/opencode.db \
+  "SELECT id,
+          strftime('%w %m %d %H:%M', time_updated/1000, 'unixepoch', 'localtime'),
+          directory,
+          title
+   FROM session
+   WHERE time_archived IS NULL
+   ORDER BY time_updated DESC" \
+  | awk -F'\t' '
+    BEGIN {
+      OFS = "\t"
+      split("Sun Mon Tue Wed Thu Fri Sat", days, " ")
+      split("Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec", months, " ")
+    }
+    {
+      split($2, p, " ")
+      ts = days[p[1]+1] " " months[p[2]+0] " " p[3] ", " p[4]
+      rows[NR,"id"]  = $1
+      rows[NR,"ts"]  = ts
+      rows[NR,"dir"] = $3
+      rows[NR,"ttl"] = $4
+      if (length(ts)  > wd) wd = length(ts)
+      if (length($3) > wf) wf = length($3)
+    }
+    END {
+      for (i = 1; i <= NR; i++) {
+        ts_pad  = sprintf("%-*s", wd, rows[i,"ts"])
+        dir_pad = sprintf("%-*s", wf, rows[i,"dir"])
+        printf "%s\t%s\t%s\t%s\t%s\n", ts_pad, dir_pad, rows[i,"ttl"], rows[i,"id"], rows[i,"dir"]
+      }
+    }'

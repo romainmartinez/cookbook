@@ -1,0 +1,10 @@
+[metadata]
+name = "tldr"
+description = "Browse tldr pages"
+requirements = ["tldr"]
+
+[source]
+command = "tldr --list"
+
+[preview]
+command = "tldr --color=always '{}'"

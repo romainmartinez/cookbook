@@ -1,0 +1,12 @@
+[metadata]
+name = "dirs"
+description = "Directories ranked by zoxide frecency"
+requirements = ["zoxide"]
+
+[source]
+command = "zoxide query --list --score | sed 's/^ *[0-9.]* *//'"
+no_sort = true
+frecency = false
+
+[preview]
+command = "lsd -l --color=always '{}' 2>/dev/null || ls -la '{}'"

@@ -14,10 +14,10 @@ Install [brew](https://brew.sh/), then use it to install everything below.
 
 **Shell**
 - fish
-  - fisher: `fisher install PatrickF1/fzf.fish`
 
 **Search & navigation**
-- fzf
+- television (primary picker, replaces fzf bindings in fish)
+- fzf (kept as a dependency for other tools)
 - ripgrep
 - fd
 - zoxide
@@ -50,6 +50,11 @@ ln -s ~/Documents/cookbook/ghostty.config ~/.config/ghostty/config
 **Fish**
 ```sh
 ln -s ~/Documents/cookbook/config.fish ~/.config/fish/config.fish
+```
+
+**Television**
+```sh
+ln -s ~/Documents/cookbook/television ~/.config/television
 ```
 
 ## Dev Tools
