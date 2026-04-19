@@ -12,7 +12,7 @@ set -gx HTTPS_PROXY $proxy_url
 set -gx NO_PROXY "localhost,127.0.0.1"
 
 # manulife certificate-related environment variables
-set -x CERT_FILE /usr/local/share/ca-certificates/manulife-cacert.perm
+set -x CERT_FILE /usr/local/share/ca-certificates/manulife-cacert.pem
 set -x PIP_CERT $CERT_FILE
 set -x REQUESTS_CA_BUNDLE $CERT_FILE
 set -x SSL_CERT_FILE $CERT_FILE
