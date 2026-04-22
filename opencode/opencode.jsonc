@@ -24,6 +24,10 @@
       "models": {
         "claude-opus-4-7": {
           "name": "Claude Opus 4.7 (Azure)",
+          "limit": {
+            "context": 1000000,
+            "output": 128000,
+          },
           "cost": {
             "input": 5,
             "output": 25,
