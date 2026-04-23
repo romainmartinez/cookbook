@@ -22,21 +22,7 @@ alias n='nvim'
 set -gx EDITOR nvim
 set -gx VISUAL nvim
 
-function oc --wraps opencode --description "opencode wrapper that understands tv opencode-sessions output"
-    # If a single argument matches <id>:::<dir> (produced by tv opencode-sessions),
-    # split it and resume in that directory.
-    if test (count $argv) -eq 1; and string match -rq '^[^:]+:::.+' -- $argv[1]
-        set -l parts (string split -m1 ::: -- $argv[1])
-        set -l id $parts[1]
-        set -l dir $parts[2]
-        if test -d $dir
-            cd $dir
-        end
-        opencode --session $id
-    else
-        opencode $argv
-    end
-end
+alias oc="opencode"
 # while it is not available in opencode's config files
 set -gx OPENCODE_DISABLE_TERMINAL_TITLE 1
 
