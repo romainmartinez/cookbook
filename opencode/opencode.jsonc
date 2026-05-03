@@ -86,5 +86,21 @@
       "url": "https://ui.nuxt.com/mcp",
       "enabled": false,
     },
+    "intervals-icu": {
+      "type": "local",
+      "command": [
+        "uv",
+        "run",
+        "--directory",
+        "{env:HOME}/Documents/intervals-mcp-server",
+        "--env-file",
+        "{env:HOME}/Documents/intervals-mcp-server/.env",
+        "mcp",
+        "run",
+        "{env:HOME}/Documents/intervals-mcp-server/src/intervals_mcp_server/server.py",
+      ],
+      "timeout": 15000,
+      "enabled": false,
+    },
   },
 }
