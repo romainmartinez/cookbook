@@ -2,7 +2,7 @@ default_channel = "text"
 
 
 [shell_integration]
-fallback_channel = "text"
+fallback_channel = "files"
 
 [shell_integration.channel_triggers]
 "alias" = ["alias", "unalias"]
