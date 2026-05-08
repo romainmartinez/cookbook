@@ -44,11 +44,13 @@ cargo install fallow-cli       # build from source
 
 1. **Always use `--format json --quiet 2>/dev/null`** for machine-readable output. The `2>/dev/null` discards stderr so progress messages and threshold warnings don't corrupt the JSON on stdout. Never use `2>&1`
 2. **Always append `|| true`** to every fallow command. Exit code 1 means "issues found" (normal), not a runtime error. Without `|| true`, the Bash tool treats exit 1 as failure and cancels parallel commands. Only exit code 2 is a real error (invalid config, parse failure)
-3. **Use `--explain`** to include a `_meta` object in JSON output with metric definitions, ranges, and interpretation hints
-4. **Use issue type filters** (`--unused-exports`, `--unused-files`, etc.) to limit output scope
-5. **Always `--dry-run` before `fix`**, then `fix --yes` to apply
-6. **All output paths are relative** to the project root
-7. **Never run `fallow watch`**. It is interactive and never exits
+3. **Always pass `--include-entry-exports`** to `fallow` and `fallow dead-code`. Framework plugins (Nuxt, Next.js, etc.) promote auto-import directories to entry points, which silently hides unused-export detection inside them. Project config should suppress the resulting false positives via `ignoreExports`
+4. **Verify suspected unused exports with grep before deleting.** Framework auto-imports (Nuxt composables, Nitro `server/utils/`, Vue SFC templates) are invisible to fallow
+5. **Use `--explain`** to include a `_meta` object in JSON output with metric definitions, ranges, and interpretation hints
+6. **Use issue type filters** (`--unused-exports`, `--unused-files`, etc.) to limit output scope
+7. **Always `--dry-run` before `fix`**, then `fix --yes` to apply
+8. **All output paths are relative** to the project root
+9. **Never run `fallow watch`**. It is interactive and never exits
 
 ## Commands
 
@@ -287,6 +289,7 @@ export const deprecatedHelper = () => {};
 ## Key Gotchas
 
 - **`fix --yes` is required** in non-TTY (agent) environments. Without it, `fix` exits with code 2
+- **Framework auto-imports are invisible to fallow.** Nuxt composables, Nitro `server/utils/`, Next.js server actions, Vue SFC template references appear as unused exports because fallow does syntactic analysis only. Always grep before deleting; suppress whole directories via `ignoreExports` if a cluster of false positives appears
 - **Zero config by default.** 90 framework plugins auto-detect. Don't create config unless customization is needed
 - **Syntactic analysis only.** No TypeScript compiler, so fully dynamic `import(variable)` is not resolved
 - **Function overloads are deduplicated.** TypeScript function overload signatures are merged into a single export
