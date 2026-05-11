@@ -27,7 +27,7 @@
     "messages_redo": "<leader>r",
     // ─── input ───
     "input_clear": "ctrl+c",
-    "input_submit": "ctrl+enter",
+    // "input_submit": "ctrl+enter",
     "input_newline": "shift+return,ctrl+return,alt+return",
     // ─── Line navigation ───
     "input_line_home": "ctrl+a",
