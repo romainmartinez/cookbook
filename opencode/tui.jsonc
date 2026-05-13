@@ -10,6 +10,8 @@
     "sidebar_toggle": "<leader>b",
     // ─── status ───
     "status_view": "<leader>s",
+    // ─── which key ───
+    "which_key_toggle": "<leader>?",
     // ─── session ───
     "session_new": "<leader>n",
     "session_list": "<leader>l",
