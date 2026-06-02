@@ -81,6 +81,11 @@
       "type": "remote",
       "url": "https://mcp.context7.com/mcp",
     },
+    "strava": {
+      "type": "remote",
+      "url": "https://mcp.strava.com/mcp",
+      "enabled": false,
+    },
     "nuxt-ui": {
       "type": "remote",
       "url": "https://ui.nuxt.com/mcp",
