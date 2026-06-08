@@ -37,6 +37,10 @@
     // ─── Word navigation ───
     "input_word_forward": "alt+f,alt+right,ctrl+right",
     "input_word_backward": "alt+b,alt+left,ctrl+left",
+    // ─── Word/line deletion ───
+    "input_delete_word_backward": "alt+backspace,ctrl+w,ctrl+backspace",
+    "input_delete_word_forward": "alt+d,alt+delete,ctrl+delete",
+    "input_delete_to_line_start": "super+backspace,ctrl+u",
   },
   "scroll_acceleration": {
     "enabled": true,
