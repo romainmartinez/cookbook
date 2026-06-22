@@ -72,6 +72,12 @@ ln -s ~/Documents/cookbook/opencode/AGENTS.md ~/.config/opencode/AGENTS.md
 ln -s ~/Documents/cookbook/opencode/commands ~/.config/opencode/commands
 ```
 
+**Pi**
+```sh
+ln -s ~/Documents/cookbook/pi/models.json ~/.pi/agent/models.json
+ln -s ~/Documents/cookbook/pi/settings.json ~/.pi/agent/settings.json
+```
+
 **Neovim (LazyVim)**
 ```sh
 gh repo clone romainmartinez/lazyvim.git ~/.config/nvim

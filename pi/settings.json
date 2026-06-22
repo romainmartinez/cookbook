@@ -4,13 +4,14 @@
   "defaultModel": "claude-opus-4-8",
   "defaultThinkingLevel": "medium",
   "treeFilterMode": "default",
-  "theme": "dark",
+  "theme": "tokyonight-moon",
   "hideThinkingBlock": true,
   "collapseChangelog": false,
   "packages": [
     "npm:@juanibiapina/pi-tokyonight",
     "npm:@juicesharp/rpiv-ask-user-question",
     "npm:pi-web-access",
-    "npm:pi-subagents"
+    "npm:pi-subagents",
+    "npm:pi-read-mode"
   ]
 }
