@@ -76,6 +76,7 @@ ln -s ~/Documents/cookbook/opencode/commands ~/.config/opencode/commands
 ```sh
 ln -s ~/Documents/cookbook/pi/models.json ~/.pi/agent/models.json
 ln -s ~/Documents/cookbook/pi/settings.json ~/.pi/agent/settings.json
+ln -s ~/Documents/cookbook/pi/extensions ~/.pi/agent/extensions
 ```
 
 **Neovim (LazyVim)**
