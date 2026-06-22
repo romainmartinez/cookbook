@@ -1,0 +1,16 @@
+{
+  "lastChangelogVersion": "0.79.10",
+  "defaultProvider": "azure-foundry-anthropic",
+  "defaultModel": "claude-opus-4-8",
+  "defaultThinkingLevel": "medium",
+  "treeFilterMode": "default",
+  "theme": "dark",
+  "hideThinkingBlock": true,
+  "collapseChangelog": false,
+  "packages": [
+    "npm:@juanibiapina/pi-tokyonight",
+    "npm:@juicesharp/rpiv-ask-user-question",
+    "npm:pi-web-access",
+    "npm:pi-subagents"
+  ]
+}

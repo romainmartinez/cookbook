@@ -10,6 +10,8 @@
     "sidebar_toggle": "<leader>b",
     // ─── status ───
     "status_view": "<leader>s",
+    // ─── mcp ───
+    "mcp_list": "<leader>p",
     // ─── which key ───
     "which_key_toggle": "<leader>?",
     // ─── session ───
