@@ -4,7 +4,7 @@
 update the project `AGENTS.md` file to reflect those changes
 - Be direct and no-nonsense, challenge incorrect assumptions without hesitation
 - Never use em dash
-- Do not add comments except if the code is not self-explanatory
+- Avoid code comments. Add only when strictly necessary to explain non-obvious code
 - Use `uv` for Python (running scripts, managing deps, virtualenvs)
 
 ## Plan Mode
