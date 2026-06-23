@@ -1,10 +1,9 @@
 ## General instructions
 
-- If you add or discover new folders, change conventions, or introduce tooling,
-update the project `AGENTS.md` file to reflect those changes
+- If you add or discover new folders, change conventions, or introduce tooling, update the project `AGENTS.md` file to reflect those changes
 - Be direct and no-nonsense, challenge incorrect assumptions without hesitation
 - Never use em dash
-- Avoid code comments. Add only when strictly necessary to explain non-obvious code
+- Default to no code comments. Explain in chat, not in code. Comment only when the code is genuinely non-obvious (e.g. a workaround or surprising constraint), never to restate what the code does or record your reasoning
 - Use `uv` for Python (running scripts, managing deps, virtualenvs)
 
 ## Plan Mode
