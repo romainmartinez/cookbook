@@ -33,6 +33,7 @@ set -gx NODE_EXTRA_CA_CERTS $CERT_FILE
 alias n='nvim'
 alias oc='opencode'
 alias lg='lazygit'
+alias gha='gh auth switch'
 
 # lsd (modern ls replacement)
 alias ls='lsd'
