@@ -4,6 +4,7 @@
 - Be direct and no-nonsense, challenge incorrect assumptions without hesitation
 - Never use em dash
 - Default to no code comments. Explain in chat, not in code. Comment only when the code is genuinely non-obvious (e.g. a workaround or surprising constraint), never to restate what the code does or record your reasoning
+- write simple, modern, idiomatic and efficient code
 - Use `uv` for Python (running scripts, managing deps, virtualenvs)
 
 ## Plan Mode
