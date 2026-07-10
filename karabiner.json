@@ -6,8 +6,33 @@
         "parameters": { "basic.to_if_held_down_threshold_milliseconds": 200 },
         "rules": [
           {
-            "description": "Chrome: cmd+ctrl+[ / ] to move tab left/right",
+            "description": "Chrome: tab nav + ctrl+g to cmd+shift+a",
             "manipulators": [
+              {
+                "conditions": [
+                  {
+                    "bundle_identifiers": [
+                      "^com\\.google\\.Chrome$",
+                      "^com\\.google\\.Chrome\\.beta$"
+                    ],
+                    "type": "frontmost_application_if"
+                  }
+                ],
+                "from": {
+                  "key_code": "g",
+                  "modifiers": {
+                    "mandatory": ["control"],
+                    "optional": ["any"]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "a",
+                    "modifiers": ["left_command", "left_shift"]
+                  }
+                ],
+                "type": "basic"
+              },
               {
                 "conditions": [
                   {
