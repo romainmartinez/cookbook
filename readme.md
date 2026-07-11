@@ -70,6 +70,7 @@ ln -s ~/Documents/cookbook/opencode/opencode.jsonc ~/.config/opencode/opencode.j
 ln -s ~/Documents/cookbook/opencode/tui.jsonc ~/.config/opencode/tui.jsonc
 ln -s ~/Documents/cookbook/opencode/AGENTS.md ~/.config/opencode/AGENTS.md
 ln -s ~/Documents/cookbook/opencode/commands ~/.config/opencode/commands
+ln -s ~/Documents/cookbook/opencode/skills ~/.config/opencode/skills
 ```
 
 **Pi**
