@@ -21,8 +21,7 @@
                 "from": {
                   "key_code": "g",
                   "modifiers": {
-                    "mandatory": ["control"],
-                    "optional": ["any"]
+                    "mandatory": ["control"]
                   }
                 },
                 "to": [
