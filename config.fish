@@ -17,6 +17,8 @@ set -gx VISUAL nvim
 # opencode (until supported in its config files)
 set -gx OPENCODE_DISABLE_TERMINAL_TITLE 1
 
+set -gx HOMEBREW_NO_UPGRADE_AUTO_UPDATES_CASKS 1
+
 # ─── MANULIFE (proxy + certificates) ─────────────────────────────────
 set -l proxy_url "http://127.0.0.1:9000"
 set -gx HTTP_PROXY $proxy_url
