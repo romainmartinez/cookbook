@@ -1,0 +1,12 @@
+onboarding = false
+[theme]
+name = "tokyo-night"
+
+[ui.toast]
+delivery = "system"
+
+[keys.indexed]
+tabs = "ctrl" # ctrl+1..9 jumps to tab directly, no prefix
+
+[experimental]
+pane_history = true

@@ -105,6 +105,12 @@ Install extensions from `editors/vscode-extensions.txt`.
 gh repo clone romainmartinez/yazi.git ~/.config/yazi
 ```
 
+**Herdr**
+```sh
+ln -s ~/Documents/cookbook/herdr/config.toml ~/.config/herdr/config.toml
+herdr integration install opencode
+```
+
 ## GUI Apps
 
 **Productivity**
