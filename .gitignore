@@ -1,3 +1,6 @@
 # temp folder
 .history
 .DS_Store
+
+# raycast config exports (large binary blobs)
+raycast/*.rayconfig
