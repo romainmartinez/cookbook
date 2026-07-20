@@ -1,14 +1,6 @@
 # ─── PATH ────────────────────────────────────────────────────────────
-fish_add_path /opt/homebrew/bin
-fish_add_path /opt/homebrew/sbin
 fish_add_path $HOME/.local/bin
 fish_add_path $HOME/.cargo/bin
-
-# pnpm
-set -gx PNPM_HOME $HOME/Library/pnpm
-if not string match -q -- $PNPM_HOME $PATH
-    set -gx PATH "$PNPM_HOME" $PATH
-end
 
 # ─── ENVIRONMENT ─────────────────────────────────────────────────────
 set -gx EDITOR nvim
@@ -16,20 +8,6 @@ set -gx VISUAL nvim
 
 # opencode (until supported in its config files)
 set -gx OPENCODE_DISABLE_TERMINAL_TITLE 1
-
-set -gx HOMEBREW_NO_UPGRADE_AUTO_UPDATES_CASKS 1
-
-# ─── MANULIFE (proxy + certificates) ─────────────────────────────────
-set -l proxy_url "http://127.0.0.1:9000"
-set -gx HTTP_PROXY $proxy_url
-set -gx HTTPS_PROXY $proxy_url
-set -gx NO_PROXY "localhost,127.0.0.1"
-
-set -gx CERT_FILE /usr/local/share/ca-certificates/manulife-cacert.pem
-set -gx PIP_CERT $CERT_FILE
-set -gx REQUESTS_CA_BUNDLE $CERT_FILE
-set -gx SSL_CERT_FILE $CERT_FILE
-set -gx NODE_EXTRA_CA_CERTS $CERT_FILE
 
 # ─── ALIASES ─────────────────────────────────────────────────────────
 alias n='nvim'
@@ -41,9 +19,6 @@ alias nr='npm run'
 # lsd (modern ls replacement)
 alias ls='lsd'
 alias l='ls -l --blocks date,size,name'
-
-# homebrew cleanup
-alias brewclean='brew update && yes | brew upgrade && brew autoremove && brew cleanup; brew doctor'
 
 # ─── TOOL INITIALIZATION ─────────────────────────────────────────────
 zoxide init fish | source
@@ -71,12 +46,13 @@ function fish_prompt
     set_color $fish_color_cwd
     echo -n (prompt_pwd)
     if git rev-parse --git-dir &>/dev/null
-        if test -n "$(git status --porcelain)"
-            set_color yellow
-            echo -n ' ●'
-        else
+        if git diff-index --quiet HEAD -- 2>/dev/null
+            and test -z (git ls-files --others --exclude-standard | string collect)
             set_color green
             echo -n ' ✓'
+        else
+            set_color yellow
+            echo -n ' ●'
         end
     end
     set_color normal
@@ -94,10 +70,3 @@ function y
     rm -f -- "$tmp"
 end
 
-# notify when a long-running command finishes
-function __notify_done --on-event fish_postexec
-    set -l cmd_duration_sec (math $CMD_DURATION / 1000)
-    if test $cmd_duration_sec -gt 5
-        osascript -e "display notification \"$argv[1]\" with title \"Done in $cmd_duration_sec s\" sound name \"Blow\""
-    end
-end

@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+# Executable version of omarchy-menu-keybindings.
+# Shows all Hyprland binds in walker; Enter dispatches the selected action.
+
+set -euo pipefail
+
+mod_name() {
+  local m=$1 out=()
+  (( m & 64 )) && out+=(SUPER)
+  (( m & 4  )) && out+=(CTRL)
+  (( m & 8  )) && out+=(ALT)
+  (( m & 1  )) && out+=(SHIFT)
+  (IFS=+; printf '%s' "${out[*]-}")
+}
+
+# Build entries: display <US> dispatcher <US> arg   (US = 0x1f, safe delimiter)
+entries=$(
+  hyprctl -j binds | jq -r '
+    .[]
+    | select(.dispatcher != "" and .dispatcher != null)
+    | select(.mouse == false)
+    | select((.key // "") | startswith("XF86") | not)
+    | select(.dispatcher != "workspace")
+    | select(.dispatcher != "movetoworkspace")
+    | select(.dispatcher != "movetoworkspacesilent")
+    | [(.modmask|tostring), .key, (.description // ""), .dispatcher, (.arg // "")]
+    | @tsv
+  ' | while IFS=$'\t' read -r mm key desc disp arg; do
+      combo=$(mod_name "$mm")
+      [[ -n "$combo" && -n "$key" ]] && combo="$combo + $key" || combo="${combo}${key}"
+      label=${desc:-$disp $arg}
+      printf '%-38s → %s\x1f%s\x1f%s\n' "$combo" "$label" "$disp" "$arg"
+    done
+)
+
+height=$(hyprctl monitors -j | jq -r '.[] | select(.focused == true) | .height')
+menu_height=$((height * 40 / 100))
+
+pick=$(cut -d$'\x1f' -f1 <<<"$entries" | sort -u \
+  | walker --dmenu -p 'Keybindings (Enter to run)' --width 900 --height "$menu_height") || exit 0
+[[ -z "$pick" ]] && exit 0
+
+IFS=$'\x1f' read -r _ disp arg < <(grep -F -- "$pick"$'\x1f' <<<"$entries" | head -n1)
+[[ -z "${disp:-}" ]] && exit 0
+
+hyprctl dispatch -- "$disp" "$arg"

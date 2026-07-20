@@ -47,17 +47,17 @@ Install [brew](https://brew.sh/), then use it to install everything below.
 
 **Ghostty**
 ```sh
-ln -s ~/Documents/cookbook/ghostty.config ~/.config/ghostty/config
+ln -sfn ~/Documents/cookbook/ghostty/mac.config ~/.config/ghostty/config
 ```
 
 **Fish**
 ```sh
-ln -s ~/Documents/cookbook/config.fish ~/.config/fish/config.fish
+ln -sfn ~/Documents/cookbook/fish/mac.fish ~/.config/fish/config.fish
 ```
 
 **Television**
 ```sh
-ln -s ~/Documents/cookbook/television ~/.config/television
+ln -sfn ~/Documents/cookbook/television ~/.config/television
 ```
 
 ## Dev Tools
@@ -69,19 +69,11 @@ Set up both accounts:
 
 **Opencode**
 ```sh
-ln -s ~/Documents/cookbook/opencode/opencode.jsonc ~/.config/opencode/opencode.jsonc
-ln -s ~/Documents/cookbook/opencode/tui.jsonc ~/.config/opencode/tui.jsonc
-ln -s ~/Documents/cookbook/opencode/AGENTS.md ~/.config/opencode/AGENTS.md
-ln -s ~/Documents/cookbook/opencode/commands ~/.config/opencode/commands
-ln -s ~/Documents/cookbook/opencode/skills ~/.config/opencode/skills
-```
-
-**Pi**
-```sh
-ln -s ~/Documents/cookbook/pi/models.json ~/.pi/agent/models.json
-ln -s ~/Documents/cookbook/pi/settings.json ~/.pi/agent/settings.json
-ln -s ~/Documents/cookbook/pi/keybindings.json ~/.pi/agent/keybindings.json
-ln -s ~/Documents/cookbook/pi/extensions ~/.pi/agent/extensions
+ln -sfn ~/Documents/cookbook/opencode/opencode.jsonc ~/.config/opencode/opencode.jsonc
+ln -sfn ~/Documents/cookbook/opencode/tui.jsonc ~/.config/opencode/tui.jsonc
+ln -sfn ~/Documents/cookbook/opencode/AGENTS.md ~/.config/opencode/AGENTS.md
+ln -sfn ~/Documents/cookbook/opencode/commands ~/.config/opencode/commands
+ln -sfn ~/Documents/cookbook/opencode/skills ~/.config/opencode/skills
 ```
 
 **Neovim (LazyVim)**
@@ -91,14 +83,14 @@ gh repo clone romainmartinez/lazyvim.git ~/.config/nvim
 
 **Zed**
 ```sh
-ln -s ~/Documents/cookbook/editors/zed-settings.json ~/.config/zed/settings.json
-ln -s ~/Documents/cookbook/editors/zed-keymaps.json ~/.config/zed/keymap.json
+ln -sfn ~/Documents/cookbook/editors/zed-settings.json ~/.config/zed/settings.json
+ln -sfn ~/Documents/cookbook/editors/zed-keymaps.json ~/.config/zed/keymap.json
 ```
 
 **VS Code**
 ```sh
-ln -s ~/Documents/cookbook/editors/vscode-settings.json ~/Library/Application\ Support/Code/User/settings.json
-ln -s ~/Documents/cookbook/editors/vscode-keybindings.json ~/Library/Application\ Support/Code/User/keybindings.json
+ln -sfn ~/Documents/cookbook/editors/vscode-settings.json ~/Library/Application\ Support/Code/User/settings.json
+ln -sfn ~/Documents/cookbook/editors/vscode-keybindings.json ~/Library/Application\ Support/Code/User/keybindings.json
 ```
 
 Install extensions from `editors/vscode-extensions.txt`.
@@ -110,7 +102,7 @@ gh repo clone romainmartinez/yazi.git ~/.config/yazi
 
 **Herdr**
 ```sh
-ln -s ~/Documents/cookbook/herdr/config.toml ~/.config/herdr/config.toml
+ln -sfn ~/Documents/cookbook/herdr/config.toml ~/.config/herdr/config.toml
 herdr integration install opencode
 ```
 
@@ -125,7 +117,7 @@ herdr integration install opencode
 **Utilities**
 - karabiner-elements
   ```sh
-  ln -s ~/Documents/cookbook/karabiner.json ~/.config/karabiner/karabiner.json
+  ln -sfn ~/Documents/cookbook/karabiner.json ~/.config/karabiner/karabiner.json
   ```
 - thaw
 
