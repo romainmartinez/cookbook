@@ -1,10 +1,13 @@
-# Mac Setup Instructions
+# Setup Instructions
 
 > [!NOTE]
 > Why not an automated script?
 >
-> Because setting up a new Mac is a great opportunity to review and
+> Because setting up a new computer is a great opportunity to review and
 > reconsider which applications and settings you actually want to use.
+
+Most instructions target a mac computer.
+In case of setting up a omarchy server, use `/omarchy`.
 
 ## Homebrew
 
