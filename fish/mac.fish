@@ -23,7 +23,7 @@ set -gx SSL_CERT_FILE $CERT_FILE
 set -gx NODE_EXTRA_CA_CERTS $CERT_FILE
 
 # ─── ALIASES ─────────────────────────────────────────────────────────
-alias sysclean='brew update && yes | brew upgrade && brew autoremove && brew cleanup; brew doctor'
+alias sysclean='brew update && brew upgrade --yes && brew autoremove && brew cleanup && brew doctor'
 
 # ─── FUNCTIONS ───────────────────────────────────────────────────────
 function __notify_done --on-event fish_postexec
