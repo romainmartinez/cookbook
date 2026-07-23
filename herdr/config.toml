@@ -33,4 +33,4 @@ hide_tab_bar_when_single_tab = true
 rows = [["state_icon", "workspace", "tab"]]
 
 [experimental]
-pane_history = true
+pane_history = false
