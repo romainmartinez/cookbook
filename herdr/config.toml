@@ -5,8 +5,32 @@ name = "tokyo-night"
 [ui.toast]
 delivery = "system"
 
+[keys]
+prefix = "ctrl+;"
+rename_tab = "prefix+shift+t"
+
+[[keys.command]]
+key = "ctrl+g"
+type = "pane"
+command = "lazygit"
+
+[[keys.command]]
+key = "prefix+t"
+type = "popup"
+command = "fish"
+width = "90%"
+height = "90%"
+
 [keys.indexed]
-tabs = "ctrl" # ctrl+1..9 jumps to tab directly, no prefix
+# quickly switch between workspaces and tabs with numbers
+workspaces = "ctrl+shift"
+tabs = "ctrl"
+
+[ui]
+hide_tab_bar_when_single_tab = true
+
+[ui.sidebar.agents]
+rows = [["state_icon", "workspace", "tab"]]
 
 [experimental]
 pane_history = true
