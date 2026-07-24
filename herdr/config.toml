@@ -34,3 +34,6 @@ rows = [["state_icon", "workspace", "tab"]]
 
 [experimental]
 pane_history = false
+
+[ui.sound]
+enabled = true
