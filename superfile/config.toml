@@ -1,0 +1,5 @@
+theme = "tokyonight"
+zoxide_support = true
+
+# Silence warnings about fields not present in this file.
+ignore_missing_fields = true

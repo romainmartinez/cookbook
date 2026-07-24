@@ -6,6 +6,9 @@ fish_add_path $HOME/.cargo/bin
 set -gx EDITOR nvim
 set -gx VISUAL nvim
 
+# code/projects folder (this repo lives at $CODE_FOLDER/cookbook)
+set -gx CODE_FOLDER $HOME/Documents
+
 # opencode (until supported in its config files)
 set -gx OPENCODE_DISABLE_TERMINAL_TITLE 1
 
@@ -13,6 +16,7 @@ set -gx OPENCODE_DISABLE_TERMINAL_TITLE 1
 alias n='nvim'
 alias oc='opencode'
 alias lg='lazygit'
+alias p='spf'
 alias gha='gh auth switch'
 alias nr='npm run'
 
@@ -57,16 +61,5 @@ function fish_prompt
     end
     set_color normal
     echo -n ' > '
-end
-
-# ─── FUNCTIONS ───────────────────────────────────────────────────────
-# change working directory when quitting yazi
-function y
-    set tmp (mktemp -t "yazi-cwd.XXXXXX")
-    yazi $argv --cwd-file="$tmp"
-    if read -z cwd <"$tmp"; and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
-        builtin cd -- "$cwd"
-    end
-    rm -f -- "$tmp"
 end
 

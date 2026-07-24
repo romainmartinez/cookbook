@@ -8,7 +8,7 @@ use this file for the Linux-specific bits it doesn't cover.
 
 - Only track files in this repo that differ from Omarchy defaults. Before
   adding anything to git, `diff` against `~/.local/share/omarchy/config/`.
-- **Never** track files under `~/.config/omarchy/` — pacman-managed, gets
+- Never track files under `~/.config/omarchy/` — pacman-managed, gets
   overwritten on update.
 
 ## Sudo
@@ -20,51 +20,45 @@ sudo chmod 440 /etc/sudoers.d/rom-nopasswd
 
 ## Keyboard
 
-Replaces the karabiner setup from the root.
+- hypr (replaces the karabiner setup from the root)
+  ```sh
+  ln -sfn $CODE_FOLDER/cookbook/omarchy/hypr/input.conf ~/.config/hypr/input.conf
+  ln -sfn $CODE_FOLDER/cookbook/omarchy/hypr/bindings.conf ~/.config/hypr/bindings.conf
+  ```
+- keyd (remaps; install the `keyd` package first)
+  ```sh
+  sudo ln -sfn $CODE_FOLDER/cookbook/omarchy/keyd/default.conf /etc/keyd/default.conf
+  sudo systemctl enable --now keyd
+  ```
 
-```sh
-ln -sfn ~/Documents/cookbook/omarchy/hypr/input.conf ~/.config/hypr/input.conf
-ln -sfn ~/Documents/cookbook/omarchy/hypr/bindings.conf ~/.config/hypr/bindings.conf
-```
+## Setup
 
-keyd remaps
+The root readme some symlinks configs into macOS `~/Library/Application Support`.
+On Linux they live under `~/.config`.
 
-```sh
-sudo ln -sfn ~/Documents/cookbook/omarchy/keyd/default.conf /etc/keyd/default.conf
-sudo systemctl enable --now keyd
-```
-
-## Ghostty
-
-```sh
-ln -sfn ~/Documents/cookbook/ghostty/linux.config ~/.config/ghostty/config
-```
-
-## Custom scripts
-
-```sh
-mkdir -p ~/.local/bin
-ln -sfn ~/Documents/cookbook/omarchy/bin/omarchy-menu-keybindings-run ~/.local/bin/omarchy-menu-keybindings-run
-```
-
-## Installs
-
-Omarchy ships a curated base. These are the additions on top.
-
-**Keyboard**
-- keyd
-
-**Walker providers**
-- elephant-all
-
-**Server mode**
-- tailscale
-- mosh
-- herdr-bin
+- ghostty
+  ```sh
+  ln -sfn $CODE_FOLDER/cookbook/ghostty/linux.config ~/.config/ghostty/config
+  ```
+- superfile
+  ```sh
+  ln -sfn $CODE_FOLDER/cookbook/superfile/config.toml ~/.config/superfile/config.toml
+  ```
+- lazygit
+  ```sh
+  ln -sfn $CODE_FOLDER/cookbook/lazygit/config.yml ~/.config/lazygit/config.yml
+  ```
+- elephant-all (walker provider, no config)
+- custom scripts
+  ```sh
+  mkdir -p ~/.local/bin
+  ln -sfn $CODE_FOLDER/cookbook/omarchy/bin/omarchy-menu-keybindings-run ~/.local/bin/omarchy-menu-keybindings-run
+  ```
 
 ## Server mode
 
-Turns this box into the always-on remote dev server
+Turns this box into the always-on remote dev server.
+Install first: `tailscale`, `mosh`, `herdr-bin`.
 
 ### Prevent sleep
 
@@ -132,13 +126,13 @@ curl -fsSL https://getmoshi.app/install.sh | sh   # -> ~/.local/bin
 
 Two pairings, both need the iPhone Moshi app on the tailnet:
 
-**SSH/Mosh terminal pairing:**
+SSH/Mosh terminal pairing:
 ```sh
 moshi-hook host setup --host omarchy --name "Dell XPS"
 # scan QR from iPhone Moshi app
 ```
 
-**Agent-hook pairing** (workspace switcher, inbox, approvals):
+Agent-hook pairing (workspace switcher, inbox, approvals):
 ```sh
 # Get token from iPhone Moshi app: Settings -> Hooks
 moshi-hook pair --token <token>
@@ -166,7 +160,7 @@ git fetch origin
 git reset origin/main
 ```
 
-**Gotcha:** Obsidian Sync excludes dotfiles and non-markdown by default. After
+Gotcha: Obsidian Sync excludes dotfiles and non-markdown by default. After
 `git reset origin/main` the diff will show `.gitignore`, `.obsidian.vimrc`,
 plugin files, and `.typ`/`.py`/`.csv`/`.html` as "deleted" locally. Restore
 from git, then enable "Sync all other file types" in Obsidian Sync settings.

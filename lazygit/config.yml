@@ -1,0 +1,16 @@
+gui:
+  showNumstatInFilesView: true
+git:
+  pagers:
+    - colorArg: always
+      pager: delta --paging=never --line-numbers --wrap-max-lines unlimited
+    - colorArg: always
+      pager: delta --paging=never --side-by-side --line-numbers --wrap-max-lines unlimited
+    - colorArg: always
+      pager: cat
+customCommands:
+  - key: "<c-s>"
+    context: "global"
+    description: "Show total line stats (working tree vs HEAD)"
+    command: 'git diff HEAD --shortstat'
+    output: popup

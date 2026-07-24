@@ -13,122 +13,107 @@ In case of setting up a omarchy server, use `/omarchy`.
 
 Install [brew](https://brew.sh/), then use it to install everything below.
 
-## CLI Tools
+## Terminal & Shell
 
-**Shell**
 - fish
+  ```sh
+  ln -sfn $CODE_FOLDER/cookbook/fish/mac.fish ~/.config/fish/config.fish
+  ```
+- ghostty
+  ```sh
+  ln -sfn $CODE_FOLDER/cookbook/ghostty/mac.config ~/.config/ghostty/config
+  ```
+- television
+  ```sh
+  ln -sfn $CODE_FOLDER/cookbook/television ~/.config/television
+  ```
 
-**Search & navigation**
-- television (primary picker, replaces fzf bindings in fish)
-- fzf (kept as a dependency for other tools)
+## Search & Navigation
+
+- fzf
 - ripgrep
 - fd
 - zoxide
 
-**File management**
+## File Management
+
 - lsd
-- yazi
+- superfile (config file symlinked individually; runtime state and default hotkeys stay in the same dir)
+  ```sh
+  ln -sfn $CODE_FOLDER/cookbook/superfile/config.toml ~/Library/Application\ Support/superfile/config.toml
+  ```
 
-**Dev**
-- gh
-- uv
-- lazygit
-- mole
-- curl
-
-**Monitoring & help**
-- btop
-- tldr
-
-**Fonts**
-- font-jetbrains-mono-nerd-font
-
-## Terminal & Shell
-
-**Ghostty**
-```sh
-ln -sfn ~/Documents/cookbook/ghostty/mac.config ~/.config/ghostty/config
-```
-
-**Fish**
-```sh
-ln -sfn ~/Documents/cookbook/fish/mac.fish ~/.config/fish/config.fish
-```
-
-**Television**
-```sh
-ln -sfn ~/Documents/cookbook/television ~/.config/television
-```
+Missing features from the previous Yazi setup (no native/config equivalent):
+- [ ] cd on exit
+- [ ] Git status overlay on files/folders. No superfile plugin exists; use lazygit separately.
+- [ ] Television integration
+  - [ ] Content grep to nvim at match (was `<C-f>` via television). superfile search only filters filenames in the current dir; run `tv` from the shell instead.
+- [ ] nvim integration (was yazi.nvim `<leader>e` / `<leader>E`). Buildable with `spf --chooser-file` glue in the nvim repo, not a drop-in plugin.
+  - [ ] update nvim repo to drop yazi
+  - [ ] should we do it in herdr instead?
 
 ## Dev Tools
 
-**GitHub CLI (gh)**
-Set up both accounts:
-- Personal account
-- Work account
+- uv
+- mole
+- curl
+- gh
+- opencode
+  ```sh
+  ln -sfn $CODE_FOLDER/cookbook/opencode/opencode.jsonc ~/.config/opencode/opencode.jsonc
+  ln -sfn $CODE_FOLDER/cookbook/opencode/tui.jsonc ~/.config/opencode/tui.jsonc
+  ln -sfn $CODE_FOLDER/cookbook/opencode/AGENTS.md ~/.config/opencode/AGENTS.md
+  ln -sfn $CODE_FOLDER/cookbook/opencode/commands ~/.config/opencode/commands
+  ln -sfn $CODE_FOLDER/cookbook/opencode/skills ~/.config/opencode/skills
+  ```
+- lazygit (config file only; runtime state in `state.yml` stays in the same dir)
+  ```sh
+  ln -sfn $CODE_FOLDER/cookbook/lazygit/config.yml ~/Library/Application\ Support/lazygit/config.yml
+  ```
+- neovim (LazyVim)
+  ```sh
+  gh repo clone romainmartinez/lazyvim.git ~/.config/nvim
+  ```
+- zed
+  ```sh
+  ln -sfn $CODE_FOLDER/cookbook/editors/zed-settings.json ~/.config/zed/settings.json
+  ln -sfn $CODE_FOLDER/cookbook/editors/zed-keymaps.json ~/.config/zed/keymap.json
+  ```
+- vscode (install extensions from `editors/vscode-extensions.txt`)
+  ```sh
+  ln -sfn $CODE_FOLDER/cookbook/editors/vscode-settings.json ~/Library/Application\ Support/Code/User/settings.json
+  ln -sfn $CODE_FOLDER/cookbook/editors/vscode-keybindings.json ~/Library/Application\ Support/Code/User/keybindings.json
+  ```
+- herdr
+  ```sh
+  ln -sfn $CODE_FOLDER/cookbook/herdr/config.toml ~/.config/herdr/config.toml
+  herdr integration install opencode
+  ```
 
-**Opencode**
-```sh
-ln -sfn ~/Documents/cookbook/opencode/opencode.jsonc ~/.config/opencode/opencode.jsonc
-ln -sfn ~/Documents/cookbook/opencode/tui.jsonc ~/.config/opencode/tui.jsonc
-ln -sfn ~/Documents/cookbook/opencode/AGENTS.md ~/.config/opencode/AGENTS.md
-ln -sfn ~/Documents/cookbook/opencode/commands ~/.config/opencode/commands
-ln -sfn ~/Documents/cookbook/opencode/skills ~/.config/opencode/skills
-```
+## Monitoring & Help
 
-**Neovim (LazyVim)**
-```sh
-gh repo clone romainmartinez/lazyvim.git ~/.config/nvim
-```
+- btop
+- tldr
 
-**Zed**
-```sh
-ln -sfn ~/Documents/cookbook/editors/zed-settings.json ~/.config/zed/settings.json
-ln -sfn ~/Documents/cookbook/editors/zed-keymaps.json ~/.config/zed/keymap.json
-```
+## Fonts
 
-**VS Code**
-```sh
-ln -sfn ~/Documents/cookbook/editors/vscode-settings.json ~/Library/Application\ Support/Code/User/settings.json
-ln -sfn ~/Documents/cookbook/editors/vscode-keybindings.json ~/Library/Application\ Support/Code/User/keybindings.json
-```
-
-Install extensions from `editors/vscode-extensions.txt`.
-
-**Yazi**
-```sh
-gh repo clone romainmartinez/yazi.git ~/.config/yazi
-```
-
-**Herdr**
-```sh
-ln -sfn ~/Documents/cookbook/herdr/config.toml ~/.config/herdr/config.toml
-herdr integration install opencode
-```
+- font-jetbrains-mono-nerd-font
 
 ## GUI Apps
 
-**Productivity**
-- raycast (remove vscode, chrome, edge, zoom defaults)
+- raycast
+  - then remove vscode, chrome, edge, zoom defaults or other apps that are not needed
 - cleanshot
 - obsidian
 - todoist
-
-**Utilities**
 - karabiner-elements
   ```sh
-  ln -sfn ~/Documents/cookbook/karabiner.json ~/.config/karabiner/karabiner.json
+  ln -sfn $CODE_FOLDER/cookbook/karabiner.json ~/.config/karabiner/karabiner.json
   ```
 - thaw
-
-**Browsers**
 - chrome
-
-**Media & design**
 - spotify
 - figma
-
-**Microsoft**
 - teams
 - word, excel, powerpoint
 
