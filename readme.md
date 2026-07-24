@@ -70,19 +70,10 @@ Missing features from the previous Yazi setup (no native/config equivalent):
   ```sh
   ln -sfn $CODE_FOLDER/cookbook/lazygit/config.yml ~/Library/Application\ Support/lazygit/config.yml
   ```
-- neovim (LazyVim)
+- neovim (LazyVim).
+`editors/` kept for reference, but not used in the current setup.
   ```sh
   gh repo clone romainmartinez/lazyvim.git ~/.config/nvim
-  ```
-- zed
-  ```sh
-  ln -sfn $CODE_FOLDER/cookbook/editors/zed-settings.json ~/.config/zed/settings.json
-  ln -sfn $CODE_FOLDER/cookbook/editors/zed-keymaps.json ~/.config/zed/keymap.json
-  ```
-- vscode (install extensions from `editors/vscode-extensions.txt`)
-  ```sh
-  ln -sfn $CODE_FOLDER/cookbook/editors/vscode-settings.json ~/Library/Application\ Support/Code/User/settings.json
-  ln -sfn $CODE_FOLDER/cookbook/editors/vscode-keybindings.json ~/Library/Application\ Support/Code/User/keybindings.json
   ```
 - herdr
   ```sh
