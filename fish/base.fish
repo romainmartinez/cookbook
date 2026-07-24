@@ -28,6 +28,19 @@ alias l='ls -l --blocks date,size,name'
 zoxide init fish | source
 tv init fish | source
 
+# superfile cd_on_quit: cd shell to last dir open in superfile on exit
+function spf
+    set -l spf_last_dir "$HOME/Library/Application Support/superfile/lastdir"
+    if test (uname -s) != Darwin
+        set spf_last_dir "$HOME/.local/state/superfile/lastdir"
+    end
+    command spf $argv
+    if test -f "$spf_last_dir"
+        source "$spf_last_dir"
+        rm -f -- "$spf_last_dir" >/dev/null
+    end
+end
+
 # ─── KEYBINDINGS ─────────────────────────────────────────────────────
 fish_vi_key_bindings
 

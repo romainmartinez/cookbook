@@ -1,5 +1,15 @@
-theme = "tokyonight"
-zoxide_support = true
+# visual
+theme = "tokyonight-storm"
+enable_file_preview_border = true
+sidebar_width = 0
+file_panel_extra_columns = 2
 
-# Silence warnings about fields not present in this file.
+# behavior
+editor = "nvim"
+dir_editor = "nvim"
+
+zoxide_support = true
+cd_on_quit = true
+
+# silence if we are missing fields in this config
 ignore_missing_fields = true

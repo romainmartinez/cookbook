@@ -15,6 +15,13 @@ type = "pane"
 command = "lazygit"
 
 [[keys.command]]
+key = "ctrl+e"
+type = "popup"
+command = "spf"
+width = "90%"
+height = "90%"
+
+[[keys.command]]
 key = "prefix+t"
 type = "popup"
 command = "fish"

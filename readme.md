@@ -38,19 +38,11 @@ Install [brew](https://brew.sh/), then use it to install everything below.
 ## File Management
 
 - lsd
-- superfile (config file symlinked individually; runtime state and default hotkeys stay in the same dir)
+- superfile
   ```sh
   ln -sfn $CODE_FOLDER/cookbook/superfile/config.toml ~/Library/Application\ Support/superfile/config.toml
+  ln -sfn $CODE_FOLDER/cookbook/superfile/theme/tokyonight-storm.toml ~/Library/Application\ Support/superfile/theme/tokyonight-storm.toml
   ```
-
-Missing features from the previous Yazi setup (no native/config equivalent):
-- [ ] cd on exit
-- [ ] Git status overlay on files/folders. No superfile plugin exists; use lazygit separately.
-- [ ] Television integration
-  - [ ] Content grep to nvim at match (was `<C-f>` via television). superfile search only filters filenames in the current dir; run `tv` from the shell instead.
-- [ ] nvim integration (was yazi.nvim `<leader>e` / `<leader>E`). Buildable with `spf --chooser-file` glue in the nvim repo, not a drop-in plugin.
-  - [ ] update nvim repo to drop yazi
-  - [ ] should we do it in herdr instead?
 
 ## Dev Tools
 
@@ -66,11 +58,11 @@ Missing features from the previous Yazi setup (no native/config equivalent):
   ln -sfn $CODE_FOLDER/cookbook/opencode/commands ~/.config/opencode/commands
   ln -sfn $CODE_FOLDER/cookbook/opencode/skills ~/.config/opencode/skills
   ```
-- lazygit (config file only; runtime state in `state.yml` stays in the same dir)
+- lazygit
   ```sh
   ln -sfn $CODE_FOLDER/cookbook/lazygit/config.yml ~/Library/Application\ Support/lazygit/config.yml
   ```
-- neovim (LazyVim).
+- nvim
 `editors/` kept for reference, but not used in the current setup.
   ```sh
   gh repo clone romainmartinez/lazyvim.git ~/.config/nvim
