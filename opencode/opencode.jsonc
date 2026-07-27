@@ -22,6 +22,19 @@
         "apiKey": "{env:AZURE_FOUNDRY_API_KEY}",
       },
       "models": {
+        "claude-opus-5": {
+          "name": "Claude Opus 5 (Azure)",
+          "limit": {
+            "context": 1000000,
+            "output": 128000,
+          },
+          "cost": {
+            "input": 5,
+            "output": 25,
+            "cache_read": 0.5,
+            "cache_write": 6.25,
+          },
+        },
         "claude-opus-4-8": {
           "name": "Claude Opus 4.8 (Azure)",
           "limit": {
@@ -33,12 +46,6 @@
             "output": 25,
             "cache_read": 0.5,
             "cache_write": 6.25,
-            "context_over_200k": {
-              "input": 10,
-              "output": 37.5,
-              "cache_read": 1,
-              "cache_write": 12.5,
-            },
           },
         },
       },
