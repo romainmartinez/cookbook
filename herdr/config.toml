@@ -41,6 +41,7 @@ rows = [["state_icon", "workspace", "tab"]]
 
 [experimental]
 pane_history = false
+kitty_graphics = true
 
 [ui.sound]
 enabled = true
