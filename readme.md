@@ -50,6 +50,7 @@ Install [brew](https://brew.sh/), then use it to install everything below.
 - mole
 - curl
 - gh
+- tuicr
 - opencode
   ```sh
   ln -sfn $CODE_FOLDER/cookbook/opencode/opencode.jsonc ~/.config/opencode/opencode.jsonc
@@ -131,25 +132,32 @@ defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
 # Mouse: increase speed
 defaults write -g com.apple.mouse.scaling -float 2.5
 
-# Dock: autohide, tiny tiles, magnification, minimize to app, no recents
+# Dock: autohide without delay, tiny tiles, magnification, scale minimize, no launch animations or recents
 defaults write com.apple.dock autohide -bool true
+defaults write com.apple.dock autohide-delay -float 0
+defaults write com.apple.dock autohide-time-modifier -int 0
 defaults write com.apple.dock tilesize -int 25
 defaults write com.apple.dock magnification -bool true
 defaults write com.apple.dock largesize -int 85
-defaults write com.apple.dock minimize-to-application -bool true
+defaults write com.apple.dock mineffect -string scale
+defaults write com.apple.dock minimize-to-application -bool false
+defaults write com.apple.dock launchanim -bool false
 defaults write com.apple.dock show-recents -bool false
 
-# Spaces: no auto-rearrange, no drag-to-mission-control
+# Mission Control: no auto-rearrange, group by app, no drag-to-mission-control
 defaults write com.apple.dock mru-spaces -bool false
+defaults write com.apple.dock expose-group-apps -bool true
 defaults write com.apple.dock enterMissionControlByTopWindowDrag -bool false
 
-# Window Manager: disable tiling, hide desktop on click, hide widgets, group by app
+# Windows: fill on title bar double-click
+defaults write -g AppleActionOnDoubleClick -string Fill
+
+# Window Manager: disable tiling, hide desktop on click, hide widgets
 defaults write com.apple.WindowManager EnableTilingByEdgeDrag -bool false
 defaults write com.apple.WindowManager EnableTilingOptionAccelerator -bool false
 defaults write com.apple.WindowManager EnableTopTilingByEdgeDrag -bool false
 defaults write com.apple.WindowManager HideDesktop -bool true
 defaults write com.apple.WindowManager StandardHideWidgets -bool true
-defaults write com.apple.WindowManager AppWindowGroupingBehavior -bool true
 
 # Finder: column view, open new windows at /, show path bar, show extensions
 defaults write com.apple.finder FXPreferredViewStyle -string clmv
