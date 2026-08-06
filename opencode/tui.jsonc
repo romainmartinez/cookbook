@@ -34,8 +34,8 @@
     // "input_submit": "ctrl+enter",
     "input_newline": "shift+return,ctrl+return,alt+return",
     // ─── Line navigation ───
-    "input_line_home": "ctrl+a",
-    "input_line_end": "ctrl+e",
+    "input_line_home": "ctrl+a,super+left",
+    "input_line_end": "ctrl+e,super+right",
     // ─── Word navigation ───
     "input_word_forward": "alt+f,alt+right,ctrl+right",
     "input_word_backward": "alt+b,alt+left,ctrl+left",
