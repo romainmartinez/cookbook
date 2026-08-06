@@ -1,13 +1,13 @@
 gui:
   showNumstatInFilesView: true
 git:
-  pagers:
+  diffRenderers:
     - colorArg: always
-      pager: delta --paging=never --line-numbers --wrap-max-lines unlimited
+      command: delta --paging=never --line-numbers --wrap-max-lines unlimited
     - colorArg: always
-      pager: delta --paging=never --side-by-side --line-numbers --wrap-max-lines unlimited
+      command: delta --paging=never --side-by-side --line-numbers --wrap-max-lines unlimited
     - colorArg: always
-      pager: cat
+      command: cat
 customCommands:
   - key: "<c-s>"
     context: "global"
