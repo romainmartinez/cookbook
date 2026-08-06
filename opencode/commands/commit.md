@@ -22,17 +22,14 @@ Rules:
 
 Live results of `git diff --cached`:
 <git-diff-cached>
-!`sh -c 'out=$(git diff --cached); if test -n "$out"; then printf "%s\n" "$out"; else printf "[no staged changes]\n"; fi'`
-</git-diff-cached>
+!`sh -c 'out=$(git diff --cached); if test -n "$out"; then printf "%s\n" "$out"; else printf "[no staged changes]\n"; fi'`</git-diff-cached>
 
 Live results of `git diff`:
 <git-diff>
-!`sh -c 'out=$(git diff); if test -n "$out"; then printf "%s\n" "$out"; else printf "[no unstaged changes]\n"; fi'`
-</git-diff>
+!`sh -c 'out=$(git diff); if test -n "$out"; then printf "%s\n" "$out"; else printf "[no unstaged changes]\n"; fi'`</git-diff>
 
 ## Changed files
 
 Live results of `git status --short`:
 <git-status>
-!`sh -c 'out=$(git status --short); if test -n "$out"; then printf "%s\n" "$out"; else printf "[clean worktree]\n"; fi'`
-</git-status>
+!`sh -c 'out=$(git status --short); if test -n "$out"; then printf "%s\n" "$out"; else printf "[clean worktree]\n"; fi'`</git-status>
