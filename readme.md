@@ -7,7 +7,7 @@
 > reconsider which applications and settings you actually want to use.
 
 Most instructions target a mac computer.
-In case of setting up a omarchy server, use `/omarchy`.
+In case of setting up a omarchy server, see `/omarchy`.
 
 ## Homebrew
 
