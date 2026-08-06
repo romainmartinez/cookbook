@@ -45,8 +45,7 @@
                 "from": {
                   "key_code": "close_bracket",
                   "modifiers": {
-                    "mandatory": ["command", "control"],
-                    "optional": ["any"]
+                    "mandatory": ["command", "control"]
                   }
                 },
                 "to": [
@@ -70,8 +69,7 @@
                 "from": {
                   "key_code": "open_bracket",
                   "modifiers": {
-                    "mandatory": ["command", "control"],
-                    "optional": ["any"]
+                    "mandatory": ["command", "control"]
                   }
                 },
                 "to": [
@@ -384,4 +382,3 @@
     }
   ]
 }
-
