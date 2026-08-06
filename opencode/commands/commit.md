@@ -21,18 +21,12 @@ Rules:
 ## Current changes
 
 Live results of `git diff --cached`:
-```
 !`git diff --cached`
-```
 
 Live results of `git diff`:
-```
 !`git diff`
-```
 
 ## Changed files
 
 Live results of `git status --short`:
-```
 !`git status --short`
-```
