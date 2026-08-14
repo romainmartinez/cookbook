@@ -3,6 +3,7 @@
   "autoupdate": true,
 
   "permission": {
+    "external_directory": "allow",
     "bash": {
       "git push": "ask",
       "git push *": "ask",
