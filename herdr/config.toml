@@ -10,6 +10,8 @@ prefix = "ctrl+;"
 rename_tab = "prefix+shift+t"
 previous_tab = ["prefix+p", "alt+["]
 next_tab = ["prefix+n", "alt+]"]
+move_tab_previous = "alt+ctrl+["
+move_tab_next = "alt+ctrl+]"
 previous_workspace = "alt+shift+["
 next_workspace = "alt+shift+]"
 
