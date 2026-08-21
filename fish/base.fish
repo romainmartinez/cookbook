@@ -58,6 +58,11 @@ function fish_title
     echo (basename $PWD) • (status current-command)
 end
 
+# show the current folder and command in the herdr tab
+for _f in $HOME/.config/herdr/plugins/github/herdr-automatic-rename-*/shell/hook.fish
+    test -r "$_f"; and source "$_f"; and break
+end
+
 # prompt: current working directory + git status
 function fish_prompt
     set_color $fish_color_cwd
