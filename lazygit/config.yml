@@ -8,6 +8,11 @@ git:
       command: delta --paging=never --side-by-side --line-numbers --wrap-max-lines unlimited
     - colorArg: always
       command: cat
+os:
+  edit: 'if test -n "$NVIM"; nvim --server "$NVIM" --remote-tab {{filename}}; and "$HERDR_BIN_PATH" pane close "$HERDR_PANE_ID"; else; nvim -- {{filename}}; end'
+  editAtLine: 'if test -n "$NVIM"; nvim --server "$NVIM" --remote-tab {{filename}}; and nvim --server "$NVIM" --remote-send ":{{line}}<CR>"; and "$HERDR_BIN_PATH" pane close "$HERDR_PANE_ID"; else; nvim +{{line}} -- {{filename}}; end'
+  openDirInEditor: 'if test -n "$NVIM"; nvim --server "$NVIM" --remote-tab {{dir}}; and "$HERDR_BIN_PATH" pane close "$HERDR_PANE_ID"; else; nvim -- {{dir}}; end'
+  editInTerminal: true
 customCommands:
   - key: "<c-s>"
     context: "global"

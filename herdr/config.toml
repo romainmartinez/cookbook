@@ -18,7 +18,13 @@ next_workspace = "alt+shift+]"
 [[keys.command]]
 key = "ctrl+g"
 type = "pane"
-command = "lazygit"
+command = '''
+sock="$HOME/.cache/herdr-nvim/$(printf %s "$HERDR_ACTIVE_PANE_ID" | tr : -).sock"
+if nvim --server "$sock" --remote-expr 1 </dev/null >/dev/null 2>&1; then
+	export NVIM="$sock"
+fi
+exec lazygit
+'''
 
 [[keys.command]]
 key = "ctrl+e"
