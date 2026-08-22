@@ -6,8 +6,8 @@
 > Because setting up a new computer is a great opportunity to review and
 > reconsider which applications and settings you actually want to use.
 
-Most instructions target a mac computer.
-In case of setting up a omarchy server, see `/omarchy`.
+Most instructions target a Mac. For an Omarchy machine, use
+`omarchy/readme.md`; it identifies the shared tools and Linux-specific setup.
 
 ## Homebrew
 
@@ -66,10 +66,11 @@ Install [brew](https://brew.sh/), then use it to install everything below.
 - nvim
 `editors/` kept for reference, but not used in the current setup.
   ```sh
-  gh repo clone romainmartinez/lazyvim.git ~/.config/nvim
+  gh repo clone romainmartinez/lazyvim ~/.config/nvim
   ```
 - herdr
   ```sh
+  herdr plugin install qu8n/herdr-automatic-rename --yes
   ln -sfn $CODE_FOLDER/cookbook/herdr/config.toml ~/.config/herdr/config.toml
   mkdir -p ~/.config/herdr-automatic-rename
   ln -sfn $CODE_FOLDER/cookbook/herdr/automatic-rename.sh ~/.config/herdr-automatic-rename/config.sh
