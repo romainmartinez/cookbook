@@ -133,9 +133,9 @@ touch ~/.ssh/authorized_keys && chmod 600 ~/.ssh/authorized_keys
 ```sh
 mkdir -p ~/.config/systemd/user
 ln -sfn $CODE_FOLDER/cookbook/omarchy/systemd/herdr.service ~/.config/systemd/user/herdr.service
+systemctl --user disable --now herdr.service
 systemctl --user daemon-reload
 systemctl --user enable --now herdr.service
-sudo loginctl enable-linger "$USER"
 ```
 
 ### moshi + moshi-hook

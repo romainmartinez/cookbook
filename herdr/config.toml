@@ -65,7 +65,6 @@ hide_tab_bar_when_single_tab = true
 prompt_new_tab_name = false
 window_title = ""
 
-agent_panel_sort = "spaces"
 [ui.sidebar.agents]
 rows = [["state_icon", "workspace", "tab"]]
 
