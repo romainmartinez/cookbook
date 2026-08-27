@@ -25,6 +25,8 @@
     "messages_half_page_down": "ctrl+d",
     "messages_first": "ctrl+g,home",
     "messages_last": "ctrl+shift+g,end",
+    "messages_next": "alt+j",
+    "messages_previous": "alt+k",
     // ─── message actions ───
     "messages_copy": "<leader>y",
     "messages_undo": "<leader>u",
