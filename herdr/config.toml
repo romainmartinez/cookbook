@@ -30,10 +30,10 @@ exec lazygit
 
 [[keys.command]]
 key = "ctrl+e"
-type = "popup"
+type = "pane"
 description = "browse files (opens in the pane's neovim)"
 # Socket per herdr pane, registered by nvim lua/config/options.lua.
-# Popups get HERDR_ACTIVE_PANE_ID, not HERDR_PANE_ID.
+# Custom commands identify the underlying pane with HERDR_ACTIVE_PANE_ID.
 command = '''
 sock="$HOME/.cache/herdr-nvim/$(printf %s "$HERDR_ACTIVE_PANE_ID" | tr : -).sock"
 # without </dev/null nvim inits a tui and waits ~1s on terminal queries
@@ -49,8 +49,6 @@ elif [ -n "$picked" ]; then
 fi
 rm -f "$chooser"
 '''
-width = "90%"
-height = "100%"
 
 [[keys.command]]
 key = "prefix+t"
