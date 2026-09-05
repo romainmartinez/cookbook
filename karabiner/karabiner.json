@@ -6,7 +6,7 @@
         "parameters": { "basic.to_if_held_down_threshold_milliseconds": 200 },
         "rules": [
           {
-            "description": "Chrome: tab nav + ctrl+g to cmd+shift+a",
+            "description": "Chrome: opt+[ / opt+] switch tabs; ctrl+opt+[ / ctrl+opt+] move tabs; ctrl+g -> cmd+shift+a",
             "manipulators": [
               {
                 "conditions": [
@@ -45,7 +45,55 @@
                 "from": {
                   "key_code": "close_bracket",
                   "modifiers": {
-                    "mandatory": ["command", "control"]
+                    "mandatory": ["option"]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "page_down",
+                    "modifiers": ["left_control"]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "bundle_identifiers": [
+                      "^com\\.google\\.Chrome$",
+                      "^com\\.google\\.Chrome\\.beta$"
+                    ],
+                    "type": "frontmost_application_if"
+                  }
+                ],
+                "from": {
+                  "key_code": "open_bracket",
+                  "modifiers": {
+                    "mandatory": ["option"]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "page_up",
+                    "modifiers": ["left_control"]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "bundle_identifiers": [
+                      "^com\\.google\\.Chrome$",
+                      "^com\\.google\\.Chrome\\.beta$"
+                    ],
+                    "type": "frontmost_application_if"
+                  }
+                ],
+                "from": {
+                  "key_code": "close_bracket",
+                  "modifiers": {
+                    "mandatory": ["control", "option"]
                   }
                 },
                 "to": [
@@ -69,7 +117,7 @@
                 "from": {
                   "key_code": "open_bracket",
                   "modifiers": {
-                    "mandatory": ["command", "control"]
+                    "mandatory": ["control", "option"]
                   }
                 },
                 "to": [
