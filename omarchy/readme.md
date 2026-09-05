@@ -142,6 +142,7 @@ systemctl --user enable --now herdr.service
 
 ```sh
 curl -fsSL https://getmoshi.app/install.sh | sh   # -> ~/.local/bin
+moshi-hook update
 ```
 
 Two pairings, both need the iPhone Moshi app on the tailnet:
@@ -158,7 +159,11 @@ Agent-hook pairing (workspace switcher, inbox, approvals):
 moshi-hook pair --token <token>
 moshi-hook install           # writes hooks into opencode, claude, codex
 moshi-hook service install   # user systemd unit, auto-start
+moshi-hook probe             # running and gateway should both be true
 ```
+
+Restart agent sessions that were already open when hooks were installed or
+updated; agents load hook integrations at startup.
 
 ### Obsidian + Sync
 
