@@ -6,7 +6,7 @@
         "parameters": { "basic.to_if_held_down_threshold_milliseconds": 200 },
         "rules": [
           {
-            "description": "Chrome: opt+[ / opt+] switch tabs; ctrl+opt+[ / ctrl+opt+] move tabs; ctrl+g -> cmd+shift+a",
+            "description": "Chrome: cmd+[ / cmd+] switch tabs; ctrl+cmd+[ / ctrl+cmd+] move tabs; ctrl+g -> cmd+shift+a",
             "manipulators": [
               {
                 "conditions": [
@@ -45,7 +45,55 @@
                 "from": {
                   "key_code": "close_bracket",
                   "modifiers": {
-                    "mandatory": ["option"]
+                    "mandatory": ["command", "shift"]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "close_bracket",
+                    "modifiers": ["left_command"]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "bundle_identifiers": [
+                      "^com\\.google\\.Chrome$",
+                      "^com\\.google\\.Chrome\\.beta$"
+                    ],
+                    "type": "frontmost_application_if"
+                  }
+                ],
+                "from": {
+                  "key_code": "open_bracket",
+                  "modifiers": {
+                    "mandatory": ["command", "shift"]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "open_bracket",
+                    "modifiers": ["left_command"]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "bundle_identifiers": [
+                      "^com\\.google\\.Chrome$",
+                      "^com\\.google\\.Chrome\\.beta$"
+                    ],
+                    "type": "frontmost_application_if"
+                  }
+                ],
+                "from": {
+                  "key_code": "close_bracket",
+                  "modifiers": {
+                    "mandatory": ["command"]
                   }
                 },
                 "to": [
@@ -69,7 +117,7 @@
                 "from": {
                   "key_code": "open_bracket",
                   "modifiers": {
-                    "mandatory": ["option"]
+                    "mandatory": ["command"]
                   }
                 },
                 "to": [
@@ -93,7 +141,7 @@
                 "from": {
                   "key_code": "close_bracket",
                   "modifiers": {
-                    "mandatory": ["control", "option"]
+                    "mandatory": ["control", "command"]
                   }
                 },
                 "to": [
@@ -117,7 +165,7 @@
                 "from": {
                   "key_code": "open_bracket",
                   "modifiers": {
-                    "mandatory": ["control", "option"]
+                    "mandatory": ["control", "command"]
                   }
                 },
                 "to": [

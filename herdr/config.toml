@@ -8,14 +8,16 @@ delivery = "system"
 [keys]
 prefix = "ctrl+;"
 rename_tab = "prefix+shift+t"
-previous_tab = ["prefix+p", "alt+["]
-next_tab = ["prefix+n", "alt+]"]
-move_tab_previous = "alt+ctrl+["
-move_tab_next = "alt+ctrl+]"
-previous_workspace = "alt+shift+["
-next_workspace = "alt+shift+]"
-switch_tab = "ctrl+1..9"
-switch_workspace = "ctrl+shift+1..9"
+new_tab = ["prefix+c", "cmd+t"]
+close_tab = ["prefix+shift+x", "cmd+w"]
+previous_tab = ["prefix+p", "cmd+["]
+next_tab = ["prefix+n", "cmd+]"]
+move_tab_previous = "cmd+ctrl+["
+move_tab_next = "cmd+ctrl+]"
+previous_workspace = "cmd+shift+["
+next_workspace = "cmd+shift+]"
+switch_tab = "cmd+1..9"
+switch_workspace = "cmd+ctrl+1..9"
 
 [[keys.command]]
 key = "ctrl+g"
