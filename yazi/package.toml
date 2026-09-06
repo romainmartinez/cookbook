@@ -1,0 +1,7 @@
+[[plugin.deps]]
+use = "cap153/tv"
+rev = "b6b1f12"
+hash = "4bdf0523d3711d20982ad80b061dedf2"
+
+[flavor]
+deps = []

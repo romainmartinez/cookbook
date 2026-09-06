@@ -16,7 +16,6 @@ set -gx OPENCODE_DISABLE_TERMINAL_TITLE 1
 alias n='nvim'
 alias oc='opencode'
 alias lg='lazygit'
-alias p='spf'
 alias gha='gh auth switch'
 alias nr='npm run'
 
@@ -28,17 +27,14 @@ alias l='ls -l --blocks date,size,name'
 zoxide init fish | source
 tv init fish | source
 
-# superfile cd_on_quit: cd shell to last dir open in superfile on exit
-function spf
-    set -l spf_last_dir "$HOME/Library/Application Support/superfile/lastdir"
-    if test (uname -s) != Darwin
-        set spf_last_dir "$HOME/.local/state/superfile/lastdir"
+# change working directory when quitting Yazi
+function y
+    set tmp (mktemp -t "yazi-cwd.XXXXXX")
+    command yazi $argv --cwd-file="$tmp"
+    if read -z cwd < "$tmp"; and [ "$cwd" != "$PWD" ]; and test -d "$cwd"
+        builtin cd -- "$cwd"
     end
-    command spf $argv
-    if test -f "$spf_last_dir"
-        source "$spf_last_dir"
-        rm -f -- "$spf_last_dir" >/dev/null
-    end
+    command rm -f -- "$tmp"
 end
 
 # ─── KEYBINDINGS ─────────────────────────────────────────────────────
@@ -80,4 +76,3 @@ function fish_prompt
     set_color normal
     echo -n ' > '
 end
-

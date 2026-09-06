@@ -33,15 +33,16 @@ Install [brew](https://brew.sh/), then use it to install everything below.
 - fzf
 - ripgrep
 - fd
+- bat
 - zoxide
 
 ## File Management
 
 - lsd
-- superfile
+- yazi
   ```sh
-  ln -sfn $CODE_FOLDER/cookbook/superfile/config.toml ~/Library/Application\ Support/superfile/config.toml
-  ln -sfn $CODE_FOLDER/cookbook/superfile/theme/tokyonight-storm.toml ~/Library/Application\ Support/superfile/theme/tokyonight-storm.toml
+  ln -sfn $CODE_FOLDER/cookbook/yazi ~/.config/yazi
+  ya pkg install
   ```
 
 ## Dev Tools

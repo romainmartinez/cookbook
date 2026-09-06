@@ -1,0 +1,13 @@
+[[mgr.prepend_keymap]]
+on = "<C-t>"
+run = "plugin tv files"
+desc = "Find files with Television"
+
+[[mgr.prepend_keymap]]
+on = "?"
+run = "help"
+desc = "Open help"
+
+[[mgr.prepend_keymap]]
+on = "~"
+run = "noop"

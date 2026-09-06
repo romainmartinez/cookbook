@@ -40,9 +40,9 @@ command = '''
 sock="$HOME/.cache/herdr-nvim/$(printf %s "$HERDR_ACTIVE_PANE_ID" | tr : -).sock"
 # without </dev/null nvim inits a tui and waits ~1s on terminal queries
 nv() { nvim --server "$sock" "$@" </dev/null >/dev/null 2>&1; }
-nv --remote-expr 1 || exec spf
+nv --remote-expr 1 || exec yazi
 chooser=$(mktemp)
-spf --chooser-file "$chooser"
+yazi --chooser-file "$chooser"
 picked=$(cat "$chooser")
 if [ -d "$picked" ]; then
 	nv --remote-expr "chdir(readfile('$chooser')[0])"

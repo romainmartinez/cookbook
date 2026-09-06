@@ -39,7 +39,7 @@ sudo visudo -cf /etc/sudoers.d/rom-nopasswd
 ## Packages
 
 ```sh
-omarchy pkg add fish television lsd superfile uv keyd tailscale mosh git-delta tuicr
+omarchy pkg add fish television lsd yazi fd bat uv keyd tailscale mosh git-delta tuicr
 omarchy install terminal ghostty
 ```
 
@@ -58,9 +58,10 @@ Linux application configs live under `~/.config`.
   ```sh
   ln -sfn $CODE_FOLDER/cookbook/ghostty/linux.config ~/.config/ghostty/config
   ```
-- superfile
+- yazi
   ```sh
-  ln -sfn $CODE_FOLDER/cookbook/superfile/config.toml ~/.config/superfile/config.toml
+  ln -sfn $CODE_FOLDER/cookbook/yazi ~/.config/yazi
+  ya pkg install
   ```
 - lazygit
   ```sh
