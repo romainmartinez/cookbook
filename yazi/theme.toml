@@ -1,3 +1,6 @@
 [flavor]
 dark = ""
 light = ""
+
+[mode]
+normal_alt = { fg = "blue", bg = "#1e1e2e" }
