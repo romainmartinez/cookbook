@@ -3,5 +3,15 @@ use = "cap153/tv"
 rev = "b6b1f12"
 hash = "4bdf0523d3711d20982ad80b061dedf2"
 
+[[plugin.deps]]
+use = "yazi-rs/plugins:git"
+rev = "4dc7f1b"
+hash = "5bb0bfab901d3601c370eafdd66edd31"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:smart-filter"
+rev = "4dc7f1b"
+hash = "d6f7351ea25a43c9b5f4315fa1e23935"
+
 [flavor]
 deps = []
