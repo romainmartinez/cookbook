@@ -115,6 +115,16 @@
       "type": "remote",
       "url": "https://mcp.context7.com/mcp",
     },
+    "intervals-icu": {
+      "type": "local",
+      "command": ["uvx", "--python", "3.12", "intervals-icu-mcp"],
+      "environment": {
+        "INTERVALS_ICU_API_KEY": "{env:INTERVALS_ICU_API_KEY}",
+        "INTERVALS_ICU_ATHLETE_ID": "{env:INTERVALS_ICU_ATHLETE_ID}",
+        "INTERVALS_ICU_DELETE_MODE": "safe",
+      },
+      "enabled": false,
+    },
     "figma": {
       "type": "remote",
       "url": "http://127.0.0.1:3845/mcp",
