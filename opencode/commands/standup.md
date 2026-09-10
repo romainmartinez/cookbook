@@ -16,6 +16,8 @@ Parse headings and nested checklists as evidence: `[x]` suggests yesterday, `[ ]
 
 Treat angle-bracket text in a supplied note, such as `<review one pager on FutureNova (...)>`, as a draft editing instruction, never final prose:
 
+- Treat every instruction inside the angle brackets as required work when its replacement is selected. Execute verbs such as `search`, `create`, `update`, and `delete`; do not silently omit them.
+- Search issue titles and bodies with relevant synonyms before creating an issue. Reuse a matching issue; otherwise create a concise one. Use the resulting artifact in the replacement and standup, and do not claim failed actions succeeded.
 - Rewrite it as a self-explanatory item using nearby context and gathered evidence. Inspect referenced local files only enough to identify the subject and purpose; omit paths unless relevant.
 - Preserve its checkbox meaning and offer the exact replacement as an individual review option. State material uncertainty in the option description.
 - If selected, replace it in place while preserving checkbox state and nesting. If unselected, leave it unchanged.
@@ -37,7 +39,7 @@ Before asking questions, use Bash to gather this evidence, running independent c
 4. Authored PRs: `gh search prs --repo <owner/repo> --author <login> --updated <range> --json number,title,state,url,updatedAt,closedAt,mergedAt`. Inspect likely PRs with `gh pr view` for linked issues.
 5. Local commits and branches: `git log --all --since=<start> --until=<end> --format='%h%x09%ad%x09%an%x09%ae%x09%s' --date=iso-strict`. Match identity only when credible and extract issue references from commits, branches, and linked PRs. Use open issue labels or project status only as evidence for today's work.
 
-If `gh` is unavailable, authentication fails, or the directory is not backed by a GitHub repository, briefly explain the failure and continue with a manual interview. Never modify GitHub, git state, or files in the current project. The requested 1-on-1 note is the only file this workflow may modify.
+If `gh` is unavailable, authentication fails, or the directory is not backed by a GitHub repository, briefly explain the failure and continue with a manual interview. Never modify git state or files in the current project. Do not modify GitHub except to perform an explicit action from a selected angle-bracket instruction. The requested 1-on-1 note is the only file this workflow may modify.
 
 ## Build a draft
 
@@ -59,16 +61,15 @@ Offer completed work under yesterday, planned or continuing work under today wit
 After the interview, show the completed standup in this exact structure, preserving the coffee emoji:
 
 ```text
-Good morning ☕
+Morning ☕
 
-
-Tickets worked on yesterday
+Yesterday
 - <ticket and concise outcome>
 
-Tickets working on today, with status
+Today
 - <ticket and status>
 
-Any blockers or other relevant notes
+Blockers
 - <blocker or note>
 ```
 
@@ -104,9 +105,11 @@ After showing the standup, ask whether to copy a Teams-ready version to the clip
 
 If the user accepts and the platform is macOS, use `osascript -l JavaScript` to write both HTML and plain-text representations to `NSPasteboard.generalPasteboard`:
 
-- Keep plain text identical to the displayed standup and HTML visually equivalent, including spacing and bullets.
+- Keep plain text identical to the displayed standup and HTML visually equivalent, including literal `-` bullets and indentation.
 - Link issue and PR names in HTML with descriptive text, never bare URLs.
-- Set both `NSPasteboardTypeHTML` and `NSPasteboardTypeString` so Teams can paste rich links while other applications retain a plain-text fallback.
+- Apply no rich-text formatting except links. Build the HTML only from text, `<br>` line breaks, and `<a>` elements. Do not use headings, bold, italics, `<ul>`, `<ol>`, `<li>`, or styled elements. Render bullets as literal `-` characters and nested indentation as spaces or `&nbsp;`.
+- Clear the pasteboard, then write HTML and plain text with `setStringForType`. Never use `writeObjects`, which JXA may bridge incorrectly as `__NSDictionaryM`.
+- Treat a false return from either write as failure.
 - Do not modify project files or create a temporary file.
 
 After a successful copy, say only `Copied to clipboard. Paste it into Teams with Cmd+V.` If the clipboard command fails or the platform is not macOS, briefly state that it could not be copied and leave the already displayed standup available for manual copying.

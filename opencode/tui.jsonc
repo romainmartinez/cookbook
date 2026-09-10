@@ -8,8 +8,10 @@
     "editor_open": "<leader>e",
     // ─── layout ───
     "sidebar_toggle": "<leader>b",
+    "diff_open": "<leader>g",
+    "diff_close": "escape,q,<leader>g",
     // ─── status ───
-    "status_view": "<leader>s",
+    "status_view": "none",
     // ─── mcp ───
     "mcp_list": "<leader>p",
     // ─── which key ───
@@ -17,7 +19,7 @@
     // ─── session ───
     "session_new": "<leader>n",
     "session_list": "<leader>l",
-    "session_timeline": "<leader>g",
+    "session_timeline": "<leader>s",
     // ─── message navigation ───
     "messages_page_up": "ctrl+b",
     "messages_page_down": "ctrl+f",
