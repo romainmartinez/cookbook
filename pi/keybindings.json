@@ -2,5 +2,9 @@
   "tui.altScreen.halfPageUp": "ctrl+u",
   "tui.altScreen.halfPageDown": "ctrl+d",
   "app.editor.external": "ctrl+shift+e",
-  "app.exit": []
+  "app.exit": [],
+  "tui.editor.cursorLineStart": ["home", "ctrl+home", "ctrl+a", "super+left"],
+  "tui.editor.cursorLineEnd": ["end", "ctrl+end", "ctrl+e", "super+right"],
+  "tui.editor.deleteToLineStart": ["ctrl+u", "super+backspace"],
+  "tui.editor.deleteToLineEnd": ["ctrl+k", "super+delete"]
 }
