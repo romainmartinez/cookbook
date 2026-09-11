@@ -52,6 +52,17 @@ Install [brew](https://brew.sh/), then use it to install everything below.
 - curl
 - gh
 - tuicr
+- pi
+  ```sh
+  mkdir -p ~/.pi/agent/{extensions,prompts,skills}
+  ln -sfn $CODE_FOLDER/cookbook/pi/settings.json ~/.pi/agent/settings.json
+  ln -sfn $CODE_FOLDER/cookbook/pi/keybindings.json ~/.pi/agent/keybindings.json
+  ln -sfn $CODE_FOLDER/cookbook/pi/AGENTS.md ~/.pi/agent/AGENTS.md
+  ln -sfn $CODE_FOLDER/cookbook/pi/extensions/git-push-confirmation.ts ~/.pi/agent/extensions/git-push-confirmation.ts
+  ln -sfn $CODE_FOLDER/cookbook/pi/prompts/standup.md ~/.pi/agent/prompts/standup.md
+  ln -sfn $CODE_FOLDER/cookbook/pi/skills/grill-me ~/.pi/agent/skills/grill-me
+  ln -sfn $CODE_FOLDER/cookbook/pi/mcp.json ~/.pi/agent/mcp.json
+  ```
 - opencode
   ```sh
   ln -sfn $CODE_FOLDER/cookbook/opencode/opencode.jsonc ~/.config/opencode/opencode.jsonc

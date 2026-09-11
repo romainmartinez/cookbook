@@ -1,0 +1,20 @@
+{
+  "lastChangelogVersion": "0.85.1",
+  "theme": "tokyonight-moon",
+  "tuiMode": "fullscreen",
+  "defaultProvider": "github-copilot",
+  "defaultModel": "gpt-5.6-sol",
+  "defaultThinkingLevel": "medium",
+  "packages": [
+    "npm:pi-web-access",
+    "npm:pi-mcp-adapter@2.33.0",
+    "npm:@juicesharp/rpiv-ask-user-question",
+    {
+      "source": "npm:@juanibiapina/pi-tokyonight",
+      "themes": [
+        "+themes/tokyonight-day.json"
+      ]
+    }
+  ],
+  "hideThinkingBlock": true
+}

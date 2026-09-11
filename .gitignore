@@ -7,3 +7,6 @@ raycast/*.rayconfig
 
 # Karabiner-generated snapshots
 karabiner/automatic_backups/
+
+# Pi project-local MCP overrides
+.pi/mcp.json
