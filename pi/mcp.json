@@ -17,6 +17,28 @@
     "nuxt-ui": {
       "url": "https://ui.nuxt.com/mcp",
       "disabled": true
+    },
+    "mcp": {
+      "url": "https://mcp.atlassian.com/v1/mcp/authv2",
+      "disabled": true
+    },
+    "intervals-icu": {
+      "command": "uvx",
+      "args": [
+        "--python",
+        "3.12",
+        "intervals-icu-mcp"
+      ],
+      "env": {
+        "INTERVALS_ICU_API_KEY": "${INTERVALS_ICU_API_KEY}",
+        "INTERVALS_ICU_ATHLETE_ID": "${INTERVALS_ICU_ATHLETE_ID}",
+        "INTERVALS_ICU_DELETE_MODE": "safe"
+      },
+      "disabled": true
+    },
+    "figma": {
+      "url": "http://127.0.0.1:3845/mcp",
+      "disabled": true
     }
   }
 }

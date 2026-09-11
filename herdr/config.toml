@@ -16,6 +16,8 @@ move_tab_previous = "cmd+ctrl+["
 move_tab_next = "cmd+ctrl+]"
 previous_workspace = "cmd+shift+["
 next_workspace = "cmd+shift+]"
+previous_agent = "cmd+alt+["
+next_agent = "cmd+alt+]"
 switch_tab = "cmd+1..9"
 switch_workspace = "cmd+ctrl+1..9"
 
