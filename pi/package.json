@@ -1,0 +1,7 @@
+{
+  "name": "cookbook-pi-extensions",
+  "private": true,
+  "devDependencies": {
+    "@earendil-works/pi-coding-agent": "0.85.1"
+  }
+}

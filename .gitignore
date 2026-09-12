@@ -10,3 +10,7 @@ karabiner/automatic_backups/
 
 # Pi project-local MCP overrides
 .pi/mcp.json
+
+# JavaScript dependencies
+node_modules/
+pi/package-lock.json
