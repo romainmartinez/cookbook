@@ -6,7 +6,7 @@ ConditionEnvironment=WAYLAND_DISPLAY
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/herdr server
+ExecStart=%h/.local/share/mise/shims/herdr server
 Restart=on-failure
 RestartSec=2
 
