@@ -16,6 +16,6 @@
       ]
     }
   ],
-  "hideThinkingBlock": true,
+  "hideThinkingBlock": false,
   "treeFilterMode": "no-tools"
 }
