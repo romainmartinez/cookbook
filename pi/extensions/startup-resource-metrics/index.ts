@@ -61,6 +61,7 @@ export default function (pi: ExtensionAPI) {
         render(width: number): string[] {
           return renderHeader({
             width,
+            terminalHeight: tui.terminal.rows,
             theme,
             expanded: ctx.ui.getToolsExpanded(),
             modelScope: ctx.scopedModels.map(({ model, thinkingLevel }) =>

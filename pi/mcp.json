@@ -1,7 +1,8 @@
 {
   "settings": {
     "showStatusIcon": false,
-    "mcpFooterStatus": "compact"
+    "mcpFooterStatus": "compact",
+    "notifyOnStartupConnect": false
   },
   "mcpServers": {
     "chrome-devtools": {

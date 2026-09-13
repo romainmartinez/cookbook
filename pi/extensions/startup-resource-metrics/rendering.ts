@@ -18,6 +18,7 @@ import {
 const MAX_TABLE_WIDTH = 56;
 const MIN_COLUMN_WIDTH = 32;
 const COLUMN_GAP = 4;
+const RESERVED_TUI_ROWS = 6;
 
 function wrapIndented(text: string, width: number): string[] {
   if (!text) return [""];
@@ -124,8 +125,8 @@ function formatMetricSection(
   const total = metrics.reduce((sum, item) => sum + item.value, 0);
   const items = [
     ...(metrics.length > 2 ? formatMetricRow(
-      theme.bold("Total"),
-      theme.fg("dim", `${totalWarningThreshold !== undefined && total >= totalWarningThreshold ? "⚠ " : ""}${total}`),
+      theme.fg("muted", theme.bold("Total")),
+      theme.fg("muted", theme.bold(`${totalWarningThreshold !== undefined && total >= totalWarningThreshold ? "⚠ " : ""}${total}`)),
       width,
       2,
     ) : []),
@@ -161,9 +162,9 @@ function formatMcpSection(snapshot: McpStatusSnapshot | undefined, width: number
   const directWidth = Math.max("Direct".length, String(directTotal).length);
   const items = [
     ...(snapshot.servers.length > 2 ? formatTwoMetricRow(
-      theme.bold("Total"),
-      theme.fg("dim", String(snapshot.totalTools)),
-      theme.fg("dim", String(directTotal)),
+      theme.fg("muted", theme.bold("Total")),
+      theme.fg("muted", theme.bold(String(snapshot.totalTools))),
+      theme.fg("muted", theme.bold(String(directTotal))),
       toolWidth,
       directWidth,
       width,
@@ -207,9 +208,9 @@ function formatSkillSection(metrics: SkillMetric[], width: number, theme: Theme)
   const bodyWidth = Math.max("Body".length, visibleWidth(bodyTotal), ...bodies.map(visibleWidth));
   const items = [
     ...(metrics.length > 2 ? formatTwoMetricRow(
-      theme.bold("Total"),
-      theme.fg("dim", descriptionTotal),
-      theme.fg("dim", bodyTotal),
+      theme.fg("muted", theme.bold("Total")),
+      theme.fg("muted", theme.bold(descriptionTotal)),
+      theme.fg("muted", theme.bold(bodyTotal)),
       descriptionWidth,
       bodyWidth,
       width,
@@ -238,33 +239,44 @@ function formatSkillSection(metrics: SkillMetric[], width: number, theme: Theme)
   ];
 }
 
-function renderColumns(sections: Array<{ lines: string[]; column?: 0 | 1 }>, leftWidth: number): string[] {
+function renderColumns(sections: string[][], leftWidth: number, availableHeight: number): string[] {
+  const visibleSections = sections.filter((section) => section.length > 0);
+  const totalHeight = visibleSections.reduce(
+    (height, section, index) => height + section.length + (index === 0 ? 0 : 1),
+    0,
+  );
+  const leftHeight = Math.max(availableHeight, Math.ceil(totalHeight / 2));
   const columns: [string[], string[]] = [[], []];
-  for (const section of sections) {
-    if (section.lines.length === 0) continue;
-    const column = section.column ?? (columns[0].length <= columns[1].length ? 0 : 1);
+  let column: 0 | 1 = 0;
+
+  for (const section of visibleSections) {
+    const separatorHeight = columns[column].length === 0 ? 0 : 1;
+    if (column === 0 && columns[0].length > 0 && columns[0].length + separatorHeight + section.length > leftHeight) {
+      column = 1;
+    }
     if (columns[column].length > 0) columns[column].push("");
-    columns[column].push(...section.lines);
+    columns[column].push(...section);
   }
 
   const height = Math.max(columns[0].length, columns[1].length);
   const separator = " ".repeat(COLUMN_GAP);
   return Array.from({ length: height }, (_, index) => {
-    const left = columns[0][index] ?? "";
-    const right = columns[1][index] ?? "";
-    return `${left}${" ".repeat(leftWidth - visibleWidth(left))}${separator}${right}`.trimEnd();
+    const leftLine = columns[0][index] ?? "";
+    const rightLine = columns[1][index] ?? "";
+    return `${leftLine}${" ".repeat(leftWidth - visibleWidth(leftLine))}${separator}${rightLine}`.trimEnd();
   });
 }
 
 export function renderHeader(options: {
   width: number;
+  terminalHeight: number;
   expanded: boolean;
   modelScope: string[];
   snapshot?: MetricsSnapshot;
   mcpSnapshot?: McpStatusSnapshot;
   theme: Theme;
 }): string[] {
-  const { width, expanded, modelScope, snapshot, mcpSnapshot, theme } = options;
+  const { width, terminalHeight, expanded, modelScope, snapshot, mcpSnapshot, theme } = options;
   const scope = modelScope.length > 0
     ? theme.fg("dim", `Model scope: ${modelScope.join(", ")} (${keyText("app.model.cycleForward")} to cycle)`)
     : undefined;
@@ -277,8 +289,8 @@ export function renderHeader(options: {
   const systemPromptSection = (sectionWidth: number) => [
     ...formatMetricRow(theme.fg("mdHeading", "[System prompt]"), theme.fg("dim", "Tokens"), sectionWidth),
     ...formatMetricRow(
-      theme.bold("Total"),
-      theme.fg("dim", `${snapshot.systemPromptWarning ? "⚠ " : ""}${snapshot.systemPrompt}`),
+      theme.fg("muted", theme.bold("Total")),
+      theme.fg("muted", theme.bold(`${snapshot.systemPromptWarning ? "⚠ " : ""}${snapshot.systemPrompt}`)),
       sectionWidth,
       2,
     ),
@@ -306,10 +318,10 @@ export function renderHeader(options: {
 
   const columnWidth = Math.floor((width - COLUMN_GAP) / 2);
   const resources = resourceSections(columnWidth);
+  const availableHeight = Math.max(1, terminalHeight - welcome.length - RESERVED_TUI_ROWS - 2);
   const columns = renderColumns([
-    { lines: systemPromptSection(columnWidth), column: 0 },
-    ...resources.slice(0, -1).map((lines) => ({ lines })),
-    { lines: resources.at(-1) ?? [], column: 1 },
-  ], columnWidth);
+    systemPromptSection(columnWidth),
+    ...resources,
+  ], columnWidth, availableHeight);
   return [...welcome, "", ...columns, ""];
 }

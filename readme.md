@@ -55,17 +55,13 @@ Install [brew](https://brew.sh/), then use it to install everything below.
 - tuicr
 - pi
   ```sh
-  mkdir -p ~/.pi/agent/{extensions,prompts,skills}
+  mkdir -p ~/.pi/agent
   ln -sfn $CODE_FOLDER/cookbook/pi/settings.json ~/.pi/agent/settings.json
   ln -sfn $CODE_FOLDER/cookbook/pi/keybindings.json ~/.pi/agent/keybindings.json
   ln -sfn $CODE_FOLDER/cookbook/pi/AGENTS.md ~/.pi/agent/AGENTS.md
-  ln -sfn $CODE_FOLDER/cookbook/pi/extensions/git-push-confirmation.ts ~/.pi/agent/extensions/git-push-confirmation.ts
-  ln -sfn $CODE_FOLDER/cookbook/pi/extensions/herdr-question-notification.ts ~/.pi/agent/extensions/herdr-question-notification.ts
-  ln -sfn $CODE_FOLDER/cookbook/pi/extensions/mcp-inline-footer.ts ~/.pi/agent/extensions/mcp-inline-footer.ts
-  ln -sfn $CODE_FOLDER/cookbook/pi/extensions/minimal-subagent.ts ~/.pi/agent/extensions/minimal-subagent.ts
-  ln -sfn $CODE_FOLDER/cookbook/pi/extensions/startup-resource-metrics ~/.pi/agent/extensions/startup-resource-metrics
-  ln -sfn $CODE_FOLDER/cookbook/pi/prompts/standup.md ~/.pi/agent/prompts/standup.md
-  ln -sfn $CODE_FOLDER/cookbook/pi/skills/grill-me ~/.pi/agent/skills/grill-me
+  ln -sfn $CODE_FOLDER/cookbook/pi/extensions ~/.pi/agent/extensions
+  ln -sfn $CODE_FOLDER/cookbook/pi/prompts ~/.pi/agent/prompts
+  ln -sfn $CODE_FOLDER/cookbook/pi/skills ~/.pi/agent/skills
   ln -sfn $CODE_FOLDER/cookbook/pi/mcp.json ~/.pi/agent/mcp.json
   ```
 - opencode
