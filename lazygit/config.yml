@@ -1,5 +1,33 @@
 gui:
   showNumstatInFilesView: true
+  nerdFontsVersion: "3"
+  showIcons: true
+  showRandomTip: false
+  showCommandLog: false
+  showDivergenceFromBaseBranch: arrowAndNumber
+  scrollHeight: 4
+  scrollOffMargin: 4
+  theme:
+    unstagedChangesColor:
+      - "#db4b4b"
+    selectedLineBgColor:
+      - "#2e3c64"
+    searchingActiveBorderColor:
+      - "#ff9e64"
+      - bold
+    optionsTextColor:
+      - "#7aa2f7"
+    inactiveBorderColor:
+      - "#29a4bd"
+    defaultFgColor:
+      - "#c0caf5"
+    cherryPickedCommitFgColor:
+      - "#7aa2f7"
+    cherryPickedCommitBgColor:
+      - "#bb9af7"
+    activeBorderColor:
+      - "#ff9e64"
+      - bold
 git:
   diffRenderers:
     - colorArg: always
