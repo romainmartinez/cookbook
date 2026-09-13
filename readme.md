@@ -31,6 +31,7 @@ Install [brew](https://brew.sh/), then use it to install everything below.
 ## Search & Navigation
 
 - fzf
+- jq
 - ripgrep
 - fd
 - bat
@@ -87,6 +88,7 @@ Install [brew](https://brew.sh/), then use it to install everything below.
   ```sh
   herdr plugin install qu8n/herdr-automatic-rename --yes
   ln -sfn $CODE_FOLDER/cookbook/herdr/config.toml ~/.config/herdr/config.toml
+  ln -sfn $CODE_FOLDER/cookbook/herdr/tab-picker.sh ~/.config/herdr/tab-picker.sh
   mkdir -p ~/.config/herdr-automatic-rename
   ln -sfn $CODE_FOLDER/cookbook/herdr/automatic-rename.sh ~/.config/herdr-automatic-rename/config.sh
   herdr integration install opencode

@@ -39,7 +39,7 @@ sudo visudo -cf /etc/sudoers.d/rom-nopasswd
 ## Packages
 
 ```sh
-omarchy pkg add fish television lsd yazi fd bat uv keyd tailscale mosh git-delta tuicr
+omarchy pkg add fish television lsd yazi fd bat jq uv keyd tailscale mosh git-delta tuicr
 omarchy install terminal ghostty
 ```
 
@@ -80,6 +80,7 @@ Linux application configs live under `~/.config`.
   ```sh
   herdr plugin install qu8n/herdr-automatic-rename --yes
   ln -sfn $CODE_FOLDER/cookbook/herdr/config.toml ~/.config/herdr/config.toml
+  ln -sfn $CODE_FOLDER/cookbook/herdr/tab-picker.sh ~/.config/herdr/tab-picker.sh
   mkdir -p ~/.config/herdr-automatic-rename
   ln -sfn $CODE_FOLDER/cookbook/herdr/automatic-rename.sh ~/.config/herdr-automatic-rename/config.sh
   herdr integration install opencode

@@ -1,0 +1,28 @@
+[metadata]
+name = "herdr-tabs"
+description = "Search tabs across all Herdr spaces"
+requirements = ["herdr", "jq"]
+
+[source]
+command = "$HOME/.config/herdr/tab-picker.sh --list"
+display = "{split:\t:1}    {split:\t:2}"
+output = "{split:\t:0}"
+
+[ui.input_bar]
+header = ""
+prompt = "Tabs › "
+border_type = "none"
+padding = { left = 1, right = 1 }
+
+[ui.results_panel]
+border_type = "none"
+padding = { left = 1, right = 1 }
+
+[ui.status_bar]
+hidden = true
+
+[ui.help_panel]
+disabled = true
+
+[ui.remote_control]
+disabled = true

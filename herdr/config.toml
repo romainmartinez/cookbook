@@ -61,6 +61,14 @@ command = "fish"
 width = "90%"
 height = "90%"
 
+[[keys.command]]
+key = "ctrl+'"
+type = "popup"
+description = "find a tab across all spaces"
+command = "$HOME/.config/herdr/tab-picker.sh"
+width = "70%"
+height = "60%"
+
 [ui]
 sidebar_max_width = 18
 hide_tab_bar_when_single_tab = true
