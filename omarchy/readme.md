@@ -159,8 +159,9 @@ Agent-hook pairing (workspace switcher, inbox, approvals):
 ```sh
 # Get token from iPhone Moshi app: Settings -> Hooks
 moshi-hook pair --token <token>
-moshi-hook install           # writes hooks into opencode, claude, codex
+moshi-hook install           # writes hooks into supported agents
 moshi-hook service install   # user systemd unit, auto-start
+systemctl --user restart moshi-hook.service
 moshi-hook probe             # running and gateway should both be true
 ```
 
