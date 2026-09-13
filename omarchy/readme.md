@@ -78,6 +78,8 @@ Linux application configs live under `~/.config`.
   ```
 - herdr
   ```sh
+  mkdir -p ~/.local/bin
+  ln -sfn ~/.local/share/mise/shims/herdr ~/.local/bin/herdr
   herdr plugin install qu8n/herdr-automatic-rename --yes
   ln -sfn $CODE_FOLDER/cookbook/herdr/config.toml ~/.config/herdr/config.toml
   ln -sfn $CODE_FOLDER/cookbook/herdr/tab-picker.sh ~/.config/herdr/tab-picker.sh

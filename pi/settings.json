@@ -16,6 +16,7 @@
       ]
     }
   ],
-  "hideThinkingBlock": false,
-  "treeFilterMode": "no-tools"
+  "hideThinkingBlock": true,
+  "treeFilterMode": "no-tools",
+  "quietStartup": true
 }
