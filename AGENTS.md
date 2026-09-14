@@ -1,5 +1,5 @@
 - This is a personal dotfiles and machine-setup repository. Each top-level directory owns one tool's configuration.
-- Read `readme.md` for macOS setup and `omarchy/readme.md` for Omarchy/Linux setup before changing installation instructions.
+- Keep shared setup instructions in `readme.md`; `omarchy/readme.md` contains only Linux-specific overrides and additions. Read it only when changing shared or Linux setup.
 - Keep shared Fish and Ghostty settings in `base.*`; put platform-specific settings in `mac.*` or `linux.*`.
 - `pi/` contains TypeScript extensions and their colocated `*.test.ts` files. Run them with `npm test` from `pi/`.
 - When adding, moving, or removing a configuration target, update the relevant setup README and symlink instructions.

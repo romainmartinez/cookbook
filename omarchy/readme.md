@@ -1,8 +1,8 @@
 # Omarchy Setup
 
 Linux companion to the root `readme.md`, tested with Omarchy 4.x.
-Use the shared application list in the root readme, but use the package and
-configuration commands below instead of its macOS instructions.
+Follow the shared instructions in the root readme unless this file overrides
+them with Linux-specific packages, paths, or configuration.
 
 ## Ground rules
 
@@ -43,9 +43,10 @@ omarchy pkg add fish television lsd yazi fd bat jq uv keyd tailscale mosh git-de
 omarchy install terminal ghostty
 ```
 
-## Setup
+## Setup overrides
 
-Linux application configs live under `~/.config`.
+Linux application configs live under `~/.config`. Use the shared setup commands
+in the root readme for tools not listed here.
 
 - fish
   ```sh
@@ -58,34 +59,19 @@ Linux application configs live under `~/.config`.
   ```sh
   ln -sfn $CODE_FOLDER/cookbook/ghostty/linux.config ~/.config/ghostty/config
   ```
-- yazi
-  ```sh
-  ln -sfn $CODE_FOLDER/cookbook/yazi ~/.config/yazi
-  ya pkg install
-  ```
 - lazygit
   ```sh
   ln -sfn $CODE_FOLDER/cookbook/lazygit/config.yml ~/.config/lazygit/config.yml
   ```
-- opencode
+- opencode: remove Omarchy's conflicting default files before using the shared
+  symlink commands
   ```sh
   rm -f ~/.config/opencode/opencode.json ~/.config/opencode/tui.json
-  ln -sfn $CODE_FOLDER/cookbook/opencode/opencode.jsonc ~/.config/opencode/opencode.jsonc
-  ln -sfn $CODE_FOLDER/cookbook/opencode/tui.jsonc ~/.config/opencode/tui.jsonc
-  ln -sfn $CODE_FOLDER/cookbook/opencode/AGENTS.md ~/.config/opencode/AGENTS.md
-  ln -sfn $CODE_FOLDER/cookbook/opencode/commands ~/.config/opencode/commands
-  ln -sfn $CODE_FOLDER/cookbook/opencode/skills ~/.config/opencode/skills
   ```
-- herdr
+- herdr: expose the mise shim before using the shared setup commands
   ```sh
   mkdir -p ~/.local/bin
   ln -sfn ~/.local/share/mise/shims/herdr ~/.local/bin/herdr
-  herdr plugin install qu8n/herdr-automatic-rename --yes
-  ln -sfn $CODE_FOLDER/cookbook/herdr/config.toml ~/.config/herdr/config.toml
-  ln -sfn $CODE_FOLDER/cookbook/herdr/tab-picker.sh ~/.config/herdr/tab-picker.sh
-  mkdir -p ~/.config/herdr-automatic-rename
-  ln -sfn $CODE_FOLDER/cookbook/herdr/automatic-rename.sh ~/.config/herdr-automatic-rename/config.sh
-  herdr integration install opencode
   ```
 
 ## Server mode
