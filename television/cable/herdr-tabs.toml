@@ -5,8 +5,8 @@ requirements = ["herdr", "jq"]
 
 [source]
 command = "$HOME/.config/herdr/tab-picker.sh --list"
-display = "{split:\t:1}    {split:\t:2}"
-output = "{split:\t:0}"
+ansi = true
+output = "{strip_ansi|split:\t:1}"
 
 [ui.input_bar]
 header = ""
