@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import type { ExtensionAPI, ToolCallEvent } from "@earendil-works/pi-coding-agent";
-import gitPushConfirmation from "./git-push-confirmation.ts";
+import gitPushConfirmation from "./index.ts";
 
 type ToolCallHandler = (event: ToolCallEvent, ctx: unknown) => Promise<unknown>;
 

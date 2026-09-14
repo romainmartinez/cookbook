@@ -4,7 +4,7 @@ import { join } from "node:path";
 import test from "node:test";
 import type { ExtensionAPI, Theme } from "@earendil-works/pi-coding-agent";
 import { visibleWidth } from "@earendil-works/pi-tui";
-import mcpInlineFooter from "./mcp-inline-footer.ts";
+import mcpInlineFooter from "./index.ts";
 
 type Handler = (...args: any[]) => void;
 type FooterFactory = (...args: any[]) => { render(width: number): string[]; dispose(): void };

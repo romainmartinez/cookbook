@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import type { ExtensionAPI, ToolDefinition } from "@earendil-works/pi-coding-agent";
-import minimalSubagent from "./minimal-subagent.ts";
+import minimalSubagent from "./index.ts";
 
 type Execute = ToolDefinition["execute"];
 type ExecResult = { code: number; stdout: string; stderr: string };
