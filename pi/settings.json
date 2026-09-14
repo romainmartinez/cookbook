@@ -7,7 +7,10 @@
   "defaultThinkingLevel": "medium",
   "packages": [
     "npm:pi-web-access",
-    "npm:pi-mcp-adapter@2.33.0",
+    {
+      "source": "npm:pi-mcp-adapter@2.33.0",
+      "skills": []
+    },
     "npm:@juicesharp/rpiv-ask-user-question",
     {
       "source": "npm:@juanibiapina/pi-tokyonight",
