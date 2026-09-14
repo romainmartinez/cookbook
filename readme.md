@@ -89,6 +89,7 @@ Install [brew](https://brew.sh/), then use it to install everything below.
   mkdir -p ~/.config/herdr-automatic-rename
   ln -sfn $CODE_FOLDER/cookbook/herdr/automatic-rename.sh ~/.config/herdr-automatic-rename/config.sh
   herdr integration install opencode
+  herdr integration install pi
   ```
 
 ## Monitoring & Help
