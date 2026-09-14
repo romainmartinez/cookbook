@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { initTheme, type ExtensionAPI, type Theme } from "@earendil-works/pi-coding-agent";
 import startupResourceMetrics from "./index.ts";
+import type { UsageSnapshot } from "./usage.ts";
 
 initTheme(undefined, false);
 
@@ -20,6 +21,12 @@ function registered<T>(handlers: Map<string, T>, name: string): T {
   return handler;
 }
 
+const usage: UsageSnapshot = {
+  days: [{ date: "2025-09-15", cost: 1.25, tokens: 1_200, inputTokens: 20, cacheReadTokens: 60, cacheWriteTokens: 20 }],
+  total: { cost: 1.25, tokens: 1_200, inputTokens: 20, cacheReadTokens: 60, cacheWriteTokens: 20 },
+  warnings: 0,
+};
+
 function setup() {
   const piHandlers = new Map<string, Handler>();
   const eventHandlers = new Map<string, Handler>();
@@ -30,7 +37,7 @@ function setup() {
     getAllTools: () => [],
     getCommands: () => [],
   } as unknown as ExtensionAPI;
-  startupResourceMetrics(pi);
+  startupResourceMetrics(pi, { loadUsage: async () => usage });
   return { piHandlers, eventHandlers };
 }
 
@@ -46,7 +53,7 @@ test("does not install a header outside TUI sessions", () => {
   assert.equal(installs, 0);
 });
 
-test("renders refreshed lifecycle and MCP data until disposal", (t) => {
+test("renders refreshed lifecycle, usage, and MCP data until disposal", async (t) => {
   t.mock.timers.enable({ apis: ["setTimeout"] });
   const { piHandlers, eventHandlers } = setup();
   let factory: HeaderFactory | undefined;
@@ -69,7 +76,11 @@ test("renders refreshed lifecycle and MCP data until disposal", (t) => {
   assert.match(component.render(100).join("\n"), /Measuring loaded resources/);
 
   t.mock.timers.runAll();
-  assert.match(component.render(100).join("\n"), /Total\s+4/);
+  await Promise.resolve();
+  const measured = component.render(100).join("\n");
+  assert.match(measured, /Total\s+4/);
+  assert.match(measured, /\[Usage\]/);
+  assert.match(measured, /Total\s+\$1\.25\s+1\.2k \(60\.0%\)/);
 
   registered(piHandlers, "before_agent_start")({
     systemPrompt: "x".repeat(400),

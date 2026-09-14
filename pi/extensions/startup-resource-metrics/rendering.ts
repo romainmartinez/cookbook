@@ -14,6 +14,7 @@ import {
   type MetricsSnapshot,
   type SkillMetric,
 } from "./metrics.ts";
+import { cacheHitRate, compactNumber, humanDay, type UsageSnapshot } from "./usage.ts";
 
 const MAX_TABLE_WIDTH = 56;
 const MIN_COLUMN_WIDTH = 32;
@@ -111,6 +112,57 @@ function formatTwoMetricRow(
     const secondPadding = " ".repeat(secondWidth - visibleWidth(secondValue));
     return `${prefix}${line}${gap}${firstPadding}${firstValue}  ${secondPadding}${secondValue}`;
   });
+}
+
+function formatUsageSection(snapshot: UsageSnapshot | null | undefined, width: number, theme: Theme): string[] {
+  const heading = theme.fg("mdHeading", "[Usage]");
+  if (snapshot === undefined) return formatMetricRow(heading, theme.fg("dim", "Loading…"), width);
+  if (snapshot === null) return formatMetricRow(heading, theme.fg("dim", "Unavailable"), width);
+
+  const activeDays = snapshot.days.filter((day) => day.tokens > 0 || day.cost > 0);
+  const costs = [snapshot.total, ...activeDays].map((usage) => `$${usage.cost.toFixed(2)}`);
+  const tokens = [snapshot.total, ...activeDays].map((usage) =>
+    `${compactNumber(usage.tokens)} (${(cacheHitRate(usage) * 100).toFixed(1)}%)`
+  );
+  const costWidth = Math.max("Cost".length, ...costs.map(visibleWidth));
+  const tokenWidth = Math.max("Tokens".length, ...tokens.map(visibleWidth));
+
+  return [
+    ...formatTwoMetricRow(
+      heading,
+      theme.fg("dim", "Cost"),
+      theme.fg("dim", "Tokens"),
+      costWidth,
+      tokenWidth,
+      width,
+    ),
+    ...formatTwoMetricRow(
+      theme.fg("muted", theme.bold("Total")),
+      theme.fg("muted", theme.bold(costs[0]!)),
+      theme.fg("muted", theme.bold(tokens[0]!)),
+      costWidth,
+      tokenWidth,
+      width,
+      2,
+    ),
+    ...(activeDays.length > 0
+      ? activeDays.flatMap((day, index) => formatTwoMetricRow(
+          theme.fg("dim", humanDay(day.date)),
+          theme.fg("dim", costs[index + 1]!),
+          theme.fg("dim", tokens[index + 1]!),
+          costWidth,
+          tokenWidth,
+          width,
+          2,
+        ))
+      : wrapTextWithAnsi(theme.fg("dim", "  No usage"), Math.max(1, width))),
+    ...(snapshot.warnings > 0
+      ? wrapTextWithAnsi(
+          theme.fg("warning", `  ⚠ ${snapshot.warnings} session path${snapshot.warnings === 1 ? "" : "s"} could not be read`),
+          Math.max(1, width),
+        )
+      : []),
+  ];
 }
 
 function formatMetricSection(
@@ -273,10 +325,11 @@ export function renderHeader(options: {
   expanded: boolean;
   modelScope: string[];
   snapshot?: MetricsSnapshot;
+  usageSnapshot?: UsageSnapshot | null;
   mcpSnapshot?: McpStatusSnapshot;
   theme: Theme;
 }): string[] {
-  const { width, terminalHeight, expanded, modelScope, snapshot, mcpSnapshot, theme } = options;
+  const { width, terminalHeight, expanded, modelScope, snapshot, usageSnapshot, mcpSnapshot, theme } = options;
   const scope = modelScope.length > 0
     ? theme.fg("dim", `Model scope: ${modelScope.join(", ")} (${keyText("app.model.cycleForward")} to cycle)`)
     : undefined;
@@ -311,7 +364,8 @@ export function renderHeader(options: {
       "",
       ...systemPromptSection(width),
       "",
-      ...sections.flatMap((section, index) => index === sections.length - 1 ? section : [...section, ""]),
+      ...sections.flatMap((section) => [...section, ""]),
+      ...formatUsageSection(usageSnapshot, width, theme),
       "",
     ];
   }
@@ -322,6 +376,7 @@ export function renderHeader(options: {
   const columns = renderColumns([
     systemPromptSection(columnWidth),
     ...resources,
+    formatUsageSection(usageSnapshot, columnWidth, theme),
   ], columnWidth, availableHeight);
   return [...welcome, "", ...columns, ""];
 }

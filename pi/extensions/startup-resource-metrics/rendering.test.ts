@@ -4,6 +4,7 @@ import { initTheme, type Theme } from "@earendil-works/pi-coding-agent";
 import { visibleWidth } from "@earendil-works/pi-tui";
 import type { McpStatusSnapshot, MetricsSnapshot } from "./metrics.ts";
 import { renderHeader } from "./rendering.ts";
+import type { UsageSnapshot } from "./usage.ts";
 
 initTheme(undefined, false);
 
@@ -38,6 +39,15 @@ const snapshot: MetricsSnapshot = {
   extensions: ["z-extension", "a-extension", "a-extension"],
 };
 
+const usageSnapshot: UsageSnapshot = {
+  days: [
+    { date: "2025-09-15", cost: 1.25, tokens: 1_200, inputTokens: 20, cacheReadTokens: 60, cacheWriteTokens: 20 },
+    { date: "2025-09-14", cost: 0, tokens: 0, inputTokens: 0, cacheReadTokens: 0, cacheWriteTokens: 0 },
+  ],
+  total: { cost: 1.25, tokens: 1_200, inputTokens: 20, cacheReadTokens: 60, cacheWriteTokens: 20 },
+  warnings: 0,
+};
+
 const mcpSnapshot: McpStatusSnapshot = {
   version: 1,
   servers: [
@@ -55,6 +65,7 @@ function render(overrides: Partial<Parameters<typeof renderHeader>[0]> = {}): st
     expanded: false,
     modelScope: [],
     snapshot,
+    usageSnapshot,
     mcpSnapshot,
     theme: plainTheme,
     ...overrides,
@@ -82,6 +93,9 @@ test("renders useful loading and empty states", () => {
   assert.ok(empty.includes("[System prompt]"));
   assert.ok(!empty.includes("[Context]"));
   assert.ok(!empty.includes("[MCP servers]"));
+
+  const warning = render({ usageSnapshot: { ...usageSnapshot, warnings: 2 } }).join("\n");
+  assert.match(warning, /⚠ 2 session paths could not be read/);
 });
 
 test("narrow rendering preserves resource semantics", () => {
@@ -94,6 +108,9 @@ test("narrow rendering preserves resource semantics", () => {
   assert.match(output, /⚠ 900/);
   assert.match(output, /Total\s+⚠ 8220/);
   assert.match(output, /hidden\s+hidden\s+50/);
+  assert.match(output, /Total\s+\$1\.25\s+1\.2k \(60\.0%\)/);
+  assert.match(output, /Mon Sept\. 15\s+\$1\.25\s+1\.2k \(60\.0%\)/);
+  assert.ok(output.indexOf("[Usage]") > output.indexOf("[Extensions]"));
   assert.match(output, /alpha \(connected\)\s+5\s+3/);
   assert.equal(output.match(/a-extension/g)?.length, 1);
   assert.ok(lines.every((line) => visibleWidth(line) <= 48));

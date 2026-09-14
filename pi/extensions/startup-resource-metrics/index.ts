@@ -1,3 +1,4 @@
+import { join } from "node:path";
 import {
   getAgentDir,
   type ExtensionAPI,
@@ -9,14 +10,18 @@ import {
   type MetricsSnapshot,
 } from "./metrics.ts";
 import { renderHeader } from "./rendering.ts";
+import { collectUsage, type UsageSnapshot } from "./usage.ts";
 
 const MCP_STATUS_EVENT = "pi-mcp-adapter/status/v1";
 
 type RefreshHeader = (systemPrompt?: string, contextFiles?: readonly ContextFile[]) => void;
+type Options = { loadUsage?: (sessionRoot: string) => Promise<UsageSnapshot> };
 
-export default function (pi: ExtensionAPI) {
+export default function (pi: ExtensionAPI, options: Options = {}) {
   let mcpSnapshot: McpStatusSnapshot | undefined;
   let refreshHeader: RefreshHeader | undefined;
+  let cachedUsage: UsageSnapshot | null | undefined;
+  let usagePromise: Promise<UsageSnapshot> | undefined;
 
   pi.events.on(MCP_STATUS_EVENT, (data) => {
     const snapshot = data as Partial<McpStatusSnapshot>;
@@ -37,6 +42,7 @@ export default function (pi: ExtensionAPI) {
     const agentDir = getAgentDir();
     ctx.ui.setHeader((tui, theme) => {
       let snapshot: MetricsSnapshot | undefined;
+      let usageSnapshot = cachedUsage;
       let contextFiles: readonly ContextFile[] = [];
       let disposed = false;
 
@@ -55,7 +61,22 @@ export default function (pi: ExtensionAPI) {
       };
 
       refreshHeader = refresh;
-      const timer = setTimeout(refresh, 0);
+      const timer = setTimeout(() => {
+        refresh();
+        usagePromise ??= (options.loadUsage ?? collectUsage)(join(agentDir, "sessions"));
+        void usagePromise.then(
+          (usage) => {
+            cachedUsage = usage;
+            usageSnapshot = usage;
+            if (!disposed) tui.requestRender();
+          },
+          () => {
+            cachedUsage = null;
+            usageSnapshot = null;
+            if (!disposed) tui.requestRender();
+          },
+        );
+      }, 0);
 
       return {
         render(width: number): string[] {
@@ -68,6 +89,7 @@ export default function (pi: ExtensionAPI) {
               `${model.id}${thinkingLevel ? `:${thinkingLevel}` : ""}`
             ),
             snapshot,
+            usageSnapshot,
             mcpSnapshot,
           });
         },
