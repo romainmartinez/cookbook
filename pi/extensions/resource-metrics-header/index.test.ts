@@ -53,7 +53,7 @@ test("does not install a header outside TUI sessions", () => {
   assert.equal(installs, 0);
 });
 
-test("renders refreshed lifecycle, usage, and MCP data until disposal", async (t) => {
+test("captures startup metrics once per session", async (t) => {
   t.mock.timers.enable({ apis: ["setTimeout"] });
   const { piHandlers, eventHandlers } = setup();
   let factory: HeaderFactory | undefined;
@@ -75,32 +75,31 @@ test("renders refreshed lifecycle, usage, and MCP data until disposal", async (t
   const component = factory({ terminal: { rows: 40 }, requestRender: () => renders++ }, theme);
   assert.match(component.render(100).join("\n"), /Measuring loaded resources/);
 
+  registered(eventHandlers, "pi-mcp-adapter/status/v1")({
+    version: 1,
+    servers: [{ name: "startup-server", status: "connected", toolCount: 2, directToolCount: 1 }],
+    totalTools: 2,
+  });
   t.mock.timers.runAll();
   await Promise.resolve();
   const measured = component.render(100).join("\n");
   assert.match(measured, /Total\s+4/);
   assert.match(measured, /\[Usage\]/);
   assert.match(measured, /Total\s+\$1\.25\s+1\.2k \(60\.0%\)/);
+  assert.match(measured, /startup-server \(connected\)\s+2\s+1/);
+  assert.equal(piHandlers.has("before_agent_start"), false);
+  assert.equal(piHandlers.has("model_select"), false);
 
-  registered(piHandlers, "before_agent_start")({
-    systemPrompt: "x".repeat(400),
-    systemPromptOptions: { contextFiles: [{ path: "/context.md", content: "x".repeat(80) }] },
-  });
-  let output = component.render(100).join("\n");
-  assert.match(output, /⚠ 100/);
-  assert.match(output, /context\.md\s+20/);
-
+  const rendersAfterStartup = renders;
   registered(eventHandlers, "pi-mcp-adapter/status/v1")({
     version: 1,
-    servers: [{ name: "server", status: "connected", toolCount: 2, directToolCount: 1 }],
-    totalTools: 2,
+    servers: [{ name: "later-server", status: "connected", toolCount: 3, directToolCount: 2 }],
+    totalTools: 3,
   });
-  output = component.render(100).join("\n");
-  assert.match(output, /server \(connected\)\s+2\s+1/);
+  const unchanged = component.render(100).join("\n");
+  assert.match(unchanged, /startup-server/);
+  assert.doesNotMatch(unchanged, /later-server/);
+  assert.equal(renders, rendersAfterStartup);
 
-  const rendersBeforeDispose = renders;
   component.dispose();
-  registered(piHandlers, "model_select")();
-  registered(eventHandlers, "pi-mcp-adapter/status/v1")({ version: 1, servers: [], totalTools: 0 });
-  assert.equal(renders, rendersBeforeDispose);
 });

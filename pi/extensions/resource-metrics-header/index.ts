@@ -5,7 +5,6 @@ import {
 } from "@earendil-works/pi-coding-agent";
 import {
   collectMetrics,
-  type ContextFile,
   type McpStatusSnapshot,
   type MetricsSnapshot,
 } from "./metrics.ts";
@@ -14,26 +13,17 @@ import { collectUsage, type UsageSnapshot } from "./usage.ts";
 
 const MCP_STATUS_EVENT = "pi-mcp-adapter/status/v1";
 
-type RefreshHeader = (systemPrompt?: string, contextFiles?: readonly ContextFile[]) => void;
 type Options = { loadUsage?: (sessionRoot: string) => Promise<UsageSnapshot> };
 
 export default function (pi: ExtensionAPI, options: Options = {}) {
-  let mcpSnapshot: McpStatusSnapshot | undefined;
-  let refreshHeader: RefreshHeader | undefined;
+  let latestMcpSnapshot: McpStatusSnapshot | undefined;
   let cachedUsage: UsageSnapshot | null | undefined;
   let usagePromise: Promise<UsageSnapshot> | undefined;
 
   pi.events.on(MCP_STATUS_EVENT, (data) => {
     const snapshot = data as Partial<McpStatusSnapshot>;
     if (snapshot.version !== 1 || !Array.isArray(snapshot.servers)) return;
-    mcpSnapshot = snapshot as McpStatusSnapshot;
-    refreshHeader?.();
-  });
-
-  pi.on("model_select", () => refreshHeader?.());
-
-  pi.on("before_agent_start", (event) => {
-    refreshHeader?.(event.systemPrompt, event.systemPromptOptions.contextFiles ?? []);
+    latestMcpSnapshot = snapshot as McpStatusSnapshot;
   });
 
   pi.on("session_start", (_event, ctx) => {
@@ -43,26 +33,21 @@ export default function (pi: ExtensionAPI, options: Options = {}) {
     ctx.ui.setHeader((tui, theme) => {
       let snapshot: MetricsSnapshot | undefined;
       let usageSnapshot = cachedUsage;
-      let contextFiles: readonly ContextFile[] = [];
+      let mcpSnapshot: McpStatusSnapshot | undefined;
       let disposed = false;
 
-      const refresh: RefreshHeader = (systemPrompt = ctx.getSystemPrompt(), nextContextFiles = contextFiles) => {
+      const timer = setTimeout(() => {
         if (disposed) return;
-        contextFiles = nextContextFiles;
         snapshot = collectMetrics({
           pi,
           agentDir,
           cwd: ctx.cwd,
-          systemPrompt,
-          contextFiles,
+          systemPrompt: ctx.getSystemPrompt(),
+          contextFiles: [],
           contextWindow: ctx.model?.contextWindow,
         });
+        mcpSnapshot = latestMcpSnapshot;
         tui.requestRender();
-      };
-
-      refreshHeader = refresh;
-      const timer = setTimeout(() => {
-        refresh();
         usagePromise ??= (options.loadUsage ?? collectUsage)(join(agentDir, "sessions"));
         void usagePromise.then(
           (usage) => {
@@ -97,7 +82,6 @@ export default function (pi: ExtensionAPI, options: Options = {}) {
         dispose() {
           disposed = true;
           clearTimeout(timer);
-          if (refreshHeader === refresh) refreshHeader = undefined;
         },
       };
     });
