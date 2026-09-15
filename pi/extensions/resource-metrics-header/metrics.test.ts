@@ -26,7 +26,7 @@ function command(name: string, source: "skill" | "prompt", path: string, descrip
 }
 
 function withTempDir(run: (root: string) => void): void {
-  const root = mkdtempSync(join(tmpdir(), "startup-resource-metrics-"));
+  const root = mkdtempSync(join(tmpdir(), "resource-metrics-header-"));
   try {
     run(root);
   } finally {
