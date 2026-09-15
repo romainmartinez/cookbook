@@ -84,6 +84,7 @@ Install [brew](https://brew.sh/), then use it to install everything below.
 - herdr
   ```sh
   herdr plugin install qu8n/herdr-automatic-rename --yes
+  herdr plugin link $CODE_FOLDER/cookbook/herdr/tab-activity
   ln -sfn $CODE_FOLDER/cookbook/herdr/config.toml ~/.config/herdr/config.toml
   ln -sfn $CODE_FOLDER/cookbook/herdr/tab-picker.sh ~/.config/herdr/tab-picker.sh
   mkdir -p ~/.config/herdr-automatic-rename

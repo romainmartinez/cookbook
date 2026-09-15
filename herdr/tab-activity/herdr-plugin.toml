@@ -1,0 +1,17 @@
+id = "cookbook.tab-activity"
+name = "Tab Activity"
+version = "0.1.0"
+min_herdr_version = "0.7.1"
+description = "Record when Herdr tabs are focused for the Television tab picker."
+platforms = ["linux", "macos"]
+
+[[startup]]
+command = ["sh", "tab-activity.sh", "startup"]
+
+[[events]]
+on = "tab.focused"
+command = ["sh", "tab-activity.sh", "tab.focused"]
+
+[[events]]
+on = "tab.closed"
+command = ["sh", "tab-activity.sh", "tab.closed"]
