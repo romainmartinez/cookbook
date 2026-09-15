@@ -20,6 +20,7 @@
     }
   ],
   "hideThinkingBlock": true,
+  "showCacheMissNotices": true,
   "treeFilterMode": "no-tools",
   "quietStartup": true
 }
