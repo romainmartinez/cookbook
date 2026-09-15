@@ -7,19 +7,13 @@ wait_for_close() {
   read -r _
 }
 
-if [ "${1:-}" = "--list" ]; then
-  for dependency in herdr jq; do
-    if ! command -v "$dependency" >/dev/null 2>&1; then
-      printf 'Missing dependency: %s\n' "$dependency" >&2
-      exit 1
-    fi
-  done
-
+list_tabs() {
   activity_dir="${XDG_STATE_HOME:-$HOME/.local/state}/herdr-tab-activity"
   last_focused=$(
     for path in "$activity_dir"/*; do
       [ -f "$path" ] || continue
-      printf '%s\t%s\n' "${path##*/}" "$(cat "$path")"
+      IFS= read -r timestamp < "$path"
+      printf '%s\t%s\n' "${path##*/}" "$timestamp"
     done | jq -Rsc '
       split("\n")
       | map(select(length > 0) | split("\t") | {(.[0]): .[1]})
@@ -54,30 +48,46 @@ if [ "${1:-}" = "--list" ]; then
        elif $tab.agent_status == "working" then "\u001b[33m◐\u001b[0m"
        elif $tab.agent_status == "done" then "\u001b[32m✓\u001b[0m"
        elif $tab.agent_status == "idle" then "\u001b[2m○\u001b[0m"
-       else " "
+       else ""
        end) as $status
     | (if $tab.focused then "now"
        elif $last_focused[$tab.tab_id] then relative_time($last_focused[$tab.tab_id])
-       else "unknown"
+       else ""
        end) as $last_active
     | [
         ("\u001b[36m" + $workspace.label
          + (" " * ($project_width - ($workspace.label | length))) + "\u001b[0m"
          + "  \u001b[2m" + ($tab_number | tostring) + "\u001b[0m "
-         + $tab.label + "  " + $status + "  \u001b[2m" + $last_active + "\u001b[0m"),
-        ("\u001b[2m" + $tab.tab_id + "\u001b[0m")
+         + $tab.label
+         + (if $status == "" then "" else " " + $status end)
+         + (if $last_active == "" then ""
+            else "  \u001b[2m" + $last_active + "\u001b[0m"
+            end)),
+        $tab.tab_id
       ]
     | @tsv
   '
-  exit 0
-fi
+}
 
-if ! command -v tv >/dev/null 2>&1; then
-  printf 'Missing dependency: television\n' >&2
-  wait_for_close
-  exit 1
-fi
+for dependency in fzf herdr jq; do
+  if ! command -v "$dependency" >/dev/null 2>&1; then
+    printf 'Missing dependency: %s\n' "$dependency" >&2
+    wait_for_close
+    exit 1
+  fi
+done
 
-selection=$(tv herdr-tabs --tick-rate 120 --no-preview --no-remote --no-status-bar --no-help-panel) || exit 0
+tab=$(printf '\t')
+selection=$(
+  list_tabs | fzf \
+    --ansi \
+    --delimiter="$tab" \
+    --with-nth=1 \
+    --layout=reverse \
+    --border=none \
+    --info=hidden \
+    --prompt='Tabs › '
+) || exit 0
+
 [ -n "$selection" ] || exit 0
-herdr tab focus "$selection"
+herdr tab focus "${selection#*"$tab"}"

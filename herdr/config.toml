@@ -66,8 +66,8 @@ key = "cmd+space"
 type = "popup"
 description = "find a tab across all spaces"
 command = "$HOME/.config/herdr/tab-picker.sh"
-width = "70%"
-height = "60%"
+width = "45%"
+height = "45%"
 
 [ui]
 sidebar_max_width = 18
