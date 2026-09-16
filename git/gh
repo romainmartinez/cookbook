@@ -1,0 +1,39 @@
+#!/bin/sh
+
+find_real_gh() {
+    self=$(realpath "$0")
+
+    old_ifs=$IFS
+    IFS=:
+    for directory in $PATH; do
+        [ -n "$directory" ] || directory=.
+        candidate=$directory/gh
+        if [ -x "$candidate" ] && [ "$(realpath "$candidate")" != "$self" ]; then
+            printf '%s\n' "$candidate"
+            break
+        fi
+    done
+    IFS=$old_ifs
+}
+
+real_gh=$(find_real_gh)
+[ -n "$real_gh" ] || {
+    printf 'gh: executable not found\n' >&2
+    exit 127
+}
+
+if [ -n "${GH_TOKEN-}" ] || [ -n "${GITHUB_TOKEN-}" ] || [ "${1-}" = auth ]; then
+    exec "$real_gh" "$@"
+fi
+
+remote=$(git remote get-url --push origin 2>/dev/null) || exec "$real_gh" "$@"
+case "$remote" in
+    https://?*@github.com/*)
+        account=${remote#https://}
+        account=${account%%@github.com/*}
+        ;;
+    *) exec "$real_gh" "$@" ;;
+esac
+
+token=$("$real_gh" auth token --hostname github.com --user "$account") || exit 1
+GH_TOKEN=$token exec "$real_gh" "$@"
