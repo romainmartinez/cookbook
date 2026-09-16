@@ -39,7 +39,7 @@ sudo visudo -cf /etc/sudoers.d/rom-nopasswd
 ## Packages
 
 ```sh
-omarchy pkg add fish television lsd yazi fd bat jq uv keyd tailscale mosh git-delta tuicr
+omarchy pkg add fish television lsd yazi fd bat jq uv keyd tailscale mosh git-delta github-cli tuicr
 omarchy install terminal ghostty
 ```
 
