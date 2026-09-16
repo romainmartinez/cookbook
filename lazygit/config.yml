@@ -38,13 +38,14 @@ git:
     - colorArg: always
       command: cat
 os:
-  edit: 'if test -n "$NVIM"; nvim --server "$NVIM" --remote-tab {{filename}}; and "$HERDR_BIN_PATH" pane close "$HERDR_PANE_ID"; else; nvim -- {{filename}}; end'
-  editAtLine: 'if test -n "$NVIM"; nvim --server "$NVIM" --remote-tab {{filename}}; and nvim --server "$NVIM" --remote-send ":{{line}}<CR>"; and "$HERDR_BIN_PATH" pane close "$HERDR_PANE_ID"; else; nvim +{{line}} -- {{filename}}; end'
-  openDirInEditor: 'if test -n "$NVIM"; nvim --server "$NVIM" --remote-tab {{dir}}; and "$HERDR_BIN_PATH" pane close "$HERDR_PANE_ID"; else; nvim -- {{dir}}; end'
+  edit: 'if test -n "$NVIM"; nvim --server "$NVIM" --remote-tab {{filename}}; and "$HERDR_BIN_PATH" tab focus "$HERDR_NVIM_TAB_ID"; and "$HERDR_BIN_PATH" pane close "$HERDR_PANE_ID"; else; nvim -- {{filename}}; end'
+  editAtLine: 'if test -n "$NVIM"; nvim --server "$NVIM" --remote-tab {{filename}}; and nvim --server "$NVIM" --remote-send ":{{line}}<CR>"; and "$HERDR_BIN_PATH" tab focus "$HERDR_NVIM_TAB_ID"; and "$HERDR_BIN_PATH" pane close "$HERDR_PANE_ID"; else; nvim +{{line}} -- {{filename}}; end'
+  openDirInEditor: 'if test -n "$NVIM"; nvim --server "$NVIM" --remote-tab {{dir}}; and "$HERDR_BIN_PATH" tab focus "$HERDR_NVIM_TAB_ID"; and "$HERDR_BIN_PATH" pane close "$HERDR_PANE_ID"; else; nvim -- {{dir}}; end'
   editInTerminal: true
 customCommands:
   - key: "<c-s>"
     context: "global"
     description: "Show total line stats (working tree vs HEAD)"
-    command: 'git diff HEAD --shortstat'
+    command: >-
+      sh -c 'index=$(mktemp) || exit; trap "rm -f $index" 0; export GIT_INDEX_FILE=$index; git read-tree HEAD && git add -A && git diff --cached --shortstat'
     output: popup
