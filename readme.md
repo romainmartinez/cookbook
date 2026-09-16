@@ -52,6 +52,19 @@ Install [brew](https://brew.sh/), then use it to install everything below.
 - mole
 - curl
 - gh
+  ```sh
+  mkdir -p ~/.local/bin
+  ln -sfn $CODE_FOLDER/cookbook/git/git-credential-gh-account ~/.local/bin/git-credential-gh-account
+  git config --file ~/.gitconfig-manulife user.email WORK_EMAIL
+  git config --global --replace-all credential.https://github.com.helper ''
+  git config --global --add credential.https://github.com.helper "$HOME/.local/bin/git-credential-gh-account"
+  git config --global --replace-all 'includeIf.hasconfig:remote.*.url:https://martrom_manulife@github.com/**.path' ~/.gitconfig-manulife
+  git config --global --replace-all 'includeIf.hasconfig:remote.*.url:https://rmmrtnz@github.com/**.path' ~/.gitconfig-manulife
+  ```
+  Use an account-qualified HTTPS remote to select credentials per repository:
+  ```sh
+  git remote set-url origin https://GITHUB_ACCOUNT@github.com/OWNER/REPOSITORY.git
+  ```
 - tuicr
 - pi
   ```sh

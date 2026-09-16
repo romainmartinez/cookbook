@@ -19,6 +19,32 @@ alias lg='lazygit'
 alias gha='gh auth switch'
 alias nr='npm run'
 
+function gh
+    if set -q GH_TOKEN; or set -q GITHUB_TOKEN
+        command gh $argv
+        return $status
+    end
+
+    if test (count $argv) -gt 0; and test "$argv[1]" = auth
+        command gh $argv
+        return $status
+    end
+
+    set -l remote (command git remote get-url --push origin 2>/dev/null)
+    set -l account (string match --regex --groups-only '^https://([^/@]+)@github\.com/' -- "$remote")
+
+    if test -z "$account"
+        command gh $argv
+        return $status
+    end
+
+    set -l token (command gh auth token --hostname github.com --user "$account")
+    or return 1
+
+    set -lx GH_TOKEN "$token"
+    command gh $argv
+end
+
 # lsd (modern ls replacement)
 alias ls='lsd'
 alias l='ls -l --blocks date,size,name'
