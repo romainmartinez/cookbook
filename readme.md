@@ -51,6 +51,11 @@ Install [brew](https://brew.sh/), then use it to install everything below.
 - uv
 - mole
 - curl
+- git
+  ```sh
+  git config --global pull.rebase true
+  git config --global rebase.autoStash true
+  ```
 - gh
   ```sh
   mkdir -p ~/.local/bin
@@ -61,7 +66,11 @@ Install [brew](https://brew.sh/), then use it to install everything below.
   git config --global --replace-all 'includeIf.hasconfig:remote.*.url:https://martrom_manulife@github.com/**.path' ~/.gitconfig-manulife
   git config --global --replace-all 'includeIf.hasconfig:remote.*.url:https://rmmrtnz@github.com/**.path' ~/.gitconfig-manulife
   ```
-  Use an account-qualified HTTPS remote to select credentials per repository:
+  Include the authenticating account when cloning:
+  ```sh
+  git clone https://GITHUB_ACCOUNT@github.com/OWNER/REPOSITORY.git
+  ```
+  For an existing clone:
   ```sh
   git remote set-url origin https://GITHUB_ACCOUNT@github.com/OWNER/REPOSITORY.git
   ```

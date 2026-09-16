@@ -29,6 +29,7 @@ gui:
       - "#ff9e64"
       - bold
 git:
+  disableForcePushing: true
   diffRenderers:
     - colorArg: always
       command: delta --paging=never --line-numbers --wrap-max-lines unlimited
