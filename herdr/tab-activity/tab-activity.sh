@@ -25,10 +25,10 @@ safe_tab_id() {
 }
 
 case "$event" in
-  startup)
+  startup|workspace.focused|pane.focused)
     tab_id=$(read_focused_tab_id)
     ;;
-  tab.focused)
+  tab.created|tab.focused)
     tab_id=$(read_event_tab_id)
     ;;
   tab.closed)

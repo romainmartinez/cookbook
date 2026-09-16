@@ -1,6 +1,6 @@
 id = "cookbook.tab-activity"
 name = "Tab Activity"
-version = "0.1.0"
+version = "0.1.1"
 min_herdr_version = "0.7.1"
 description = "Record when Herdr tabs are focused for the tab picker."
 platforms = ["linux", "macos"]
@@ -9,8 +9,20 @@ platforms = ["linux", "macos"]
 command = ["sh", "tab-activity.sh", "startup"]
 
 [[events]]
+on = "workspace.focused"
+command = ["sh", "tab-activity.sh", "workspace.focused"]
+
+[[events]]
+on = "tab.created"
+command = ["sh", "tab-activity.sh", "tab.created"]
+
+[[events]]
 on = "tab.focused"
 command = ["sh", "tab-activity.sh", "tab.focused"]
+
+[[events]]
+on = "pane.focused"
+command = ["sh", "tab-activity.sh", "pane.focused"]
 
 [[events]]
 on = "tab.closed"
