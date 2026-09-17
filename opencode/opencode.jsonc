@@ -19,7 +19,7 @@
       "npm": "@ai-sdk/anthropic",
       "name": "Azure AI Foundry (Anthropic)",
       "options": {
-        "baseURL": "https://ogcds-foundry.services.ai.azure.com/anthropic/v1",
+        "baseURL": "https://{env:AZURE_FOUNDRY_RESOURCE_NAME}.services.ai.azure.com/anthropic/v1",
         "apiKey": "{env:AZURE_FOUNDRY_API_KEY}",
       },
       "models": {
@@ -53,7 +53,7 @@
     },
     "azure-cognitive-services": {
       "options": {
-        "resourceName": "ogcds-foundry",
+        "resourceName": "{env:AZURE_FOUNDRY_RESOURCE_NAME}",
         "apiKey": "{env:AZURE_FOUNDRY_API_KEY}",
       },
       "models": {

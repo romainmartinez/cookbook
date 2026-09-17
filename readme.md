@@ -86,6 +86,7 @@ Install [brew](https://brew.sh/), then use it to install everything below.
   ln -sfn $CODE_FOLDER/cookbook/pi/prompts ~/.pi/agent/prompts
   ln -sfn $CODE_FOLDER/cookbook/pi/skills ~/.pi/agent/skills
   ln -sfn $CODE_FOLDER/cookbook/pi/mcp.json ~/.pi/agent/mcp.json
+  npm install --prefix $CODE_FOLDER/cookbook/pi/extensions/azure-foundry
   ```
 - opencode
   ```sh
