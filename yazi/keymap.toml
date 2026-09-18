@@ -4,6 +4,16 @@ run = "plugin tv files"
 desc = "Find files with Television"
 
 [[mgr.prepend_keymap]]
+on = "<C-d>"
+run = "seek 5"
+desc = "Scroll preview down"
+
+[[mgr.prepend_keymap]]
+on = "<C-u>"
+run = "seek -5"
+desc = "Scroll preview up"
+
+[[mgr.prepend_keymap]]
 on = "f"
 run = "plugin smart-filter"
 desc = "Smart filter"
