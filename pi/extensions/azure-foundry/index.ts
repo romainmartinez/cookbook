@@ -1,4 +1,5 @@
 import {
+  type Api,
   type Context,
   type FetchFunction,
   type Model,
@@ -26,7 +27,7 @@ export function createFoundryFetch(fetchImpl: FetchFunction): FetchFunction {
 }
 
 function streamFoundry(
-  model: Model,
+  model: Model<Api>,
   context: Context,
   options?: SimpleStreamOptions,
 ) {

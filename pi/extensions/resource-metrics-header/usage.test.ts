@@ -36,7 +36,7 @@ test("collects and deduplicates the last seven local days", async (t) => {
   await writeFile(join(root, "nested", "2025-09-14T10-00-00-000Z_copy.jsonl"), [
     entry("today", "2025-09-15T12:00:00", 1.25, 110),
     entry("yesterday", "2025-09-14T12:00:00", 2, 1_200),
-  ].map(JSON.stringify).join("\n"));
+  ].map((value) => JSON.stringify(value)).join("\n"));
   await writeFile(join(root, "2025-08-01T10-00-00-000Z_old.jsonl"), JSON.stringify(
     entry("resumed-old-session", "2025-09-15T14:00:00", 50, 5_000),
   ));

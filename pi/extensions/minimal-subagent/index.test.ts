@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import type { ExtensionAPI, ToolDefinition } from "@earendil-works/pi-coding-agent";
+import type { ExtensionAPI, ExtensionContext, ToolDefinition } from "@earendil-works/pi-coding-agent";
 import minimalSubagent from "./index.ts";
 
 type Execute = ToolDefinition["execute"];
@@ -22,12 +22,12 @@ function setup(result: ExecResult) {
   return { execute: tool.execute as Execute, calls };
 }
 
-function context(trusted = true) {
+function context(trusted = true): ExtensionContext {
   return {
     cwd: "/project",
     model: { provider: "openai", id: "gpt-test" },
     isProjectTrusted: () => trusted,
-  } as never;
+  } as unknown as ExtensionContext;
 }
 
 test("runs an isolated child with the active model and trust policy", async () => {
@@ -72,7 +72,10 @@ test("returns an error without spawning when no model is active", async () => {
     model: undefined,
   });
 
-  assert.equal(result.isError, true);
-  assert.match(result.content[0]?.text ?? "", /No active model/);
+  assert.deepEqual(result, {
+    content: [{ type: "text", text: "No active model is available for the subagent." }],
+    details: {},
+    isError: true,
+  });
   assert.equal(calls.length, 0);
 });

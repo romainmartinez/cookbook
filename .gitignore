@@ -16,4 +16,5 @@ pi/extensions/herdr-agent-state.ts
 
 # JavaScript dependencies
 node_modules/
-pi/package-lock.json
+package-lock.json
+pnpm-lock.yaml

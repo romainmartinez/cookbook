@@ -49,6 +49,7 @@ Install [brew](https://brew.sh/), then use it to install everything below.
 ## Dev Tools
 
 - uv
+- pnpm
 - mole
 - curl
 - git
@@ -86,7 +87,8 @@ Install [brew](https://brew.sh/), then use it to install everything below.
   ln -sfn $CODE_FOLDER/cookbook/pi/prompts ~/.pi/agent/prompts
   ln -sfn $CODE_FOLDER/cookbook/pi/skills ~/.pi/agent/skills
   ln -sfn $CODE_FOLDER/cookbook/pi/mcp.json ~/.pi/agent/mcp.json
-  npm install --prefix $CODE_FOLDER/cookbook/pi/extensions/azure-foundry
+  pnpm --dir "$CODE_FOLDER/cookbook" install
+  pnpm --dir "$CODE_FOLDER/cookbook" check
   ```
 - opencode
   ```sh
@@ -136,7 +138,7 @@ Install [brew](https://brew.sh/), then use it to install everything below.
 - todoist
 - karabiner-elements
   ```sh
-  ln -sfn $CODE_FOLDER/cookbook/karabiner.json ~/.config/karabiner/karabiner.json
+  ln -sfn $CODE_FOLDER/cookbook/karabiner/karabiner.json ~/.config/karabiner/karabiner.json
   ```
 - thaw
 - chrome
