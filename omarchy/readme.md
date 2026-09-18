@@ -14,10 +14,11 @@ them with Linux-specific packages, paths, or configuration.
 
 ## Sudo
 
+Keep the default password requirement. Remove the legacy unrestricted rule if it was installed by an older version of this guide:
+
 ```sh
-echo 'rom ALL=(ALL:ALL) NOPASSWD: ALL' | sudo tee /etc/sudoers.d/rom-nopasswd >/dev/null
-sudo chmod 440 /etc/sudoers.d/rom-nopasswd
-sudo visudo -cf /etc/sudoers.d/rom-nopasswd
+sudo rm -f /etc/sudoers.d/rom-nopasswd
+sudo visudo -c
 ```
 
 ## Keyboard
