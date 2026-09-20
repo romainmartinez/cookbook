@@ -10,5 +10,5 @@
     "types": ["node"]
   },
   "include": ["extensions/**/*.ts"],
-  "exclude": ["extensions/herdr-agent-state.ts"]
+  "exclude": ["extensions/rom-herdr-agent-state.ts"]
 }

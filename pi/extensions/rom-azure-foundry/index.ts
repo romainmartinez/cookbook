@@ -1,12 +1,12 @@
 import {
+  anthropicMessagesApi,
+  azureOpenAIResponsesApi,
   type Api,
-  type Context,
+  type TranscriptContext,
   type FetchFunction,
   type Model,
   type SimpleStreamOptions,
-} from "@earendil-works/pi-ai";
-import { streamSimple as streamAnthropic } from "@earendil-works/pi-ai/api/anthropic-messages";
-import { streamSimple as streamAzureOpenAI } from "@earendil-works/pi-ai/api/azure-openai-responses";
+} from "@earendil-works/pi-ai/compat";
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 
 const RESOURCE_NAME_ENV = "AZURE_FOUNDRY_RESOURCE_NAME";
@@ -28,18 +28,18 @@ export function createFoundryFetch(fetchImpl: FetchFunction): FetchFunction {
 
 function streamFoundry(
   model: Model<Api>,
-  context: Context,
+  context: TranscriptContext,
   options?: SimpleStreamOptions,
 ) {
   if (model.id === "claude-opus-5") {
-    return streamAnthropic(
+    return anthropicMessagesApi().streamSimple(
       { ...model, api: "anthropic-messages" } as Model<"anthropic-messages">,
       context,
       { ...options, fetch: createFoundryFetch(options?.fetch ?? globalThis.fetch) },
     );
   }
 
-  return streamAzureOpenAI(
+  return azureOpenAIResponsesApi().streamSimple(
     { ...model, api: "azure-openai-responses" } as Model<"azure-openai-responses">,
     context,
     options,
