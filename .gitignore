@@ -12,7 +12,7 @@ karabiner/automatic_backups/
 .pi/mcp.json
 
 # Herdr-managed Pi integration
-pi/extensions/rom-herdr-agent-state.ts
+pi/extensions/herdr-agent-state.ts
 
 # JavaScript dependencies
 node_modules/
