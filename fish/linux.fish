@@ -25,6 +25,7 @@ function sysclean
     end
 
     sudo pacman -Sc --noconfirm
+    pi update --extensions
 end
 
 # notify when a long-running command finishes
