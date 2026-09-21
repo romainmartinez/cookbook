@@ -8,4 +8,4 @@ Before pulling, check for local changes and ask before proceeding if they could 
 
 Read the relevant setup documentation and detect the operating system. Apply only setup changes documented by this repository and required by the pulled commits. Do not inspect, update, or modify other repositories unless this repository's setup documentation explicitly requires it. Do not rerun the full setup, and remember that files behind existing symlinks update automatically. Ask before destructive actions, replacing unmanaged files, or commands requiring elevated privileges.
 
-Verify what changed and briefly report the pulled commits, actions taken, and anything still requiring attention.
+Verify what changed and briefly report the pulled commits, the changes applied to this machine, and anything still requiring attention. Include the relevant output from each setup command so the applied changes are explicit.
