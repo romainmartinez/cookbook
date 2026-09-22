@@ -5,7 +5,8 @@
   "scripts": {
     "test": "node --experimental-strip-types --test \"extensions/**/*.test.ts\"",
     "typecheck": "tsc --project tsconfig.json",
-    "check": "pnpm run typecheck && pnpm test"
+    "check-version": "node --experimental-strip-types scripts/check-pi-version.ts",
+    "check": "pnpm run check-version && pnpm run typecheck && pnpm test"
   },
   "devDependencies": {
     "@earendil-works/pi-ai": "0.86.1",
