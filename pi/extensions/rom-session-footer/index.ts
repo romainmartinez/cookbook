@@ -1,6 +1,6 @@
 import { homedir } from "node:os";
 import { sep } from "node:path";
-import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
+import type { ExtensionAPI, SessionEntry } from "@earendil-works/pi-coding-agent";
 import { truncateToWidth, visibleWidth } from "@earendil-works/pi-tui";
 
 const compact = new Intl.NumberFormat("en", {
@@ -8,6 +8,19 @@ const compact = new Intl.NumberFormat("en", {
   maximumFractionDigits: 1,
 });
 const ansi = /\x1b\[[0-?]*[ -/]*[@-~]/g;
+
+function entryCost(entry: SessionEntry): number {
+  switch (entry.type) {
+    case "message":
+      return "usage" in entry.message ? entry.message.usage?.cost.total ?? 0 : 0;
+    case "usage":
+    case "compaction":
+    case "branch_summary":
+      return entry.usage?.cost.total ?? 0;
+    default:
+      return 0;
+  }
+}
 
 export default function (pi: ExtensionAPI) {
   pi.on("session_start", (_event, ctx) => {
@@ -29,10 +42,7 @@ export default function (pi: ExtensionAPI) {
           const context = usage?.tokens == null
             ? "?"
             : `${compact.format(usage.tokens)} (${Math.round(usage.percent ?? 0)}%)`;
-          const cost = ctx.sessionManager.getEntries().reduce((total, entry) => {
-            if (entry.type !== "message" || !("usage" in entry.message)) return total;
-            return total + (entry.message.usage?.cost.total ?? 0);
-          }, 0);
+          const cost = ctx.sessionManager.getEntries().reduce((total, entry) => total + entryCost(entry), 0);
 
           const statuses = [...footerData.getExtensionStatuses().values()].map((status) =>
             status.replace(ansi, ""),

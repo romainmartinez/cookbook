@@ -39,9 +39,11 @@ test("renders live session metrics and stays within the terminal width", () => {
     sessionManager: {
       getCwd: () => join(homedir(), "work", "cookbook"),
       getEntries: () => [
-        { type: "message", message: { usage: { cost: { total: 1.25 } } } },
-        { type: "message", message: { usage: { cost: { total: 0.5 } } } },
+        { type: "message", message: { role: "assistant", usage: { cost: { total: 1.25 } } } },
+        { type: "message", message: { role: "toolResult", usage: { cost: { total: 0.5 } } } },
         { type: "compaction", usage: { cost: { total: 99 } } },
+        { type: "branch_summary", usage: { cost: { total: 2 } } },
+        { type: "usage", usage: { cost: { total: 0.25 } } },
       ],
     },
     ui: { setFooter: (value: FooterFactory) => { factory = value; } },
@@ -63,7 +65,7 @@ test("renders live session metrics and stays within the terminal width", () => {
   );
 
   const wide = component.render(100).join("");
-  assert.match(wide, /12\.5K \(42%\).*\$1\.75.*MCP ready.*gpt-test.*high/);
+  assert.match(wide, /12\.5K \(42%\).*\$103\.00.*MCP ready.*gpt-test.*high/);
   assert.match(wide, /~\/work\/cookbook \(main\)/);
   assert.ok(!wide.includes("\x1b[31m"));
 

@@ -37,7 +37,10 @@ function setup() {
     getAllTools: () => [],
     getCommands: () => [],
   } as unknown as ExtensionAPI;
-  startupResourceMetrics(pi, { loadUsage: async () => usage });
+  startupResourceMetrics(pi, {
+    loadUsage: async () => usage,
+    loadContextFiles: ({ cwd }) => [{ path: `${cwd}/AGENTS.md`, content: "12345678" }],
+  });
   return { piHandlers, eventHandlers };
 }
 
@@ -87,6 +90,7 @@ test("captures startup metrics once per session", async (t) => {
   assert.match(measured, /\[Usage\]/);
   assert.match(measured, /Total\s+\$1\.25\s+1\.2k \(60\.0%\)/);
   assert.match(measured, /startup-server \(connected\)\s+2\s+1/);
+  assert.match(measured, /\/missing-project\/AGENTS\.md\s+2/);
   assert.equal(piHandlers.has("before_agent_start"), false);
   assert.equal(piHandlers.has("model_select"), false);
 

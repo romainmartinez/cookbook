@@ -1,10 +1,12 @@
 import { join } from "node:path";
 import {
   getAgentDir,
+  loadProjectContextFiles,
   type ExtensionAPI,
 } from "@earendil-works/pi-coding-agent";
 import {
   collectMetrics,
+  type ContextFile,
   type McpStatusSnapshot,
   type MetricsSnapshot,
 } from "./metrics.ts";
@@ -13,7 +15,10 @@ import { collectUsage, type UsageSnapshot } from "./usage.ts";
 
 const MCP_STATUS_EVENT = "pi-mcp-adapter/status/v1";
 
-type Options = { loadUsage?: (sessionRoot: string) => Promise<UsageSnapshot> };
+type Options = {
+  loadUsage?: (sessionRoot: string) => Promise<UsageSnapshot>;
+  loadContextFiles?: (options: { cwd: string; agentDir: string }) => ContextFile[];
+};
 
 export default function (pi: ExtensionAPI, options: Options = {}) {
   let latestMcpSnapshot: McpStatusSnapshot | undefined;
@@ -43,7 +48,7 @@ export default function (pi: ExtensionAPI, options: Options = {}) {
           agentDir,
           cwd: ctx.cwd,
           systemPrompt: ctx.getSystemPrompt(),
-          contextFiles: [],
+          contextFiles: (options.loadContextFiles ?? loadProjectContextFiles)({ cwd: ctx.cwd, agentDir }),
           contextWindow: ctx.model?.contextWindow,
         });
         mcpSnapshot = latestMcpSnapshot;

@@ -1,6 +1,6 @@
 import { createReadStream } from "node:fs";
-import { readdir } from "node:fs/promises";
-import { basename, join } from "node:path";
+import { readdir, stat } from "node:fs/promises";
+import { join } from "node:path";
 import { createInterface } from "node:readline";
 
 export type UsageTotals = {
@@ -42,7 +42,9 @@ function usageFrom(entry: Record<string, unknown>): unknown {
       ? entry.message.usage
       : undefined;
   }
-  return entry.type === "compaction" || entry.type === "branch_summary" ? entry.usage : undefined;
+  return entry.type === "usage" || entry.type === "compaction" || entry.type === "branch_summary"
+    ? entry.usage
+    : undefined;
 }
 
 function parseEntry(value: unknown): UsageEntry | undefined {
@@ -66,14 +68,7 @@ function parseEntry(value: unknown): UsageEntry | undefined {
   };
 }
 
-function sessionTimestamp(path: string): Date | undefined {
-  const match = /^(\d{4}-\d{2}-\d{2})T(\d{2})-(\d{2})-(\d{2})-(\d{3})Z_/.exec(basename(path));
-  if (!match) return undefined;
-  const timestamp = new Date(`${match[1]}T${match[2]}:${match[3]}:${match[4]}.${match[5]}Z`);
-  return Number.isFinite(timestamp.getTime()) ? timestamp : undefined;
-}
-
-async function sessionFiles(root: string, from: Date, to: Date): Promise<{ files: string[]; warnings: number }> {
+async function sessionFiles(root: string, from: Date): Promise<{ files: string[]; warnings: number }> {
   const files: string[] = [];
   let warnings = 0;
 
@@ -89,8 +84,12 @@ async function sessionFiles(root: string, from: Date, to: Date): Promise<{ files
       const path = join(directory, entry.name);
       if (entry.isDirectory()) await walk(path);
       else if ((entry.isFile() || entry.isSymbolicLink()) && entry.name.endsWith(".jsonl")) {
-        const timestamp = sessionTimestamp(path);
-        if (timestamp && timestamp >= from && timestamp <= to) files.push(path);
+        try {
+          const metadata = await stat(path);
+          if (metadata.isFile() && metadata.mtime >= from) files.push(path);
+        } catch {
+          warnings++;
+        }
       }
     }));
   }
@@ -132,7 +131,7 @@ export async function collectUsage(root: string, now = new Date()): Promise<Usag
   const byDate = new Map(days.map((day) => [day.date, day]));
   const seen = new Set<string>();
   const total = emptyTotals();
-  const discovered = await sessionFiles(root, from, to);
+  const discovered = await sessionFiles(root, from);
   let warnings = discovered.warnings;
 
   for (const file of discovered.files) {
