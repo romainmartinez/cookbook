@@ -31,7 +31,7 @@ function streamFoundry(
   context: TranscriptContext,
   options?: SimpleStreamOptions,
 ) {
-  if (model.id === "claude-opus-5") {
+  if (model.id === "claude-opus-5-5") {
     return anthropicMessagesApi().streamSimple(
       { ...model, api: "anthropic-messages" } as Model<"anthropic-messages">,
       context,
@@ -60,18 +60,22 @@ export default function (pi: ExtensionAPI) {
     streamSimple: streamFoundry,
     models: [
       {
-        id: "claude-opus-5",
-        name: "Claude Opus 5 (Azure)",
+        id: "claude-opus-5-5",
+        name: "Claude Opus 5.5 (Azure)",
         baseUrl: `https://${resourceName}.services.ai.azure.com/anthropic`,
         reasoning: true,
         input: ["text", "image"],
         contextWindow: 1_000_000,
         maxTokens: 128_000,
         cost: {
-          input: 5,
-          output: 25,
-          cacheRead: 0.5,
-          cacheWrite: 6.25,
+          input: 4,
+          output: 20,
+          cacheRead: 0.2,
+          cacheWrite: 5,
+        },
+        promptCache: {
+          short: 300,
+          long: 3_600,
         },
         thinkingLevelMap: {
           off: null,
@@ -80,6 +84,7 @@ export default function (pi: ExtensionAPI) {
         },
         compat: {
           forceAdaptiveThinking: true,
+          supportsMidConvoEffort: true,
           supportsTemperature: false,
           supportsStrictTools: true,
         },

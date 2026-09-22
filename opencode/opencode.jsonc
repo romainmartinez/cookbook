@@ -23,30 +23,17 @@
         "apiKey": "{env:AZURE_FOUNDRY_API_KEY}",
       },
       "models": {
-        "claude-opus-5": {
-          "name": "Claude Opus 5 (Azure)",
+        "claude-opus-5-5": {
+          "name": "Claude Opus 5.5 (Azure)",
           "limit": {
             "context": 1000000,
             "output": 128000,
           },
           "cost": {
-            "input": 5,
-            "output": 25,
-            "cache_read": 0.5,
-            "cache_write": 6.25,
-          },
-        },
-        "claude-opus-4-8": {
-          "name": "Claude Opus 4.8 (Azure)",
-          "limit": {
-            "context": 1000000,
-            "output": 128000,
-          },
-          "cost": {
-            "input": 5,
-            "output": 25,
-            "cache_read": 0.5,
-            "cache_write": 6.25,
+            "input": 4,
+            "output": 20,
+            "cache_read": 0.2,
+            "cache_write": 5,
           },
         },
       },
@@ -77,18 +64,6 @@
               "cache_read": 1,
               "cache_write": 12.5,
             },
-          },
-        },
-        "gpt-5.3-codex": {
-          "name": "GPT-5.3 Codex (Azure)",
-          "limit": {
-            "context": 256000,
-            "output": 32000,
-          },
-          "cost": {
-            "input": 1.75,
-            "output": 14,
-            "cache_read": 0.175,
           },
         },
       },
