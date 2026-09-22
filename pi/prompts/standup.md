@@ -39,7 +39,7 @@ Treat angle-bracket text in a supplied note, such as `<review one pager on Futur
 
 ## Build and review
 
-Prepare concise, standalone candidates for yesterday's actual work and outcomes, today's likely work and next status, and explicit blockers or relevant notes. Treat inferred plans as suggestions. Use `#123 Title`, or `owner/repo#123 Title` when ambiguous; never use a bare issue or PR number.
+Prepare concise, standalone candidates for yesterday's actual work and outcomes, today's likely work and next status, and explicit blockers or relevant notes. Write every candidate and final standup item in simple English and present tense. Use short, direct sentences with concrete verbs. Avoid corporate language, filler, and phrases such as "worked on", "focused on", "continued to", and "successfully". Treat inferred plans as suggestions. Use `#123 Title`, or `owner/repo#123 Title` when ambiguous; never use a bare issue or PR number.
 
 Use one question-tool call with exactly three questions, ordered yesterday, today, then notes/blockers. Mention the target date in every question and set `multiSelect: true` on each.
 
