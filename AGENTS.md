@@ -1,6 +1,6 @@
-- This is a personal dotfiles and machine-setup repository. Each top-level directory owns one tool's configuration.
-- Keep shared setup instructions in `readme.md`; `omarchy/readme.md` contains only Linux-specific overrides and additions. Read it only when changing shared or Linux setup.
-- Keep shared Fish and Ghostty settings in `base.*`; put platform-specific settings in `mac.*` or `linux.*`.
-- Keep Pi tests beside their source as `*.test.ts`; run `pnpm check` from the repository root.
-- When adding, moving, or removing a configuration target, update the relevant setup README and symlink instructions.
-- Clone GitHub repositories over HTTPS with the appropriate account in the URL, for example `https://rmmrtnz@github.com/rmmrtnz/nova.git`. Infer the account from related repositories when needed; the credential helper uses the URL username to select the matching `gh` account.
+- Personal dotfiles/setup repo; each top-level directory owns one tool.
+- Put shared setup in `readme.md`; keep only Linux overrides in `omarchy/readme.md`. Read both for shared or Linux setup changes.
+- Put shared Fish/Ghostty settings in `base.*`; platform settings in `mac.*` or `linux.*`.
+- Keep Pi tests beside source as `*.test.ts`; run root-level `pnpm check`.
+- Update setup README and symlink instructions when configuration targets change.
+- Clone GitHub repos as `https://ACCOUNT@github.com/OWNER/REPO.git`; infer `ACCOUNT` from related repos. The credential helper selects that `gh` account.
