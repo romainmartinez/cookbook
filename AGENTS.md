@@ -3,3 +3,4 @@
 - Keep shared Fish and Ghostty settings in `base.*`; put platform-specific settings in `mac.*` or `linux.*`.
 - Keep Pi tests beside their source as `*.test.ts`; run `pnpm check` from the repository root.
 - When adding, moving, or removing a configuration target, update the relevant setup README and symlink instructions.
+- Clone GitHub repositories over HTTPS with the appropriate account in the URL, for example `https://rmmrtnz@github.com/rmmrtnz/nova.git`. Infer the account from related repositories when needed; the credential helper uses the URL username to select the matching `gh` account.
