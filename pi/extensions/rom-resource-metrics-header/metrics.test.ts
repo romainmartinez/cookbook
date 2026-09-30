@@ -4,7 +4,13 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import test from "node:test";
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
-import { collectMetrics, LARGE_CONTEXT_TOKENS, LARGE_TOOL_TOKENS } from "./metrics.ts";
+import {
+  collectMcpStatus,
+  collectMetrics,
+  LARGE_CONTEXT_TOKENS,
+  LARGE_TOOL_TOKENS,
+  mcpServerSettings,
+} from "./metrics.ts";
 
 type Command = ReturnType<ExtensionAPI["getCommands"]>[number];
 type Tool = ReturnType<ExtensionAPI["getAllTools"]>[number];
@@ -13,11 +19,13 @@ function fakePi(options: {
   activeTools?: string[];
   tools?: Tool[];
   commands?: Command[];
+  mcpServers?: ReturnType<ExtensionAPI["getMcpServers"]>;
 } = {}): ExtensionAPI {
   return {
     getActiveTools: () => options.activeTools ?? [],
     getAllTools: () => options.tools ?? [],
     getCommands: () => options.commands ?? [],
+    getMcpServers: () => options.mcpServers ?? [],
   } as unknown as ExtensionAPI;
 }
 
@@ -147,3 +155,62 @@ test("does not fail startup when user configuration files are malformed or missi
   assert.deepEqual(snapshot.prompts, [{ label: "/missing", value: 0 }]);
   assert.deepEqual(snapshot.extensions, []);
 }));
+
+function mcpTool(server: string, name: string, exposure: Tool["exposure"]): Tool {
+  return {
+    name: `mcp__${server}__${name}`,
+    exposure,
+    namespace: { name: `mcp__${server}`, description: "" },
+  } as unknown as Tool;
+}
+
+test("reads MCP server settings with project entries overriding global ones", () => {
+  withTempDir((root) => {
+    const agentDir = join(root, "agent");
+    const cwd = join(root, "project");
+    mkdirSync(agentDir);
+    mkdirSync(join(cwd, ".pi"), { recursive: true });
+    writeFileSync(join(agentDir, "mcp.json"), JSON.stringify({
+      mcpServers: { docs: { url: "https://docs" }, figma: { url: "http://figma", enabled: false } },
+    }));
+    writeFileSync(join(cwd, ".pi", "mcp.json"), JSON.stringify({
+      mcpServers: { docs: { url: "https://docs", enabled: false } },
+    }));
+    const pi = fakePi({
+      mcpServers: [{ name: "jira", config: { url: "https://jira" } }] as ReturnType<ExtensionAPI["getMcpServers"]>,
+    });
+
+    const byName = (projectTrusted: boolean) => Object.fromEntries(
+      mcpServerSettings({ pi, agentDir, cwd, projectTrusted }).map((setting) => [setting.name, setting.enabled]),
+    );
+    assert.deepEqual(byName(true), { docs: false, figma: false, jira: true });
+    assert.deepEqual(byName(false), { docs: true, figma: false, jira: true });
+  });
+});
+
+test("counts MCP tools per server and derives their status", () => {
+  const status = collectMcpStatus(
+    [
+      mcpTool("docs", "search", "direct"),
+      mcpTool("docs", "read", "codemode"),
+      mcpTool("extra", "run", "deferred"),
+      { name: "read", exposure: "direct" } as unknown as Tool,
+    ],
+    [
+      { name: "docs", enabled: true },
+      { name: "slow", enabled: true },
+      { name: "figma", enabled: false },
+    ],
+  );
+
+  assert.deepEqual(status, {
+    servers: [
+      { name: "docs", status: "connected", toolCount: 2, directToolCount: 1 },
+      { name: "slow", status: "no tools", toolCount: 0, directToolCount: 0 },
+      { name: "figma", status: "disabled", toolCount: 0, directToolCount: 0 },
+      { name: "extra", status: "connected", toolCount: 1, directToolCount: 0 },
+    ],
+    totalTools: 3,
+  });
+  assert.equal(collectMcpStatus([], []), undefined);
+});

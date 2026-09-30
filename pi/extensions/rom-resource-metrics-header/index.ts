@@ -5,15 +5,15 @@ import {
   type ExtensionAPI,
 } from "@earendil-works/pi-coding-agent";
 import {
+  collectMcpStatus,
   collectMetrics,
+  mcpServerSettings,
   type ContextFile,
-  type McpStatusSnapshot,
+  type McpServerSetting,
   type MetricsSnapshot,
 } from "./metrics.ts";
 import { renderHeader } from "./rendering.ts";
 import { collectUsage, type UsageSnapshot } from "./usage.ts";
-
-const MCP_STATUS_EVENT = "pi-mcp-adapter/status/v1";
 
 type Options = {
   loadUsage?: (sessionRoot: string) => Promise<UsageSnapshot>;
@@ -21,15 +21,8 @@ type Options = {
 };
 
 export default function (pi: ExtensionAPI, options: Options = {}) {
-  let latestMcpSnapshot: McpStatusSnapshot | undefined;
   let cachedUsage: UsageSnapshot | null | undefined;
   let usagePromise: Promise<UsageSnapshot> | undefined;
-
-  pi.events.on(MCP_STATUS_EVENT, (data) => {
-    const snapshot = data as Partial<McpStatusSnapshot>;
-    if (snapshot.version !== 1 || !Array.isArray(snapshot.servers)) return;
-    latestMcpSnapshot = snapshot as McpStatusSnapshot;
-  });
 
   pi.on("session_start", (_event, ctx) => {
     if (ctx.mode !== "tui") return;
@@ -38,7 +31,7 @@ export default function (pi: ExtensionAPI, options: Options = {}) {
     ctx.ui.setHeader((tui, theme) => {
       let snapshot: MetricsSnapshot | undefined;
       let usageSnapshot = cachedUsage;
-      let mcpSnapshot: McpStatusSnapshot | undefined;
+      let mcpSettings: McpServerSetting[] = [];
       let disposed = false;
 
       const timer = setTimeout(() => {
@@ -51,7 +44,12 @@ export default function (pi: ExtensionAPI, options: Options = {}) {
           contextFiles: (options.loadContextFiles ?? loadProjectContextFiles)({ cwd: ctx.cwd, agentDir }),
           contextWindow: ctx.model?.contextWindow,
         });
-        mcpSnapshot = latestMcpSnapshot;
+        mcpSettings = mcpServerSettings({
+          pi,
+          agentDir,
+          cwd: ctx.cwd,
+          projectTrusted: ctx.isProjectTrusted(),
+        });
         tui.requestRender();
         usagePromise ??= (options.loadUsage ?? collectUsage)(join(agentDir, "sessions"));
         void usagePromise.then(
@@ -80,7 +78,7 @@ export default function (pi: ExtensionAPI, options: Options = {}) {
             ),
             snapshot,
             usageSnapshot,
-            mcpSnapshot,
+            mcpSnapshot: snapshot ? collectMcpStatus(pi.getAllTools(), mcpSettings) : undefined,
           });
         },
         invalidate() {},

@@ -6,16 +6,17 @@ import {
   parseFrontmatter,
   stripFrontmatter,
   type ExtensionAPI,
+  type ToolInfo,
 } from "@earendil-works/pi-coding-agent";
 
 export type Metric = { label: string; value: number; warning?: boolean };
 export type SkillMetric = { label: string; descriptionTokens: number | undefined; bodyTokens: number };
 export type ContextFile = { path: string; content: string };
+export type McpServerSetting = { name: string; enabled: boolean };
 export type McpStatusSnapshot = {
-  version: 1;
   servers: ReadonlyArray<{
     name: string;
-    status: "connected" | "cached" | "failed" | "needs-auth" | "not-connected" | "disabled";
+    status: "connected" | "no tools" | "disabled";
     toolCount: number;
     directToolCount: number;
   }>;
@@ -191,4 +192,67 @@ export function collectMetrics(options: {
     tools: toolMetrics(options.pi),
     extensions: extensionLabels(options.agentDir, options.cwd),
   };
+}
+
+const MCP_NAMESPACE_PREFIX = "mcp__";
+
+function mcpFileSettings(path: string): McpServerSetting[] {
+  try {
+    const config = JSON.parse(readFileSync(path, "utf8")) as {
+      mcpServers?: Record<string, { enabled?: boolean }>;
+    };
+    return Object.entries(config.mcpServers ?? {}).map(([name, server]) => ({
+      name,
+      enabled: server?.enabled !== false,
+    }));
+  } catch {
+    return [];
+  }
+}
+
+export function mcpServerSettings(options: {
+  pi: ExtensionAPI;
+  agentDir: string;
+  cwd: string;
+  projectTrusted: boolean;
+}): McpServerSetting[] {
+  const settings = new Map<string, McpServerSetting>();
+  const add = (setting: McpServerSetting) => {
+    if (!settings.has(setting.name)) settings.set(setting.name, setting);
+  };
+  if (options.projectTrusted) mcpFileSettings(join(options.cwd, CONFIG_DIR_NAME, "mcp.json")).forEach(add);
+  mcpFileSettings(join(options.agentDir, "mcp.json")).forEach(add);
+  for (const server of options.pi.getMcpServers()) {
+    add({ name: server.name, enabled: server.config.enabled !== false });
+  }
+  return [...settings.values()];
+}
+
+export function collectMcpStatus(
+  tools: readonly ToolInfo[],
+  settings: readonly McpServerSetting[],
+): McpStatusSnapshot | undefined {
+  const counts = new Map<string, { toolCount: number; directToolCount: number }>();
+  for (const tool of tools) {
+    const namespace = tool.namespace?.name;
+    if (!namespace?.startsWith(MCP_NAMESPACE_PREFIX)) continue;
+    const name = namespace.slice(MCP_NAMESPACE_PREFIX.length);
+    const count = counts.get(name) ?? { toolCount: 0, directToolCount: 0 };
+    count.toolCount++;
+    if (tool.exposure === "direct" || tool.exposure === "model-only") count.directToolCount++;
+    counts.set(name, count);
+  }
+
+  const enabled = new Map(settings.map((setting) => [setting.name, setting.enabled]));
+  const names = new Set([...enabled.keys(), ...counts.keys()]);
+  if (names.size === 0) return undefined;
+
+  const servers = [...names].map((name) => {
+    const count = counts.get(name) ?? { toolCount: 0, directToolCount: 0 };
+    const status: McpStatusSnapshot["servers"][number]["status"] = enabled.get(name) === false
+      ? "disabled"
+      : count.toolCount > 0 ? "connected" : "no tools";
+    return { name, status, ...count };
+  });
+  return { servers, totalTools: servers.reduce((sum, server) => sum + server.toolCount, 0) };
 }

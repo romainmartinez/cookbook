@@ -49,9 +49,8 @@ const usageSnapshot: UsageSnapshot = {
 };
 
 const mcpSnapshot: McpStatusSnapshot = {
-  version: 1,
   servers: [
-    { name: "zeta", status: "failed", toolCount: 2, directToolCount: 1 },
+    { name: "zeta", status: "no tools", toolCount: 2, directToolCount: 1 },
     { name: "alpha", status: "connected", toolCount: 5, directToolCount: 3 },
     { name: "beta", status: "disabled", toolCount: 0, directToolCount: 0 },
   ],

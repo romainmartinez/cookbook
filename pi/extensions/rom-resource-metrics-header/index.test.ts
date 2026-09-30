@@ -27,21 +27,33 @@ const usage: UsageSnapshot = {
   warnings: 0,
 };
 
+type Tool = ReturnType<ExtensionAPI["getAllTools"]>[number];
+
+function mcpTool(server: string, name: string, exposure: Tool["exposure"]): Tool {
+  return {
+    name: `mcp__${server}__${name}`,
+    description: "",
+    parameters: {},
+    exposure,
+    namespace: { name: `mcp__${server}`, description: "" },
+  } as unknown as Tool;
+}
+
 function setup() {
   const piHandlers = new Map<string, Handler>();
-  const eventHandlers = new Map<string, Handler>();
+  const tools: Tool[] = [];
   const pi = {
-    events: { on: (name: string, handler: Handler) => eventHandlers.set(name, handler) },
     on: (name: string, handler: Handler) => piHandlers.set(name, handler),
     getActiveTools: () => [],
-    getAllTools: () => [],
+    getAllTools: () => tools,
     getCommands: () => [],
+    getMcpServers: () => [],
   } as unknown as ExtensionAPI;
   startupResourceMetrics(pi, {
     loadUsage: async () => usage,
     loadContextFiles: ({ cwd }) => [{ path: `${cwd}/AGENTS.md`, content: "12345678" }],
   });
-  return { piHandlers, eventHandlers };
+  return { piHandlers, tools };
 }
 
 test("does not install a header outside TUI sessions", () => {
@@ -58,7 +70,7 @@ test("does not install a header outside TUI sessions", () => {
 
 test("captures startup metrics once per session", async (t) => {
   t.mock.timers.enable({ apis: ["setTimeout"] });
-  const { piHandlers, eventHandlers } = setup();
+  const { piHandlers, tools } = setup();
   let factory: HeaderFactory | undefined;
   let renders = 0;
   const context = {
@@ -67,6 +79,7 @@ test("captures startup metrics once per session", async (t) => {
     model: { contextWindow: 1_000 },
     scopedModels: [],
     getSystemPrompt: () => "default prompt",
+    isProjectTrusted: () => false,
     ui: {
       setHeader: (value: HeaderFactory) => { factory = value; },
       getToolsExpanded: () => false,
@@ -78,11 +91,7 @@ test("captures startup metrics once per session", async (t) => {
   const component = factory({ terminal: { rows: 40 }, requestRender: () => renders++ }, theme);
   assert.match(component.render(100).join("\n"), /Measuring loaded resources/);
 
-  registered(eventHandlers, "pi-mcp-adapter/status/v1")({
-    version: 1,
-    servers: [{ name: "startup-server", status: "connected", toolCount: 2, directToolCount: 1 }],
-    totalTools: 2,
-  });
+  tools.push(mcpTool("startup-server", "a", "direct"), mcpTool("startup-server", "b", "codemode"));
   t.mock.timers.runAll();
   await Promise.resolve();
   const measured = component.render(100).join("\n");
@@ -95,14 +104,11 @@ test("captures startup metrics once per session", async (t) => {
   assert.equal(piHandlers.has("model_select"), false);
 
   const rendersAfterStartup = renders;
-  registered(eventHandlers, "pi-mcp-adapter/status/v1")({
-    version: 1,
-    servers: [{ name: "later-server", status: "connected", toolCount: 3, directToolCount: 2 }],
-    totalTools: 3,
-  });
-  const unchanged = component.render(100).join("\n");
-  assert.match(unchanged, /startup-server/);
-  assert.doesNotMatch(unchanged, /later-server/);
+  tools.push(mcpTool("later-server", "c", "codemode"));
+  const updated = component.render(100).join("\n");
+  assert.match(updated, /startup-server \(connected\)\s+2\s+1/);
+  assert.match(updated, /later-server \(connected\)\s+1\s+0/);
+  assert.match(updated, /Total\s+4/);
   assert.equal(renders, rendersAfterStartup);
 
   component.dispose();
