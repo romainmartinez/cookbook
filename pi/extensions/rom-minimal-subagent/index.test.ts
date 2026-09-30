@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import type { ExtensionAPI, ExtensionContext, ToolDefinition } from "@earendil-works/pi-coding-agent";
+import type { ExtensionAPI, ExtensionToolContext, ToolDefinition } from "@earendil-works/pi-coding-agent";
 import minimalSubagent from "./index.ts";
 
 type Execute = ToolDefinition["execute"];
@@ -22,12 +22,12 @@ function setup(result: ExecResult) {
   return { execute: tool.execute as Execute, calls };
 }
 
-function context(trusted = true): ExtensionContext {
+function context(trusted = true): ExtensionToolContext {
   return {
     cwd: "/project",
     model: { provider: "openai", id: "gpt-test" },
     isProjectTrusted: () => trusted,
-  } as unknown as ExtensionContext;
+  } as unknown as ExtensionToolContext;
 }
 
 test("runs an isolated child with the active model and trust policy", async () => {
