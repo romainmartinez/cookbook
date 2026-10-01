@@ -52,11 +52,14 @@ Install [brew](https://brew.sh/), then use it to install everything below.
 - pnpm
 - mole
 - curl
-- git
+- git: shared settings in `git/config`; identity in `~/.gitconfig`.
   ```sh
-  git config --global pull.rebase true
-  git config --global rebase.autoStash true
+  mkdir -p ~/.config/git
+  ln -sfn $CODE_FOLDER/cookbook/git/config ~/.config/git/config
+  git config --global user.name "Romain Martinez"
+  git config --global user.email PERSONAL_EMAIL
   ```
+- git-delta
 - gh
   ```sh
   mkdir -p ~/.local/bin
@@ -65,6 +68,8 @@ Install [brew](https://brew.sh/), then use it to install everything below.
   git config --file ~/.gitconfig-manulife user.email WORK_EMAIL
   git config --global --replace-all credential.https://github.com.helper ''
   git config --global --add credential.https://github.com.helper "$HOME/.local/bin/git-credential-gh-account"
+  git config --global --replace-all credential.https://gist.github.com.helper ''
+  git config --global --add credential.https://gist.github.com.helper '!/opt/homebrew/bin/gh auth git-credential'
   git config --global --replace-all 'includeIf.hasconfig:remote.*.url:https://martrom_manulife@github.com/**.path' ~/.gitconfig-manulife
   git config --global --replace-all 'includeIf.hasconfig:remote.*.url:https://rmmrtnz@github.com/**.path' ~/.gitconfig-manulife
   ```
