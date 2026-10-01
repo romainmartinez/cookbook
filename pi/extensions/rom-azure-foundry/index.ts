@@ -90,6 +90,37 @@ export default function (pi: ExtensionAPI) {
         },
       },
       {
+        id: "gpt-6-sol",
+        name: "GPT-6 Sol (Azure)",
+        reasoning: true,
+        input: ["text", "image"],
+        contextWindow: 1_050_000,
+        maxTokens: 128_000,
+        cost: {
+          input: 2,
+          output: 10,
+          cacheRead: 0.2,
+          cacheWrite: 2.5,
+          tiers: [
+            {
+              inputTokensAbove: 272_000,
+              input: 4,
+              output: 15,
+              cacheRead: 0.4,
+              cacheWrite: 5,
+            },
+          ],
+        },
+        thinkingLevelMap: {
+          off: null,
+          xhigh: "xhigh",
+          max: "max",
+        },
+        compat: {
+          supportsOpenAIGrammarTools: true,
+        },
+      },
+      {
         id: "gpt-5.6-sol",
         name: "GPT-5.6 Sol (Azure)",
         reasoning: true,
