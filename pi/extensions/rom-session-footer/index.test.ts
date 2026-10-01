@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
-import { homedir } from "node:os";
+import { mkdirSync, mkdtempSync, writeFileSync } from "node:fs";
+import { homedir, tmpdir } from "node:os";
 import { join } from "node:path";
 import test from "node:test";
 import type { ExtensionAPI, Theme } from "@earendil-works/pi-coding-agent";
@@ -13,12 +14,18 @@ const theme = {
   fg: (_color: string, text: string) => `\x1b[36m${text}\x1b[39m`,
 } as Theme;
 
+function writeMcp(dir: string, servers: Record<string, object>) {
+  mkdirSync(dir, { recursive: true });
+  writeFileSync(join(dir, "mcp.json"), JSON.stringify({ mcpServers: servers }));
+}
+
 function setup() {
   let sessionStart: Handler | undefined;
   const pi = {
     on: (name: string, handler: Handler) => {
       if (name === "session_start") sessionStart = handler;
     },
+    getMcpServers: () => [],
   } as unknown as ExtensionAPI;
   mcpInlineFooter(pi);
   assert.ok(sessionStart);
@@ -26,6 +33,9 @@ function setup() {
 }
 
 test("renders live session metrics and stays within the terminal width", () => {
+  const agentDir = mkdtempSync(join(tmpdir(), "footer-agent-"));
+  writeMcp(agentDir, { "nuxt-ui": { url: "x" }, docs: { url: "x" }, figma: { url: "x", enabled: false } });
+  process.env.PI_CODING_AGENT_DIR = agentDir;
   const sessionStart = setup();
   let factory: FooterFactory | undefined;
   let branchListener: (() => void) | undefined;
@@ -35,6 +45,7 @@ test("renders live session metrics and stays within the terminal width", () => {
     mode: "tui",
     model: { id: "gpt-test", reasoning: true },
     thinkingLevel: "high",
+    isProjectTrusted: () => false,
     getContextUsage: () => ({ tokens: 12_500, percent: 42.4 }),
     sessionManager: {
       getCwd: () => join(homedir(), "work", "cookbook"),
@@ -64,8 +75,8 @@ test("renders live session metrics and stays within the terminal width", () => {
     },
   );
 
-  const wide = component.render(100).join("");
-  assert.match(wide, /12\.5K \(42%\).*\$103\.00.*MCP ready.*gpt-test.*high/);
+  const wide = component.render(140).join("");
+  assert.match(wide, /12\.5K \(42%\).*\$103\.00.*MCP ready.*2 MCPs • gpt-test.*high/);
   assert.match(wide, /~\/work\/cookbook \(main\)/);
   assert.ok(!wide.includes("\x1b[31m"));
 

@@ -174,7 +174,11 @@ test("reads MCP server settings with project entries overriding global ones", ()
       mcpServers: { docs: { url: "https://docs" }, figma: { url: "http://figma", enabled: false } },
     }));
     writeFileSync(join(cwd, ".pi", "mcp.json"), JSON.stringify({
-      mcpServers: { docs: { url: "https://docs", enabled: false } },
+      mcpServers: {
+        docs: { url: "https://docs", enabled: false },
+        figma: { disabled: false },
+        jira: { url: "https://jira", enabled: "no" },
+      },
     }));
     const pi = fakePi({
       mcpServers: [{ name: "jira", config: { url: "https://jira" } }] as ReturnType<ExtensionAPI["getMcpServers"]>,

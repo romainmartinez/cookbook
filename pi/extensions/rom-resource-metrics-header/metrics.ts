@@ -199,12 +199,13 @@ const MCP_NAMESPACE_PREFIX = "mcp__";
 function mcpFileSettings(path: string): McpServerSetting[] {
   try {
     const config = JSON.parse(readFileSync(path, "utf8")) as {
-      mcpServers?: Record<string, { enabled?: boolean }>;
+      mcpServers?: Record<string, { command?: unknown; url?: unknown; enabled?: unknown }>;
     };
-    return Object.entries(config.mcpServers ?? {}).map(([name, server]) => ({
-      name,
-      enabled: server?.enabled !== false,
-    }));
+    return Object.entries(config.mcpServers ?? {})
+      .filter(([, server]) =>
+        (typeof server?.command === "string" || typeof server?.url === "string")
+        && (server.enabled === undefined || typeof server.enabled === "boolean"))
+      .map(([name, server]) => ({ name, enabled: server.enabled !== false }));
   } catch {
     return [];
   }

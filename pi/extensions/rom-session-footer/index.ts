@@ -1,7 +1,8 @@
 import { homedir } from "node:os";
 import { sep } from "node:path";
-import type { ExtensionAPI, SessionEntry } from "@earendil-works/pi-coding-agent";
+import { getAgentDir, type ExtensionAPI, type SessionEntry } from "@earendil-works/pi-coding-agent";
 import { truncateToWidth, visibleWidth } from "@earendil-works/pi-tui";
+import { mcpServerSettings } from "../rom-resource-metrics-header/metrics.ts";
 
 const compact = new Intl.NumberFormat("en", {
   notation: "compact",
@@ -47,12 +48,15 @@ export default function (pi: ExtensionAPI) {
           const statuses = [...footerData.getExtensionStatuses().values()].map((status) =>
             status.replace(ansi, ""),
           );
+          const mcp = mcpServerSettings({ pi, agentDir: getAgentDir(), cwd, projectTrusted: ctx.isProjectTrusted() })
+            .filter((server) => server.enabled).length;
           const left = theme.fg(
             "dim",
             [
               context,
               `$${cost.toFixed(2)}`,
               ...statuses,
+              mcp > 0 && `${mcp} ${mcp === 1 ? "MCP" : "MCPs"}`,
               ctx.model?.id ?? "no-model",
               ctx.model?.reasoning && ctx.thinkingLevel,
             ]
