@@ -52,26 +52,14 @@ Install [brew](https://brew.sh/), then use it to install everything below.
 - pnpm
 - mole
 - curl
-- git: shared settings in `git/config`; identity in `~/.gitconfig`.
+- git, git-delta, gh: shared settings in `git/config`; emails stay local. `~/.local/bin` must be in `PATH`.
   ```sh
-  mkdir -p ~/.config/git
+  mkdir -p ~/.config/git ~/.local/bin
   ln -sfn $CODE_FOLDER/cookbook/git/config ~/.config/git/config
-  git config --global user.name "Romain Martinez"
-  git config --global user.email PERSONAL_EMAIL
-  ```
-- git-delta
-- gh
-  ```sh
-  mkdir -p ~/.local/bin
   ln -sfn $CODE_FOLDER/cookbook/git/gh ~/.local/bin/gh
   ln -sfn $CODE_FOLDER/cookbook/git/git-credential-gh-account ~/.local/bin/git-credential-gh-account
+  git config --file ~/.gitconfig-personal user.email PERSONAL_EMAIL
   git config --file ~/.gitconfig-manulife user.email WORK_EMAIL
-  git config --global --replace-all credential.https://github.com.helper ''
-  git config --global --add credential.https://github.com.helper "$HOME/.local/bin/git-credential-gh-account"
-  git config --global --replace-all credential.https://gist.github.com.helper ''
-  git config --global --add credential.https://gist.github.com.helper '!/opt/homebrew/bin/gh auth git-credential'
-  git config --global --replace-all 'includeIf.hasconfig:remote.*.url:https://martrom_manulife@github.com/**.path' ~/.gitconfig-manulife
-  git config --global --replace-all 'includeIf.hasconfig:remote.*.url:https://rmmrtnz@github.com/**.path' ~/.gitconfig-manulife
   ```
   Include the authenticating account when cloning:
   ```sh

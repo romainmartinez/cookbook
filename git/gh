@@ -1,39 +1,26 @@
 #!/bin/sh
 
-find_real_gh() {
-    self=$(realpath "$0")
+self=$(realpath "$0")
+real_gh=
+IFS=:
+for directory in $PATH; do
+    if [ -x "$directory/gh" ] && [ "$(realpath "$directory/gh")" != "$self" ]; then
+        real_gh=$directory/gh
+        break
+    fi
+done
+unset IFS
+[ -n "$real_gh" ] || { echo 'gh: executable not found' >&2; exit 127; }
 
-    old_ifs=$IFS
-    IFS=:
-    for directory in $PATH; do
-        [ -n "$directory" ] || directory=.
-        candidate=$directory/gh
-        if [ -x "$candidate" ] && [ "$(realpath "$candidate")" != "$self" ]; then
-            printf '%s\n' "$candidate"
-            break
-        fi
-    done
-    IFS=$old_ifs
-}
-
-real_gh=$(find_real_gh)
-[ -n "$real_gh" ] || {
-    printf 'gh: executable not found\n' >&2
-    exit 127
-}
-
-if [ -n "${GH_TOKEN-}" ] || [ -n "${GITHUB_TOKEN-}" ] || [ "${1-}" = auth ]; then
-    exec "$real_gh" "$@"
+if [ -z "${GH_TOKEN-}${GITHUB_TOKEN-}" ] && [ "${1-}" != auth ]; then
+    remote=$(git remote get-url --push origin 2>/dev/null)
+    case $remote in
+        https://?*@github.com/*)
+            account=${remote#https://}
+            GH_TOKEN=$("$real_gh" auth token --hostname github.com --user "${account%%@*}") || exit 1
+            export GH_TOKEN
+            ;;
+    esac
 fi
 
-remote=$(git remote get-url --push origin 2>/dev/null) || exec "$real_gh" "$@"
-case "$remote" in
-    https://?*@github.com/*)
-        account=${remote#https://}
-        account=${account%%@github.com/*}
-        ;;
-    *) exec "$real_gh" "$@" ;;
-esac
-
-token=$("$real_gh" auth token --hostname github.com --user "$account") || exit 1
-GH_TOKEN=$token exec "$real_gh" "$@"
+exec "$real_gh" "$@"

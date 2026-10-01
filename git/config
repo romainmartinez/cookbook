@@ -1,3 +1,17 @@
+[user]
+	name = Romain Martinez
+[credential "https://github.com"]
+	helper =
+	helper = gh-account
+[credential "https://gist.github.com"]
+	helper =
+	helper = gh-account
+[include]
+	path = ~/.gitconfig-personal
+[includeIf "hasconfig:remote.*.url:https://martrom_manulife@github.com/**"]
+	path = ~/.gitconfig-manulife
+[includeIf "hasconfig:remote.*.url:https://rmmrtnz@github.com/**"]
+	path = ~/.gitconfig-manulife
 [core]
 	editor = nvim
 [pull]
