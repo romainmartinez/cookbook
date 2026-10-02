@@ -1,11 +1,11 @@
 ---
-description: Brief the remaining workouts of this training week with difficulty, water, and carbs
+description: Review this week's completed workouts and brief the remaining ones with difficulty, water, and carbs
 argument-hint: "[context, e.g. 'hot week' or 'no gym']"
 ---
 
 # Training week briefing
 
-Brief the athlete on the remaining workouts of the current training week (Monday to Sunday). Read-only: do not write files or modify Intervals.icu.
+Review completed workouts and brief the remaining ones for the current training week (Monday to Sunday). Write only the week file and, when warranted, the athlete profile (section 5); do not modify Intervals.icu.
 
 Athlete context:
 
@@ -13,64 +13,103 @@ Athlete context:
 $ARGUMENTS
 ```
 
-## 1. Gather context
+## 1. Week file
+
+State lives in `/Users/martrom/Documents/brain/fitness/training-week.md`, a single file replaced each week:
+
+```markdown
+---
+week: YYYY-MM-DD        # Monday of the week
+updated: YYYY-MM-DDTHH:MM
+---
+```
+
+- **Missing, or `week` is not the current Monday:** start fresh and overwrite it.
+- **Same week:** reuse it. Keep existing reviews as-is. Keep a briefing unless its event changed (date, name, or structure), the plan moved, or a new review changes the advice. Match day headings and session lines against the calendar to find what is new: review only completed sessions not yet marked `(done)`, brief only remaining sessions not yet in the file.
+
+## 2. Gather context
 
 Run these in parallel:
 
 - Local date, weekday, and timezone.
+- The week file, if it exists.
 - `/Users/martrom/Documents/brain/fitness/athlete-profile.md` for fitness markers and data caveats.
 - `icu_get_calendar_events` from Monday of last week to Sunday of this week.
 - `icu_get_fitness_summary` for CTL, ATL, and ramp rate.
-- List `/Users/martrom/Documents/brain/fitness/illness/`; read only episodes from the last 21 days.
 
-Then, only if a strength session remains, read `/Users/martrom/Documents/brain/fitness/strength-routine.md`.
+Then, in parallel, only as needed:
 
-If today is Sunday and nothing remains, brief next week instead (fetch through next Sunday).
+- For each completed activity this week not yet reviewed: `icu_get_activity_details`, `icu_get_activity_intervals`, and `icu_get_activity_messages`.
+- If a strength session remains: `/Users/martrom/Documents/brain/fitness/strength-routine.md`.
 
-## 2. Read the calendar
+If today is Sunday and nothing remains, start next week instead (fetch through next Sunday).
+
+## 3. Read the calendar
 
 - **Planned sessions:** Runna imports them at `T00:00:00`, sometimes as `NOTE` instead of `WORKOUT`. A `NOTE` with a workout structure is a planned session.
 - **Completed activities:** real start time and a `📊 Summary`. Match to planned sessions by date and distance; flag skipped, moved, or replaced sessions.
 - **Today:** a planned session counts as remaining unless a matching activity exists today.
 - **Data:** follow the athlete-profile caveats. Ignore Intervals.icu pace zones and threshold pace.
 
-## 3. Output
+## 4. Write the file
 
-Use Markdown headings, bullets, and short lines. No raw descriptions, no long paragraphs.
+No title and no headings other than one `## Ddd DD Mon` per day, Monday to Sunday (e.g. `## Tue 15 Sep`). Bullets and short lines only; no raw descriptions, no long paragraphs.
 
-### The week
+### Top of file
 
-3-4 bullets, under 90 words total:
+Right after the frontmatter, no heading, 5-6 bullets under 110 words, refreshed on every run:
 
 - **Phase:** build, recovery, taper, or race, and the next goal race (or "none on calendar").
+- **Effort:** X/10 for the whole week (done and planned) relative to this athlete's usual weeks, with a few words of why. Scale: 1-2 rest, 3-4 light or recovery, 5-6 normal build, 7-8 hard build or peak, 9-10 race week or beyond current capacity.
 - **Remaining:** volume and key sessions.
-- **Compliance:** last week and this week so far, one line.
-- **Fatigue:** only if CTL/ATL, compliance, or recent illness gives a real reason.
+- **Last week:** done vs planned, e.g. `5/5 runs (76 km), 2 strength`.
+- **This week:** done vs planned so far, same format.
+- **Form:** plain-language verdict first (fresh, balanced, tired, overreaching), then why in a few words, with rounded numbers in parentheses, e.g. `balanced: fatigue matches fitness, load rising slowly (fitness 45, fatigue 46, +1.5/week)`. Add context from compliance or recent reviews only when relevant.
 
-### Runs
+### Each day
 
-One `#### Day DD Mon: name` section per remaining run, in order:
+Each session starts with a bold line, `**name** (done)` or `**name**`, followed by its bullets. A rest day is one line: `Rest.` When a session is completed, replace its briefing with the review.
+
+Completed run:
+
+- **Plan vs actual:** distance, duration, average pace, average HR, elevation gain.
+- **Intervals:** for structured sessions, work reps vs target pace, one compact line per block (e.g. `6x800: 3:28-3:33 vs 3:30, HR 168-176`). Note fade, HR drift, or pacing errors.
+- **Feel:** RPE, feel, and activity notes, if present in Intervals.icu.
+- **Effort:** X/10 as executed, using the session scale and RPE, HR, and pace data; note when it differs from the planned effort.
+- **Verdict:** nailed, ok, or off, plus one takeaway.
+- **Impact:** only if it changes advice for the remaining sessions.
+
+Completed strength: session done, effort X/10, notes if any, impact on the next run only if relevant.
+
+Skipped or replaced session: one line.
+
+Remaining run:
 
 - **What:** purpose and structure in one line, with target paces and estimated duration. Estimate easy running at about 5:00/km unless recent easy runs suggest otherwise.
-- **Effort:** X/10 with a few words relative to the athlete's fitness markers. Flag paces faster than anything proven in the profile.
+- **Effort:** X/10 with a few words relative to the athlete's fitness markers and this week's reviews. Flag paces faster than anything proven in the profile.
 - **Fuel:** one line, e.g. `before 250 ml / 30 g sugar; during 2x500 ml / 45 g mix each, sip every 15 min from 20 min`.
 - **Watch out:** only when relevant (adjacent hard session, aggressive pace, heat).
 
-Effort scale: 1-2 recovery, 3-4 easy, 5 steady long run, 6-7 tempo or progression, 8 threshold or VO2max, 9 race pace at or beyond proven fitness, 10 race.
+Session effort scale (planned and executed): 1-2 recovery, 3-4 easy, 5 steady long run, 6-7 tempo or progression, 8 threshold or VO2max, 9 race pace at or beyond proven fitness, 10 race.
 
-### Strength
-
-Ignore Runna's strength prescription; the athlete follows `strength-routine.md`. For each remaining strength day, one short section:
+Remaining strength (ignore Runna's prescription; the athlete follows `strength-routine.md`):
 
 - **Session:** barbell, barbell with RDL swap, home, or travel, based on legs, gym access, and context.
 - **Effort:** X/10.
 - **Placement:** flag it if it lands the day before a key run; suggest moving, swapping to RDL, or skipping.
 
-### Rest days
+## 5. Update the athlete profile
 
-One line each, only if they fall between remaining sessions.
+When a new review shows a breakthrough or a durable insight, edit `/Users/martrom/Documents/brain/fitness/athlete-profile.md`:
 
-Optionally one final line of suggestions, only if something stands out.
+- **Breakthrough:** a session beating or extending a Fitness Markers row, a race result, a new strength e1RM, or a goal achieved. Update the matching table row or goal checkbox; replace superseded markers rather than appending.
+- **Insight:** a pattern backed by more than one session, such as a shift in easy pace/HR, a pace now proven or still unproven, or a new data caveat. Add or edit one line in the relevant section.
+- Skip one-off noise and anything already in the profile. Match its existing style and keep edits minimal.
+- Mention each profile change in the reply.
+
+## 6. Reply
+
+Do not repeat the file content. At most 5 short lines: the file path, what was added or changed, any profile edits, and one suggestion only if something stands out (e.g. a session worth moving).
 
 ## Fueling rules
 
