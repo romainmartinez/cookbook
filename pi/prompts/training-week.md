@@ -15,7 +15,7 @@ $ARGUMENTS
 
 ## 1. Week file
 
-State lives in `/Users/martrom/Documents/brain/fitness/training-week.md`, a single file replaced each week:
+State lives in `~/Documents/brain/fitness/training-week.md`, a single file replaced each week:
 
 ```markdown
 ---
@@ -33,14 +33,14 @@ Run these in parallel:
 
 - Local date, weekday, and timezone.
 - The week file, if it exists.
-- `/Users/martrom/Documents/brain/fitness/athlete-profile.md` for fitness markers and data caveats.
+- `~/Documents/brain/fitness/athlete-profile.md` for fitness markers and data caveats.
 - `icu_get_calendar_events` from Monday of last week to Sunday of this week.
 - `icu_get_fitness_summary` for CTL, ATL, and ramp rate.
 
 Then, in parallel, only as needed:
 
 - For each completed activity this week not yet reviewed: `icu_get_activity_details`, `icu_get_activity_intervals`, and `icu_get_activity_messages`.
-- If a strength session remains: `/Users/martrom/Documents/brain/fitness/strength-routine.md`.
+- If a strength session remains: `~/Documents/brain/fitness/strength-routine.md`.
 
 If today is Sunday and nothing remains, start next week instead (fetch through next Sunday).
 
@@ -100,7 +100,7 @@ Remaining strength (ignore Runna's prescription; the athlete follows `strength-r
 
 ## 5. Update the athlete profile
 
-When a new review shows a breakthrough or a durable insight, edit `/Users/martrom/Documents/brain/fitness/athlete-profile.md`:
+When a new review shows a breakthrough or a durable insight, edit `~/Documents/brain/fitness/athlete-profile.md`:
 
 - **Breakthrough:** a session beating or extending a Fitness Markers row, a race result, a new strength e1RM, or a goal achieved. Update the matching table row or goal checkbox; replace superseded markers rather than appending.
 - **Insight:** a pattern backed by more than one session, such as a shift in easy pace/HR, a pace now proven or still unproven, or a new data caveat. Add or edit one line in the relevant section.
