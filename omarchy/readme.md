@@ -129,6 +129,15 @@ systemctl --user daemon-reload
 systemctl --user enable --now herdr.service
 ```
 
+### Strava to Intervals.icu sync
+
+Create a Strava API app at <https://www.strava.com/settings/api> with callback domain `localhost`, then:
+
+```sh
+sudo loginctl enable-linger "$USER"
+$CODE_FOLDER/cookbook/scripts/strava-intervals.py --install-timer
+```
+
 ### moshi + moshi-hook
 
 ```sh

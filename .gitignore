@@ -18,3 +18,7 @@ pi/extensions/herdr-agent-state.ts
 node_modules/
 package-lock.json
 pnpm-lock.yaml
+
+# Python caches
+__pycache__/
+.ruff_cache/
