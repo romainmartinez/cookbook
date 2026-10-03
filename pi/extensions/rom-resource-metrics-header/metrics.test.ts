@@ -218,3 +218,15 @@ test("counts MCP tools per server and derives their status", () => {
   });
   assert.equal(collectMcpStatus([], []), undefined);
 });
+
+test("collectMcpStatus matches underscored namespaces to dashed server names", () => {
+  const status = collectMcpStatus(
+    [mcpTool("chrome_devtools", "click", "codemode")],
+    [{ name: "chrome-devtools", enabled: true }],
+  );
+
+  assert.deepEqual(status, {
+    servers: [{ name: "chrome-devtools", status: "connected", toolCount: 1, directToolCount: 0 }],
+    totalTools: 1,
+  });
+});

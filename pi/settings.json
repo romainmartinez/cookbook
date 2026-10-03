@@ -1,7 +1,6 @@
 {
   "lastChangelogVersion": "0.99.1",
   "theme": "tokyonight-moon",
-  "tuiMode": "fullscreen",
   "defaultTools": [
     "+codemode"
   ],

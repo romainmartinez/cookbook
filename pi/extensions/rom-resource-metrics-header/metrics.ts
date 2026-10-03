@@ -233,11 +233,14 @@ export function collectMcpStatus(
   tools: readonly ToolInfo[],
   settings: readonly McpServerSetting[],
 ): McpStatusSnapshot | undefined {
+  const namespaceKey = (name: string) => name.replaceAll("-", "_");
+  const configuredNames = new Map(settings.map((setting) => [namespaceKey(setting.name), setting.name]));
   const counts = new Map<string, { toolCount: number; directToolCount: number }>();
   for (const tool of tools) {
     const namespace = tool.namespace?.name;
     if (!namespace?.startsWith(MCP_NAMESPACE_PREFIX)) continue;
-    const name = namespace.slice(MCP_NAMESPACE_PREFIX.length);
+    const key = namespace.slice(MCP_NAMESPACE_PREFIX.length);
+    const name = configuredNames.get(key) ?? key;
     const count = counts.get(name) ?? { toolCount: 0, directToolCount: 0 };
     count.toolCount++;
     if (tool.exposure === "direct" || tool.exposure === "model-only") count.directToolCount++;
