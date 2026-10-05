@@ -34,6 +34,13 @@
     "figma": {
       "url": "http://127.0.0.1:3845/mcp",
       "enabled": false
+    },
+    "liftosaur": {
+      "url": "https://www.liftosaur.com/mcp",
+      "headers": {
+        "Authorization": "Bearer ${LIFTOSAUR_API_KEY}"
+      },
+      "enabled": false
     }
   }
 }
