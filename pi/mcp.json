@@ -29,8 +29,7 @@
         "INTERVALS_ICU_API_KEY": "${INTERVALS_ICU_API_KEY}",
         "INTERVALS_ICU_ATHLETE_ID": "${INTERVALS_ICU_ATHLETE_ID}",
         "INTERVALS_ICU_DELETE_MODE": "safe"
-      },
-      "enabled": false
+      }
     },
     "figma": {
       "url": "http://127.0.0.1:3845/mcp",
