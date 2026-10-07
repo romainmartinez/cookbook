@@ -1,11 +1,11 @@
 {
-  "lastChangelogVersion": "1.2.0",
+  "lastChangelogVersion": "1.0.4",
   "theme": "tokyonight-moon",
   "defaultTools": [
     "+codemode"
   ],
-  "defaultProvider": "azure-foundry",
-  "defaultModel": "claude-opus-5-5",
+  "defaultProvider": "github-copilot",
+  "defaultModel": "claude-opus-5.5",
   "defaultThinkingLevel": "medium",
   "packages": [
     "npm:pi-web-access",
