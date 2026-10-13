@@ -1,9 +1,7 @@
 {
-  "lastChangelogVersion": "1.0.4",
+  "lastChangelogVersion": "1.2.0",
   "theme": "tokyonight-moon",
-  "defaultTools": [
-    "+codemode"
-  ],
+  "defaultTools": ["+codemode"],
   "defaultProvider": "github-copilot",
   "defaultModel": "claude-opus-5.5",
   "defaultThinkingLevel": "medium",
@@ -12,9 +10,7 @@
     "npm:@juicesharp/rpiv-ask-user-question",
     {
       "source": "npm:@juanibiapina/pi-tokyonight",
-      "themes": [
-        "+themes/tokyonight-day.json"
-      ]
+      "themes": ["+themes/tokyonight-day.json"]
     }
   ],
   "hideThinkingBlock": true,
