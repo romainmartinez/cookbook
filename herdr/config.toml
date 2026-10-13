@@ -79,6 +79,3 @@ window_title = ""
 status_indicators = "symbols"
 [ui.sidebar.agents]
 rows = [["state_icon", "workspace", "tab"]]
-
-[experimental]
-kitty_graphics = true
