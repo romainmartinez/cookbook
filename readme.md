@@ -128,6 +128,7 @@ Install [brew](https://brew.sh/), then use it to install everything below.
   - then remove vscode, chrome, edge, zoom defaults or other apps that are not needed
 - cleanshot
 - obsidian
+  - add to System Settings > General > Login Items so Sync keeps running
 - todoist
 - karabiner-elements
   ```sh
