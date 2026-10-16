@@ -56,7 +56,7 @@ test("names a resumed session from its first user message", async () => {
 test("names a new session from its first expanded prompt", async () => {
   const { handlers, commands, sessionNames, ctx } = setup();
 
-  await handlers.get("before_agent_start")?.({ prompt: "Compare Raycast with Vicinae and identify missing features" }, ctx);
+  await handlers.get("before_agent_start")?.({ messageType: "user", prompt: "Compare Raycast with Vicinae and identify missing features" }, ctx);
 
   assert.deepEqual(sessionNames, ["Compare Raycast with Vicinae and"]);
   assert.equal(commands[0]?.args.at(-1), "π - Compare Raycast with Vicinae and");

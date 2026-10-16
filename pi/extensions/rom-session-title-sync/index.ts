@@ -60,7 +60,7 @@ async function applyTitle(
 
 export function installSessionTerminalTitle(pi: ExtensionAPI, target?: HerdrTarget): void {
   pi.on("session_start", (_event, ctx) => applyTitle(pi, ctx, target, firstUserMessage(ctx)));
-  pi.on("before_agent_start", (event, ctx) => applyTitle(pi, ctx, target, event.prompt));
+  pi.on("before_agent_start", (event, ctx) => applyTitle(pi, ctx, target, event.messageType === "user" ? event.prompt : undefined));
   pi.on("session_info_changed", (_event, ctx) => applyTitle(pi, ctx, target));
   pi.on("session_shutdown", async (event) => {
     if (!target || event.reason !== "quit") return;
