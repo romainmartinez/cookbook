@@ -3,6 +3,7 @@ source (dirname (realpath (status filename)))/base.fish
 # ─── PATH ────────────────────────────────────────────────────────────
 set -gx PNPM_HOME $HOME/.local/share/pnpm
 fish_add_path $PNPM_HOME
+set -gx CHROME_PATH /usr/bin/chromium
 
 # ─── FUNCTIONS ───────────────────────────────────────────────────────
 function sysclean
