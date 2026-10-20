@@ -36,9 +36,9 @@ list_tabs() {
     .result.snapshot as $snapshot
     | ($snapshot.workspaces | map(.label | length) | max // 0) as $project_width
     | ($snapshot.tabs
-       | sort_by(if .focused then [0, 0]
-                 elif $last_focused[.tab_id] then [1, -($last_focused[.tab_id] | timestamp_epoch)]
-                 else [2, 0]
+       | map(select(.focused | not))
+       | sort_by(if $last_focused[.tab_id] then [0, -($last_focused[.tab_id] | timestamp_epoch)]
+                 else [1, 0]
                  end)
       )[] as $tab
     | ($snapshot.workspaces[] | select(.workspace_id == $tab.workspace_id)) as $workspace
@@ -50,8 +50,7 @@ list_tabs() {
        elif $tab.agent_status == "idle" then "\u001b[2m○\u001b[0m"
        else ""
        end) as $status
-    | (if $tab.focused then "now"
-       elif $last_focused[$tab.tab_id] then relative_time($last_focused[$tab.tab_id])
+    | (if $last_focused[$tab.tab_id] then relative_time($last_focused[$tab.tab_id])
        else ""
        end) as $last_active
     | [
