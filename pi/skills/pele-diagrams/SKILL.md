@@ -4,7 +4,7 @@ description: Create diagrams as Mermaid with Pele.
 ---
 
 1. Write Mermaid (v12.1 syntax) to `/tmp/<slug>.mmd`.
-2. Run `node ~/.pi/agent/skills/pele-diagrams/render.mjs <file>.mmd <output>.[png|svg]`.
+2. Run `node ~/.pi/agent/skills/pele-diagrams/render.mjs <file>.mmd <output>.[png|svg]`. Default the output to downloads unless specified otherwise.
 3. Check the PNG for layout and readability before replying; for SVG output, also render a PNG to check.
 4. Reply with the path.
 
