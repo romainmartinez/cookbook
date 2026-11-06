@@ -1,7 +1,9 @@
 {
-  "lastChangelogVersion": "1.4.0",
+  "lastChangelogVersion": "1.5.0",
   "theme": "tokyonight-moon",
-  "defaultTools": ["+codemode"],
+  "defaultTools": [
+    "+codemode"
+  ],
   "defaultProvider": "github-copilot",
   "defaultModel": "claude-opus-5.5",
   "defaultThinkingLevel": "medium",
@@ -10,7 +12,9 @@
     "npm:@juicesharp/rpiv-ask-user-question",
     {
       "source": "npm:@juanibiapina/pi-tokyonight",
-      "themes": ["+themes/tokyonight-day.json"]
+      "themes": [
+        "+themes/tokyonight-day.json"
+      ]
     }
   ],
   "hideThinkingBlock": true,
@@ -20,5 +24,8 @@
   "outputPad": 1,
   "editorPaddingX": 0,
   "showHardwareCursor": true,
-  "enableInstallTelemetry": false
+  "enableInstallTelemetry": false,
+  "extensionChangelogVersions": {
+    "{\"source\":\"npm:pi-web-access\",\"scope\":\"user\"}": "0.47.0"
+  }
 }
