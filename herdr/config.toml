@@ -63,7 +63,7 @@ width = "90%"
 height = "90%"
 
 [[keys.command]]
-key = "cmd+space"
+key = "cmd+k"
 type = "popup"
 description = "find a tab across all spaces"
 command = "$HOME/.config/herdr/tab-picker.sh"

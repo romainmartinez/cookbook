@@ -9,9 +9,6 @@ set -gx VISUAL nvim
 # code/projects folder (this repo lives at $CODE_FOLDER/cookbook)
 set -gx CODE_FOLDER $HOME/Documents
 
-# opencode (until supported in its config files)
-set -gx OPENCODE_DISABLE_TERMINAL_TITLE 1
-
 # ─── ALIASES ─────────────────────────────────────────────────────────
 alias n='nvim'
 alias oc='opencode'
