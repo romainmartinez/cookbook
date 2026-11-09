@@ -49,9 +49,9 @@ Port the old herdr `find-nvim.sh` flow (`git show 8a2da63:herdr/find-nvim.sh`): 
 
 ### Omarchy
 
-- [ ] Install the Rex Linux server and pick a server mode
-- [ ] Add a Rex systemd service
-- [ ] Expose it over Tailscale for the Mac and phone (Remote Access docs)
+- [x] Install the Rex Linux server and pick a server mode
+- [x] Add a Rex systemd service (`omarchy/readme.md`)
+- [x] Expose it over Tailscale for the Mac and phone (Remote Access docs)
 - [ ] Local use: Rex has no Linux client, so check web access
 
 ## Rex extras

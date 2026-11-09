@@ -109,6 +109,23 @@ mkdir -p ~/.ssh && chmod 700 ~/.ssh
 touch ~/.ssh/authorized_keys && chmod 600 ~/.ssh/authorized_keys
 ```
 
+### Rex server
+
+Server only (no Linux client). Joins the tailnet as `omarchy-rex` via built-in Tailscale, independent of system tailscaled. Requires tailnet MagicDNS and HTTPS certs.
+
+```sh
+curl -fsSL https://pkgs.superlogical.com/rex/install.sh | sh
+mkdir -p ~/.config/systemd/user/rex.service.d
+ln -sfn $CODE_FOLDER/cookbook/omarchy/systemd/rex.service.d/tailscale.conf ~/.config/systemd/user/rex.service.d/tailscale.conf
+systemctl --user daemon-reload
+systemctl --user enable --now rex.service
+loginctl enable-linger
+rex server status          # open Tailscale auth link once
+rex server tailscale pair  # scan with Rex iOS app
+```
+
+`omarchy refresh pacman` and `omarchy channel set` drop the Rex repo; rerun the install script after them.
+
 ### Strava to Intervals.icu sync
 
 Create a Strava API app at <https://www.strava.com/settings/api> with callback domain `localhost`, then:
