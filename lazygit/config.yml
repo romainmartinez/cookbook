@@ -32,9 +32,9 @@ git:
   disableForcePushing: true
   diffRenderers:
     - colorArg: always
-      command: delta --paging=never --line-numbers --wrap-max-lines unlimited
+      command: delta --paging=never --wrap-max-lines unlimited
     - colorArg: always
-      command: delta --paging=never --side-by-side --line-numbers --wrap-max-lines unlimited
+      command: delta --paging=never --side-by-side --line-numbers-left-format= --line-numbers-right-format=│ --wrap-max-lines unlimited
     - colorArg: always
       command: cat
 os:
