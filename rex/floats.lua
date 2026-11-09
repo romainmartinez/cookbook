@@ -36,11 +36,10 @@ local function find_nvim(ctx, fg)
 	end
 end
 
-local function float(...)
-	local argv = { ... }
+local function float(program)
 	return function(ctx)
 		local fg = foreground(ctx.block_id)
-		local command = argv
+		local command = { program }
 		local sock, nvim = find_nvim(ctx, fg)
 		if sock then
 			command = {
@@ -48,7 +47,7 @@ local function float(...)
 				"NVIM=" .. sock,
 				"REX_NVIM_BLOCK=" .. nvim.block_id,
 				"REX_NVIM_WINDOW=" .. nvim.window_id,
-				unpack(argv),
+				program,
 			}
 		end
 		rex.session.new_layer({
@@ -59,7 +58,6 @@ local function float(...)
 				options = { command = command, cwd = fg.cwd },
 			}),
 		})
-		return true
 	end
 end
 
