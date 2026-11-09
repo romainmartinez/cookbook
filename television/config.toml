@@ -45,4 +45,3 @@ fallback_channel = "files"
 "procs" = ["kill", "pkill", "ps"]
 "tldr" = ["tldr"]
 "brew-packages" = ["brew uninstall", "brew info", "brew reinstall"]
-"opencode-sessions" = ["oc", "opencode"]

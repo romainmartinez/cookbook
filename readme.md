@@ -82,14 +82,6 @@ Install [brew](https://brew.sh/), then use it to install everything below.
   pnpm --dir "$CODE_FOLDER/cookbook" install
   pnpm --dir "$CODE_FOLDER/cookbook" check
   ```
-- opencode
-  ```sh
-  ln -sfn $CODE_FOLDER/cookbook/opencode/opencode.jsonc ~/.config/opencode/opencode.jsonc
-  ln -sfn $CODE_FOLDER/cookbook/opencode/tui.jsonc ~/.config/opencode/tui.jsonc
-  ln -sfn $CODE_FOLDER/cookbook/opencode/AGENTS.md ~/.config/opencode/AGENTS.md
-  ln -sfn $CODE_FOLDER/cookbook/opencode/commands ~/.config/opencode/commands
-  ln -sfn $CODE_FOLDER/cookbook/opencode/skills ~/.config/opencode/skills
-  ```
 - lazygit
   ```sh
   ln -sfn $CODE_FOLDER/cookbook/lazygit/config.yml ~/Library/Application\ Support/lazygit/config.yml

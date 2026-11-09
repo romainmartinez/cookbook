@@ -11,7 +11,6 @@ set -gx CODE_FOLDER $HOME/Documents
 
 # ─── ALIASES ─────────────────────────────────────────────────────────
 alias n='nvim'
-alias oc='opencode'
 alias lg='lazygit'
 alias gha='gh auth switch'
 alias nr='npm run'

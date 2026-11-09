@@ -64,11 +64,6 @@ in the root readme for tools not listed here.
   ```sh
   ln -sfn $CODE_FOLDER/cookbook/lazygit/config.yml ~/.config/lazygit/config.yml
   ```
-- opencode: remove Omarchy's conflicting default files before using the shared
-  symlink commands
-  ```sh
-  rm -f ~/.config/opencode/opencode.json ~/.config/opencode/tui.json
-  ```
 
 ## Server mode
 
