@@ -57,5 +57,5 @@ Port the old herdr `find-nvim.sh` flow (`git show 8a2da63:herdr/find-nvim.sh`): 
 ## Rex extras
 
 - [ ] Project layout action (nvim + shell + agent) with `rex.layout`
-- [ ] iOS app over Tailscale (`client.pair_device`)
+- [x] iOS app over Tailscale (`rex server tailscale pair`, `omarchy/readme.md`)
 - [ ] `rex.host` in `init.lua` for the Omarchy server
