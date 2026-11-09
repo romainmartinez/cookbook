@@ -63,5 +63,20 @@ local function float(...)
 	end
 end
 
-rex.bind("ctrl+g", float("lazygit"))
-rex.bind("ctrl+e", float(home .. "/.config/rex/yazi-to-nvim.sh"))
+rex.action({
+	name = "lazygit",
+	title = "Open Lazygit",
+	category = "Floats",
+	keywords = "git",
+	run = float("lazygit"),
+})
+rex.action({
+	name = "yazi",
+	title = "Open Yazi",
+	category = "Floats",
+	keywords = "files file manager",
+	run = float(home .. "/.config/rex/yazi-to-nvim.sh"),
+})
+
+rex.bind("ctrl+g", "lazygit")
+rex.bind("ctrl+e", "yazi")

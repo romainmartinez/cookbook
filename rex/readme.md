@@ -27,7 +27,7 @@
 
 ## nvim hand-off
 
-`ctrl+g` (lazygit) and `ctrl+e` (yazi) float over the window. When the session has an nvim (preferring the focused block, then its tab), `floats.lua` passes its socket as `NVIM` and its block and tab as `REX_NVIM_BLOCK` and `REX_NVIM_WINDOW`. Lazygit edits (`lazygit/config.yml` calls `lazygit-edit.sh`) and yazi picks (`yazi-to-nvim.sh`) then open in that nvim, and `focus-nvim.sh` switches Rex.app to it. nvim listens on `~/.cache/rex-nvim/<block>.sock`, set in the lazyvim repo (`lua/config/options.lua`).
+`ctrl+g` (lazygit) and `ctrl+e` (yazi) float over the window. They are the `lazygit` and `yazi` actions, so the command palette ("Open Lazygit", "Open Yazi") and `rex do lazygit` work too. When the session has an nvim (preferring the focused block, then its tab), `floats.lua` passes its socket as `NVIM` and its block and tab as `REX_NVIM_BLOCK` and `REX_NVIM_WINDOW`. Lazygit edits (`lazygit/config.yml` calls `lazygit-edit.sh`) and yazi picks (`yazi-to-nvim.sh`) then open in that nvim, and `focus-nvim.sh` switches Rex.app to it. nvim listens on `~/.cache/rex-nvim/<block>.sock`, set in the lazyvim repo (`lua/config/options.lua`).
 
 ## TODO
 
