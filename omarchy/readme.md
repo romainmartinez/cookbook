@@ -126,15 +126,6 @@ rex server tailscale pair  # scan with Rex iOS app
 
 `omarchy refresh pacman` and `omarchy channel set` drop the Rex repo; rerun the install script after them.
 
-### Strava to Intervals.icu sync
-
-Create a Strava API app at <https://www.strava.com/settings/api> with callback domain `localhost`, then:
-
-```sh
-sudo loginctl enable-linger "$USER"
-$CODE_FOLDER/cookbook/scripts/strava-intervals.py --install-timer
-```
-
 ### Obsidian + Sync
 
 Launch Obsidian once, sign in, Settings -> Sync -> pick remote vault. Sync
