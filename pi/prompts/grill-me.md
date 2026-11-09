@@ -1,10 +1,11 @@
 ---
-name: grill-me
-description: A relentless interview to sharpen a plan or design.
-disable-model-invocation: true
+description: A relentless interview to sharpen a plan or design
+argument-hint: "[plan or path]"
 ---
 
 # Grill Me
+
+Optional context: $ARGUMENTS
 
 Interview the user relentlessly until you reach a shared understanding. Map this as a **design tree**: every decision branches into the decisions that depend on it.
 
