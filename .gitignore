@@ -11,9 +11,6 @@ karabiner/automatic_backups/
 # Pi project-local MCP overrides
 .pi/mcp.json
 
-# Herdr-managed Pi integration
-pi/extensions/herdr-agent-state.ts
-
 # JavaScript dependencies
 node_modules/
 package-lock.json

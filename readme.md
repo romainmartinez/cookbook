@@ -100,20 +100,6 @@ Install [brew](https://brew.sh/), then use it to install everything below.
   ```sh
   gh repo clone romainmartinez/lazyvim ~/.config/nvim
   ```
-- herdr
-  ```sh
-  herdr plugin link $CODE_FOLDER/cookbook/herdr/tab-activity
-  ln -sfn $CODE_FOLDER/cookbook/herdr/config.toml ~/.config/herdr/config.toml
-  ln -sfn $CODE_FOLDER/cookbook/herdr/find-nvim.sh ~/.config/herdr/find-nvim.sh
-  ln -sfn $CODE_FOLDER/cookbook/herdr/tab-picker.sh ~/.config/herdr/tab-picker.sh
-  herdr integration install opencode
-  herdr integration install pi
-  ```
-
-## Monitoring & Help
-
-- btop
-- tldr
 
 ## Fonts
 

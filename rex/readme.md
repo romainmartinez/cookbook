@@ -1,8 +1,5 @@
 # Rex
 
-Rex will eventually replace ghostty + herdr + moshi. Once done, run a prompt to clean up the repo.
-
-
 ## App settings
 
 `init.lua` only covers keybindings. Settings changed in Rex.app live in `~/Library/Preferences/com.superlogical.rex.plist` (`defaults read com.superlogical.rex`), so reapply these by hand on a new machine:
@@ -34,42 +31,28 @@ Kept out of the repo until Rex leaves beta. Reapply when committing. Rex-only fi
 
 ### `readme.md` setup
 
-After the herdr setup: turn on Remote Control in Rex.app settings, move any existing `~/.config/rex` aside, then:
+Turn on Remote Control in Rex.app settings, move any existing `~/.config/rex` aside, then:
 
 ```sh
 rex skill setup
 ln -sfn $CODE_FOLDER/cookbook/rex ~/.config/rex
 ```
 
-## herdr parity
+## TODO
 
-### Commands
+### nvim hand-off
 
-- [x] `ctrl+g` lazygit float
-- [x] `ctrl+e` yazi float
-- [x] tab picker -> built into Rex
-- [x] `cmd+1..9` / `cmd+ctrl+1..9` tab and workspace switching -> built into Rex
-- [ ] nvim hand-off: port `find-nvim.sh`, socket naming, `lazygit/config.yml` `$HERDR_*` vars
-  - [ ] lazygit edits open in nvim
-  - [ ] yazi chooser opens in nvim
+Port the old herdr `find-nvim.sh` flow (`git show 8a2da63:herdr/find-nvim.sh`): find the nvim of the current Rex session and expose it to the `ctrl+g` / `ctrl+e` floats.
 
-### Plugins and integrations
-
-- [x] system notifications for agent alerts -> `pi/extensions/rom-rex-notifications` (OSC 9)
-- [x] automatic tab rename: `fish/base.fish` names the session after the folder
-- [x] git ahead/behind in the session label (`fish/base.fish`)
-- [x] `pi/extensions/rom-herdr-prompt-state` -> `pi/extensions/rom-rex-ask-user-state`
-- [x] `pi/extensions/rom-git-push-confirmation`: dropped `herdr:blocked`, Pi reports built-in confirms itself
-- [x] `pi/extensions/rom-session-title-sync`: deleted
+- [ ] lazygit edits open in nvim (`lazygit/config.yml` already uses `$NVIM`)
+- [ ] yazi chooser opens in nvim
 
 ### Omarchy
 
 - [ ] Install the Rex Linux server and pick a server mode
-- [ ] Replace `omarchy/systemd/herdr.service` with a Rex service
+- [ ] Add a Rex systemd service
 - [ ] Expose it over Tailscale for the Mac and phone (Remote Access docs)
-- [ ] Local use: Rex has no Linux client, so check web access or keep herdr there
-- [ ] Keep `pi/extensions/herdr-agent-state.ts` (`herdr integration install pi`) while Omarchy runs herdr
-- [ ] Update `omarchy/readme.md`: herdr mise shim and "herdr as always-on server"
+- [ ] Local use: Rex has no Linux client, so check web access
 
 ## Rex extras
 

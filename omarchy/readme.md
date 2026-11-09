@@ -40,7 +40,7 @@ sudo visudo -c
 ## Packages
 
 ```sh
-omarchy pkg add fish television lsd yazi fd bat jq uv keyd tailscale mosh git-delta github-cli tuicr
+omarchy pkg add fish television lsd yazi fd bat jq uv keyd tailscale git-delta github-cli tuicr
 omarchy install terminal ghostty
 ```
 
@@ -69,11 +69,6 @@ in the root readme for tools not listed here.
   ```sh
   rm -f ~/.config/opencode/opencode.json ~/.config/opencode/tui.json
   ```
-- herdr: expose the mise shim before using the shared setup commands
-  ```sh
-  mkdir -p ~/.local/bin
-  ln -sfn ~/.local/share/mise/shims/herdr ~/.local/bin/herdr
-  ```
 
 ## Server mode
 
@@ -95,8 +90,7 @@ sudo systemctl restart systemd-logind
 
 ### Tailscale (no Tailscale SSH)
 
-Tailscale SSH hijacks port 22, ignores `authorized_keys`, and breaks mosh
-(~60s hang then auth error). Use plain OpenSSH.
+Tailscale SSH hijacks port 22 and ignores `authorized_keys`. Use plain OpenSSH.
 
 ```sh
 sudo systemctl enable --now tailscaled
@@ -104,29 +98,15 @@ sudo tailscale up --accept-routes
 sudo tailscale set --operator="$USER" --ssh=false
 ```
 
-### SSH + mosh (tailnet only)
+### SSH (tailnet only)
 
 ```sh
 sudo systemctl enable --now sshd
 sudo ln -sfn $CODE_FOLDER/cookbook/omarchy/sshd/10-key-only.conf /etc/ssh/sshd_config.d/10-key-only.conf
 sudo sshd -t && sudo systemctl reload sshd
 sudo ufw allow in on tailscale0 to any port 22 proto tcp comment 'ssh over tailnet'
-sudo ufw allow in on tailscale0 to any port 60000:61000 proto udp comment 'mosh over tailnet'
 mkdir -p ~/.ssh && chmod 700 ~/.ssh
 touch ~/.ssh/authorized_keys && chmod 600 ~/.ssh/authorized_keys
-```
-
-`moshi-hook host setup` (below) appends the phone's pubkey to
-`authorized_keys` during QR pairing.
-
-### herdr as always-on server
-
-```sh
-mkdir -p ~/.config/systemd/user
-ln -sfn $CODE_FOLDER/cookbook/omarchy/systemd/herdr.service ~/.config/systemd/user/herdr.service
-systemctl --user disable --now herdr.service
-systemctl --user daemon-reload
-systemctl --user enable --now herdr.service
 ```
 
 ### Strava to Intervals.icu sync
@@ -137,34 +117,6 @@ Create a Strava API app at <https://www.strava.com/settings/api> with callback d
 sudo loginctl enable-linger "$USER"
 $CODE_FOLDER/cookbook/scripts/strava-intervals.py --install-timer
 ```
-
-### moshi + moshi-hook
-
-```sh
-curl -fsSL https://getmoshi.app/install.sh | sh   # -> ~/.local/bin
-moshi-hook update
-```
-
-Two pairings, both need the iPhone Moshi app on the tailnet:
-
-SSH/Mosh terminal pairing:
-```sh
-moshi-hook host setup --host omarchy-1 --name "Dell XPS"
-# scan QR from iPhone Moshi app
-```
-
-Agent-hook pairing (workspace switcher, inbox, approvals):
-```sh
-# Get token from iPhone Moshi app: Settings -> Hooks
-moshi-hook pair --token <token>
-moshi-hook install           # writes hooks into supported agents
-moshi-hook service install   # user systemd unit, auto-start
-systemctl --user restart moshi-hook.service
-moshi-hook probe             # running and gateway should both be true
-```
-
-Restart agent sessions that were already open when hooks were installed or
-updated; agents load hook integrations at startup.
 
 ### Obsidian + Sync
 
