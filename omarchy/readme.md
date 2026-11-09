@@ -64,6 +64,11 @@ in the root readme for tools not listed here.
   ```sh
   ln -sfn $CODE_FOLDER/cookbook/lazygit/config.yml ~/.config/lazygit/config.yml
   ```
+- pi: link Omarchy's agent skills into the shared, git-ignored `pi/skills`
+  ```sh
+  ln -sfn /usr/share/omarchy/default/agents/skills/diagnose-crash $CODE_FOLDER/cookbook/pi/skills/diagnose-crash
+  ln -sfn /usr/share/omarchy/default/agents/skills/omarchy $CODE_FOLDER/cookbook/pi/skills/omarchy
+  ```
 
 ## Server mode
 

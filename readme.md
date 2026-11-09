@@ -78,6 +78,7 @@ Install [brew](https://brew.sh/), then use it to install everything below.
   ln -sfn $CODE_FOLDER/cookbook/pi/AGENTS.md ~/.pi/agent/AGENTS.md
   ln -sfn $CODE_FOLDER/cookbook/pi/extensions ~/.pi/agent/extensions
   ln -sfn $CODE_FOLDER/cookbook/pi/prompts ~/.pi/agent/prompts
+  ln -sfn $CODE_FOLDER/cookbook/pi/skills ~/.pi/agent/skills
   ln -sfn $CODE_FOLDER/cookbook/pi/mcp.json ~/.pi/agent/mcp.json
   pnpm --dir "$CODE_FOLDER/cookbook" install
   pnpm --dir "$CODE_FOLDER/cookbook" check
