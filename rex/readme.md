@@ -4,16 +4,16 @@
 
 `init.lua` only covers keybindings. Settings changed in Rex.app live in `~/Library/Preferences/com.superlogical.rex.plist` (`defaults read com.superlogical.rex`), so reapply these by hand on a new machine:
 
-- Theme: custom tokyo-night for dark and light (`Workspace.customThemes`, `darkThemeID`, `lightThemeID`), interface style follows the theme
+- Theme: custom TokyoNight Storm (dark) and TokyoNight Day (light) (`Workspace.customThemes`, `darkThemeID`, `lightThemeID`), interface style follows the theme
 - Font: JetBrainsMono Nerd Font Mono, 14pt, no font smoothing, cell height +20%
 - Option key acts as Alt
 - Smooth scrolling on
 - Animation style: natural
 - Padding: x 2, y 0, padding color extends the background
-- Cursor: block, `sweep` cursor shader on
+- Cursor: block, `warp` cursor shader on
 - Copy on select on
 - Terminal notifications on (`Workspace.allowsTerminalNotifications`, needed for the OSC 9 banners below)
-- Program activity: system notifications off (they only fire while Rex is in the background). Banners come from OSC 9 instead, which Rex shows even in front: `fish/mac.fish` for slow commands, `pi/extensions/rom-rex-notifications` for Pi done, error and blocked
+- Program activity, done: notification on, `success` sound, Dock badge, shown in tabs (`Workspace.programActivityStatusPreferences`). These system notifications only fire while Rex is in the background. OSC 9 banners show even in front: `fish/mac.fish` for slow commands, `pi/extensions/rom-rex-notifications` for Pi done, error and blocked
 - Tabs: vertical, program status shown in tabs, tab icons never colored, icon count 3, don't fill available space
 - Sidebar: left, width 167, activity hidden
 - Panes: comfortable density, headers hidden, active border hidden, inactive panes fade (both), tinted with the program background
