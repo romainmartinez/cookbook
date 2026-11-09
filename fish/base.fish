@@ -46,14 +46,23 @@ end
 # remove the default greeting message
 set fish_greeting
 
-# show the current folder and command in the tab title
-function fish_title
-    echo (basename $PWD) • (status current-command)
-end
-
-# show the current folder and command in the herdr tab
-for _f in $HOME/.config/herdr/plugins/github/herdr-automatic-rename-*/shell/hook.fish
-    test -r "$_f"; and source "$_f"; and break
+# name the Rex session after the folder plus git ahead/behind, fetching at most every 5 minutes
+if set -q REX_SESSION
+    function __rex_session_label --on-event fish_prompt
+        set -l label (path basename $PWD)
+        if git rev-list --left-right --count 'HEAD...@{upstream}' 2>/dev/null | read -l -d \t ahead behind
+            if test (path mtime --relative (git rev-parse --git-path FETCH_HEAD); or echo 300) -ge 300
+                GIT_TERMINAL_PROMPT=0 command git fetch --quiet &>/dev/null &
+                disown
+            end
+            set -a label (string match -r '.[1-9]\d*' ↑$ahead ↓$behind)
+        end
+        set label (string join ' ' $label)
+        test "$label" = "$__rex_session_label"; and return
+        set -g __rex_session_label $label
+        rex session rename $REX_SESSION $label &>/dev/null &
+        disown
+    end
 end
 
 # prompt: current working directory + git status

@@ -7,18 +7,14 @@ type ToolCallHandler = (event: ToolCallEvent, ctx: unknown) => Promise<unknown>;
 
 function setup() {
   let handler: ToolCallHandler | undefined;
-  const emitted: Array<{ name: string; data: unknown }> = [];
   const pi = {
     on: (name: string, value: ToolCallHandler) => {
       if (name === "tool_call") handler = value;
     },
-    events: {
-      emit: (name: string, data: unknown) => emitted.push({ name, data }),
-    },
   } as unknown as ExtensionAPI;
   gitPushConfirmation(pi);
   assert.ok(handler);
-  return { handler, emitted };
+  return { handler };
 }
 
 function bash(command: string): ToolCallEvent {
@@ -40,26 +36,18 @@ test("allows commands without git push", async () => {
   assert.equal(await handler(bash("git status"), { hasUI: false }), undefined);
 });
 
-test("reports confirmation state and blocks a declined push", async () => {
-  const { handler, emitted } = setup();
+test("blocks a declined push", async () => {
+  const { handler } = setup();
   const result = await handler(bash("git push origin main"), {
     hasUI: true,
     ui: { confirm: async () => false },
   });
 
   assert.deepEqual(result, { block: true, reason: "git push declined by user" });
-  assert.deepEqual(emitted, [
-    { name: "herdr:blocked", data: { active: true, label: "Confirm git push" } },
-    { name: "herdr:blocked", data: { active: false } },
-  ]);
 });
 
-test("clears confirmation state when the UI fails", async () => {
-  const { handler, emitted } = setup();
-  await assert.rejects(handler(bash("git push"), {
-    hasUI: true,
-    ui: { confirm: async () => { throw new Error("UI closed"); } },
-  }), /UI closed/);
-
-  assert.deepEqual(emitted.at(-1), { name: "herdr:blocked", data: { active: false } });
+test("allows a confirmed push", async () => {
+  const { handler } = setup();
+  const result = await handler(bash("git push"), { hasUI: true, ui: { confirm: async () => true } });
+  assert.equal(result, undefined);
 });
