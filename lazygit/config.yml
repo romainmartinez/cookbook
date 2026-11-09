@@ -38,9 +38,9 @@ git:
     - colorArg: always
       command: cat
 os:
-  edit: 'if test -n "$NVIM"; nvim --server "$NVIM" --remote-tab {{filename}}; else; nvim -- {{filename}}; end'
-  editAtLine: 'if test -n "$NVIM"; nvim --server "$NVIM" --remote-tab {{filename}}; and nvim --server "$NVIM" --remote-send ":{{line}}<CR>"; else; nvim +{{line}} -- {{filename}}; end'
-  openDirInEditor: 'if test -n "$NVIM"; nvim --server "$NVIM" --remote-tab {{dir}}; else; nvim -- {{dir}}; end'
+  edit: 'if set -q REX_NVIM_BLOCK; ~/.config/rex/lazygit-edit.sh {{filename}}; else if test -n "$NVIM"; nvim --server "$NVIM" --remote-tab {{filename}}; else; nvim -- {{filename}}; end'
+  editAtLine: 'if set -q REX_NVIM_BLOCK; ~/.config/rex/lazygit-edit.sh {{filename}} {{line}}; else if test -n "$NVIM"; nvim --server "$NVIM" --remote-tab {{filename}}; and nvim --server "$NVIM" --remote-send "<C-\\><C-n>:{{line}}<CR>"; else; nvim +{{line}} -- {{filename}}; end'
+  openDirInEditor: 'if set -q REX_NVIM_BLOCK; ~/.config/rex/lazygit-edit.sh {{dir}}; else if test -n "$NVIM"; nvim --server "$NVIM" --remote-tab {{dir}}; else; nvim -- {{dir}}; end'
   editInTerminal: true
 customCommands:
   - key: "<c-s>"

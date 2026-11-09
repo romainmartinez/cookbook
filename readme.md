@@ -95,6 +95,11 @@ Install [brew](https://brew.sh/), then use it to install everything below.
   ```sh
   ln -sfn $CODE_FOLDER/cookbook/lazygit/config.yml ~/Library/Application\ Support/lazygit/config.yml
   ```
+- rex: turn on Remote Control in Rex.app settings, move any existing `~/.config/rex` aside, then:
+  ```sh
+  rex skill setup
+  ln -sfn $CODE_FOLDER/cookbook/rex ~/.config/rex
+  ```
 - nvim
 `editors/` kept for reference, but not used in the current setup.
   ```sh

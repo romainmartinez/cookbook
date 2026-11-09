@@ -2,7 +2,7 @@
 
 ## App settings
 
-`init.lua` only covers keybindings. Settings changed in Rex.app live in `~/Library/Preferences/com.superlogical.rex.plist` (`defaults read com.superlogical.rex`), so reapply these by hand on a new machine:
+`init.lua` (with `floats.lua`) only covers keybindings. Settings changed in Rex.app live in `~/Library/Preferences/com.superlogical.rex.plist` (`defaults read com.superlogical.rex`), so reapply these by hand on a new machine:
 
 - Theme: custom TokyoNight Storm (dark) and TokyoNight Day (light) (`Workspace.customThemes`, `darkThemeID`, `lightThemeID`), interface style follows the theme
 - Font: JetBrainsMono Nerd Font Mono, 14pt, no font smoothing, cell height +20%
@@ -25,27 +25,11 @@
 - Developer mode on, update channel `snapshot`
 - Experiment: new quick switcher on
 
-## Parked changes
+## nvim hand-off
 
-Kept out of the repo until Rex leaves beta. Reapply when committing. Rex-only fish hooks are already in `fish/` behind `REX_SESSION`.
-
-### `readme.md` setup
-
-Turn on Remote Control in Rex.app settings, move any existing `~/.config/rex` aside, then:
-
-```sh
-rex skill setup
-ln -sfn $CODE_FOLDER/cookbook/rex ~/.config/rex
-```
+`ctrl+g` (lazygit) and `ctrl+e` (yazi) float over the window. When the session has an nvim (preferring the focused block, then its tab), `floats.lua` passes its socket as `NVIM` and its block and tab as `REX_NVIM_BLOCK` and `REX_NVIM_WINDOW`. Lazygit edits (`lazygit/config.yml` calls `lazygit-edit.sh`) and yazi picks (`yazi-to-nvim.sh`) then open in that nvim, and `focus-nvim.sh` switches Rex.app to it. nvim listens on `~/.cache/rex-nvim/<block>.sock`, set in the lazyvim repo (`lua/config/options.lua`).
 
 ## TODO
-
-### nvim hand-off
-
-Port the old herdr `find-nvim.sh` flow (`git show 8a2da63:herdr/find-nvim.sh`): find the nvim of the current Rex session and expose it to the `ctrl+g` / `ctrl+e` floats.
-
-- [ ] lazygit edits open in nvim (`lazygit/config.yml` already uses `$NVIM`)
-- [ ] yazi chooser opens in nvim
 
 ### Omarchy
 
