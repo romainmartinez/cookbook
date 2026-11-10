@@ -40,7 +40,7 @@ sudo visudo -c
 ## Packages
 
 ```sh
-omarchy pkg add fish television lsd yazi fd bat jq uv keyd tailscale git-delta github-cli tuicr
+omarchy pkg add fish television lsd yazi fd bat jq uv keyd tailscale git-delta github-cli
 omarchy install terminal ghostty
 ```
 

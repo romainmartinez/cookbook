@@ -1,5 +1,12 @@
 {
   "mcpServers": {
+    "agent-browser": {
+      "command": "agent-browser",
+      "args": [
+        "mcp"
+      ],
+      "description": "Browser automation: open pages, read accessibility snapshots, click and fill elements"
+    },
     "chrome-devtools": {
       "command": "npx",
       "args": [
@@ -8,10 +15,6 @@
         "--autoConnect",
         "--channel=beta"
       ],
-      "enabled": false
-    },
-    "nuxt-ui": {
-      "url": "https://ui.nuxt.com/mcp",
       "enabled": false
     },
     "atlassian": {

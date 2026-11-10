@@ -69,7 +69,7 @@ Install [brew](https://brew.sh/), then use it to install everything below.
   ```sh
   git remote set-url origin https://GITHUB_ACCOUNT@github.com/OWNER/REPOSITORY.git
   ```
-- tuicr
+- agent-browser
 - pi
   ```sh
   mkdir -p ~/.pi/agent
