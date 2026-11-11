@@ -43,5 +43,6 @@ fallback_channel = "files"
 "git-log" = ["git log", "git show"]
 "git-repos" = ["nvim", "code", "hx", "git clone"]
 "procs" = ["kill", "pkill", "ps"]
+"pi-sessions" = ["pi --session"]
 "tldr" = ["tldr"]
 "brew-packages" = ["brew uninstall", "brew info", "brew reinstall"]

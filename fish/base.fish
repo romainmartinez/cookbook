@@ -14,6 +14,7 @@ alias n='nvim'
 alias lg='lazygit'
 alias gha='gh auth switch'
 alias nr='npm run'
+abbr -a pis 'pi --session'
 
 # lsd (modern ls replacement)
 alias ls='lsd'

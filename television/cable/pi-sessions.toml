@@ -1,0 +1,41 @@
+[metadata]
+name = "pi-sessions"
+description = "Search Pi conversations, newest sessions first"
+requirements = ["rg", "jq"]
+
+[source]
+command = '''rg --sortr modified --only-matching --field-match-separator $'\t' --replace $'$2 $3\t$4\t$1\t$5' '^\{"type":"message","id":"([^"]+)".*?"timestamp":"([^T"]+)T(\d\d:\d\d)[^"]*","message":\{"role":"(user|assistant)","content":(?:"|\[.*?\{"type":"text","text":")((?:[^"\\]|\\.)+)' ~/.pi/agent/sessions | awk -F '\t' -v OFS='\t' '{
+  n = split($1, parts, "/"); project = parts[n - 1]
+  sub(/^--(Users|home)-[^-]+-?/, "", project); sub(/--$/, "", project); sub(/^Documents-/, "", project)
+  if (project == "") project = "~"
+  if (length(project) > 20) project = "…" substr(project, length(project) - 18)
+  gsub(/\\[nrt]/, " ", $5); gsub(/\\"/, "\"", $5)
+  print $1, $4, sprintf("%s  %-20s  %-3s  %s", substr($2, 6), project, $3 == "user" ? "you" : "pi", $5)
+}' '''
+shell = "bash"
+display = "{split:\t:2}"
+output = "{split:\t:0}"
+frecency = false
+
+[preview]
+command = '''w=$(stty size 2>/dev/null </dev/tty | cut -d ' ' -f 2)
+rg '^\{"type":"message".*?"message":\{"role":"(user|assistant)"' '{split:\t:0}' | jq -rs --arg id '{split:\t:1}' --argjson w $(( (w ? w : 160) * 55 / 100 - 5 )) '
+def rep($s; $n): if $n > 0 then $s * $n else "" end;
+def wrap($n): reduce splits(" +") as $w ([""]; if .[-1] == "" then .[-1] = $w elif (.[-1] | length) + ($w | length) < $n then .[-1] += " " + $w else . + [$w] end) | .[];
+map(.text = (.message.content | if type == "string" then . else map(select(.type == "text").text) | join("\n") end) | select(.text != ""))
+| . as $all | (map(.id) | index($id) // 0) as $i
+| ([range($i + 1)] | map(select($all[.].message.role == "user")) | last // 0) as $start
+| $all[$start:][]
+| (if .message.role == "user" then ["33", "You"] else ["36", "Pi"] end) as [$c, $who]
+| "\u001b[" + $c + "m" as $on | "\u001b[0m" as $off
+| " " + (if .id == $id then "▶ " else "" end) + $who + " · " + (.timestamp[:19] + "Z" | fromdate | strflocaltime("%Y-%m-%d %H:%M")) + " " as $title
+| $on + "╭─" + $title + rep("─"; $w - ($title | length) - 3) + "╮" + $off,
+  (.text | gsub("\t"; "  ") | split("\n")[] | wrap($w - 4) | $on + "│" + $off + " " + . + rep(" "; $w - 4 - length) + " " + $on + "│" + $off),
+  $on + "╰" + rep("─"; $w - 2) + "╯" + $off,
+  ""
+' '''
+shell = "bash"
+
+[ui.preview_panel]
+size = 55
+header = "{split:\t:2|split:  :..2}"
