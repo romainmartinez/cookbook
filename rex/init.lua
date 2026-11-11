@@ -14,4 +14,19 @@ rex.bind("cmd+right", "com.superlogical.terminal.write", { data = "\5" })
 -- Kitty-encoded super+backspace; ctrl+u would hit Pi's alt-screen halfPageUp instead.
 rex.bind("cmd+backspace", "com.superlogical.terminal.write", { data = "\27[127;9u" })
 
+rex.action({
+	name = "session_goto",
+	title = "Go to Session N",
+	category = "Sessions",
+	run = function(_, args)
+		local session = (rex.call("session.list").sessions or {})[args.index]
+		if session then
+			rex.client.queue("session.select", { session_id = session.session_id })
+		end
+	end,
+})
+for i = 1, 9 do
+	rex.bind("ctrl+cmd+" .. i, "session_goto", { index = i })
+end
+
 require("floats")
