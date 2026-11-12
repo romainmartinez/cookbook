@@ -37,7 +37,7 @@ Snapshot of `Raycast-X-2026-10-16 10.28.35.rayconfig` (Raycast 2.8.1, macOS 26).
 | Hotkey | App | Alias |
 | --- | --- | --- |
 | `Hyper F` | Ghostty | |
-| `Hyper B` | Google Chrome Beta | |
+| `Hyper B` | Google Chrome | |
 | `Hyper N` | Obsidian | |
 | `Hyper T` | Todoist | |
 | `Hyper P` | Spotify | |
@@ -108,7 +108,7 @@ Expand immediately, not within words.
 - Clipboard history: 1 week, OCR on, ignores Passwords and Keychain Access
 - File search: `~` and `/Applications`, ignores `node_modules`, caches, tmp
 - Script command folder: `~/Documents/brain/coding/scripts/raycast`
-- Calendar: opens Google links in Chrome Beta, no auto-join
+- Calendar: opens Google links in Chrome, no auto-join
 - Applications: hotkeys toggle the app
 - Fallback order: file search, store, define word (disabled), snippets, AI on selected text, weather, AI Chat, translate, calendar, emoji, location, Focus, browser, menu items
 - Disabled: Define Word, Freeform

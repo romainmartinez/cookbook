@@ -5,6 +5,9 @@
       "args": [
         "mcp"
       ],
+      "env": {
+        "AGENT_BROWSER_AUTO_CONNECT": "1"
+      },
       "description": "Browser automation: open pages, read accessibility snapshots, click and fill elements"
     },
     "chrome-devtools": {
@@ -12,8 +15,7 @@
       "args": [
         "-y",
         "chrome-devtools-mcp@latest",
-        "--autoConnect",
-        "--channel=beta"
+        "--autoConnect"
       ],
       "enabled": false
     },
