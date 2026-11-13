@@ -11,4 +11,4 @@ if [ -d "$picked" ]; then
 	nv --remote-expr "chdir(readfile('$chooser')[0])"
 else
 	nv --remote-tab "$picked"
-fi && "$HOME/.config/rex/focus-nvim.sh"
+fi && rex do -s "$REX_SESSION" jump_to block_id="$REX_NVIM_BLOCK"
