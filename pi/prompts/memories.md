@@ -9,7 +9,7 @@ Review what I typed to Pi in this project and suggest lasting rules for future a
 
 ## Gather
 
-Run `node ~/.pi/agent/prompts/memories.ts list $ARGUMENTS` from the current directory. It prints JSON with the project `root`, the `messages` since the last review (each is my `prompt` and the agent `reply` it answered), and `dismissed` rules I already rejected. If `total` is 0, say so, run `node ~/.pi/agent/prompts/memories.ts mark`, and stop.
+Run `node ~/.pi/agent/prompts/memories.ts list $ARGUMENTS` from the current directory. It prints one batch of JSON, oldest first: the project `root`, the `messages` (each is my `prompt` and the agent `reply` it answered), `dismissed` rules I already rejected, and `done`. While `done` is false, run `list --since <next>` with the returned `next` value until `done` is true. Read every batch in full; never pipe the output through `head`, `jq`, or any other filter that drops text. If `remaining` is 0, say so, run `node ~/.pi/agent/prompts/memories.ts mark`, and stop.
 
 Read the rules that already apply: `~/.pi/agent/AGENTS.md`, and the `AGENTS.md` or `CLAUDE.md` files from `root` down to the current directory.
 
@@ -49,4 +49,4 @@ node ~/.pi/agent/prompts/memories.ts dismiss "<rule>" ...   # only for dismissed
 node ~/.pi/agent/prompts/memories.ts mark
 ```
 
-Report what was written where in one line per rule.
+Report how many prompts you read and over which dates, then what was written where in one line per rule.

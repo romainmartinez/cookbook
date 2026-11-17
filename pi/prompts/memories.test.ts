@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { belongsTo, dedupe, exchanges, isExpandedTemplate, parseSince, templatePrefixes } from "./memories.ts";
+import { batch, belongsTo, dedupe, exchanges, isExpandedTemplate, parseSince, templatePrefixes } from "./memories.ts";
 
 const line = (role: string, content: unknown, timestamp: number) =>
   JSON.stringify({ type: "message", timestamp: new Date(timestamp).toISOString(), message: { role, content, timestamp } });
@@ -50,6 +50,14 @@ test("parses relative and absolute --since values", () => {
   assert.equal(parseSince("1 week", now), now - 7 * day);
   assert.equal(parseSince("2026-11-01", now), Date.parse("2026-11-01"));
   for (const value of ["15", "15 months", "soon"]) assert.throws(() => parseSince(value, now), value);
+});
+
+test("batches oldest first within the byte budget", () => {
+  const items = [1, 2, 3].map((time) => ({ session: "s", time, reply: "", prompt: "x".repeat(40) }));
+  const size = JSON.stringify(items[0]).length;
+  assert.deepEqual(batch(items, size * 2).map((i) => i.time), [1, 2]);
+  assert.deepEqual(batch(items, 1).map((i) => i.time), [1]);
+  assert.deepEqual(batch([]), []);
 });
 
 test("matches sessions inside the project root only", () => {

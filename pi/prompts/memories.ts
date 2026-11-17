@@ -6,7 +6,7 @@ import { fileURLToPath } from "node:url";
 
 const USAGE = [
   "usage: node memories.ts <command> [options]",
-  "  list [--since YYYY-MM-DD|15d|2w] [--all] [--limit 150]   prompts since the last mark (default window: 14 days)",
+  "  list [--since YYYY-MM-DD|15d|2w|<next>] [--all]   oldest unreviewed prompts, one batch at a time (default: since the last mark, or 14 days)",
   "  mark                                              record now as the last review for this project",
   "  dismiss <text>...                                 never suggest these rules again for this project",
 ].join("\n");
@@ -14,6 +14,7 @@ const USAGE = [
 const DEFAULT_DAYS = 14;
 const PROMPT_MAX = 1500;
 const REPLY_MAX = 500;
+const BATCH_BYTES = 40_000;
 
 export interface Exchange {
   session: string;
@@ -105,6 +106,17 @@ export function parseSince(value: string, now = Date.now()): number {
   return date;
 }
 
+export function batch(items: Exchange[], budget = BATCH_BYTES): Exchange[] {
+  const out: Exchange[] = [];
+  let size = 0;
+  for (const item of items) {
+    size += JSON.stringify(item).length;
+    if (out.length && size > budget) break;
+    out.push(item);
+  }
+  return out;
+}
+
 export function belongsTo(cwd: unknown, root: string): boolean {
   return typeof cwd === "string" && (cwd === root || cwd.startsWith(`${root}/`));
 }
@@ -158,8 +170,6 @@ function firstLine(file: string): string {
 
 function list(root: string, opts: Record<string, string | true>, args: string[]): object {
   const state = readState()[root] ?? {};
-  const limit = Number(opts.limit ?? 150);
-  if (!Number.isInteger(limit) || limit <= 0) throw new Error("--limit must be a positive integer");
   let since = state.lastReview ?? Date.now() - DEFAULT_DAYS * 86_400_000;
   if (opts.all) since = 0;
   if (typeof opts.since === "string") {
@@ -190,12 +200,17 @@ function list(root: string, opts: Record<string, string | true>, args: string[])
     }
   }
 
-  const messages = dedupe(found).sort((a, b) => a.time - b.time).slice(-limit);
+  const pending = dedupe(found).sort((a, b) => a.time - b.time);
+  const messages = batch(pending);
+  const done = messages.length === pending.length;
   return {
     root,
     since: since ? new Date(since).toISOString() : null,
     sessions,
-    total: messages.length,
+    remaining: pending.length,
+    returned: messages.length,
+    done,
+    next: done ? null : new Date(messages[messages.length - 1].time).toISOString(),
     dismissed: state.dismissed ?? [],
     messages: messages.map((item) => ({ ...item, time: new Date(item.time).toISOString() })),
   };
@@ -220,7 +235,7 @@ function main(argv: string[]): void {
   const { opts, args } = parseArgs(rest);
   const root = projectRoot(process.cwd());
   if (cmd === "list") {
-    console.log(JSON.stringify(list(root, opts, args), null, 2));
+    console.log(JSON.stringify(list(root, opts, args)));
   } else if (cmd === "mark") {
     const state = readState();
     state[root] = { ...state[root], lastReview: Date.now() };
