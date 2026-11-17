@@ -1,6 +1,6 @@
 - Personal dotfiles/setup repo; each top-level directory owns one tool.
 - Put shared setup in `readme.md`; keep only Linux overrides in `omarchy/readme.md`. Read both for shared or Linux setup changes.
 - Put shared Fish/Ghostty settings in `base.*`; platform settings in `mac.*` or `linux.*`.
-- Keep Pi tests beside source as `*.test.ts`; run root-level `pnpm check`.
+- Pi: tests beside source as `*.test.ts`; extensions in `pi/extensions/rom-*/`; prompt helpers beside their prompt; add new TS dirs to `pi/tsconfig.json` and the `pi/package.json` test glob; run root-level `pnpm check`.
 - Update setup README and symlink instructions when configuration targets change.
-- Clone GitHub repos as `https://ACCOUNT@github.com/OWNER/REPO.git`; infer `ACCOUNT` from related repos. The credential helper selects that `gh` account.
+- Clone GitHub repos as `https://ACCOUNT@github.com/OWNER/REPO.git`, `ACCOUNT` inferred from related repos.
