@@ -1,8 +1,11 @@
 import { execFileSync } from "node:child_process";
 import { readFileSync } from "node:fs";
+import { delimiter, sep } from "node:path";
 
 const packages = ["pi-coding-agent", "pi-ai", "pi-tui"].map((name) => `@earendil-works/${name}`);
-const installed = execFileSync("pi", ["--version"], { encoding: "utf8" }).trim();
+const binSuffix = `${sep}node_modules${sep}.bin`;
+const PATH = (process.env.PATH ?? "").split(delimiter).filter((dir) => !dir.endsWith(binSuffix)).join(delimiter);
+const installed = execFileSync("pi", ["--version"], { encoding: "utf8", env: { ...process.env, PATH } }).trim();
 const { devDependencies } = JSON.parse(readFileSync(new URL("../package.json", import.meta.url), "utf8"));
 const mismatched = packages.filter((name) => devDependencies[name] !== installed);
 
