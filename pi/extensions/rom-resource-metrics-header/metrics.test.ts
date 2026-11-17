@@ -106,7 +106,7 @@ test("deduplicates commands and respects skill frontmatter", () => withTempDir((
   assert.deepEqual(snapshot.prompts, [{ label: "/demo", value: 3 }]);
 }));
 
-test("discovers representative local and npm extensions", () => withTempDir((root) => {
+test("discovers representative local, npm, and git extensions", () => withTempDir((root) => {
   const agentDir = join(root, "agent");
   const cwd = join(root, "project");
   mkdirSync(join(agentDir, "extensions", "directory-extension"), { recursive: true });
@@ -118,8 +118,15 @@ test("discovers representative local and npm extensions", () => withTempDir((roo
   const packageRoot = join(agentDir, "npm", "node_modules", "@scope", "with-extension");
   mkdirSync(packageRoot, { recursive: true });
   writeFileSync(join(packageRoot, "package.json"), JSON.stringify({ pi: { extensions: ["index.ts"] } }));
+  const gitRoot = join(agentDir, "git", "github.com", "owner", "git-extension");
+  mkdirSync(gitRoot, { recursive: true });
+  writeFileSync(join(gitRoot, "package.json"), JSON.stringify({ pi: { extensions: ["./index.ts"] } }));
   writeFileSync(join(agentDir, "settings.json"), JSON.stringify({
-    packages: ["npm:@scope/with-extension@1.2.3", { source: "npm:disabled", extensions: [] }],
+    packages: [
+      "npm:@scope/with-extension@1.2.3",
+      { source: "npm:disabled", extensions: [] },
+      "git:github.com/owner/git-extension@v1",
+    ],
   }));
 
   const snapshot = collectMetrics({
@@ -133,6 +140,7 @@ test("discovers representative local and npm extensions", () => withTempDir((roo
   assert.deepEqual(snapshot.extensions.toSorted(), [
     "@scope/with-extension@1.2.3",
     "directory-extension",
+    "github.com/owner/git-extension",
     "project.mjs",
     "single.ts",
   ]);

@@ -81,12 +81,27 @@ function npmPackageName(source: string): string | undefined {
   return version <= 0 ? spec : spec.slice(0, version);
 }
 
+function gitPackagePath(source: string): string | undefined {
+  if (!source.startsWith("git:")) return undefined;
+  const spec = source.slice(4);
+  const version = spec.indexOf("@");
+  return version === -1 ? spec : spec.slice(0, version);
+}
+
+function packageRoot(agentDir: string, source: string): { root: string; label: string } | undefined {
+  const npmName = npmPackageName(source);
+  if (npmName) return { root: join(agentDir, "npm", "node_modules", npmName), label: source.slice(4) };
+  const gitPath = gitPackagePath(source);
+  if (gitPath) return { root: join(agentDir, "git", gitPath), label: gitPath };
+  return undefined;
+}
+
 function packageExtensionLabel(agentDir: string, setting: PackageSetting): string | undefined {
   const source = typeof setting === "string" ? setting : setting.source;
-  const packageName = npmPackageName(source);
-  if (!packageName || (typeof setting !== "string" && setting.extensions?.length === 0)) return undefined;
+  const resolved = packageRoot(agentDir, source);
+  if (!resolved || (typeof setting !== "string" && setting.extensions?.length === 0)) return undefined;
 
-  const root = join(agentDir, "npm", "node_modules", packageName);
+  const { root, label } = resolved;
   const manifestPath = join(root, "package.json");
   if (!existsSync(manifestPath)) return undefined;
 
@@ -98,10 +113,10 @@ function packageExtensionLabel(agentDir: string, setting: PackageSetting): strin
     const declared = configured ?? manifest.pi?.extensions;
     if (declared) {
       return declared.some((path) => !path.startsWith("!") && !path.startsWith("-"))
-        ? source.slice(4)
+        ? label
         : undefined;
     }
-    return existsSync(join(root, "extensions")) ? source.slice(4) : undefined;
+    return existsSync(join(root, "extensions")) ? label : undefined;
   } catch {
     return undefined;
   }
