@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "node --experimental-strip-types --test \"extensions/**/*.test.ts\"",
+    "test": "node --experimental-strip-types --test \"extensions/**/*.test.ts\" \"prompts/**/*.test.ts\"",
     "typecheck": "tsc --project tsconfig.json",
     "check-version": "node --experimental-strip-types scripts/check-pi-version.ts",
     "check": "pnpm run check-version && pnpm run typecheck && pnpm test"
