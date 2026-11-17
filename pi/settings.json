@@ -10,7 +10,6 @@
   "packages": [
     "npm:pi-web-access",
     "npm:@juicesharp/rpiv-ask-user-question",
-    "git:github.com/johnlindquist/pi-emphasis",
     {
       "source": "npm:@juanibiapina/pi-tokyonight",
       "themes": [
