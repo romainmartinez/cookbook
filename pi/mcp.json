@@ -47,6 +47,13 @@
         "Authorization": "Bearer ${LIFTOSAUR_API_KEY}"
       },
       "enabled": false
+    },
+    "raycast": {
+      "url": "http://127.0.0.1:8267/mcp",
+      "headers": {
+        "Authorization": "Bearer ${RAYCAST_MCP_TOKEN}"
+      },
+      "enabled": false
     }
   }
 }

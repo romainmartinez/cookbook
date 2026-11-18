@@ -1,6 +1,6 @@
 # Raycast settings
 
-Snapshot of `Raycast-X-2026-10-16 10.28.35.rayconfig` (Raycast 2.8.1, macOS 26). Hyper = `⌃⌥⇧⌘`.
+Read from the live app through the Raycast MCP on 2026-11-18 (Raycast 2.11, macOS 26). Usage stats come from the 2026-10-16 export. Hyper = `⌃⌥⇧⌘`.
 
 ## General
 
@@ -28,7 +28,7 @@ Snapshot of `Raycast-X-2026-10-16 10.28.35.rayconfig` (Raycast 2.8.1, macOS 26).
 | `Hyper R` | Show desktop | |
 | `Hyper V` | Toggle microphone mute | `sv` |
 | `Hyper 5` | Confetti | |
-| `Hyper -` | Draw on screen (script command) | |
+| `Hyper 2` | Draw on screen (script command) | |
 | `⇧⌘V` | Paste as plain text | |
 | `⇧⌘2` | CleanShot capture text | |
 
@@ -36,7 +36,7 @@ Snapshot of `Raycast-X-2026-10-16 10.28.35.rayconfig` (Raycast 2.8.1, macOS 26).
 
 | Hotkey | App | Alias |
 | --- | --- | --- |
-| `Hyper F` | Ghostty | |
+| `Hyper F` | Rex Beta | |
 | `Hyper B` | Google Chrome | |
 | `Hyper N` | Obsidian | |
 | `Hyper T` | Todoist | |
@@ -74,8 +74,9 @@ No gaps. Cycle mode: displays. Layout "Coding" puts two windows side by side at 
 | `gi` / `gp` | GitHub my issues / my PRs |
 | `pml` / `pmn` / `pmo` | Messages: list / send / paste latest OTP |
 | `fg` | GIF search |
+| `sb` | Toothpick: connect favorite device #1 (command disabled) |
 
-Favorites: Vim Leader Key, Toothpick (Bluetooth), Set Audio Output Device.
+Favorites: Toothpick (Bluetooth), Set Audio Output Device.
 
 ## Quicklinks
 
@@ -96,7 +97,9 @@ Expand immediately, not within words.
 
 ## AI
 
-- AI Chat, Quick AI, and AI commands: Claude Sonnet 5.5, low reasoning effort
+- AI Chat, Quick AI, and AI commands: Claude Sonnet 5.5, low reasoning effort, balanced routing
+- New chats run locally, separate conversation history, keep at most 15
+- Worktrees: branch from the default branch with a `raycast` prefix, rename from chat titles, delete merged branches and worktrees
 - Main chat preset: Claude Sonnet 5, balanced routing, memory enabled, web tool on in the main preset
 - New chat after 5 min, never auto-archive
 - Skill directories: `~/.claude/skills`, `~/.config/agents/skills`, `~/.agents/skills`
@@ -115,9 +118,9 @@ Expand immediately, not within words.
 
 ## Store extensions
 
-audio-device, bitwarden, brew, calendar, clean-keyboard, cleanshotx, color-picker, font-sniper, gif-search, git, github, iconify, imessage-2fa, installed-extensions, jira, kill-process, messages, model-context-protocol-registry, mute-microphone, paste-as-plain-text, port-manager, raycast-explorer, raycast-system-monitor, renaming, ruler, shell, sips, todoist, toothpick, vim-leader-key
+audio-device, bitwarden, brew, calendar (Quick Calendar), clean-keyboard, cleanshotx, color-picker, font-sniper, gif-search, git, github, iconify, imessage-2fa, installed-extensions, jira, kill-process, markdown-converter, messages, model-context-protocol-registry, mute-microphone, paste-as-plain-text, port-manager, raycast-explorer, raycast-system-monitor, renaming, ruler, shell, sips, todoist, toothpick
 
-Most single-purpose subcommands are disabled (Toothpick device actions, audio combos, extra Todoist, GitHub, and CleanShot commands).
+Most single-purpose subcommands are disabled (Toothpick device actions, audio combos, extra Todoist, GitHub, and CleanShot commands, Markdown Converter except HTML and Word 365, Strip Exif Data).
 
 ## Usage
 
