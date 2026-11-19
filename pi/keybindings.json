@@ -5,6 +5,8 @@
   "tui.altScreen.bottom": "ctrl+shift+j",
   "app.editor.external": "ctrl+shift+e",
   "app.exit": [],
+  "app.thinking.toggle": "ctrl+shift+o",
+  "app.tree.filter.noTools": [],
   "tui.editor.cursorLineStart": ["home", "ctrl+home", "ctrl+a", "super+left"],
   "tui.editor.cursorLineEnd": ["end", "ctrl+end", "ctrl+e", "super+right"],
   "tui.editor.deleteToLineStart": ["ctrl+u", "super+backspace"],
