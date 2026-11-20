@@ -1,10 +1,7 @@
-import { fileURLToPath } from "node:url";
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 import { jumpToMessage } from "./messages.ts";
 import { listSessions, sessionItem } from "./sessions.ts";
 import { pick, withTui } from "./tv.ts";
-
-const renderSession = fileURLToPath(new URL("./preview.ts", import.meta.url));
 
 export default function (pi: ExtensionAPI) {
   pi.registerShortcut("ctrl+t", {
@@ -21,7 +18,7 @@ export default function (pi: ExtensionAPI) {
       const { sessionManager } = ctx;
       const sessions = await listSessions(sessionManager.getSessionDir(), sessionManager.getSessionFile());
       if (sessions.length === 0) return ctx.ui.notify("No other sessions in this project", "info");
-      const index = await withTui(ctx, (tui) => pick(tui, "Sessions", sessions.map(sessionItem), renderSession));
+      const index = await withTui(ctx, (tui) => pick(tui, "Sessions", sessions.map(sessionItem)));
       if (index !== undefined) await ctx.switchSession(sessions[index].path);
     },
   });

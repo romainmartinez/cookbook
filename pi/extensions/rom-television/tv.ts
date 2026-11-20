@@ -1,12 +1,15 @@
 import { spawn } from "node:child_process";
 import { once } from "node:events";
-import { mkdtemp, rm, writeFile } from "node:fs/promises";
+import { mkdtemp, rename, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import type { ExtensionContext } from "@earendil-works/pi-coding-agent";
+import { type ExtensionContext, getMarkdownTheme } from "@earendil-works/pi-coding-agent";
+import { Markdown, type TUI, visibleWidth } from "@earendil-works/pi-tui";
 
-export type Entry = { line: string; preview: string };
-export type Item = { date?: Date; entry: () => Entry | Promise<Entry> };
+export type Item = { date?: Date; line: () => string | Promise<string>; preview: (width: number) => string | Promise<string> };
+export type Turn = { role: "you" | "pi"; text: string };
+
+const previewSize = 40;
 
 const day = 864e5;
 const midnight = (date: Date) => new Date(date).setHours(0, 0, 0, 0);
@@ -27,6 +30,27 @@ export const color = (code: string, text: string) => `\x1b[${code}m${text}\x1b[0
 
 export const oneLine = (text: string) => text.replace(/\s+/g, " ").trim();
 
+const roleColor = (role: Turn["role"]) => (role === "you" ? "1;33" : "1;36");
+
+export const label = (role: Turn["role"]) => color(roleColor(role), role.padStart(3));
+
+function box(lines: string[], width: number): string[] {
+  const border = (text: string) => color("90", text);
+  return [
+    border(`╭${"─".repeat(width - 2)}╮`),
+    ...lines.map((line) => `${border("│")} ${line}${" ".repeat(Math.max(0, width - 4 - visibleWidth(line)))} ${border("│")}`),
+    border(`╰${"─".repeat(width - 2)}╯`),
+  ];
+}
+
+export function renderTurn({ role, text }: Turn, width: number): string[] {
+  return [color(roleColor(role), role), ...new Markdown(text, 0, 0, getMarkdownTheme()).render(width).map((line) => line.trimEnd())];
+}
+
+export function renderTurns(turns: Turn[], width: number): string {
+  return turns.map((turn) => box(renderTurn(turn, width - 4), width).join("\n")).join("\n\n");
+}
+
 export function prefixes(items: Item[], now = new Date()): string[] {
   const width = String(items.length).length;
   const dates = items.map((item) => (item.date ? ago(item.date, now) : ""));
@@ -42,34 +66,42 @@ export function parsePick(stdout: string): number | undefined {
   return Number.isInteger(number) ? number - 1 : undefined;
 }
 
-async function tv(header: string, items: Item[], render?: string): Promise<number | undefined> {
+async function tv(header: string, items: Item[], columns: number): Promise<number | undefined> {
   const dir = await mkdtemp(join(tmpdir(), "pi-television-"));
+  // tv does not expose the preview width (television#999), so estimate it minus borders and padding.
+  const width = Math.max(20, Math.floor((columns * previewSize) / 100) - 4);
   const child = spawn(
     "tv",
     [
-      "--preview-command", render ? '"$TV_NODE" "$TV_RENDER" {split: :0}.txt' : "cat {split: :0}.txt",
+      // tv runs this through $SHELL, which may not be POSIX (fish).
+      "--preview-command", `sh -c 'until [ -e "$0" ]; do sleep 0.05; done; cat "$0"' {split: :0}.txt`,
       "--input-header", header,
-      "--preview-size", "40",
-      "--no-sort",
+      "--preview-header", "",
+      "--preview-size", String(previewSize),
       "--ansi",
     ],
-    { cwd: dir, env: { ...process.env, TV_NODE: process.execPath, TV_RENDER: render }, stdio: ["pipe", "pipe", "inherit"] },
+    { cwd: dir, stdio: ["pipe", "pipe", "inherit"] },
   );
   child.stdin.on("error", () => {});
   let stdout = "";
   child.stdout.setEncoding("utf8").on("data", (chunk) => (stdout += chunk));
-  const exited = once(child, "close");
+  let closed = false;
+  const exited = once(child, "close").finally(() => (closed = true));
 
   const feed = async () => {
     try {
       for (const [index, prefix] of prefixes(items).entries()) {
         if (!child.stdin.writable) return;
-        const { line, preview } = await items[index].entry();
-        await writeFile(join(dir, `${index + 1}.txt`), preview);
-        child.stdin.write(`${prefix}${line}\n`);
+        child.stdin.write(`${prefix}${await items[index].line()}\n`);
       }
     } finally {
       child.stdin.end();
+    }
+    for (const [index, item] of items.entries()) {
+      if (closed) return;
+      const file = join(dir, `${index + 1}.txt`);
+      await writeFile(`${file}.tmp`, await item.preview(width));
+      await rename(`${file}.tmp`, file);
     }
   };
   const failed = feed().then(() => undefined, (error: unknown) => error);
@@ -84,17 +116,17 @@ async function tv(header: string, items: Item[], render?: string): Promise<numbe
   }
 }
 
-export async function pick(tui: any, header: string, items: Item[], render?: string): Promise<number | undefined> {
+export async function pick(tui: TUI, header: string, items: Item[]): Promise<number | undefined> {
   tui.stop();
   try {
-    return await tv(header, items, render);
+    return await tv(header, items, tui.terminal.columns);
   } finally {
     tui.start();
     tui.requestRender(true);
   }
 }
 
-export const withTui = <T>(ctx: ExtensionContext, run: (tui: any) => Promise<T>) =>
+export const withTui = <T>(ctx: ExtensionContext, run: (tui: TUI) => Promise<T>) =>
   ctx.ui.custom<T | undefined>((tui, _theme, _kb, done) => {
     run(tui)
       .catch((error) => void ctx.ui.notify(`Television: ${error instanceof Error ? error.message : error}`, "error"))

@@ -1,8 +1,8 @@
 import type { ExtensionContext } from "@earendil-works/pi-coding-agent";
-import { color, type Item, oneLine, pick } from "./tv.ts";
+import { color, type Item, label, oneLine, pick, renderTurn, type Turn } from "./tv.ts";
 
 type Node = { render(width: number): string[]; children?: Node[]; constructor: { name: string } };
-type Message = { role: "you" | "pi"; text: string; date?: Date; component: Node };
+type Message = Turn & { date?: Date; component: Node };
 
 const sentinel = "\u0000rom-television\u0000";
 
@@ -34,9 +34,8 @@ export function collectMessages(root: Node): Message[] {
 }
 
 export function messageItem({ role, text, date }: Message): Item {
-  const label = role === "you" ? color("1;33", "you") : color("1;36", " pi");
-  const line = `${label} ${color("90", "│")} ${oneLine(text.replace(/\*\*|`|\[\[|\]\]|^#+ /gm, ""))}`;
-  return { date, entry: () => ({ line, preview: text }) };
+  const line = `${label(role)} ${color("90", "│")} ${oneLine(text.replace(/\*\*|`|\[\[|\]\]|^#+ /gm, ""))}`;
+  return { date, line: () => line, preview: (width) => renderTurn({ role, text }, width).join("\n") };
 }
 
 export function rowOf(content: Node, target: Node, width: number): number {

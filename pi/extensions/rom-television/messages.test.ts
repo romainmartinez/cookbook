@@ -54,10 +54,7 @@ test("collects user and assistant text in transcript order", () => {
 
 test("formats a colored one-line summary without markdown noise", () => {
   const text = "## Result\n**Done** `x` [[Fixed]]\n\tb";
-  assert.deepEqual(messageItem({ role: "pi", text, component: {} as any }).entry(), {
-    line: "\x1b[1;36m pi\x1b[0m \x1b[90m│\x1b[0m Result Done x Fixed b",
-    preview: text,
-  });
+  assert.equal(messageItem({ role: "pi", text, component: {} as any }).line(), "\x1b[1;36m pi\x1b[0m \x1b[90m│\x1b[0m Result Done x Fixed b");
 });
 
 test("finds the first rendered row of a component and restores render", () => {

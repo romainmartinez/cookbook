@@ -1,20 +1,24 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { ago, prefixes, parsePick } from "./tv.ts";
+import { initTheme } from "@earendil-works/pi-coding-agent";
+import { stripVTControlCharacters } from "node:util";
+import { ago, prefixes, parsePick, renderTurns } from "./tv.ts";
 
 const now = new Date(2026, 10, 19, 15, 0);
 const at = (...args: number[]) => new Date(2026, 10, ...(args as [number]));
 
-const entry = () => ({ line: "", preview: "" });
+initTheme("dark");
+
+const item = { line: () => "", preview: () => "" };
 
 test("numbers rows with aligned padding", () => {
-  const rows = prefixes(Array.from({ length: 10 }, () => ({ entry })));
+  const rows = prefixes(Array.from({ length: 10 }, () => item));
   assert.equal(rows[0], "1  ");
   assert.equal(rows[9], "10 ");
 });
 
 test("aligns the date column and leaves undated rows blank", () => {
-  assert.deepEqual(prefixes([{ date: at(19, 13, 0), entry }, { date: at(18, 9, 0), entry }, { entry }], now), [
+  assert.deepEqual(prefixes([{ date: at(19, 13, 0), ...item }, { date: at(18, 9, 0), ...item }, item], now), [
     "1 \x1b[90m2h ago   \x1b[0m  ",
     "2 \x1b[90myesterday\x1b[0m  ",
     "3 \x1b[90m         \x1b[0m  ",
@@ -34,4 +38,16 @@ test("formats dates relative to now", () => {
 test("maps the picked line back to a zero-based index", () => {
   assert.equal(parsePick("3  \x1b[1;33myou\x1b[0m hi\n"), 2);
   assert.equal(parsePick(""), undefined);
+});
+
+test("renders labeled turns as boxed markdown within the width", () => {
+  const preview = stripVTControlCharacters(renderTurns([{ role: "you", text: "**hi**" }, { role: "pi", text: "# Title\n\n- a b c" }], 10));
+  assert.equal(
+    preview,
+    [
+      "╭────────╮", "│ you    │", "│ hi     │", "╰────────╯",
+      "",
+      "╭────────╮", "│ pi     │", "│ Title  │", "│        │", "│ - a b  │", "│   c    │", "╰────────╯",
+    ].join("\n"),
+  );
 });
