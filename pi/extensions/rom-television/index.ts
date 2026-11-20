@@ -1,6 +1,6 @@
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 import { jumpToMessage } from "./messages.ts";
-import { listSessions, sessionItem } from "./sessions.ts";
+import { hitItem, listHits, listSessions, sessionItem } from "./sessions.ts";
 import { pick, withTui } from "./tv.ts";
 
 export default function (pi: ExtensionAPI) {
@@ -12,14 +12,21 @@ export default function (pi: ExtensionAPI) {
   });
 
   pi.registerCommand("sessions", {
-    description: "Resume a session in this project with television",
+    description: "Resume a session in this project with television, ctrl-t to search their messages",
     handler: async (_args, ctx) => {
       if (ctx.mode !== "tui") return;
       const { sessionManager } = ctx;
       const sessions = await listSessions(sessionManager.getSessionDir(), sessionManager.getSessionFile());
       if (sessions.length === 0) return ctx.ui.notify("No other sessions in this project", "info");
-      const index = await withTui(ctx, (tui) => pick(tui, "Sessions", sessions.map(sessionItem)));
-      if (index !== undefined) await ctx.switchSession(sessions[index].path);
+      const path = await withTui(ctx, async (tui) => {
+        const picked = await pick(tui, "Sessions  (ctrl-t: messages)", sessions.map(sessionItem), "ctrl-t");
+        if (!picked) return;
+        if (!picked.key) return sessions[picked.index].path;
+        const hits = await listHits(sessions);
+        const hit = await pick(tui, "Messages in all sessions", hits.map(hitItem));
+        return hit && hits[hit.index].path;
+      });
+      if (path) await ctx.switchSession(path);
     },
   });
 

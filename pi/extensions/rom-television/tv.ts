@@ -7,7 +7,7 @@ import { type ExtensionContext, getMarkdownTheme } from "@earendil-works/pi-codi
 import { Markdown, type TUI, visibleWidth } from "@earendil-works/pi-tui";
 
 export type Item = { date?: Date; line: () => string | Promise<string>; preview: (width: number) => string | Promise<string> };
-export type Turn = { role: "you" | "pi"; text: string };
+export type Turn = { role: "you" | "pi"; text: string; date?: Date };
 
 const previewSize = 40;
 
@@ -61,12 +61,16 @@ export function prefixes(items: Item[], now = new Date()): string[] {
   });
 }
 
-export function parsePick(stdout: string): number | undefined {
-  const number = Number.parseInt(stdout, 10);
-  return Number.isInteger(number) ? number - 1 : undefined;
+export type Pick = { index: number; key?: string };
+
+export function parsePick(stdout: string): Pick | undefined {
+  const [first = "", second = ""] = stdout.split("\n");
+  const key = /^\d/.test(first) ? undefined : first;
+  const index = Number.parseInt(key === undefined ? first : second, 10) - 1;
+  return Number.isInteger(index) ? { index, key } : undefined;
 }
 
-async function tv(header: string, items: Item[], columns: number): Promise<number | undefined> {
+async function tv(header: string, items: Item[], columns: number, expect?: string): Promise<Pick | undefined> {
   const dir = await mkdtemp(join(tmpdir(), "pi-television-"));
   // tv does not expose the preview width (television#999), so estimate it minus borders and padding.
   const width = Math.max(20, Math.floor((columns * previewSize) / 100) - 4);
@@ -79,6 +83,7 @@ async function tv(header: string, items: Item[], columns: number): Promise<numbe
       "--preview-header", "",
       "--preview-size", String(previewSize),
       "--ansi",
+      ...(expect ? ["--expect", expect] : []),
     ],
     { cwd: dir, stdio: ["pipe", "pipe", "inherit"] },
   );
@@ -116,10 +121,10 @@ async function tv(header: string, items: Item[], columns: number): Promise<numbe
   }
 }
 
-export async function pick(tui: TUI, header: string, items: Item[]): Promise<number | undefined> {
+export async function pick(tui: TUI, header: string, items: Item[], expect?: string): Promise<Pick | undefined> {
   tui.stop();
   try {
-    return await tv(header, items, tui.terminal.columns);
+    return await tv(header, items, tui.terminal.columns, expect);
   } finally {
     tui.start();
     tui.requestRender(true);

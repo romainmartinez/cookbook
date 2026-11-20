@@ -36,7 +36,8 @@ test("formats dates relative to now", () => {
 });
 
 test("maps the picked line back to a zero-based index", () => {
-  assert.equal(parsePick("3  \x1b[1;33myou\x1b[0m hi\n"), 2);
+  assert.deepEqual(parsePick("3  \x1b[1;33myou\x1b[0m hi\n"), { index: 2, key: undefined });
+  assert.deepEqual(parsePick("ctrl-t\n12 hi\n"), { index: 11, key: "ctrl-t" });
   assert.equal(parsePick(""), undefined);
 });
 

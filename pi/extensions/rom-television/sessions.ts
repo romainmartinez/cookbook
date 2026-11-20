@@ -1,8 +1,11 @@
 import { readdir, readFile, stat } from "node:fs/promises";
 import { join } from "node:path";
+import { truncateToWidth } from "@earendil-works/pi-tui";
+import { messageItem, summary } from "./messages.ts";
 import { color, type Item, oneLine, renderTurns, type Turn } from "./tv.ts";
 
 type Session = { path: string; modified: Date };
+type Hit = Turn & { path: string; title: string };
 
 const textOf = (content: any): string =>
   (typeof content === "string" ? content : content.filter((part: any) => part.type === "text").map((part: any) => part.text).join("\n")).trim();
@@ -18,21 +21,24 @@ function lineAt(jsonl: Buffer, index: number): any {
 export function turns(jsonl: string): Turn[] {
   return jsonl.split("\n").flatMap((line) => {
     if (!line.startsWith('{"type":"message"')) return [];
-    const { role, content } = JSON.parse(line).message;
-    if (role !== "user" && role !== "assistant") return [];
-    const text = textOf(content);
-    return text ? [{ role: role === "user" ? "you" : "pi", text }] : [];
+    const { timestamp, message } = JSON.parse(line);
+    if (message.role !== "user" && message.role !== "assistant") return [];
+    const text = textOf(message.content);
+    return text ? [{ role: message.role === "user" ? "you" : "pi", text, date: timestamp ? new Date(timestamp) : undefined }] : [];
   });
 }
 
-export function sessionLine(jsonl: Buffer): string {
+function sessionTitle(jsonl: Buffer): string {
   const info = jsonl.lastIndexOf('{"type":"session_info"');
   const user = jsonl.indexOf('"message":{"role":"user"');
   const name: string | undefined = info === -1 ? undefined : lineAt(jsonl, info).name?.trim();
-  const title = name || (user === -1 ? "" : textOf(lineAt(jsonl, user).message.content));
+  return oneLine(name || (user === -1 ? "" : textOf(lineAt(jsonl, user).message.content)));
+}
+
+export function sessionLine(jsonl: Buffer): string {
   let count = 0;
   for (let at = jsonl.indexOf(messageLine); at !== -1; at = jsonl.indexOf(messageLine, at + 1)) count++;
-  return `${oneLine(title) || color("90", "(no messages)")}  ${color("90", `(${count})`)}`;
+  return `${sessionTitle(jsonl) || color("90", "(no messages)")}  ${color("90", `(${count})`)}`;
 }
 
 export async function listSessions(dir: string, exclude?: string): Promise<Session[]> {
@@ -51,3 +57,20 @@ export const sessionItem = ({ path, modified }: Session): Item => ({
   line: async () => sessionLine(await readFile(path)),
   preview: async (width) => renderTurns(turns(await readFile(path, "utf8")), width),
 });
+
+export async function listHits(sessions: Session[]): Promise<Hit[]> {
+  const files = await Promise.all(sessions.map(async ({ path }) => ({ path, jsonl: await readFile(path) })));
+  return files
+    .flatMap(({ path, jsonl }) => {
+      const title = sessionTitle(jsonl);
+      return turns(jsonl.toString()).map((turn) => ({ ...turn, path, title }));
+    })
+    .sort((a, b) => (b.date?.getTime() ?? 0) - (a.date?.getTime() ?? 0));
+}
+
+const titleWidth = 24;
+
+export function hitItem(hit: Hit): Item {
+  const line = `${color("90", truncateToWidth(hit.title, titleWidth, "…", true))} ${summary(hit)}`;
+  return { ...messageItem(hit), line: () => line };
+}

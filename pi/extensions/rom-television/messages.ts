@@ -2,7 +2,7 @@ import type { ExtensionContext } from "@earendil-works/pi-coding-agent";
 import { color, type Item, label, oneLine, pick, renderTurn, type Turn } from "./tv.ts";
 
 type Node = { render(width: number): string[]; children?: Node[]; constructor: { name: string } };
-type Message = Turn & { date?: Date; component: Node };
+type Message = Turn & { component: Node };
 
 const sentinel = "\u0000rom-television\u0000";
 
@@ -33,8 +33,11 @@ export function collectMessages(root: Node): Message[] {
   return found;
 }
 
-export function messageItem({ role, text, date }: Message): Item {
-  const line = `${label(role)} ${color("90", "│")} ${oneLine(text.replace(/\*\*|`|\[\[|\]\]|^#+ /gm, ""))}`;
+export const summary = ({ role, text }: Turn) =>
+  `${label(role)} ${color("90", "│")} ${oneLine(text.replace(/\*\*|`|\[\[|\]\]|^#+ /gm, ""))}`;
+
+export function messageItem({ role, text, date }: Turn): Item {
+  const line = summary({ role, text });
   return { date, line: () => line, preview: (width) => renderTurn({ role, text }, width).join("\n") };
 }
 
@@ -57,8 +60,8 @@ export async function jumpToMessage(tui: any, ctx: ExtensionContext) {
   const messages = collectMessages(scrollView.child);
   if (messages.length === 0) return ctx.ui.notify("No messages to pick", "info");
 
-  const index = await pick(tui, "Messages", messages.map(messageItem));
-  if (index === undefined) return;
-  const row = rowOf(scrollView.child, messages[index].component, scrollView.getContentWidth(tui.terminal.columns));
+  const picked = await pick(tui, "Messages", messages.map(messageItem));
+  if (!picked) return;
+  const row = rowOf(scrollView.child, messages[picked.index].component, scrollView.getContentWidth(tui.terminal.columns));
   if (row >= 0) scrollView.scrollTo(row);
 }
