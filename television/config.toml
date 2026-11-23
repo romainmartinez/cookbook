@@ -1,6 +1,5 @@
 default_channel = "text"
 
-
 [shell_integration]
 fallback_channel = "files"
 
@@ -43,5 +42,4 @@ fallback_channel = "files"
 "git-log" = ["git log", "git show"]
 "git-repos" = ["nvim", "code", "hx", "git clone"]
 "procs" = ["kill", "pkill", "ps"]
-"tldr" = ["tldr"]
 "brew-packages" = ["brew uninstall", "brew info", "brew reinstall"]
