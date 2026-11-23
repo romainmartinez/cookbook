@@ -27,6 +27,14 @@ export default function (pi: ExtensionAPI) {
   pi.on("session_start", (_event, ctx) => {
     if (ctx.mode !== "tui") return;
 
+    const home = homedir();
+    const cwd = ctx.sessionManager.getCwd();
+    const path = cwd.startsWith(`${home}${sep}`) ? `~${cwd.slice(home.length)}` : cwd;
+    const mcp = mcpServerSettings({ pi, agentDir: getAgentDir(), cwd, projectTrusted: ctx.isProjectTrusted() })
+      .filter((server) => server.enabled).length;
+    let cost = 0;
+    let costedEntries = 0;
+
     ctx.ui.setFooter((tui, theme, footerData) => {
       const unsubscribe = footerData.onBranchChange(() => tui.requestRender());
 
@@ -34,22 +42,18 @@ export default function (pi: ExtensionAPI) {
         invalidate() {},
         dispose: unsubscribe,
         render(width: number): string[] {
-          const home = homedir();
-          const cwd = ctx.sessionManager.getCwd();
-          const path = cwd.startsWith(`${home}${sep}`) ? `~${cwd.slice(home.length)}` : cwd;
           const branch = footerData.getGitBranch();
 
           const usage = ctx.getContextUsage();
           const context = usage?.tokens == null
             ? "?"
             : `${compact.format(usage.tokens)} (${Math.round(usage.percent ?? 0)}%)`;
-          const cost = ctx.sessionManager.getEntries().reduce((total, entry) => total + entryCost(entry), 0);
+          const entries = ctx.sessionManager.getEntries();
+          for (; costedEntries < entries.length; costedEntries++) cost += entryCost(entries[costedEntries]);
 
           const statuses = [...footerData.getExtensionStatuses().values()].map((status) =>
             status.replace(ansi, ""),
           );
-          const mcp = mcpServerSettings({ pi, agentDir: getAgentDir(), cwd, projectTrusted: ctx.isProjectTrusted() })
-            .filter((server) => server.enabled).length;
           const left = theme.fg(
             "dim",
             [
