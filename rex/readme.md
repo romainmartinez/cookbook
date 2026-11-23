@@ -27,13 +27,13 @@
 
 ## Modules
 
-- `jump.lua`: remembers the pane you came from (until the config reloads); `cmd+;` (**Jump Back**) returns to it, and pressing it again toggles back. `jump_to` focuses a block for `lazygit-to-nvim.sh` and `yazi-to-nvim.sh`.
+- `jump.lua`: remembers the pane you came from (until the config reloads); `cmd+;` (**Jump Back**) returns to it, and pressing it again toggles back. `jump_to` focuses a block for `lazygit/edit.sh` and `yazi-to-nvim.sh`.
 - `nvim.lua`: finds the session's nvim and defines the palette actions **GitHub Pull Requests in Neovim** and **GitHub Issues in Neovim**, which open the snacks `gh` pickers in it and focus it.
 - `floats.lua`: the lazygit (`ctrl+g`) and yazi (`ctrl+e`) floats.
 
 ## nvim hand-off
 
-The floats get the session's nvim from `nvim.lua`; `lazygit-to-nvim.sh` (via `lazygit/config.yml`) and `yazi-to-nvim.sh` open files in it and focus it with `jump_to`. The socket path `~/.cache/rex-nvim/<block>.sock` must match the lazyvim repo's `lua/config/options.lua`.
+The floats get the session's nvim from `nvim.lua`; `lazygit/edit.sh` and `yazi-to-nvim.sh` open files in it and focus it with `jump_to`. The socket path `~/.cache/rex-nvim/<block>.sock` must match the lazyvim repo's `lua/config/options.lua`.
 
 ## TODO
 

@@ -1,12 +1,12 @@
 gui:
   showNumstatInFilesView: true
   nerdFontsVersion: "3"
-  showIcons: true
   showRandomTip: false
   showCommandLog: false
   showDivergenceFromBaseBranch: arrowAndNumber
   scrollHeight: 4
   scrollOffMargin: 4
+  portraitModeAutoMinHeight: 0
   theme:
     unstagedChangesColor:
       - "#db4b4b"
@@ -31,19 +31,18 @@ gui:
 git:
   disableForcePushing: true
   diffRenderers:
-    - colorArg: always
-      command: delta --paging=never --wrap-max-lines unlimited
-    - colorArg: always
-      command: delta --paging=never --side-by-side --line-numbers-left-format= --line-numbers-right-format=│ --wrap-max-lines unlimited
-    - colorArg: always
-      command: cat
+    - command: >-
+        delta --paging=never --wrap-max-lines unlimited
+        {{if gt .width 160}}--side-by-side --line-numbers-left-format= --line-numbers-right-format=│{{end}}
+    - type: rawGit
+      name: default
 os:
-  edit: 'if set -q REX_NVIM_BLOCK; ~/.config/rex/lazygit-to-nvim.sh {{filename}}; else if test -n "$NVIM"; nvim --server "$NVIM" --remote-tab {{filename}}; else; nvim -- {{filename}}; end'
-  editAtLine: 'if set -q REX_NVIM_BLOCK; ~/.config/rex/lazygit-to-nvim.sh {{filename}} {{line}}; else if test -n "$NVIM"; nvim --server "$NVIM" --remote-tab {{filename}}; and nvim --server "$NVIM" --remote-send "<C-\\><C-n>:{{line}}<CR>"; else; nvim +{{line}} -- {{filename}}; end'
-  openDirInEditor: 'if set -q REX_NVIM_BLOCK; ~/.config/rex/lazygit-to-nvim.sh {{dir}}; else if test -n "$NVIM"; nvim --server "$NVIM" --remote-tab {{dir}}; else; nvim -- {{dir}}; end'
+  edit: $CODE_FOLDER/cookbook/lazygit/edit.sh {{filename}}
+  editAtLine: $CODE_FOLDER/cookbook/lazygit/edit.sh {{filename}} {{line}}
+  openDirInEditor: $CODE_FOLDER/cookbook/lazygit/edit.sh {{dir}}
   editInTerminal: true
 customCommands:
-  - key: "<c-s>"
+  - key: "<c-n>"
     context: "global"
     description: "Show total line stats (working tree vs HEAD)"
     command: >-
