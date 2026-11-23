@@ -2,7 +2,7 @@ import { readdir, readFile, stat } from "node:fs/promises";
 import { join } from "node:path";
 import { truncateToWidth } from "@earendil-works/pi-tui";
 import { messageItem, summary } from "./messages.ts";
-import { color, type Item, oneLine, renderTurns, type Turn } from "./tv.ts";
+import { color, type Item, oneLine, renderTurns, type Turn } from "./picker.ts";
 
 type Session = { path: string; modified: Date };
 type Hit = Turn & { path: string; title: string };

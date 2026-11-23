@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { initTheme } from "@earendil-works/pi-coding-agent";
 import { stripVTControlCharacters } from "node:util";
-import { ago, prefixes, parsePick, renderTurns } from "./tv.ts";
+import { ago, dateColumns, parsePick, renderTurns } from "./picker.ts";
 
 const now = new Date(2026, 10, 19, 15, 0);
 const at = (...args: number[]) => new Date(2026, 10, ...(args as [number]));
@@ -11,18 +11,13 @@ initTheme("dark");
 
 const item = { line: () => "", preview: () => "" };
 
-test("numbers rows with aligned padding", () => {
-  const rows = prefixes(Array.from({ length: 10 }, () => item));
-  assert.equal(rows[0], "1  ");
-  assert.equal(rows[9], "10 ");
-});
-
 test("aligns the date column and leaves undated rows blank", () => {
-  assert.deepEqual(prefixes([{ date: at(19, 13, 0), ...item }, { date: at(18, 9, 0), ...item }, item], now), [
-    "1 \x1b[90m2h ago   \x1b[0m  ",
-    "2 \x1b[90myesterday\x1b[0m  ",
-    "3 \x1b[90m         \x1b[0m  ",
+  assert.deepEqual(dateColumns([{ date: at(19, 13, 0), ...item }, { date: at(18, 9, 0), ...item }, item], now), [
+    "\x1b[90m2h ago   \x1b[0m  ",
+    "\x1b[90myesterday\x1b[0m  ",
+    "\x1b[90m         \x1b[0m  ",
   ]);
+  assert.deepEqual(dateColumns([item, item], now), ["", ""]);
 });
 
 test("formats dates relative to now", () => {
@@ -35,9 +30,11 @@ test("formats dates relative to now", () => {
   assert.equal(ago(new Date(2025, 10, 2), now), "Nov 2, 2025");
 });
 
-test("maps the picked line back to a zero-based index", () => {
-  assert.deepEqual(parsePick("3  \x1b[1;33myou\x1b[0m hi\n"), { index: 2, key: undefined });
-  assert.deepEqual(parsePick("ctrl-t\n12 hi\n"), { index: 11, key: "ctrl-t" });
+test("reads the picked index or a request for the next view", () => {
+  assert.equal(parsePick("\n2\n"), 2);
+  assert.equal(parsePick("\n0\n"), 0);
+  assert.equal(parsePick("ctrl-t\n11\n"), "next");
+  assert.equal(parsePick("ctrl-t\n"), "next");
   assert.equal(parsePick(""), undefined);
 });
 

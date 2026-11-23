@@ -40,7 +40,7 @@ test("marks sessions without user messages", () => {
 });
 
 test("lists sessions newest first, skipping the current one", async () => {
-  const dir = await mkdtemp(join(tmpdir(), "rom-television-"));
+  const dir = await mkdtemp(join(tmpdir(), "rom-fzf-"));
   try {
     for (const [name, seconds] of [["a.jsonl", 1], ["b.jsonl", 3], ["c.jsonl", 2], ["notes.txt", 4]] as const) {
       await writeFile(join(dir, name), "");
@@ -55,7 +55,7 @@ test("lists sessions newest first, skipping the current one", async () => {
 });
 
 test("collects messages across sessions newest first, labeled by session title", async () => {
-  const dir = await mkdtemp(join(tmpdir(), "rom-television-"));
+  const dir = await mkdtemp(join(tmpdir(), "rom-fzf-"));
   try {
     const at = (time: string, role: string, text: string) => ({ ...message(role, text), timestamp: `2026-11-19T${time}:00Z` });
     await writeFile(join(dir, "a.jsonl"), lines(at("10", "user", "old ask"), at("12", "assistant", "late reply")));

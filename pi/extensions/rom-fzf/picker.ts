@@ -3,6 +3,7 @@ import { once } from "node:events";
 import { mkdtemp, rename, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
+import { fileURLToPath } from "node:url";
 import { type ExtensionContext, getMarkdownTheme } from "@earendil-works/pi-coding-agent";
 import { Markdown, type TUI, visibleWidth } from "@earendil-works/pi-tui";
 
@@ -51,41 +52,52 @@ export function renderTurns(turns: Turn[], width: number): string {
   return turns.map((turn) => box(renderTurn(turn, width - 4), width).join("\n")).join("\n\n");
 }
 
-export function prefixes(items: Item[], now = new Date()): string[] {
-  const width = String(items.length).length;
+export function dateColumns(items: Item[], now = new Date()): string[] {
   const dates = items.map((item) => (item.date ? ago(item.date, now) : ""));
-  const dateWidth = Math.max(0, ...dates.map((date) => date.length));
-  return dates.map((date, index) => {
-    const column = dateWidth ? `${color("90", date.padEnd(dateWidth))}  ` : "";
-    return `${String(index + 1).padEnd(width)} ${column}`;
-  });
+  const width = Math.max(0, ...dates.map((date) => date.length));
+  return dates.map((date) => (width ? `${color("90", date.padEnd(width))}  ` : ""));
 }
 
-export type Pick = { index: number; key?: string };
-
-export function parsePick(stdout: string): Pick | undefined {
-  const [first = "", second = ""] = stdout.split("\n");
-  const key = /^\d/.test(first) ? undefined : first;
-  const index = Number.parseInt(key === undefined ? first : second, 10) - 1;
-  return Number.isInteger(index) ? { index, key } : undefined;
+export function parsePick(stdout: string): number | "next" | undefined {
+  const [key, line = ""] = stdout.split("\n");
+  if (key) return "next";
+  const index = Number.parseInt(line, 10);
+  return Number.isInteger(index) ? index : undefined;
 }
 
-async function tv(header: string, items: Item[], columns: number, expect?: string): Promise<Pick | undefined> {
-  const dir = await mkdtemp(join(tmpdir(), "pi-television-"));
-  // tv does not expose the preview width (television#999), so estimate it minus borders and padding.
+const highlight = fileURLToPath(new URL("./highlight.pl", import.meta.url));
+
+// fzf has no pane focus, so tab toggles the preview label and each scroll key reads it back.
+const focused = (preview: string, list: string) => `transform:[ -n "$FZF_PREVIEW_LABEL" ] && echo ${preview} || echo ${list}`;
+const bindings = [
+  `tab:${focused("change-preview-label:", "change-preview-label:' preview '")}`,
+  `ctrl-d:${focused("preview-half-page-down", "half-page-down")}`,
+  `ctrl-u:${focused("preview-half-page-up", "half-page-up")}`,
+].flatMap((binding) => ["--bind", binding]);
+
+export async function pick(label: string, items: Item[], columns: number): Promise<number | "next" | undefined> {
+  const dir = await mkdtemp(join(tmpdir(), "pi-fzf-"));
+  // Previews are rendered ahead of time, before fzf reports $FZF_PREVIEW_COLUMNS, so estimate it minus borders and padding.
   const width = Math.max(20, Math.floor((columns * previewSize) / 100) - 4);
   const child = spawn(
-    "tv",
+    "fzf",
     [
-      // tv runs this through $SHELL, which may not be POSIX (fish).
-      "--preview-command", `sh -c 'until [ -e "$0" ]; do sleep 0.05; done; cat "$0"' {split: :0}.txt`,
-      "--input-header", header,
-      "--preview-header", "",
-      "--preview-size", String(previewSize),
+      // fzf otherwise runs this through $SHELL, which may not be POSIX (fish).
+      "--with-shell", "sh -c",
+      "--preview", `until [ -e {n}.txt ]; do sleep 0.05; done; perl -CSDA "$ROM_FZF_HIGHLIGHT" {q} {n}.txt`,
+      "--preview-window", `right,${previewSize}%`,
+      "--input-label", ` ${label} `,
+      "--style", "full",
+      "--layout", "reverse",
+      "--exact",
+      "--scheme", "history",
+      "--accept-nth", "{n}",
       "--ansi",
-      ...(expect ? ["--expect", expect] : []),
+      ...bindings,
+      "--expect", "ctrl-t",
+      "--ghost", "ctrl-t next view · tab focus preview",
     ],
-    { cwd: dir, stdio: ["pipe", "pipe", "inherit"] },
+    { cwd: dir, env: { ...process.env, ROM_FZF_HIGHLIGHT: highlight }, stdio: ["pipe", "pipe", "inherit"] },
   );
   child.stdin.on("error", () => {});
   let stdout = "";
@@ -95,16 +107,16 @@ async function tv(header: string, items: Item[], columns: number, expect?: strin
 
   const feed = async () => {
     try {
-      for (const [index, prefix] of prefixes(items).entries()) {
+      for (const [index, column] of dateColumns(items).entries()) {
         if (!child.stdin.writable) return;
-        child.stdin.write(`${prefix}${await items[index].line()}\n`);
+        child.stdin.write(`${column}${await items[index].line()}\n`);
       }
     } finally {
       child.stdin.end();
     }
     for (const [index, item] of items.entries()) {
       if (closed) return;
-      const file = join(dir, `${index + 1}.txt`);
+      const file = join(dir, `${index}.txt`);
       await writeFile(`${file}.tmp`, await item.preview(width));
       await rename(`${file}.tmp`, file);
     }
@@ -121,20 +133,10 @@ async function tv(header: string, items: Item[], columns: number, expect?: strin
   }
 }
 
-export async function pick(tui: TUI, header: string, items: Item[], expect?: string): Promise<Pick | undefined> {
-  tui.stop();
-  try {
-    return await tv(header, items, tui.terminal.columns, expect);
-  } finally {
-    tui.start();
-    tui.requestRender(true);
-  }
-}
-
 export const withTui = <T>(ctx: ExtensionContext, run: (tui: TUI) => Promise<T>) =>
   ctx.ui.custom<T | undefined>((tui, _theme, _kb, done) => {
     run(tui)
-      .catch((error) => void ctx.ui.notify(`Television: ${error instanceof Error ? error.message : error}`, "error"))
+      .catch((error) => void ctx.ui.notify(`Picker: ${error instanceof Error ? error.message : error}`, "error"))
       .then(done);
     return { render: () => [], invalidate: () => {} };
   });
