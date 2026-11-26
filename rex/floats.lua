@@ -4,7 +4,7 @@ local nvim = require("nvim")
 local home = os.getenv("HOME")
 
 -- Floats get the session's nvim, if any, so they can open files in it.
-local function float(program)
+local function float(program, reveal)
 	return function(ctx)
 		local fg = nvim.foreground(ctx.block_id)
 		local command = { program }
@@ -12,6 +12,9 @@ local function float(program)
 		if sock then
 			jump.remember(ctx)
 			command = { "env", "NVIM=" .. sock, "REX_NVIM_BLOCK=" .. block.block_id, program }
+			if reveal and block.block_id == ctx.block_id then
+				command[#command + 1] = nvim.file(sock)
+			end
 		end
 		rex.session.new_layer({
 			bounds = { 0.01, 0.01, 0.98, 0.98 },
@@ -36,7 +39,7 @@ rex.action({
 	title = "Open Yazi",
 	category = "Floats",
 	keywords = "files file manager",
-	run = float(home .. "/.config/rex/yazi-to-nvim.sh"),
+	run = float(home .. "/.config/rex/yazi-to-nvim.sh", true),
 })
 
 rex.bind("ctrl+g", "lazygit")

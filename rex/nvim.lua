@@ -42,6 +42,15 @@ end
 -- The server's PATH lacks Homebrew.
 local env = { PATH = "/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin" }
 
+-- The current buffer's file, or nil when it isn't one on disk.
+function M.file(sock)
+	local out = rex.exec(
+		{ "nvim", "--server", sock, "--remote-expr", "filereadable(expand('%:p')) ? expand('%:p') : ''" },
+		{ env = env }
+	)
+	return out.ok and out.stdout:match("[^\n]+") or nil
+end
+
 local function snacks_gh(picker)
 	return function(ctx)
 		local sock, nvim = M.find(ctx)
