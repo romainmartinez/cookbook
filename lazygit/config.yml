@@ -31,9 +31,7 @@ gui:
 git:
   disableForcePushing: true
   diffRenderers:
-    - command: >-
-        delta --paging=never --wrap-max-lines unlimited
-        {{if gt .width 160}}--side-by-side --line-numbers-left-format= --line-numbers-right-format=│{{end}}
+    - command: $CODE_FOLDER/cookbook/lazygit/delta.awk width={{.width}}
     - type: rawGit
       name: default
 os:
