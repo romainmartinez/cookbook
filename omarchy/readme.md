@@ -40,7 +40,7 @@ sudo visudo -c
 ## Packages
 
 ```sh
-omarchy pkg add fish television lsd yazi fd bat jq uv keyd tailscale git-delta github-cli
+omarchy pkg add fish television lsd yazi fd bat jq uv keyd git-delta github-cli
 omarchy install terminal ghostty
 ```
 
@@ -88,30 +88,9 @@ EOF
 sudo systemctl restart systemd-logind
 ```
 
-### Tailscale (no Tailscale SSH)
-
-Tailscale SSH hijacks port 22 and ignores `authorized_keys`. Use plain OpenSSH.
-
-```sh
-sudo systemctl enable --now tailscaled
-sudo tailscale up --accept-routes
-sudo tailscale set --operator="$USER" --ssh=false
-```
-
-### SSH (tailnet only)
-
-```sh
-sudo systemctl enable --now sshd
-sudo ln -sfn $CODE_FOLDER/cookbook/omarchy/sshd/10-key-only.conf /etc/ssh/sshd_config.d/10-key-only.conf
-sudo sshd -t && sudo systemctl reload sshd
-sudo ufw allow in on tailscale0 to any port 22 proto tcp comment 'ssh over tailnet'
-mkdir -p ~/.ssh && chmod 700 ~/.ssh
-touch ~/.ssh/authorized_keys && chmod 600 ~/.ssh/authorized_keys
-```
-
 ### Rex server
 
-Server only (no Linux client). Joins the tailnet as `omarchy-rex` via built-in Tailscale, independent of system tailscaled. Requires tailnet MagicDNS and HTTPS certs.
+Server only (no Linux client), and the only remote access (no system tailscaled or sshd). Joins the tailnet as `omarchy-rex` via built-in Tailscale. Requires tailnet MagicDNS and HTTPS certs.
 
 ```sh
 curl -fsSL https://pkgs.superlogical.com/rex/install.sh | sh
