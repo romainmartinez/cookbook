@@ -24,13 +24,3 @@ set -gx NODE_EXTRA_CA_CERTS $CERT_FILE
 
 # ─── ALIASES ─────────────────────────────────────────────────────────
 alias sysclean='brew update && brew upgrade --yes && brew autoremove && brew cleanup && brew doctor; pi update --extensions'
-
-# ─── FUNCTIONS ───────────────────────────────────────────────────────
-if set -q REX_SESSION
-    function __notify_done --on-event fish_postexec
-        set -l cmd_duration_sec (math -s0 $CMD_DURATION / 1000)
-        if test $cmd_duration_sec -gt 5
-            printf '\e]9;Done in %ss: %s\a' $cmd_duration_sec (string join ' ' (string split \n -- $argv[1]))
-        end
-    end
-end

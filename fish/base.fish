@@ -1,6 +1,5 @@
 # ─── PATH ────────────────────────────────────────────────────────────
 fish_add_path $HOME/.local/bin
-fish_add_path $HOME/.cargo/bin
 
 # ─── ENVIRONMENT ─────────────────────────────────────────────────────
 set -gx EDITOR nvim
@@ -12,9 +11,7 @@ set -gx CODE_FOLDER $HOME/Documents
 # ─── ALIASES ─────────────────────────────────────────────────────────
 alias n='nvim'
 alias lg='lazygit'
-alias gha='gh auth switch'
 alias nr='npm run'
-abbr -a pis 'pi --session'
 
 # lsd (modern ls replacement)
 alias ls='lsd'
@@ -32,6 +29,14 @@ function y
         builtin cd -- "$cwd"
     end
     command rm -f -- "$tmp"
+end
+
+# notify via OSC 9 when a command takes more than 5s
+function __notify_done --on-event fish_postexec
+    set -l cmd_duration_sec (math -s0 $CMD_DURATION / 1000)
+    if test $cmd_duration_sec -gt 5
+        printf '\e]9;Done in %ss: %s\a' $cmd_duration_sec (string join ' ' (string split \n -- $argv[1]))
+    end
 end
 
 # ─── KEYBINDINGS ─────────────────────────────────────────────────────

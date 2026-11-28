@@ -1,7 +1,11 @@
+# Named bash-history.toml to replace the built-in bash-history channel, which tv has no option to hide
 [metadata]
-name = "bash-history"
-description = "disabled (fish user)"
-requirements = ["__disabled_by_user__"]
+name = "fish-history"
+description = "A channel to select from your fish history (with timestamps)"
+requirements = ["fish"]
 
 [source]
-command = "true"
+command = "fish -c 'history --show-time=(printf \"%%a %%b %%d, %%H:%%M\t\")'"
+output = "{split:\t:1..}"
+no_sort = true
+frecency = false

@@ -13,7 +13,7 @@
 - Cursor: block, `warp` cursor shader on
 - Copy on select on
 - Terminal notifications on (`Workspace.allowsTerminalNotifications`, needed for the OSC 9 banners below)
-- Program activity, done: notification on, `success` sound, Dock badge, shown in tabs (`Workspace.programActivityStatusPreferences`). These system notifications only fire while Rex is in the background. OSC 9 banners show even in front: `fish/mac.fish` for slow commands, `pi/extensions/rom-rex-notifications` for Pi done, error and blocked
+- Program activity, done: notification on, `success` sound, Dock badge, shown in tabs (`Workspace.programActivityStatusPreferences`). These system notifications only fire while Rex is in the background. OSC 9 banners show even in front: `fish/base.fish` for slow commands, `pi/extensions/rom-rex-notifications` for Pi done, error and blocked
 - Tabs: vertical, program status shown in tabs, tab icons never colored, icon count 3, don't fill available space
 - Sidebar: left, width 167, activity hidden
 - Panes: comfortable density, headers hidden, active border hidden, inactive panes fade (both), tinted with the program background
